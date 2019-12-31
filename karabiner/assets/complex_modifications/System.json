@@ -1,0 +1,140 @@
+{
+  "title": "System",
+  "rules": [
+    {
+      "description": "Eject to mission_control, hold to Sleep",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "consumer_key_code": "eject",
+            "modifiers": {
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 500,
+            "basic.to_if_held_down_threshold_milliseconds": 500
+          },
+          "to_if_alone": [
+            {
+              "key_code": "mission_control"
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "shell_command": "pmset sleepnow"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "description": "Del+eject to cmd-del",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "simultaneous": [
+              {
+                "consumer_key_code": "eject"
+              },
+              {
+                "key_code": "delete_or_backspace"
+              }
+            ],
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace",
+              "modifiers": ["right_command"]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "description": "Hold Esc to launch Alfred",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "escape",
+            "modifiers": {
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 300,
+            "basic.to_if_held_down_threshold_milliseconds": 300
+          },
+          "to_if_alone": [
+            {
+              "key_code": "escape"
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "shell_command": "open -a 'Alfred 3.app'"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "description": "Swap ; and :",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "semicolon"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "semicolon",
+              "modifiers": [
+                "left_shift"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

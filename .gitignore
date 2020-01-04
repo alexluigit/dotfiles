@@ -10,9 +10,10 @@ Rime/*/
 Rime/*dict.yaml
 Rime/*schema.yaml
 tmux/*/
+tmux/*.log
+!tmux/themes
 !vifm
 vifm/*
 !vifm/vifmrc
 zsh/.zcompdump*
 zsh/aliasrc
-zsh/.fzf.zsh

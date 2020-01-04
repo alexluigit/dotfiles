@@ -2,14 +2,22 @@
   "title": "Vim",
   "rules": [
     {
-      "description": "Left cmd + hjkl to arrow keys Vim",
+      "description": "F1 + hjkl to arrow keys Vim",
       "manipulators": [
         {
           "from": {
-            "key_code": "h",
+            "simultaneous": [
+              {
+                "key_code": "h"
+              },
+              {
+                "key_code": "f1"
+              }
+            ],
             "modifiers": {
-              "mandatory": ["left_command"],
-              "optional": ["any"]
+              "optional": [
+                "any"
+              ]
             }
           },
           "to": [
@@ -21,10 +29,18 @@
         },
         {
           "from": {
-            "key_code": "j",
+            "simultaneous": [
+              {
+                "key_code": "j"
+              },
+              {
+                "key_code": "f1"
+              }
+            ],
             "modifiers": {
-              "mandatory": ["left_command"],
-              "optional": ["any"]
+              "optional": [
+                "any"
+              ]
             }
           },
           "to": [
@@ -36,10 +52,18 @@
         },
         {
           "from": {
-            "key_code": "k",
+            "simultaneous": [
+              {
+                "key_code": "k"
+              },
+              {
+                "key_code": "f1"
+              }
+            ],
             "modifiers": {
-              "mandatory": ["left_command"],
-              "optional": ["any"]
+              "optional": [
+                "any"
+              ]
             }
           },
           "to": [
@@ -51,13 +75,20 @@
         },
         {
           "from": {
-            "key_code": "l",
+            "simultaneous": [
+              {
+                "key_code": "l"
+              },
+              {
+                "key_code": "f1"
+              }
+            ],
             "modifiers": {
-              "mandatory": ["left_command"],
-              "optional": ["any"]
+              "optional": [
+                "any"
+              ]
             }
-          },
-          "to": [
+          },          "to": [
             {
               "key_code": "right_arrow"
             }

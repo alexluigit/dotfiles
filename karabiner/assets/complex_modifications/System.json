@@ -33,7 +33,7 @@
     },
 
     {
-      "description": "Del+eject to cmd-del",
+      "description": "F12+eject to cmd-del",
       "manipulators": [
         {
           "type": "basic",
@@ -43,7 +43,7 @@
                 "consumer_key_code": "eject"
               },
               {
-                "key_code": "delete_or_backspace"
+                "key_code": "f12"
               }
             ],
             "modifiers": {

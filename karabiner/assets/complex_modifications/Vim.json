@@ -2,21 +2,14 @@
   "title": "Vim",
   "rules": [
     {
-      "description": "F1 + hjkl to arrow keys Vim",
+      "description": "Left cmd + hjkl to arrow keys Vim",
       "manipulators": [
         {
           "from": {
-            "simultaneous": [
-              {
-                "key_code": "h"
-              },
-              {
-                "key_code": "f1"
-              }
-            ],
+            "key_code": "h",
             "modifiers": {
-              "optional": [
-                "any"
+              "mandatory": [
+                "left_command"
               ]
             }
           },
@@ -29,17 +22,10 @@
         },
         {
           "from": {
-            "simultaneous": [
-              {
-                "key_code": "j"
-              },
-              {
-                "key_code": "f1"
-              }
-            ],
+            "key_code": "j",
             "modifiers": {
-              "optional": [
-                "any"
+              "mandatory": [
+                "left_command"
               ]
             }
           },
@@ -52,17 +38,10 @@
         },
         {
           "from": {
-            "simultaneous": [
-              {
-                "key_code": "k"
-              },
-              {
-                "key_code": "f1"
-              }
-            ],
+            "key_code": "k",
             "modifiers": {
-              "optional": [
-                "any"
+              "mandatory": [
+                "left_command"
               ]
             }
           },
@@ -75,20 +54,14 @@
         },
         {
           "from": {
-            "simultaneous": [
-              {
-                "key_code": "l"
-              },
-              {
-                "key_code": "f1"
-              }
-            ],
+            "key_code": "l",
             "modifiers": {
-              "optional": [
-                "any"
+              "mandatory": [
+                "left_command"
               ]
             }
-          },          "to": [
+          },
+          "to": [
             {
               "key_code": "right_arrow"
             }
@@ -121,6 +94,31 @@
               "type": "frontmost_application_if",
               "bundle_identifiers": [
                 "^com.googlecode.iterm2$"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Ctrl-shift K to forward del",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace",
+              "modifiers": [
+                "fn"
               ]
             }
           ]

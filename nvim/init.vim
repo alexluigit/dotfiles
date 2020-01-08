@@ -9,8 +9,7 @@ set hidden " enable hidden unsaved buffers
 set iskeyword+=- " treat dash separated words as a word text object
 set noswapfile " no .swp file
 set ignorecase " ignore case when searching
-set smartcase " make capital search valid
-set clipboard=unnamed " use system clipboard
+set smartcase " but still respect capital input
 set linebreak " wrap with word boundary
 set nobackup
 set nowritebackup
@@ -24,7 +23,7 @@ set shortmess+=c
 "================================================================================
 au BufEnter,BufNew * if &buftype == 'terminal' | :startinsert | endif " enter terminal in insert mode
 au BufWritePre * :%s/\s\+$//e " remove trailing space when saving
-au FileType make setlocal noexpandtab " Ensure tabs don't get converted to spaces in Makefiles.
+" au FileType make setlocal noexpandtab " Ensure tabs don't get converted to spaces in Makefiles.
 
 "================================================================================
 "                          Plugins managed by vim-plug
@@ -43,20 +42,16 @@ Plug 'sheerun/vim-polyglot' " language pack
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-smooth-scroll'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 
 "================================================================================
 "                                 keyBindings
 "================================================================================
-let g:mapleader="," " Leader Key and alias
-nmap <space> ,
-vmap <space> ,
+let g:mapleader=" "
 noremap <silent><F1> :NERDTreeToggle<cr>
 " Clear search highlights.
 map <silent><Leader><Space> :let @/=''<CR>
-" Prevent selecting and pasting from overwriting what you originally copied.
-xnoremap p pgvy
 " Find & replace.
 nnoremap <leader>r :%s///g<left><left>
 nnoremap <leader>rc :%s///gc<left><left><left>
@@ -65,20 +60,20 @@ xnoremap <leader>rc :s///gc<left><left><left>
 nnoremap <leader>S "ayiw :Rg <C-r>a<cr><M-a><cr>
 xnoremap <leader>S "ay :Rg <C-r>a<cr><M-a><cr>
 noremap <leader>R :cfdo %s/<C-r>a//gc\|update <left><left><left><left><left><left><left><left><left><left><left>
-" make * and # work in visual mode
+" Make * and # work in visual mode
 xnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 xnoremap # y?\V<C-R>=escape(@",'/\')<CR><CR>
 " Type a replacement term and press . to repeat the replacement again (comparable to multiple cursors).
 nnoremap <silent><leader>s :let @/='\<'.expand('<cword>').'\>'<cr>cgn
 xnoremap <silent><leader>s "sy:let @/=@s<cr>cgn
-" buffer switch
+" Buffer switch
 nnoremap <silent>-- :bp<cr>
 nnoremap <silent>== :bn<cr>
 " source (reload) vimrc.
 nnoremap <leader>so :source $MYVIMRC<cr>
 nnoremap <silent><leader>er :fin $MYVIMRC<cr>
 " press ctrl-q to delete buffer
-nnoremap <silent><leader>q :bd!<cr>
+nnoremap <silent>qq :bd!<cr>
 " jj to <Esc>
 inoremap jj <esc>
 tnoremap jj <C-\><C-n>
@@ -87,6 +82,9 @@ noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 20, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 20, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
+" System clipboard
+noremap <leader>y "+y
+noremap <leader>p "+p
 
 "================================================================================
 "                                 Apperance
@@ -107,7 +105,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let NERDTreeMapActivateNode='l' " l key to activate node
 let NERDTreeMinimalUI=1 " do not show help message
 let NERDTreeShowHidden=1 " show hidden files
-let NERDTreeIgnore=[ '\.DS_Store$', '\~$', '\.hushlogin$', '\.Trash$', '\.git$' ]
+let NERDTreeIgnore=[ '\.DS_Store$', '\~$', '\.hushlogin$', '\.Trash$', '\.git$', 'node_modules$' ]
 let g:NERDTreeBookmarksFile = $NERDTREE_BOOKMARKS " change default bookmark path
 " remove trailing '/' of dir node
 augroup nerdtreehidecwd autocmd! | autocmd FileType nerdtree setlocal conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
@@ -123,13 +121,13 @@ if !exists('g:airline_symbols') | let g:airline_symbols = {} | endif
 let g:airline_symbols.branch = ' '
 let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.dirty=' '
-let g:airline#extensions#coc#enabled = 1
+
 "================================================================================
 "                                  Fzf.vim
 "================================================================================
 " Launch fzf with F2.
 nnoremap <silent> <F2> :FZF -m<cr>
-autocmd! FileType fzf tnoremap <buffer> <leader>q <c-c>
+autocmd! FileType fzf tnoremap <buffer> <F2> <c-c>
 " Map a few common things to do with FZF.
 nnoremap <silent><leader><Enter> :Buffers<cr>
 nnoremap <silent><leader>l :Lines<cr>
@@ -137,6 +135,22 @@ nnoremap <silent><leader>h :History<cr>
 " Allow passing optional flags into the Rg command. Example: :Rg myterm -g '*.md'
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --no-ignore --glob '!{.git,node_modules}' " . <q-args>, 1, <bang>0)
 
+"================================================================================
+"                              Tmux-vim-nav
+"================================================================================
+function! TmuxMove(direction)
+        let wnr = winnr()
+        silent! execute 'wincmd ' . a:direction
+        " If the winnr is still the same after we moved, it is the last pane
+        if wnr == winnr()
+                call system('tmux select-pane -' . tr(a:direction, 'phjkl', 'lLDUR'))
+        end
+endfunction
+
+nnoremap <silent> <M-h> :call TmuxMove('h')<cr>
+nnoremap <silent> <M-j> :call TmuxMove('j')<cr>
+nnoremap <silent> <M-k> :call TmuxMove('k')<cr>
+nnoremap <silent> <M-l> :call TmuxMove('l')<cr>
 "================================================================================
 "                                    COC
 "================================================================================
@@ -186,5 +200,3 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}

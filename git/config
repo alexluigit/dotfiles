@@ -2,3 +2,7 @@
 	proxy = http://127.0.0.1:1087
 [https]
 	proxy = https://127.0.0.1:1087
+[user]
+	name = Alex
+[core]
+	editor = nvim

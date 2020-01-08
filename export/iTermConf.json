@@ -1,6 +1,10 @@
 {
-  "ASCII Ligatures" : true,
-  "Set Local Environment Vars" : false,
+  "Thin Strokes" : 4,
+  "Ansi 5 Color" : {
+    "Green Component" : 0.4509804,
+    "Red Component" : 1,
+    "Blue Component" : 0.99215690000000001
+  },
   "Working Directory" : "\/Users\/simon\/",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
@@ -83,48 +87,44 @@
   "Unlimited Scrollback" : false,
   "Custom Command" : "No",
   "Keyboard Map" : {
-    "0x6c-0x100000" : {
+    "0x4c-0x120000" : {
       "Text" : ":vert res +1\\n",
       "Action" : 38
     },
-    "0x68-0x180000" : {
-      "Text" : "0x11 0x48",
-      "Action" : 11
-    },
-    "0x6b-0x180000" : {
-      "Text" : "0x11 0x4B",
-      "Action" : 11
-    },
-    "0x6c-0x180000" : {
-      "Text" : "0x11 0x4C",
-      "Action" : 11
-    },
-    "0x68-0x140000" : {
-      "Text" : "0x11 0x70",
-      "Action" : 11
-    },
-    "0xf707-0x0" : {
-      "Text" : "clear\\n",
-      "Action" : 38
-    },
-    "0x6c-0x140000" : {
-      "Text" : "0x11 0x6E",
-      "Action" : 11
-    },
-    "0x6a-0x180000" : {
-      "Text" : "0x11 0x4A",
-      "Action" : 11
-    },
-    "0x6a-0x100000" : {
+    "0x4a-0x120000" : {
       "Text" : ":res -1\\n",
       "Action" : 38
     },
-    "0x6b-0x100000" : {
-      "Text" : ":res +1\\n",
+    "0x68-0x180000" : {
+      "Text" : "0x02 0x48",
+      "Action" : 11
+    },
+    "0x6b-0x180000" : {
+      "Text" : "0x02 0x4B",
+      "Action" : 11
+    },
+    "0x6c-0x180000" : {
+      "Text" : "0x02 0x4C",
+      "Action" : 11
+    },
+    "0x68-0x140000" : {
+      "Text" : "0x02 0x70",
+      "Action" : 11
+    },
+    "0x6a-0x180000" : {
+      "Text" : "0x02 0x4A",
+      "Action" : 11
+    },
+    "0x6c-0x140000" : {
+      "Text" : "0x02 0x6E",
+      "Action" : 11
+    },
+    "0x48-0x120000" : {
+      "Text" : ":vert res -1\\n",
       "Action" : 38
     },
-    "0x68-0x100000" : {
-      "Text" : ":vert res -1\\n",
+    "0x4b-0x120000" : {
+      "Text" : ":res +1\\n",
       "Action" : 38
     }
   },
@@ -247,11 +247,7 @@
   "Columns" : 180,
   "Unicode Normalization" : 0,
   "Visual Bell" : true,
+  "ASCII Ligatures" : true,
   "Custom Directory" : "Yes",
-  "Thin Strokes" : 4,
-  "Ansi 5 Color" : {
-    "Green Component" : 0.4509804,
-    "Red Component" : 1,
-    "Blue Component" : 0.99215690000000001
-  }
+  "Set Local Environment Vars" : false
 }

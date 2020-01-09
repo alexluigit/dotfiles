@@ -73,7 +73,7 @@ nnoremap <silent>== :bn<cr>
 nnoremap <leader>so :source $MYVIMRC<cr>
 nnoremap <silent><leader>er :fin $MYVIMRC<cr>
 " press ctrl-q to delete buffer
-nnoremap <silent>qq :bd!<cr>
+nnoremap <silent>qq :bd<cr>
 " jj to <Esc>
 inoremap jj <esc>
 tnoremap jj <C-\><C-n>

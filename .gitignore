@@ -9,6 +9,7 @@ nvim/plugged/
 Rime/*/
 Rime/*dict.yaml
 Rime/*schema.yaml
+ShadowsocksX-NG/gfwlist.js
 tmux/*/
 tmux/*.log
 !tmux/themes

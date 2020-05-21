@@ -9,9 +9,7 @@
           "from": {
             "consumer_key_code": "eject",
             "modifiers": {
-              "optional": [
-                "caps_lock"
-              ]
+              "optional": ["caps_lock"]
             }
           },
           "parameters": {
@@ -31,7 +29,91 @@
         }
       ]
     },
-
+    {
+      "description": "Left cmd + hjkl to arrow keys (except terminal)",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": ["^com.googlecode.iterm2$"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "down_arrow"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": ["^com.googlecode.iterm2$"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": ["^com.googlecode.iterm2$"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": ["^com.googlecode.iterm2$"]
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
     {
       "description": "Equal_sign + del to cmd-del",
       "manipulators": [
@@ -47,46 +129,13 @@
               }
             ],
             "modifiers": {
-              "optional": [
-                "any"
-              ]
+              "optional": ["any"]
             }
           },
           "to": [
             {
               "key_code": "delete_or_backspace",
               "modifiers": ["right_command"]
-            }
-          ]
-        }
-      ]
-    },
-
-    {
-      "description": "Hold Esc to launch Alfred",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "escape",
-            "modifiers": {
-              "optional": [
-                "caps_lock"
-              ]
-            }
-          },
-          "parameters": {
-            "basic.to_if_alone_timeout_milliseconds": 300,
-            "basic.to_if_held_down_threshold_milliseconds": 300
-          },
-          "to_if_alone": [
-            {
-              "key_code": "escape"
-            }
-          ],
-          "to_if_held_down": [
-            {
-              "shell_command": "open -a 'Alfred 3.app'"
             }
           ]
         }
@@ -101,12 +150,8 @@
           "from": {
             "key_code": "semicolon",
             "modifiers": {
-              "mandatory": [
-                "shift"
-              ],
-              "optional": [
-                "caps_lock"
-              ]
+              "mandatory": ["shift"],
+              "optional": ["caps_lock"]
             }
           },
           "to": [
@@ -120,17 +165,13 @@
           "from": {
             "key_code": "semicolon",
             "modifiers": {
-              "optional": [
-                "caps_lock"
-              ]
+              "optional": ["caps_lock"]
             }
           },
           "to": [
             {
               "key_code": "semicolon",
-              "modifiers": [
-                "left_shift"
-              ]
+              "modifiers": ["left_shift"]
             }
           ]
         }
@@ -138,27 +179,57 @@
     },
 
     {
-      "description": "Press cmd alone to oepn alfred",
+      "description": "Press right-cmd alone to toggle alfred",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "left_command",
+            "key_code": "right_command",
             "modifiers": {
-              "optional": [
-                "any"
-              ]
+              "optional": ["any"]
             }
           },
           "to": [
             {
-              "key_code": "left_command",
+              "key_code": "right_command",
               "lazy": true
             }
           ],
           "to_if_alone": [
             {
               "shell_command": "open -a 'Alfred 3.app'"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": ["com.runningwithcrayons.Alfred-3"]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "right_command",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_command",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "escape"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.runningwithcrayons.Alfred-3"]
             }
           ]
         }

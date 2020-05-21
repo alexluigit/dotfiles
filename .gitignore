@@ -18,3 +18,5 @@ vifm/*
 !vifm/vifmrc
 zsh/.zcompdump*
 zsh/aliasrc
+ranger/plugins/
+zsh/plugins/

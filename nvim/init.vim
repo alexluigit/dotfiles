@@ -24,7 +24,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-fugitive'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'yuttie/comfortable-motion.vim'
   Plug 'tpope/vim-commentary'
   Plug 'joshdick/onedark.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}

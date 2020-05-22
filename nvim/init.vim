@@ -12,6 +12,8 @@ set updatetime=50
 set shortmess+=c
 set timeoutlen=300 " By default timeoutlen is 1000 ms
 set ruler signcolumn=yes " CoC suggest
+set foldmethod=indent               " not as cool as syntax, but faster
+set foldlevelstart=99               " start unfolded
 set termguicolors
 set relativenumber
 set splitright splitbelow diffopt+=vertical " default diff split splits open at the bottom and right
@@ -26,6 +28,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ryanoasis/vim-devicons'
   Plug 'tpope/vim-commentary'
   Plug 'joshdick/onedark.vim'
+  Plug 'wincent/scalpel'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -44,6 +47,7 @@ vnoremap                     >          >gv
 inoremap                     jj         <Esc>
 vnoremap                     K          :m '<-2<CR>gv=gv
 vnoremap                     J          :m '>+1<CR>gv=gv
+xmap     <silent>            <C-s>      <Plug>(coc-range-select)
 inoremap                     <C-a>      <Esc>I
 inoremap                     <C-e>      <Esc>A
 inoremap                     <C-f>      <Esc>cw
@@ -51,73 +55,71 @@ inoremap                     <C-j>      <Esc>c0
 inoremap                     <C-k>      <Esc>C
 inoremap                     <C-l>      <del>
 inoremap                     <C-u>      <Esc>cc
-nnoremap <silent>            <Tab>      :Buffers<CR>
+nnoremap <silent>            <C-s>      :BLines<CR>
 nnoremap <silent>            <C-g>      :GFiles<CR>
 nnoremap                     <C-p>      :Rg<CR>
 nnoremap <silent>            <C-h>      :wincmd h<CR>
 nnoremap <silent>            <C-j>      :wincmd j<CR>
 nnoremap <silent>            <C-k>      :wincmd k<CR>
 nnoremap <silent>            <C-l>      :wincmd l<CR>
-nmap     <silent>            <C-s>      <Plug>(coc-range-select)
-xmap     <silent>            <C-s>      <Plug>(coc-range-select)
 nnoremap <silent>            <M-j>      :resize -2<CR>
 nnoremap <silent>            <M-k>      :resize +2<CR>
 nnoremap <silent>            <M-h>      :vertical resize -2<CR>
 nnoremap <silent>            <M-l>      :vertical resize +2<CR>
 tnoremap <silent>            <M-j>      <C-\><C-n>:resize -2<CR>i
 tnoremap <silent>            <M-k>      <C-\><C-n>:resize +2<CR>i
-nmap     <silent>    <leader><space>     :Files<CR>
-nnoremap <silent>    <leader>.           :e $MYVIMRC<CR>
-nnoremap <silent>    <leader>,           :so $MYVIMRC<CR>
-nnoremap <silent>    <leader>:           :Commands<CR>
-nmap                 <leader>a           <Plug>(coc-codeaction-selected)
-xmap                 <leader>a           <Plug>(coc-codeaction-selected)
-nmap                 <leader>ac          <Plug>(coc-codeaction)
-xmap                         af          <Plug>(coc-funcobj-a)
-omap                         af          <Plug>(coc-funcobj-a)
-xmap                         ac          <Plug>(coc-classobj-a)
-omap                         ac          <Plug>(coc-classobj-a)
-nnoremap <silent>    <leader>b           :BLines<CR>
-nmap     <silent>    <leader>c           :<C-u>CocList commands<cr>
-nnoremap <silent>    <leader>cd          :<C-u>CocList diagnostics<cr>
-nnoremap <silent>    <leader>ce          :<C-u>CocList extensions<cr>
-nnoremap             <leader>cr          :CocRestart
-nnoremap <silent>    <leader>d           :bd<CR>
-nnoremap <silent>    <leader>e           :CocCommand explorer<CR>
-nmap                 <leader>f           <Plug>(coc-format-selected)
-xmap                 <leader>f           <Plug>(coc-format-selected)
-nmap                 <leader>g           :G<CR>
-nmap                 <leader>gf          :diffget //2<CR>
-nmap                 <leader>gj          :diffget //3<CR>
-nmap                         gd          <Plug>(coc-definition)
-nmap                         gy          <Plug>(coc-type-definition)
-nmap                         gr          <Plug>(coc-references)
-nmap                         gi          <Plug>(coc-implementation)
-nnoremap <silent>    <leader>h           :History<CR>
-xmap                         if          <Plug>(coc-funcobj-i)
-omap                         if          <Plug>(coc-funcobj-i)
-xmap                         ic          <Plug>(coc-classobj-i)
-omap                         ic          <Plug>(coc-classobj-i)
-nnoremap <silent>    <leader>j           :<C-u>CocNext<CR>
-nnoremap <silent>    <leader>k           :<C-u>CocPrev<CR>
-nnoremap <silent>            K           :call <SID>show_documentation()<CR>
-nnoremap <silent>    <leader>l           :<C-u>CocListResume<CR>
-nnoremap <silent>    <leader>n           :let @/ = ''<CR>
-nmap     <silent>    <leader>o           :<C-u>CocList outline<cr>
-nnoremap <silent>    <leader>og          :<C-u>CocList -I symbols<cr>
-noremap  <silent>    <leader>p           "+p
-nnoremap <silent>    <leader>q           :q<CR>
-nmap                 <leader>qf          <Plug>(coc-fix-current)
-nnoremap             <leader>rg          :%s///g<left><left>
-nnoremap             <leader>rc          :%s///gc<left><left><left>
-xnoremap             <leader>rg          :s///g<left><left>
-xnoremap             <leader>rc          :s///gc<left><left><left>
-nmap                 <leader>rr          <Plug>(coc-rename)
-nmap     <silent>    <leader>s           :wincmd s<CR>
-nnoremap             <leader>sa          :All<CR>
-nnoremap <silent>    <leader>v           :wincmd v<CR>
-noremap  <silent>    <leader>y           "+y
-nnoremap <silent>    <leader>w           :w<CR>
+nnoremap <silent>            <F5>       :CocCommand explorer<CR>
+nmap     <silent>    <leader><space>    :Files<CR>
+nnoremap <silent>    <leader>.          :e $MYVIMRC<CR>
+nnoremap <silent>    <leader>,          :so $MYVIMRC<CR>
+nnoremap <silent>    <leader>:          :Commands<CR>
+nmap                 <leader>a          <Plug>(coc-codeaction-selected)
+xmap                 <leader>a          <Plug>(coc-codeaction-selected)
+nmap                 <leader>ac         <Plug>(coc-codeaction)
+xmap                         af         <Plug>(coc-funcobj-a)
+omap                         af         <Plug>(coc-funcobj-a)
+xmap                         ac         <Plug>(coc-classobj-a)
+omap                         ac         <Plug>(coc-classobj-a)
+nnoremap <silent>    <leader>b          :Buffers<CR>
+nmap     <silent>    <leader>c          :<C-u>CocList commands<cr>
+nnoremap <silent>    <leader>cd         :<C-u>CocList diagnostics<cr>
+nnoremap <silent>    <leader>ce         :<C-u>CocList extensions<cr>
+nnoremap             <leader>cr         :CocRestart
+nnoremap <silent>    <leader>d          :bd<CR>
+nmap                 <leader>f          <Plug>(coc-format-selected)
+xmap                 <leader>f          <Plug>(coc-format-selected)
+nmap                 <leader>g          :G<CR>
+nmap                 <leader>gf         :diffget //2<CR>
+nmap                 <leader>gj         :diffget //3<CR>
+nmap                         gd         <Plug>(coc-definition)
+nmap                         gy         <Plug>(coc-type-definition)
+nmap                         gr         <Plug>(coc-references)
+nmap                         gi         <Plug>(coc-implementation)
+nnoremap <silent>    <leader>h          :History<CR>
+xmap                         if         <Plug>(coc-funcobj-i)
+omap                         if         <Plug>(coc-funcobj-i)
+xmap                         ic         <Plug>(coc-classobj-i)
+omap                         ic         <Plug>(coc-classobj-i)
+nnoremap <silent>    <leader>j          :<C-u>CocNext<CR>
+nnoremap <silent>    <leader>k          :<C-u>CocPrev<CR>
+nnoremap <silent>            K          :call <SID>show_documentation()<CR>
+nnoremap <silent>    <leader>l          :<C-u>CocListResume<CR>
+nnoremap <silent>    <leader>n          :let @/ = ''<CR>
+nmap     <silent>    <leader>o          :<C-u>CocList outline<cr>
+nnoremap <silent>    <leader>og         :<C-u>CocList -I symbols<cr>
+noremap  <silent>    <leader>p          "+p
+nnoremap <silent>    <leader>q          :q<CR>
+nmap                 <leader>qf         <Plug>(coc-fix-current)
+nnoremap             <leader>rg         :%s///g<left><left>
+nnoremap             <leader>rc         :%s///gc<left><left><left>
+xnoremap             <leader>rg         :s///g<left><left>
+xnoremap             <leader>rc         :s///gc<left><left><left>
+nmap                 <leader>rr         <Plug>(coc-rename)
+nmap     <silent>    <leader>s          :wincmd s<CR>
+nnoremap             <leader>sa         :All<CR>
+nnoremap <silent>    <leader>v          :wincmd v<CR>
+noremap  <silent>    <leader>y          "+y
+nnoremap <silent>    <leader>w          :w<CR>
 inoremap <silent> <expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
     \ <SID>check_back_space() ? "\<TAB>" :
@@ -163,8 +165,9 @@ au BufWinEnter * if &ft != "floaterm" | call s:cd_to_vcs_root(expand('%'))
 let g:floaterm_wintype='normal'
 let g:floaterm_height=12
 let g:floaterm_keymap_toggle = '<F1>'
-let g:floaterm_keymap_next   = '<F2>'
-let g:floaterm_keymap_new    = '<F3>'
+let g:floaterm_keymap_prev   = '<F2>'
+let g:floaterm_keymap_next   = '<F3>'
+let g:floaterm_keymap_new    = '<F4>'
 let g:floaterm_autoclose     = 1
 "     --------------- sneak ----------------
 let g:sneak#label = 1
@@ -199,25 +202,25 @@ command! -bang -nargs=* All
 
 " Appearance
 colorscheme onedark
-hi Dirty guifg=#30302C guibg=#df5f87 gui=bold
-hi Clean guifg=#30302C guibg=#87af87 gui=bold
-hi FileHead guifg=#949484 guibg=#4e4e43
-hi FileUnMod guifg=#e8e8d3 guibg=#4e4e43 gui=bold
-hi FileMod guifg=#61adef guibg=#4e4e43 gui=bold
-hi Func guifg=#d7875f guibg=#30302C gui=bold,italic
-hi StlFiletype guifg=#808070 guibg=#30302C
-hi StlCol guifg=#a8a897 guibg=#4e4e43
-hi Percent guifg=#30302C guibg=#949484 gui=bold
+  hi Dirty guifg=#30302C guibg=#df5f87 gui=bold
+  hi Clean guifg=#30302C guibg=#87af87 gui=bold
+  hi FileHead guifg=#949484 guibg=#4e4e43
+  hi FileUnMod guifg=#e8e8d3 guibg=#4e4e43 gui=bold
+  hi FileMod guifg=#61adef guibg=#4e4e43 gui=bold
+  hi Func guifg=#d7875f guibg=#30302C gui=bold,italic
+  hi StlFiletype guifg=#808070 guibg=#30302C
+  hi StlCol guifg=#a8a897 guibg=#4e4e43
+  hi Percent guifg=#30302C guibg=#949484 gui=bold
 " Non-current window
-hi DirtyNC guifg=#3b4252 guibg=#bf616a gui=bold
-hi CleanNC guifg=#3b4252 guibg=#a3be8c gui=bold
-hi FileHeadNC guifg=#8e939e guibg=#434c5e
-hi FileUnModNC guifg=#eceff4 guibg=#434c5e gui=bold
-hi FileModNC guifg=#5e81ac guibg=#434c5e gui=bold
-hi FuncNC guifg=#d08770 guibg=#3b4252 gui=bold,italic
-hi StlFiletypeNC guifg=#b9bcc2 guibg=#3b4252
-hi StlColNC guifg=#c2c7d1 guibg=#4c566a
-hi PercentNC guifg=#242933 guibg= #616e88 gui=bold
+  hi DirtyNC guifg=#3b4252 guibg=#bf616a gui=bold
+  hi CleanNC guifg=#3b4252 guibg=#a3be8c gui=bold
+  hi FileHeadNC guifg=#8e939e guibg=#434c5e
+  hi FileUnModNC guifg=#eceff4 guibg=#434c5e gui=bold
+  hi FileModNC guifg=#5e81ac guibg=#434c5e gui=bold
+  hi FuncNC guifg=#d08770 guibg=#3b4252 gui=bold,italic
+  hi StlFiletypeNC guifg=#b9bcc2 guibg=#3b4252
+  hi StlColNC guifg=#c2c7d1 guibg=#4c566a
+  hi PercentNC guifg=#242933 guibg= #616e88 gui=bold
 
 augroup Stline
   au!

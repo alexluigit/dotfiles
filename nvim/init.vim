@@ -57,11 +57,11 @@ let mapleader=" "
   xmap                         ic         <Plug>(coc-classobj-i)
   omap                         ic         <Plug>(coc-classobj-i)
   inoremap                     jj         <Esc>
-  vnoremap                     J          :m '>+1<CR>gv=gv
-  vnoremap                     K          :m '<-2<CR>gv=gv
+  vnoremap <silent>            J          :m '>+1<CR>gv=gv
+  vnoremap <silent>            K          :m '<-2<CR>gv=gv
   nnoremap <silent>            K          :call <SID>show_documentation()<CR>
-  noremap                      n          :keepjumps normal! n<cr>
-  noremap                      N          :keepjumps normal! N<cr>
+  noremap  <silent>            n          :keepjumps normal! n<cr>
+  noremap  <silent>            N          :keepjumps normal! N<cr>
   nnoremap <silent>            <F5>       :CocCommand explorer<CR>
   nnoremap <silent>            <F6>       :Helptags<CR>
   inoremap                     <C-b>      <Esc>I
@@ -101,9 +101,11 @@ let mapleader=" "
   nmap     <silent>    <leader>f          <Plug>(coc-format-selected)
   xmap     <silent>    <leader>f          <Plug>(coc-format-selected)
   nmap                 <leader>g          :G<CR>
-  nmap                 <leader>gf         :diffget //2<CR>
+  nmap                 <leader>gd         :diffget //2<CR>
   nmap                 <leader>gj         :diffget //3<CR>
-  nnoremap <silent>    <leader>h          :History<CR>
+  nmap     <silent>    <leader>h          :History<CR>
+  nmap     <silent>    <leader>hi         <Plug>(coc-git-chunkinfo)
+  nmap     <silent>    <leader>hu         <Plug>(coc-git-chunkundo)
   nnoremap <silent>    <leader>j          :<C-u>CocNext<CR>
   nnoremap <silent>    <leader>k          :<C-u>CocPrev<CR>
   nnoremap <silent>    <leader>l          :<C-u>CocListResume<CR>

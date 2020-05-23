@@ -31,7 +31,7 @@ fzf_vim_open() {
   zle accept-line
 }
 zle -N fzf_vim_open
-bindkey '^t' fzf_vim_open
+bindkey '^p' fzf_vim_open
 
 fzf_cd() {
   cd $HOME && cd "$(fd -H -t d | fzf --preview='tree -L 1 {}' --bind='space:toggle-preview' --preview-window=:hidden)"
@@ -39,7 +39,7 @@ fzf_cd() {
   zle accept-line
 }
 zle -N fzf_cd
-bindkey '^p' fzf_cd
+bindkey '^t' fzf_cd
 
 fzf-history-widget() {
   local selected num

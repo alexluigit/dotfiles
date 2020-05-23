@@ -117,6 +117,7 @@ let mapleader=" "
   nnoremap             <leader>sa         :All<CR>
   noremap  <silent>    <leader>y          "+y
   nnoremap <silent>    <leader>w          :w<CR>
+  nnoremap <silent>    <leader>wq         :wq<CR>
   inoremap <silent> <expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :

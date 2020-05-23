@@ -3,13 +3,13 @@ bindkey -e
 bindkey '^f' delete-word
 bindkey '^j' backward-kill-line
 bindkey '^l' delete-char
+bindkey '^b' beginning-of-line
 
 # Mkdir and cd into immediately
 function take() {
   mkdir -p $@ && cd ${@:$#}
 }
 
-# Up a dir
 up_widget() {
   BUFFER="cd .."
   zle accept-line
@@ -17,15 +17,49 @@ up_widget() {
 zle -N up_widget
 bindkey "^\\" up_widget
 
-# Better cd experience
+fzf_open() {
+  fd -t f -H -I | fzf -m | gxargs -ro -d '\n' open 2>&-
+  zle kill-whole-line
+  zle accept-line
+}
+zle -N fzf_open
+bindkey '^o' fzf_open
+
+fzf_vim_open() {
+  fd -t f -H -I | fzf -m | gxargs -ro -d '\n' nvim 2>&-
+  # zle kill-whole-line
+  zle accept-line
+}
+zle -N fzf_vim_open
+bindkey '^t' fzf_vim_open
+
 fzf_cd() {
-  BUFFER='cd "$(dirname "$(fzf)")"'
+  cd $HOME && cd "$(fd -H -t d | fzf --preview='tree -L 1 {}' --bind='space:toggle-preview' --preview-window=:hidden)"
+  zle kill-whole-line
   zle accept-line
 }
 zle -N fzf_cd
-bindkey '^o' fzf_cd
+bindkey '^p' fzf_cd
 
-# Better history searching
+fzf-history-widget() {
+  local selected num
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+  selected=( $(fc -rl 1 |
+    FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" "fzf" ) )
+  local ret=$?
+  if [ -n "$selected" ]; then
+    num=$selected[1]
+    if [ -n "$num" ]; then
+      zle vi-fetch-history -n $num
+    fi
+  fi
+  zle reset-prompt
+  return $ret
+}
+zle     -N   fzf-history-widget
+bindkey '^R' fzf-history-widget
+
+# History searching base on what you already typed
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
@@ -36,10 +70,9 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 # Edit the current command line in $EDITOR
 autoload edit-command-line
 zle -N edit-command-line
-bindkey '^x^e' edit-command-line
+bindkey '^x^x' edit-command-line
 
-
-# Autosuggest
+# Autosuggest small word
 bindkey '^[[1;5C' vi-forward-word
 bindkey '^[[1;5D' vi-backward-word
 

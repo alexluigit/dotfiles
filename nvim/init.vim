@@ -50,6 +50,8 @@ let mapleader=" "
   nmap                         gy         <Plug>(coc-type-definition)
   nmap                         gr         <Plug>(coc-references)
   nmap                         gi         <Plug>(coc-implementation)
+  nmap                         h-         <Plug>(coc-git-prevchunk)
+  nmap                         h=         <Plug>(coc-git-nextchunk)
   xmap                         if         <Plug>(coc-funcobj-i)
   omap                         if         <Plug>(coc-funcobj-i)
   xmap                         ic         <Plug>(coc-classobj-i)
@@ -96,8 +98,8 @@ let mapleader=" "
   nnoremap             <leader>cr         :CocRestart
   nnoremap <silent>    <leader>d          :bd<CR>
   nnoremap <silent>    <leader>e          :vne<CR>
-  nmap                 <leader>f          <Plug>(coc-format-selected)
-  xmap                 <leader>f          <Plug>(coc-format-selected)
+  nmap     <silent>    <leader>f          <Plug>(coc-format-selected)
+  xmap     <silent>    <leader>f          <Plug>(coc-format-selected)
   nmap                 <leader>g          :G<CR>
   nmap                 <leader>gf         :diffget //2<CR>
   nmap                 <leader>gj         :diffget //3<CR>

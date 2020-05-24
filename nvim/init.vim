@@ -10,7 +10,7 @@
   set wildmenu
   set updatetime=50
   set shortmess+=ac
-  set timeoutlen=200 " By default timeoutlen is 1000 ms
+  set timeoutlen=300 " By default timeoutlen is 1000 ms
   set ruler signcolumn=yes " CoC suggest
   set foldmethod=indent               " not as cool as syntax, but faster
   set foldlevelstart=99               " start unfolded
@@ -19,7 +19,6 @@
   set splitright splitbelow diffopt+=vertical " default diff split splits open at the bottom and right
   set noshowmode noshowcmd
   au! BufWritePost $MYVIMRC source $MYVIMRC
-  " au BufWritePre * :%s/\s\+$//e
   
 " Plugins
   call plug#begin('~/.config/nvim/plugged')
@@ -118,7 +117,6 @@
   " nnoremap <silent>    <leader>d          :bd<CR>
   nnoremap <silent>    <leader>e          :CocCommand explorer<CR>
   nnoremap <silent>    <localleader>e     :edit <C-R>=expand('%:p:h') . '/'
-  nnoremap <LocalLeader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
   nmap     <silent>    <leader>f          :Files<CR>
   nmap     <silent>    <localleader>f     <Plug>(coc-format-selected)
   xmap     <silent>    <localleader>f     <Plug>(coc-format-selected)
@@ -256,7 +254,7 @@
   function! Stl_Win_Enter()
     if &ft=='coc-explorer' | setl stl=%#Normal# | return | endif
     let b:is_dirty = strlen(system("git status -s")) > 0 ? 1 : 0
-    let b:git_info = '  ' . ' '. toupper(fugitive#head()) . ' '
+    let b:git_info = '  ' . ' '. toupper(fugitive#head()) . ' '
     let b:file_head = filereadable(expand("%"))?expand("%:h") . '/':''
     let b:file_title = expand("%:t")
     let b:coc_current_function = ''

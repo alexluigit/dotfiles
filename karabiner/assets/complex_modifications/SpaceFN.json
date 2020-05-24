@@ -25,6 +25,9 @@
               "key_code": "spacebar"
             }
           ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 200
+          },
           "to_after_key_up": [
             {
               "set_variable": {

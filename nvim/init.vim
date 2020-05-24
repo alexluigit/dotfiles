@@ -10,7 +10,7 @@
   set wildmenu
   set updatetime=50
   set shortmess+=ac
-  set timeoutlen=300 " By default timeoutlen is 1000 ms
+  set timeoutlen=200 " By default timeoutlen is 1000 ms
   set ruler signcolumn=yes " CoC suggest
   set foldmethod=indent               " not as cool as syntax, but faster
   set foldlevelstart=99               " start unfolded
@@ -18,7 +18,7 @@
   set relativenumber
   set splitright splitbelow diffopt+=vertical " default diff split splits open at the bottom and right
   set noshowmode noshowcmd
-  " au BufWritePre * :%s/\s\+$//e
+  au! bufwritepost $MYVIMRC source $MYVIMRC
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-surround'
@@ -33,7 +33,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'voldikss/vim-floaterm'
   Plug 'justinmk/vim-sneak'
-  Plug 'sheerun/vim-polyglot' " language pack
+  " Plug 'sheerun/vim-polyglot' " language pack
 call plug#end()
 
 " Keybindings
@@ -86,7 +86,6 @@ let mapleader=" "
   tnoremap <silent>            <M-k>      <C-\><C-n>:resize +2<CR>i
   nmap     <silent>    <leader><space>    :Files<CR>
   nnoremap <silent>    <leader>.          :e $MYVIMRC<CR>
-  nnoremap <silent>    <leader>,          :so $MYVIMRC<CR>
   nnoremap <silent>    <leader>:          :Commands<CR>
   nmap                 <leader>a          <Plug>(coc-codeaction-selected)
   xmap                 <leader>a          <Plug>(coc-codeaction-selected)
@@ -106,7 +105,7 @@ let mapleader=" "
   nmap     <silent>    <leader>h          :History<CR>
   nmap     <silent>    <leader>hi         <Plug>(coc-git-chunkinfo)
   nmap     <silent>    <leader>hu         <Plug>(coc-git-chunkundo)
-  nnoremap <silent>    <leader>j          :<C-u>CocNext<CR>
+  " nnoremap <silent>    <leader>j          :<C-u>CocNext<CR>
   nnoremap <silent>    <leader>k          :<C-u>CocPrev<CR>
   nnoremap <silent>    <leader>l          :<C-u>CocListResume<CR>
   nnoremap <silent>    <leader>n          :let @/ = ''<CR>
@@ -162,7 +161,7 @@ let mapleader=" "
     let dir = fnamemodify(a:path, ':p:h') | let root = finddir('.git', dir .';')
     if !empty(root) | execute 'lcd' fnameescape(fnamemodify(root, ':h')) | endif
   endfunction
-  au BufWinEnter * if &ft != "floaterm" | call s:cd_to_vcs_root(expand('%')) | endif
+  au BufWinEnter * if &ft != "floaterm" || "fugitive" | call s:cd_to_vcs_root(expand('%')) | endif
 "     ------------ floaterm ------------
   let g:floaterm_wintype='normal'
   let g:floaterm_height=12
@@ -199,7 +198,7 @@ let mapleader=" "
   endfunction
   " Do not ignore files in .gitignore (but ignore .git and node_modules)
   command! -bang -nargs=* All
-   \ call fzf#run(fzf#wrap({'source': 'rg --files --hidden --no-ignore-vcs --glob "!{node_modules/*,.git/i*}"', 'options': ['--layout=reverse', '--info=inline', '--preview', '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}'] } ))
+   \ call fzf#run(fzf#wrap({'source': 'rg --files --hidden --no-ignore-vcs --glob "!{node_modules/*,.git/i*}" "$HOME"', 'options': [ '--preview', '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}'] } ))
 
 " Appearance
 colorscheme onedark
@@ -233,7 +232,7 @@ augroup END
 function! Stl_Win_Enter()
   if &ft=='coc-explorer' | setl stl=%#Normal# | return | endif
   let b:is_dirty = strlen(system("git status -s")) > 0 ? 1 : 0
-  let b:git_info = '  ' . ' '. toupper(fugitive#head()) . ' '
+  let b:git_info = '  ' . ' '. fugitive#head() . ' '
   let b:file_head = filereadable(expand("%"))?expand("%:h") . '/':''
   let b:file_title = expand("%:t")
   let b:coc_current_function = ''
@@ -245,7 +244,7 @@ function! Stl_Win_Enter()
   setl stl+=\ %#Func#\ %{strlen(b:coc_current_function)==0?'':'\:'}
   setl stl+=\ %#Func#%{get(b:,'coc_current_function','')}
   setl stl+=%=%#StlFiletype#\ %{b:stl_ft}
-  setl stl+=\ \ \ %#StlCol#\ %3l:%-3c\ %#Percent#\ %5.(%p%%\ %)
+  setl stl+=\ \ \ %#StlCol#\ %3l:%-2c\ %#Percent#\ %5.(%p%%\ %)
 endfunction
 
 function! Stl_Win_Leave()
@@ -255,7 +254,8 @@ function! Stl_Win_Leave()
   setl stl+=%#FileModNC#%{&mod?get(b:,'file_title',''):''}%#FileUnModNC#%{&mod?'':get(b:,'file_title','')}
   setl stl+=\ %#FileModNC#%m%#FuncNC#
   setl stl+=%=%#StlFiletypeNC#%{b:stl_ft}
-  setl stl+=\ \ \ %#StlColNC#\ %3l:%-3c\ %#PercentNC#\ %5.(%p%%\ %)
+  setl stl+=\ \ \ %#StlColNC#\ %3l:%-2c\ %#PercentNC#\ %5.(%p%%\ %)
 endfunction
 " hi Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan
 " hi SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
+" au BufWritePre * :%s/\s\+$//e

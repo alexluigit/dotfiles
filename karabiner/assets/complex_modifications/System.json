@@ -29,6 +29,7 @@
         }
       ]
     },
+
     {
       "description": "Left cmd + hjkl to arrow keys (except terminal)",
       "manipulators": [
@@ -114,6 +115,7 @@
         }
       ]
     },
+
     {
       "description": "Equal_sign + del to cmd-del",
       "manipulators": [
@@ -136,6 +138,24 @@
             {
               "key_code": "delete_or_backspace",
               "modifiers": ["right_command"]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "description": "Post F6 when press Ctrl-i (vim tab <c-i> hijack)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": ["right_control"]
+          },
+          "to": [
+            {
+              "key_code": "f6"
             }
           ]
         }

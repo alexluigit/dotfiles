@@ -1,5 +1,7 @@
+autoload -U colors && colors # Enable colors and change prompt
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
-PROMPT='$ret_status %{$reset_color%}%{$fg_bold[cyan]%}${PWD/#$HOME/~}  '
+local bg_jobs="%(1j.%{$fg_bold[yellow]%}! .)"
+PROMPT='$ret_status $bg_jobs%{$reset_color%}%{$fg_bold[cyan]%}${PWD/#$HOME/~}  '
 
 # Outputs current branch info in prompt format
 function git_prompt_info() {
@@ -23,7 +25,7 @@ function parse_git_dirty() {
 setopt PROMPT_SUBST
 RPROMPT='$(git_prompt_info)%{$reset_color%}'
 
-PROMPT_PREFIX=" "
+PROMPT_PREFIX=" "
 PROMPT_SUFFIX="%{$reset_color%}"
 PROMPT_DIRTY=" %{$fg[red]%} "
 PROMPT_CLEAN=" %{$fg[blue]%} "

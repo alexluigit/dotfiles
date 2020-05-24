@@ -34,6 +34,7 @@
     Plug 'norcalli/nvim-colorizer.lua'
     Plug 'voldikss/vim-floaterm'
     Plug 'justinmk/vim-sneak'
+    Plug 'jiangmiao/auto-pairs'
     Plug 'sheerun/vim-polyglot' " language pack
   call plug#end()
 

@@ -5,6 +5,7 @@ aria2/aria2.session
 /configstore/
 export/*License/
 karabiner/*backups/
+karabiner/karabiner.json
 nvim/plugged/
 Rime/*/
 Rime/*dict.yaml

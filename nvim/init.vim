@@ -62,6 +62,8 @@ let mapleader=" "
   nnoremap <silent>            K          :call <SID>show_documentation()<CR>
   noremap  <silent>            n          :keepjumps normal! n<cr>
   noremap  <silent>            N          :keepjumps normal! N<cr>
+  nnoremap                     Q          q
+  nnoremap                     q          <Nop>
   nnoremap <silent>            <F5>       :CocCommand explorer<CR>
   nnoremap <silent>            <F6>       :Helptags<CR>
   inoremap                     <C-b>      <Esc>I
@@ -86,7 +88,6 @@ let mapleader=" "
   tnoremap <silent>            <M-k>      <C-\><C-n>:resize +2<CR>i
   nmap     <silent>    <leader><space>    :Files<CR>
   nnoremap <silent>    <leader>.          :e $MYVIMRC<CR>
-  nnoremap <silent>    <leader>,          :so $MYVIMRC<CR>
   nnoremap <silent>    <leader>:          :Commands<CR>
   nmap                 <leader>a          <Plug>(coc-codeaction-selected)
   xmap                 <leader>a          <Plug>(coc-codeaction-selected)

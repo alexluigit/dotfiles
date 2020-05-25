@@ -24,10 +24,12 @@
   call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-repeat'
+    Plug 'honza/vim-snippets'
+    Plug '/vim-snippiets'
     Plug 'ryanoasis/vim-devicons'
     Plug 'airblade/vim-rooter'
-    Plug 'tpope/vim-commentary'
     Plug 'joshdick/onedark.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'junegunn/fzf.vim'
@@ -64,11 +66,11 @@
   nnoremap <expr>              j          (v:count > 5 ? "m'" . v:count : '') . 'j'
   vnoremap <silent>            J          :m '>+1<CR>gv=gv
   vnoremap <silent>            K          :m '<-2<CR>gv=gv
-  nnoremap <silent>            K          :call <SID>show_documentation()<CR>
   noremap  <silent>            n          :keepjumps normal! n<cr>
   noremap  <silent>            N          :keepjumps normal! N<cr>
   nnoremap                     Q          q
   nnoremap                     q          <Nop>
+  vnoremap                     X          "_d
   noremap                      Y          y$
   nnoremap <expr>              <CR>       empty(&buftype) ? '@@' : '<CR>'
   nnoremap                     <Tab>      za
@@ -107,33 +109,24 @@
   let mapleader=" "
   nmap     <silent>    <leader><space>    <C-^>
   nnoremap <silent>    <leader>.          :e $MYVIMRC<CR>
-  nnoremap <silent>    <leader>:          :Commands<CR>
-  nmap                 <leader>a          <Plug>(coc-codeaction-selected)
-  xmap                 <leader>a          <Plug>(coc-codeaction-selected)
-  nmap                 <leader>ac         <Plug>(coc-codeaction)
+  nnoremap <silent>    <leader>;          :Commands<CR>
   nnoremap <silent>    <leader>b          :Buffers<CR>
   nmap     <silent>    <leader>c          :<C-u>CocList commands<cr>
-  nnoremap <silent>    <leader>cd         :<C-u>CocList diagnostics<cr>
-  nnoremap <silent>    <leader>ce         :<C-u>CocList extensions<cr>
   nnoremap             <leader>cr         :CocRestart
   nnoremap <silent>    <leader>d          :q!<CR>
   nnoremap <silent>    <leader>e          :CocCommand explorer<CR>
   nnoremap             <localleader>e     :edit <C-R>=expand('%:p:h') . '/'<CR>
   nmap     <silent>    <leader>f          :Files<CR>
-  nmap     <silent>    <localleader>f     <Plug>(coc-format-selected)
-  xmap     <silent>    <localleader>f     <Plug>(coc-format-selected)
   nmap                 <leader>g          :G<CR>
   nmap                 <leader>gd         :diffget //2<CR>
   nmap                 <leader>gj         :diffget //3<CR>
   nmap     <silent>    <leader>h          :History<CR>
   nmap     <silent>    <leader>hi         <Plug>(coc-git-chunkinfo)
   nmap     <silent>    <leader>hu         <Plug>(coc-git-chunkundo)
-  " nnoremap <silent>    <leader>j          :<C-u>CocNext<CR>
-  " nnoremap <silent>    <leader>k          :<C-u>CocPrev<CR>
-  " nnoremap <silent>    <leader>l          :<C-u>CocListResume<CR>
-  nmap     <silent>    <leader>o          :<C-u>CocList outline<cr>
-  " nnoremap <silent>    <leader>og         :<C-u>CocList -I symbols<cr>
-  noremap  <silent>    <leader>p          "+p
+  nmap                 <leader>j          <Plug>(coc-diagnostic-prev)
+  nmap                 <leader>k          <Plug>(coc-diagnostic-next)
+  nmap     <silent>    <leader>o          :wincmd o
+  noremap  <silent>    <leader>p          "+P
   nnoremap <silent>    <leader>q          :q<CR>
   nmap                 <leader>qf         <Plug>(coc-fix-current)
   nnoremap             <leader>r          :%s///gc<left><left><left>
@@ -159,9 +152,7 @@
 
 " Plugin settings
 "     ------------- Coc ----------------
-  command! -nargs=0 Format :call CocAction('format')
-  command! -nargs=? Fold   :call CocAction('fold', <f-args>)
-  command! -nargs=0 OR     :call CocAction('runCommand', 'editor.action.organizeImport')
+  let g:coc_data_home = '~/.config/nvim/coc_data'
   augroup mygroup
     autocmd!
     autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
@@ -169,13 +160,6 @@
   augroup end
   autocmd CursorHold * silent call CocActionAsync('highlight')
   autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-  function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-  endfunction
   function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'

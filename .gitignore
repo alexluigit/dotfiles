@@ -6,6 +6,7 @@ export/*License/
 karabiner/automatic_backups/
 karabiner/karabiner.json
 nvim/plugged/
+nvim/coc_data/
 Rime/*/
 Rime/*dict.yaml
 Rime/*schema.yaml

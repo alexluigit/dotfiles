@@ -180,12 +180,11 @@
     return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
 "     ------------- root ---------------
-  function! s:cd_to_vcs_root(path) abort
-    let dir = fnamemodify(a:path, ':p:h') | let root = finddir('.git', dir .';')
-    if !empty(root) | execute 'lcd' fnameescape(fnamemodify(root, ':h')) | endif
+  function! Goroot(path) abort
+     let dir = fnamemodify(a:path, ':p:h') | let root = finddir('.git', dir .';')
+     if !empty(root) | execute 'lcd' fnameescape(fnamemodify(root, ':h')) | endif
   endfunction
-  au BufWinEnter * if &ft != "floaterm" | call s:cd_to_vcs_root(expand('%')) | endif
-"     ----------- floaterm -------------
+" "     ----------- floaterm -------------
   let g:floaterm_wintype='normal'
   let g:floaterm_height=20
   let g:floaterm_keymap_toggle = '<F1>'

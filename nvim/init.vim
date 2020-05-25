@@ -182,7 +182,6 @@
   let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
   let g:fzf_tags_command = 'ctags -R'
   let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-  let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.6, 'height': 1,'yoffset':0.5,'xoffset': 1, 'border': 'rounded' } }
   let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**'"
   let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
   command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--inline-info']}), <bang>0)

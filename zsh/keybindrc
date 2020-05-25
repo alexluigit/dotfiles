@@ -57,7 +57,17 @@ fzf-history-widget() {
   return $ret
 }
 zle     -N   fzf-history-widget
-bindkey '^R' fzf-history-widget
+bindkey '^r' fzf-history-widget
+
+function fg-bg() {
+  if [[ $#BUFFER -eq 0 ]]; then
+    fg
+  else
+    zle push-input
+  fi
+}
+zle -N fg-bg
+bindkey '^z' fg-bg
 
 # History searching base on what you already typed
 autoload -U up-line-or-beginning-search
@@ -76,11 +86,6 @@ bindkey '^x^x' edit-command-line
 bindkey '^[[1;5C' vi-forward-word
 bindkey '^[[1;5D' vi-backward-word
 
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
 
 # Quit vifm and change dir
 # vicd()

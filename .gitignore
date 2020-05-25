@@ -1,10 +1,10 @@
 aria2/aria2.session
 /coc/
 /ssh/
-/oh-my-zsh/
 /configstore/
 export/*License/
-karabiner/*backups/
+karabiner/
+!karabiner/assets/
 nvim/plugged/
 Rime/*/
 Rime/*dict.yaml

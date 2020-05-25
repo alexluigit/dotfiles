@@ -27,7 +27,6 @@
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-repeat'
     Plug 'honza/vim-snippets'
-    Plug '/vim-snippiets'
     Plug 'ryanoasis/vim-devicons'
     Plug 'airblade/vim-rooter'
     Plug 'joshdick/onedark.vim'

@@ -3,8 +3,8 @@ aria2/aria2.session
 /ssh/
 /configstore/
 export/*License/
-karabiner/
-!karabiner/assets/
+karabiner/automatic_backups/
+karabiner/karabiner.json
 nvim/plugged/
 Rime/*/
 Rime/*dict.yaml

@@ -145,24 +145,6 @@
     },
 
     {
-      "description": "Post F6 when press Ctrl-i (vim tab <c-i> hijack)",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "i",
-            "modifiers": ["right_control"]
-          },
-          "to": [
-            {
-              "key_code": "f6"
-            }
-          ]
-        }
-      ]
-    },
-
-    {
       "description": "Swap ; and :",
       "manipulators": [
         {

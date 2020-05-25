@@ -10,7 +10,7 @@
   set wildmenu
   set updatetime=50
   set shortmess+=ac
-  set timeoutlen=200 " By default timeoutlen is 1000 ms
+  set timeoutlen=250 " By default timeoutlen is 1000 ms
   set ruler signcolumn=yes " CoC suggest
   set foldmethod=indent               " not as cool as syntax, but faster
   set foldlevelstart=99               " start unfolded
@@ -116,9 +116,9 @@
   nnoremap <silent>    <leader>cd         :<C-u>CocList diagnostics<cr>
   nnoremap <silent>    <leader>ce         :<C-u>CocList extensions<cr>
   nnoremap             <leader>cr         :CocRestart
-  " nnoremap <silent>    <leader>d          :bd<CR>
+  nnoremap <silent>    <leader>d          :q!<CR>
   nnoremap <silent>    <leader>e          :CocCommand explorer<CR>
-  nnoremap <silent>    <localleader>e     :edit <C-R>=expand('%:p:h') . '/'
+  nnoremap             <localleader>e     :edit <C-R>=expand('%:p:h') . '/'<CR>
   nmap     <silent>    <leader>f          :Files<CR>
   nmap     <silent>    <localleader>f     <Plug>(coc-format-selected)
   xmap     <silent>    <localleader>f     <Plug>(coc-format-selected)
@@ -129,11 +129,10 @@
   nmap     <silent>    <leader>hi         <Plug>(coc-git-chunkinfo)
   nmap     <silent>    <leader>hu         <Plug>(coc-git-chunkundo)
   " nnoremap <silent>    <leader>j          :<C-u>CocNext<CR>
-  nnoremap <silent>    <leader>k          :<C-u>CocPrev<CR>
-  nnoremap <silent>    <leader>l          :<C-u>CocListResume<CR>
-  nnoremap <silent>    <leader>n          :let @/ = ''<CR>
+  " nnoremap <silent>    <leader>k          :<C-u>CocPrev<CR>
+  " nnoremap <silent>    <leader>l          :<C-u>CocListResume<CR>
   nmap     <silent>    <leader>o          :<C-u>CocList outline<cr>
-  nnoremap <silent>    <leader>og         :<C-u>CocList -I symbols<cr>
+  " nnoremap <silent>    <leader>og         :<C-u>CocList -I symbols<cr>
   noremap  <silent>    <leader>p          "+p
   nnoremap <silent>    <leader>q          :q<CR>
   nmap                 <leader>qf         <Plug>(coc-fix-current)
@@ -141,6 +140,7 @@
   xnoremap             <leader>r          :s///gc<left><left><left>
   nmap     <silent>    <leader>s          :vert sb#<CR>
   nnoremap             <leader>sa         :All<CR>
+  nnoremap <silent>    <leader>t          :let @/ = ''<CR>
   nnoremap             <leader>x          :x<CR>
   noremap  <silent>    <leader>y          "+y
   nmap     <silent>    <leader>w          :w<CR>

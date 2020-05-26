@@ -19,7 +19,8 @@
   set splitright splitbelow diffopt+=vertical " default diff split splits open at the bottom and right
   set noshowmode noshowcmd
   au! BufWritePost $MYVIMRC source $MYVIMRC
-  
+  au! BufWinEnter * call alex#root(expand("%"), &buftype)
+
 " Plugins
   call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-surround'
@@ -29,7 +30,6 @@
     Plug 'honza/vim-snippets'
     Plug 'ryanoasis/vim-devicons'
     Plug 'ThePrimeagen/vim-be-good'
-    Plug 'airblade/vim-rooter'
     Plug 'joshdick/onedark.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'junegunn/fzf.vim'
@@ -150,14 +150,11 @@
 " Plugin settings
 "     ------------- Coc ----------------
   let g:coc_data_home = '~/.config/nvim/coc_data'
-  " autocmd CursorHold * silent call CocActionAsync('highlight')
   autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
   function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
-"     ------------- root ---------------
-  let g:rooter_silent_chdir = 1
 "     ----------- floaterm -------------
   let g:floaterm_wintype='normal'
   let g:floaterm_width=0.5

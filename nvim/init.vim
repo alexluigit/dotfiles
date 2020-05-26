@@ -54,7 +54,7 @@
   nmap     <silent>            gd         <Plug>(coc-definition)
   nmap     <silent>            gy         <Plug>(coc-type-definition)
   nmap     <silent>            gr         <Plug>(coc-references)
-  nma      <silent>            gi         <Plug>(coc-implementation)
+  nmap     <silent>            gi         <Plug>(coc-implementation)
   nmap                         [g         <Plug>(coc-git-prevchunk)
   nmap                         ]g         <Plug>(coc-git-nextchunk)
   xmap                         if         <Plug>(coc-funcobj-i)
@@ -66,7 +66,6 @@
   nnoremap <expr>              j          (v:count > 5 ? "m'" . v:count : '') . 'j'
   vnoremap <silent>            J          :m '>+1<CR>gv=gv
   vnoremap <silent>            K          :m '<-2<CR>gv=gv
-  " nnoremap                     K          :call CocAction('doHover')<CR>
   noremap  <silent>            n          :keepjumps normal! n<cr>
   noremap  <silent>            N          :keepjumps normal! N<cr>
   nnoremap                     Q          q
@@ -85,8 +84,8 @@
   nnoremap <silent>            <S-Right>  :lnfile<CR>
   nnoremap <silent>            <F4>       :Helptags<CR>
   nnoremap                     <F6>       <C-i>
+
 "     ---------- Control/Alt -----------
-  inoremap                     <C-f>      <Esc>cw
   inoremap                     <C-l>      <del>
   inoremap                     <C-u>      <Esc>cc
   nnoremap <silent>            <C-s>      :BLines<CR>
@@ -102,6 +101,7 @@
   nnoremap <silent>            <M-l>      :vertical resize +5<CR>
   tnoremap <silent>            <M-h>      <C-\><C-n>:vert resize -5<CR>i
   tnoremap <silent>            <M-l>      <C-\><C-n>:vert resize +5<CR>i
+
 "     ------------ Leader --------------
   let mapleader=" "
   nmap     <silent>    <leader><space>    <C-^>
@@ -109,12 +109,11 @@
   nnoremap <silent>    <leader>;          :Commands<CR>
   nnoremap <silent>    <leader>b          :Buffers<CR>
   nmap     <silent>    <leader>c          :<C-u>CocList commands<cr>
-  nnoremap             <leader>cr         :CocRestart
   nnoremap <silent>    <leader>d          :q!<CR>
   nnoremap <silent>    <leader>e          :CocCommand explorer<CR>
   nnoremap             <localleader>e     :edit <C-R>=expand('%:p:h') . '/'<CR>
   nmap     <silent>    <leader>f          :Files<CR>
-  nmap                 <leader>g          :G<CR>
+  nmap     <silent>    <leader>g          :G<CR>
   nmap                 <leader>gd         :diffget //2<CR>
   nmap                 <leader>gj         :diffget //3<CR>
   nmap     <silent>    <leader>h          :History<CR>
@@ -129,9 +128,9 @@
   nnoremap             <leader>r          :%s///gc<left><left><left>
   xnoremap             <leader>r          :s///gc<left><left><left>
   nmap     <silent>    <leader>s          :vert sb#<CR>
-  nnoremap             <leader>sa         :All<CR>
+  nnoremap <silent>    <leader>sa         :All<CR>
   nnoremap <silent>    <leader>t          :let @/ = ''<CR>
-  nnoremap             <leader>x          :x<CR>
+  nnoremap <silent>            <leader>x          :x<CR>
   noremap  <silent>    <leader>y          "+y
   nmap     <silent>    <leader>w          :w<CR>
   nmap     <silent>    <leader>wq         :wq<CR>
@@ -139,8 +138,8 @@
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-  inoremap <silent><expr> <C-space> coc#refresh()
+  inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+  inoremap <silent> <expr> <C-space> coc#refresh()
   if exists('*complete_info')
     inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
   else
@@ -169,28 +168,17 @@
   let g:sneak#s_next = 1 " imediately move tot the next instance of search, if you move the cursor sneak is back to default behavior
   let g:sneak#prompt = ' : '
 "     ------------  fzf  ---------------
-  let g:fzf_buffers_jump = 1
   let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
   let g:fzf_tags_command = 'ctags -R'
   let g:fzf_commands_expect = 'alt-enter,ctrl-x'
   let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**'"
   let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
-  " command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--inline-info']}), <bang>0)
-  command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
   command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
-  function! RipgrepFzf(query, fullscreen)
-    let command_fmt = 'rg --column --line-number --hidden --no-heading --color=always --smart-case %s || true'
-    let initial_command = printf(command_fmt, shellescape(a:query))
-    let reload_command = printf(command_fmt, '{q}')
-    let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-  endfunction
-  " Do not ignore files in .gitignore (but ignore .git and node_modules)
   command! -bang -nargs=* All
-   \ call fzf#run(fzf#wrap({'source': 'rg --files --hidden --no-ignore-vcs --glob "!{node_modules/*,.git/i*}" "$HOME"', 'options': [ '--preview', '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}'] } ))
+  \ call fzf#run(fzf#wrap({'source': 'rg --files --hidden --no-ignore-vcs --glob "!{node_modules/*,.git/i*}" "$HOME"', 'options': [ '--preview', '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}'] } ))
 
 " Appearance
 "     ----------- colors ---------------
@@ -221,7 +209,6 @@
     au BufWinEnter,BufEnter * call Stl_Win_Enter()
     au WinLeave * call Stl_Win_Leave()
   augroup END
-
   function! Stl_Win_Enter()
     if &ft=='coc-explorer' | setl stl=%#Normal# | return | endif
     let b:is_dirty = strlen(system("git status -s")) > 0 ? 1 : 0
@@ -239,7 +226,6 @@
     setl stl+=%=%#StlFiletype#\ %{b:stl_ft}
     setl stl+=\ \ \ %#StlCol#\ %3l:%-3c\ %#Percent#\ %5.(%p%%\ %)
   endfunction
-
   function! Stl_Win_Leave()
     if &ft=='coc-explorer' | setl stl=%#NormalNC# | return | endif
     setl stl=%#DirtyNC#%{b:is_dirty?get(b:,'git_info',''):''}%#CleanNC#%{b:is_dirty?'':get(b:,'git_info','')}
@@ -251,3 +237,8 @@
   endfunction
   " hi Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan
   " hi SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
+  " let g:fzf_buffers_jump = 1
+  " command! -bang -nargs=* Rg
+  "   \ call fzf#vim#grep(
+  "   \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  "   \   fzf#vim#with_preview(), <bang>0)

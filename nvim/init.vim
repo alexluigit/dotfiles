@@ -156,8 +156,8 @@
     return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
 "     ----------- floaterm -------------
-  let g:floaterm_wintype='normal'
-  let g:floaterm_width=0.5
+  let g:floaterm_wintype       = 'normal'
+  let g:floaterm_width         =  0.5
   let g:floaterm_position      = 'right'
   let g:floaterm_keymap_toggle = '<F1>'
   let g:floaterm_keymap_prev   = '<F2>'

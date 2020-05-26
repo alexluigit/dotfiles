@@ -28,6 +28,7 @@
     Plug 'tpope/vim-repeat'
     Plug 'honza/vim-snippets'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'ThePrimeagen/vim-be-good'
     Plug 'airblade/vim-rooter'
     Plug 'joshdick/onedark.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -65,6 +66,7 @@
   nnoremap <expr>              j          (v:count > 5 ? "m'" . v:count : '') . 'j'
   vnoremap <silent>            J          :m '>+1<CR>gv=gv
   vnoremap <silent>            K          :m '<-2<CR>gv=gv
+  " nnoremap                     K          :call CocAction('doHover')<CR>
   noremap  <silent>            n          :keepjumps normal! n<cr>
   noremap  <silent>            N          :keepjumps normal! N<cr>
   nnoremap                     Q          q
@@ -102,8 +104,8 @@
   nnoremap <silent>            <M-k>      :resize +2<CR>
   nnoremap <silent>            <M-h>      :vertical resize -5<CR>
   nnoremap <silent>            <M-l>      :vertical resize +5<CR>
-  tnoremap <silent>            <M-j>      <C-\><C-n>:resize -2<CR>i
-  tnoremap <silent>            <M-k>      <C-\><C-n>:resize +2<CR>i
+  tnoremap <silent>            <M-j>      <C-\><C-n>:resize -5<CR>i
+  tnoremap <silent>            <M-k>      <C-\><C-n>:resize +5<CR>i
 "     ------------ Leader --------------
   let mapleader=" "
   nmap     <silent>    <leader><space>    <C-^>
@@ -124,7 +126,7 @@
   nmap     <silent>    <leader>hu         <Plug>(coc-git-chunkundo)
   nmap                 <leader>j          <Plug>(coc-diagnostic-prev)
   nmap                 <leader>k          <Plug>(coc-diagnostic-next)
-  nmap     <silent>    <leader>o          :wincmd o
+  nmap     <silent>    <leader>o          :wincmd o<CR>
   noremap  <silent>    <leader>p          "+P
   nnoremap <silent>    <leader>q          :q<CR>
   nmap                 <leader>qf         <Plug>(coc-fix-current)
@@ -152,11 +154,11 @@
 " Plugin settings
 "     ------------- Coc ----------------
   let g:coc_data_home = '~/.config/nvim/coc_data'
-  augroup mygroup
-    autocmd!
-    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  augroup end
+  " augroup mygroup
+  "   autocmd!
+  "   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  "   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  " augroup end
   autocmd CursorHold * silent call CocActionAsync('highlight')
   autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
   function! s:check_back_space() abort

@@ -51,10 +51,10 @@
   omap                         af         <Plug>(coc-funcobj-a)
   xmap                         ac         <Plug>(coc-classobj-a)
   omap                         ac         <Plug>(coc-classobj-a)
-  nmap                         gd         <Plug>(coc-definition)
-  nmap                         gy         <Plug>(coc-type-definition)
-  nmap                         gr         <Plug>(coc-references)
-  nmap                         gi         <Plug>(coc-implementation)
+  nmap     <silent>            gd         <Plug>(coc-definition)
+  nmap     <silent>            gy         <Plug>(coc-type-definition)
+  nmap     <silent>            gr         <Plug>(coc-references)
+  nma      <silent>            gi         <Plug>(coc-implementation)
   nmap                         [g         <Plug>(coc-git-prevchunk)
   nmap                         ]g         <Plug>(coc-git-nextchunk)
   xmap                         if         <Plug>(coc-funcobj-i)
@@ -86,11 +86,7 @@
   nnoremap <silent>            <F4>       :Helptags<CR>
   nnoremap                     <F6>       <C-i>
 "     ---------- Control/Alt -----------
-  inoremap                     <C-b>      <Esc>I
-  inoremap                     <C-e>      <Esc>A
   inoremap                     <C-f>      <Esc>cw
-  inoremap                     <C-j>      <Esc>c0
-  inoremap                     <C-k>      <Esc>C
   inoremap                     <C-l>      <del>
   inoremap                     <C-u>      <Esc>cc
   nnoremap <silent>            <C-s>      :BLines<CR>
@@ -104,8 +100,8 @@
   nnoremap <silent>            <M-k>      :resize +2<CR>
   nnoremap <silent>            <M-h>      :vertical resize -5<CR>
   nnoremap <silent>            <M-l>      :vertical resize +5<CR>
-  tnoremap <silent>            <M-j>      <C-\><C-n>:resize -5<CR>i
-  tnoremap <silent>            <M-k>      <C-\><C-n>:resize +5<CR>i
+  tnoremap <silent>            <M-h>      <C-\><C-n>:vert resize -5<CR>i
+  tnoremap <silent>            <M-l>      <C-\><C-n>:vert resize +5<CR>i
 "     ------------ Leader --------------
   let mapleader=" "
   nmap     <silent>    <leader><space>    <C-^>
@@ -154,12 +150,7 @@
 " Plugin settings
 "     ------------- Coc ----------------
   let g:coc_data_home = '~/.config/nvim/coc_data'
-  " augroup mygroup
-  "   autocmd!
-  "   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  "   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  " augroup end
-  autocmd CursorHold * silent call CocActionAsync('highlight')
+  " autocmd CursorHold * silent call CocActionAsync('highlight')
   autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
   function! s:check_back_space() abort
     let col = col('.') - 1
@@ -169,7 +160,8 @@
   let g:rooter_silent_chdir = 1
 "     ----------- floaterm -------------
   let g:floaterm_wintype='normal'
-  let g:floaterm_height=20
+  let g:floaterm_width=0.5
+  let g:floaterm_position      = 'right'
   let g:floaterm_keymap_toggle = '<F1>'
   let g:floaterm_keymap_prev   = '<F2>'
   let g:floaterm_keymap_new    = '<F3>'
@@ -186,7 +178,7 @@
   let g:fzf_commands_expect = 'alt-enter,ctrl-x'
   let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**'"
   let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
-  command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--inline-info']}), <bang>0)
+  " command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--inline-info']}), <bang>0)
   command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
   command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(

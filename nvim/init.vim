@@ -10,7 +10,7 @@
   set wildmenu
   set updatetime=50
   set shortmess+=ac
-  set timeoutlen=250 " By default timeoutlen is 1000 ms
+  set timeoutlen=300 " By default timeoutlen is 1000 ms
   set ruler signcolumn=yes " CoC suggest
   set foldmethod=indent               " not as cool as syntax, but faster
   set foldlevelstart=99               " start unfolded
@@ -40,121 +40,114 @@
     Plug 'jiangmiao/auto-pairs'
     Plug 'sheerun/vim-polyglot' " language pack
   call plug#end()
+  colorscheme onedark
 
 " Keybindings
-"     ------------ Basic ---------------
-  nnoremap                     *          :keepjumps normal! mp*`p<cr>
-  xnoremap                     *          ymp:keepjumps normal! /\V<C-r>=escape(@",'/\')<cr><C-v><C-m>`p<cr>
-  vnoremap                     <          <gv
-  vnoremap                     >          >gv
-  xmap                         af         <Plug>(coc-funcobj-a)
-  omap                         af         <Plug>(coc-funcobj-a)
-  xmap                         ac         <Plug>(coc-classobj-a)
-  omap                         ac         <Plug>(coc-classobj-a)
-  nmap     <silent>            gd         <Plug>(coc-definition)
-  nmap     <silent>            gy         <Plug>(coc-type-definition)
-  nmap     <silent>            gr         <Plug>(coc-references)
-  nmap     <silent>            gi         <Plug>(coc-implementation)
-  nmap                         [g         <Plug>(coc-git-prevchunk)
-  nmap                         ]g         <Plug>(coc-git-nextchunk)
-  xmap                         if         <Plug>(coc-funcobj-i)
-  omap                         if         <Plug>(coc-funcobj-i)
-  xmap                         ic         <Plug>(coc-classobj-i)
-  omap                         ic         <Plug>(coc-classobj-i)
-  inoremap                     jj         <Esc>
-  nnoremap <expr>              k          (v:count > 5 ? "m'" . v:count : '') . 'k'
-  nnoremap <expr>              j          (v:count > 5 ? "m'" . v:count : '') . 'j'
-  vnoremap <silent>            J          :m '>+1<CR>gv=gv
-  vnoremap <silent>            K          :m '<-2<CR>gv=gv
-  noremap  <silent>            n          :keepjumps normal! n<cr>
-  noremap  <silent>            N          :keepjumps normal! N<cr>
-  nnoremap                     Q          q
-  nnoremap                     q          <Nop>
-  vnoremap                     X          "_d
-  noremap                      Y          y$
-  nnoremap <expr>              <CR>       empty(&buftype) ? '@@' : '<CR>'
-  nnoremap                     <Tab>      za
-  nnoremap <silent>            <Up>       :cprevious<CR>
-  nnoremap <silent>            <Down>     :cnext<CR>
-  nnoremap <silent>            <Left>     :cpfile<CR>
-  nnoremap <silent>            <Right>    :cnfile<CR>
-  nnoremap <silent>            <S-Up>     :lprevious<CR>
-  nnoremap <silent>            <S-Down>   :lnext<CR>
-  nnoremap <silent>            <S-Left>   :lpfile<CR>
-  nnoremap <silent>            <S-Right>  :lnfile<CR>
-  nnoremap <silent>            <F4>       :Helptags<CR>
-  nnoremap                     <F6>       <C-i>
+" ------------ Basic ---------------
+  nnoremap                  *               :keepjumps normal! mp*`p<cr>
+  xnoremap                  *               ymp:keepjumps normal! /\V<C-r>=escape(@",'/\')<cr><C-v><C-m>`p<cr>
+  vnoremap                  <               <gv
+  vnoremap                  >               >gv
+  xmap                      af              <Plug>(coc-funcobj-a)
+  omap                      af              <Plug>(coc-funcobj-a)
+  xmap                      ac              <Plug>(coc-classobj-a)
+  nmap                      go              :silent! !open <cfile><CR>:echo ''<CR>
+  omap                      ac              <Plug>(coc-classobj-a)
+  nmap     <silent>         gd              <Plug>(coc-definition)
+  nmap     <silent>         gy              <Plug>(coc-type-definition)
+  nmap     <silent>         gr              <Plug>(coc-references)
+  nmap     <silent>         gi              <Plug>(coc-implementation)
+  nmap                      [g              <Plug>(coc-git-prevchunk)
+  nmap                      ]g              <Plug>(coc-git-nextchunk)
+  xmap                      if              <Plug>(coc-funcobj-i)
+  omap                      if              <Plug>(coc-funcobj-i)
+  xmap                      ic              <Plug>(coc-classobj-i)
+  omap                      ic              <Plug>(coc-classobj-i)
+  inoremap                  jj              <Esc>
+  nnoremap <expr>           k               (v:count > 5 ? "m'" . v:count : '') . 'k'
+  nnoremap <expr>           j               (v:count > 5 ? "m'" . v:count : '') . 'j'
+  vnoremap <silent>         J               :m '>+1<CR>gv=gv
+  vnoremap <silent>         K               :m '<-2<CR>gv=gv
+  noremap  <silent>         n               :keepjumps normal! n<cr>
+  noremap  <silent>         N               :keepjumps normal! N<cr>
+  nnoremap                  Q               q
+  nnoremap                  q               <Nop>
+  vnoremap                  X               "_d
+  noremap                   Y               y$
+  inoremap          <expr> <CR>             exists('*complete_info') ? complete_info()['selected'] != '-1' ? '<C-y>' : '<C-g>u<CR>' : pumvisible() ? '<C-y>' : '<C-g>u<CR>'
+  nnoremap <silent> <expr> <CR>             empty(&buftype) ? '@@' : '<CR>'
+  inoremap <silent> <expr> <TAB>            pumvisible() ? '<C-n>' : <SID>check_back_space() ? '<TAB>' : coc#refresh()
+  inoremap <silent> <expr> <S-TAB>          pumvisible() ? '<C-p>' : '<C-h>'
+  inoremap <silent> <expr> <C-space>        coc#refresh()
+  nnoremap                 <Tab>            za
+  nnoremap <silent>        <Up>             :cprevious<CR>
+  nnoremap <silent>        <Down>           :cnext<CR>
+  nnoremap <silent>        <Left>           :cpfile<CR>
+  nnoremap <silent>        <Right>          :cnfile<CR>
+  nnoremap <silent>        <S-Up>           :lprevious<CR>
+  nnoremap <silent>        <S-Down>         :lnext<CR>
+  nnoremap <silent>        <S-Left>         :lpfile<CR>
+  nnoremap <silent>        <S-Right>        :lnfile<CR>
+  nnoremap <silent>        <F4>             :Helptags<CR>
+  nnoremap                 <F6>             <C-i>
 
-"     ---------- Control/Alt -----------
-  inoremap                     <C-l>      <del>
-  inoremap                     <C-u>      <Esc>cc
-  nnoremap <silent>            <C-s>      :BLines<CR>
-  nnoremap <silent>            <C-g>      :GFiles<CR>
-  nnoremap                     <C-p>      :Rg <C-r><C-a><CR>
-  nnoremap <silent>            <C-h>      :wincmd h<CR>
-  nnoremap <silent>            <C-j>      :wincmd j<CR>
-  nnoremap <silent>            <C-k>      :wincmd k<CR>
-  nnoremap <silent>            <C-l>      :wincmd l<CR>
-  nnoremap <silent>            <M-j>      :resize -2<CR>
-  nnoremap <silent>            <M-k>      :resize +2<CR>
-  nnoremap <silent>            <M-h>      :vertical resize -5<CR>
-  nnoremap <silent>            <M-l>      :vertical resize +5<CR>
-  tnoremap <silent>            <M-h>      <C-\><C-n>:vert resize -5<CR>i
-  tnoremap <silent>            <M-l>      <C-\><C-n>:vert resize +5<CR>i
+" ---------- Control/Alt -----------
+  inoremap                 <C-l>            <del>
+  nnoremap <silent>        <C-s>            :BLines<CR>
+  nnoremap <silent>        <C-g>            :GFiles<CR>
+  nnoremap <silent>        <C-p>            :Rg <C-r><C-a><CR>
+  nnoremap <silent>        <C-h>            :wincmd h<CR>
+  nnoremap <silent>        <C-j>            :wincmd j<CR>
+  nnoremap <silent>        <C-k>            :wincmd k<CR>
+  nnoremap <silent>        <C-l>            :wincmd l<CR>
+  nnoremap <silent>        <M-j>            :resize -2<CR>
+  nnoremap <silent>        <M-k>            :resize +2<CR>
+  nnoremap <silent>        <M-h>            :vertical resize -5<CR>
+  nnoremap <silent>        <M-l>            :vertical resize +5<CR>
+  tnoremap <silent>        <M-h>            <C-\><C-n>:vert resize -5<CR>i
+  tnoremap <silent>        <M-l>            <C-\><C-n>:vert resize +5<CR>i
 
-"     ------------ Leader --------------
+" ------------ Leader --------------
   let mapleader=" "
-  nmap     <silent>    <leader><space>    <C-^>
-  nnoremap <silent>    <leader>.          :e $MYVIMRC<CR>
-  nnoremap <silent>    <leader>;          :Commands<CR>
-  nnoremap <silent>    <leader>b          :Buffers<CR>
-  nmap     <silent>    <leader>c          :<C-u>CocList commands<cr>
-  nnoremap <silent>    <leader>d          :q!<CR>
-  nnoremap <silent>    <leader>e          :CocCommand explorer<CR>
-  nnoremap             <localleader>e     :edit <C-R>=expand('%:p:h') . '/'<CR>
-  nmap     <silent>    <leader>f          :Files<CR>
-  nmap     <silent>    <leader>g          :G<CR>
-  nmap                 <leader>gd         :diffget //2<CR>
-  nmap                 <leader>gj         :diffget //3<CR>
-  nmap     <silent>    <leader>h          :History<CR>
-  nmap     <silent>    <leader>hi         <Plug>(coc-git-chunkinfo)
-  nmap     <silent>    <leader>hu         <Plug>(coc-git-chunkundo)
-  nmap                 <leader>j          <Plug>(coc-diagnostic-prev)
-  nmap                 <leader>k          <Plug>(coc-diagnostic-next)
-  nmap     <silent>    <leader>o          :wincmd o<CR>
-  noremap  <silent>    <leader>p          "+P
-  nnoremap <silent>    <leader>q          :q<CR>
-  nmap                 <leader>qf         <Plug>(coc-fix-current)
-  nnoremap             <leader>r          :%s///gc<left><left><left>
-  xnoremap             <leader>r          :s///gc<left><left><left>
-  nmap     <silent>    <leader>s          :vert sb#<CR>
-  nnoremap <silent>    <leader>sa         :All<CR>
-  nnoremap <silent>    <leader>t          :let @/ = ''<CR>
-  nnoremap <silent>            <leader>x          :x<CR>
-  noremap  <silent>    <leader>y          "+y
-  nmap     <silent>    <leader>w          :w<CR>
-  nmap     <silent>    <leader>wq         :wq<CR>
-  inoremap <silent> <expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-  inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-  inoremap <silent> <expr> <C-space> coc#refresh()
-  if exists('*complete_info')
-    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-  else
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-  endif
+  nnoremap <silent>        <leader><space>  <C-^>
+  nnoremap <silent>        <leader>.        :e $MYVIMRC<CR>
+  nnoremap <silent>        <leader>;        :Commands<CR>
+  nnoremap <silent>        <leader>b        :Buffers<CR>
+  nnoremap <silent>        <leader>c        :<C-u>CocList commands<cr>
+  nnoremap <silent>        <leader>d        :q!<CR>
+  nnoremap <silent>        <leader>e        :CocCommand explorer<CR>
+  nnoremap                 <localleader>e   :edit <C-R>=expand('%:p:h') . '/'<CR>
+  nnoremap <silent>        <leader>f        :Files<CR>
+  nnoremap <silent>        <leader>g        :G<CR>
+  nnoremap <silent>        <leader>gd       :diffget //2<CR>
+  nnoremap <silent>        <leader>gj       :diffget //3<CR>
+  nnoremap <silent>        <leader>h        :History<CR>
+  nmap     <silent>        <leader>hi       <Plug>(coc-git-chunkinfo)
+  nmap     <silent>        <leader>hu       <Plug>(coc-git-chunkundo)
+  nmap     <silent>        <leader>j        <Plug>(coc-diagnostic-next)
+  nmap     <silent>        <leader>k        <Plug>(coc-diagnostic-prev)
+  nnoremap <silent>        <leader>o        :wincmd o<CR>
+  noremap  <silent>        <leader>p        "+P
+  nnoremap <silent>        <leader>q        :q<CR>
+  nmap                     <leader>qf       <Plug>(coc-fix-current)
+  nnoremap                 <leader>r        :%s///gc<left><left><left>
+  xnoremap                 <leader>r        :s///gc<left><left><left>
+  nnoremap <silent>        <leader>s        :vert sb#<CR>
+  nnoremap <silent>        <leader>sa       :All<CR>
+  nnoremap <silent>        <leader>t        :let @/ = ''<CR>
+  nnoremap <silent>        <leader>x        :x<CR>
+  noremap  <silent>        <leader>y        "+y
+  nnoremap <silent>        <leader>w        :w<CR>
 
 " Plugin settings
-"     ------------- Coc ----------------
+" ------------- Coc ----------------
   let g:coc_data_home = '~/.config/nvim/coc_data'
   autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
   function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
-"     ----------- floaterm -------------
+" ----------- floaterm -------------
   let g:floaterm_wintype       = 'normal'
   let g:floaterm_width         =  0.5
   let g:floaterm_position      = 'right'
@@ -162,27 +155,26 @@
   let g:floaterm_keymap_prev   = '<F2>'
   let g:floaterm_keymap_new    = '<F3>'
   let g:floaterm_autoclose     = 1
-"     ------------ sneak ---------------
+" ------------ sneak ---------------
   let g:sneak#label = 1
   let g:sneak#use_ic_scs = 1 " case insensitive sneak
   let g:sneak#s_next = 1 " imediately move tot the next instance of search, if you move the cursor sneak is back to default behavior
   let g:sneak#prompt = ' : '
-"     ------------  fzf  ---------------
+" ------------  fzf  ---------------
   let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
   let g:fzf_tags_command = 'ctags -R'
   let g:fzf_commands_expect = 'alt-enter,ctrl-x'
   let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**'"
   let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
   command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \ call fzf#vim#grep('git grep --line-number '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
   command! -bang -nargs=* All
-  \ call fzf#run(fzf#wrap({'source': 'rg --files --hidden --no-ignore-vcs --glob "!{node_modules/*,.git/i*}" "$HOME"', 'options': [ '--preview', '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}'] } ))
+  \ call fzf#run(fzf#wrap({'source': 'rg --files --hidden --no-ignore-vcs --glob "!{node_modules/*,.git/i*}" "$HOME"', 
+  \ 'options': [ '--preview', '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}'] } ))
 
 " Appearance
-"     ----------- colors ---------------
-  colorscheme onedark
+" ----------- colors ---------------
     hi Dirty guifg=#30302C guibg=#df5f87 gui=bold
     hi Clean guifg=#30302C guibg=#87af87 gui=bold
     hi FileHead guifg=#949484 guibg=#4e4e43
@@ -202,7 +194,7 @@
     hi StlFiletypeNC guifg=#b9bcc2 guibg=#3b4252
     hi StlColNC guifg=#c2c7d1 guibg=#4c566a
     hi PercentNC guifg=#242933 guibg= #616e88 gui=bold
-"     ----------- Windows --------------
+" ----------- Windows --------------
   augroup Stline
     au!
     au FileType coc-explorer,floaterm setl nonu norelativenumber stl=%#Normal#

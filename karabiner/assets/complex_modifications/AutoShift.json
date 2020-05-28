@@ -1049,29 +1049,6 @@
             }
           ],
           "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "spacebar",
-            "modifiers": {
-              "optional": ["caps_lock"]
-            }
-          },
-          "to_if_held_down": [
-            {
-              "key_code": "spacebar",
-              "modifiers": ["left_shift"],
-              "repeat": false,
-              "halt": true
-            }
-          ],
-          "to_after_key_up": [
-            {
-              "key_code": "spacebar",
-              "repeat": false
-            }
-          ],
-          "type": "basic"
         }
       ]
     }

@@ -1,4 +1,11 @@
-# Use Emacs mode (since EDITOR=nvim, if you bindkey -e,  zsh will turn on vi-mode automatically)
+# Init CursorShape
+zle-line-init() {
+  echo -ne "\e[5 q" # zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+}
+zle -N zle-line-init
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# Use Emacs mode (since EDITOR=nvim, if using bindkey -e,  zsh will turn on vi-mode automatically)
 bindkey -e
 bindkey '^f' delete-word
 bindkey '^j' backward-kill-line
@@ -10,33 +17,35 @@ function take() {
   mkdir -p $@ && cd ${@:$#}
 }
 
-up_widget() {
-  BUFFER="cd .."
-  zle accept-line
+updir_on_the_fly() {
+  # BUFFER="cd .."
+  zle kill-whole-line && cd ..
+  zle reset-prompt; zle yank
 }
-zle -N up_widget
-bindkey "^\\" up_widget
+zle -N updir_on_the_fly
+bindkey "^\\" updir_on_the_fly
 
 fzf_open() {
-  fd -t f -H -I | fzf -m | gxargs -ro -d '\n' open 2>&-
-  zle kill-whole-line
-  zle accept-line
+  cd ~ ; fd -t f -H -I | fzf -m | gxargs -ro -d '\n' open >dev/null
+  cd - >/dev/null; zle reset-prompt
 }
 zle -N fzf_open
 bindkey '^o' fzf_open
 
 fzf_vim_open() {
-  fd -t f -H -I | fzf -m | gxargs -ro -d '\n' nvim 2>&-
-  # zle kill-whole-line
-  zle accept-line
+  cd ~ ; fd -t f -H -I | fzf -m | gxargs -ro -d '\n' nvim 2>&-
+  cd - >/dev/null; zle reset-prompt; zle-line-init
 }
 zle -N fzf_vim_open
 bindkey '^p' fzf_vim_open
 
 fzf_cd() {
-  cd $HOME && cd "$(fd -H -t d | fzf --preview='tree -L 1 {}' --bind='space:toggle-preview' --preview-window=:hidden)"
-  zle kill-whole-line
-  zle accept-line
+  local dir=${PWD}
+  # cd ~ ; cd "$(fd -H -t d | fzf --preview='tree -L 1 {}' --bind='space:toggle-preview' --preview-window=:hidden)"
+  cd ~ ; cd "$(fd -H -t d | fzf --preview='tree -L 1 {}')"
+  # zle accept-line
+  [[ ${PWD} = $HOME ]] && cd $dir 
+  zle reset-prompt
 }
 zle -N fzf_cd
 bindkey '^t' fzf_cd
@@ -61,7 +70,7 @@ bindkey '^r' fzf-history-widget
 
 function fg-bg() {
   if [[ $#BUFFER -eq 0 ]]; then
-    fg
+    fg; zle reset-prompt; zle-line-init
   else
     zle push-input
   fi

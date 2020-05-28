@@ -10,7 +10,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export GOPATH=$HOME/Dev/go
 export CARGO_HOME=~/Dev/.cargo
 export RUSTUP_HOME=~/Dev/.rustup
-export PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
+export PATH="${PATH}:/Library/Frameworks/Python.framework/Versions/3.8/bin"
 export LESSHISTFILE="-"
 export ZDOTDIR="$HOME/.config/zsh"
 # dealwith GFW

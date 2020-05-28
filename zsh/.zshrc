@@ -2,11 +2,15 @@ setopt auto_cd # Change dir without typing cd
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS # Delete empty lines from history file
+setopt HIST_IGNORE_SPACE # Ignore a record starting with a space
 unsetopt nomatch # Paste url without escape
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 
+autoload -U colors && colors # Enable colors and change prompt
 autoload -U compinit
 compinit -u
 zmodload zsh/complist
@@ -24,7 +28,7 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 _comp_options+=(globdots)		# Include hidden files.
 # Colorize completions using default `ls` colors.
 zstyle ':completion:*' list-colors ''
-
+# TODO: clear up to /usr/local/share using symlink
 [ -f "$HOME/.config/zsh/appearance.zsh" ] && source "$HOME/.config/zsh/appearance.zsh"
 [ -f "$HOME/.config/zsh/keybindrc" ] && source "$HOME/.config/zsh/keybindrc"
 [ -f "$HOME/.config/zsh/aliasrc" ] && source "$HOME/.config/zsh/aliasrc"

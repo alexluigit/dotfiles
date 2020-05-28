@@ -1,4 +1,4 @@
-autoload -U colors && colors # Enable colors and change prompt
+# TODO: add display element for superuser, nested shell
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
 local bg_jobs="%(1j.%{$fg_bold[yellow]%}! .)"
 PROMPT='$ret_status $bg_jobs%{$reset_color%}%{$fg_bold[cyan]%}${PWD/#$HOME/~}  '
@@ -30,14 +30,3 @@ PROMPT_SUFFIX="%{$reset_color%}"
 PROMPT_DIRTY=" %{$fg[red]%} "
 PROMPT_CLEAN=" %{$fg[blue]%} "
 
-# -------------------------------- Cursor shape ----------------------------------
-zle-line-init() {
-    # zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-# Use beam shape cursor on startup.
-echo -ne '\e[5 q'
-# Use beam shape cursor for each new prompt.
-preexec() { echo -ne '\e[5 q' ;}
-# --------------------------------------------------------------------------------

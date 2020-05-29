@@ -111,7 +111,7 @@
   let mapleader=" "
   nnoremap <silent>        <leader><space>  <C-^>
   nnoremap <silent>        <leader>.        :e $MYVIMRC<CR>
-  nnoremap <silent>        <leader>;        :Commands<CR>
+  nnoremap <silent>        <leader>:        :Commands<CR>
   nnoremap <silent>        <leader>b        :Buffers<CR>
   nnoremap <silent>        <leader>c        :<C-u>CocList commands<cr>
   nnoremap <silent>        <leader>d        :q!<CR>
@@ -165,7 +165,8 @@
   let g:fzf_tags_command = 'ctags -R'
   let g:fzf_commands_expect = 'alt-enter,ctrl-x'
   let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**'"
-  let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
+  " let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
+  let $FZF_DEFAULT_OPTS = '--inline-info'
   command! -bang -nargs=* GGrep
   \ call fzf#vim#grep('git grep --line-number '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
@@ -220,6 +221,7 @@
   endfunction
   function! Stl_Win_Leave()
     if &ft=='coc-explorer' | setl stl=%#NormalNC# | return | endif
+    " setl winhl=
     setl stl=%#DirtyNC#%{b:is_dirty?get(b:,'git_info',''):''}%#CleanNC#%{b:is_dirty?'':get(b:,'git_info','')}
     setl stl+=%#FileHeadNC#\ %{b:file_head}
     setl stl+=%#FileModNC#%{&mod?get(b:,'file_title',''):''}%#FileUnModNC#%{&mod?'':get(b:,'file_title','')}
@@ -234,3 +236,7 @@
   "   \ call fzf#vim#grep(
   "   \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
   "   \   fzf#vim#with_preview(), <bang>0)
+
+  map <F5> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+    \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>

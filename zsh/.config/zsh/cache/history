@@ -1,0 +1,2341 @@
+/Users/simon/Downloads/lf ; exit;
+where youtube-dl
+echo PATH
+lf -doc
+mkdir lf
+cd lf
+touch lfrc
+lfcdlfcd
+killall -9 coreaudiod
+man file
+xdg-open
+open 64.1_\ Forward\ Kinematics.mp4
+cd Coding\ Challenge
+cd stack
+cd nginx
+cd sys
+cd System\ Design
+cd redis
+cd Youtube
+cd subs
+open 01\ -\ A\ friendly\ introduction\ to\ System\ Design.en.vtt
+open hello.sh
+open &$OPENER hello.sh
+cd .config/lf
+vi lfrc
+printenv
+ZSH ls
+ZSH
+cd ZSH
+cd .oh-my-zsh
+oh-my-zsh.sh ls
+vi oh-my-zsh.sh
+./oh-my-zsh.sh ls
+sudo ./oh-my-zsh.sh ls
+cd Trash
+cd .Trash
+cd ~/.config/lf
+lf -doc | less
+lf -version
+pkill lf; rm /tmp/lf.${USER}*
+pkill lf
+/usr/local/bin/lf ; exit;
+echo $ZSH
+tmux a #0
+tmux a -t env
+/Users/simon/.local/share/oh-my-zsh 
+$HOME
+sudo ~
+;ls
+/Users/simon/.local/share/oh-my-zsh/tools/upgrade.sh; exit
+/Users/simon/.local/share/oh-my-zsh/tools/check_for_upgrade.sh; exit
+/Users/simon/.local/share/oh-my-zsh/tools 
+sudo ./check_for_upgrade.sh
+sudo check_for_upgrade.sh
+sudo bash check_for_upgrade.sh
+sudo zsh check_for_upgrade.sh
+chmod +x 
+chmod +x check_for_upgrade.sh
+check_for_upgrade.sh
+bash | check_for_upgrade.sh
+sudo upgrade.sh
+sudo bash upgrade.sh
+sudo zsh upgrade.sh
+sudo sh check_for_upgrade.sh
+sudo sh upgrade.sh
+curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+tmux new -s env
+npx
+mongods
+install.sh
+sh install.sh
+echo $colors
+echo colors
+echo $PROMPT
+echo >($PROMPT) == >($PS1) 
+echo >($PROMPT) = >($PS1) 
+echo $PROMPT = $PS1 
+echo $PROMPT == $PS1 
+diff  $PROMPT  $PS1 
+diff  >($PROMPT) >($PS1) 
+sudo diff  >($PROMPT) >($PS1) 
+cd gos
+echo $reset_color
+echo $fg
+name = 'hahah'
+stringZ=abcABC123ABCabc
+echo ${#stringZ}
+echo expr length $stringZ'
+echo 'expr length $stringZ'
+echo expr length $stringZ
+echo `expr length $stringZ`
+echo %1
+p=b*9
+var="abcd12345abc479"
+echo ${var%(b*9)}, ${var%%p}
+echo ${var%b*9}, ${var%%p}
+echo $p
+echo ${var%p}, ${var%%p}
+filename=aaabbccddaabbccdd
+echo "${filename%bb*}"
+echo ${filename%bb*}, ${filename}
+echo ${filename}, ${filename%bb*}, ${filename%%bb*}
+goc
+echo -e "\e[31mHello World\e[0m"
+echo -e "\033[31mHello\e[0m World"
+echo -e "\x1B[31mHello\e[0m World"
+cd deslfcd
+svn checkout https://github.com/ryanoasis/nerd-fonts/trunk/src/glyphs
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.local/share/oh-my-zsh/custom/themes/powerlevel9k
+cd nerd-fonts-master
+./install.sh UbuntuMono
+xterm-256color
+screen
+brew install screenfetch
+/Users/simon/.local/share/oh-my-zsh/custom/themes/gitster.zsh-theme 
+/Users/simon/.local/share/oh-my-zsh/custom/themes/
+vi gitster.zsh-theme
+vi .local/share/oh-my-zsh/custom/theme/gitster.zsh-theme
+ols
+cd oh-my-zsh
+git commit -m ' '
+git commit -m 'a'
+echo $VIMRC
+echo $VIM
+vim -version
+vim -h
+vim --version
+touch viminfo
+sudo touch viminfo
+chmod g+w viminfo
+sudo chmod g+w viminfo
+chmod a+w viminfo
+sudo chmod a+w viminfo
+chmod a+x viminfo
+sudo chmod a+x viminfo
+sudo chown sunan /Users/sunan/
+sudo chown simon /Users/sunan/
+sudo chown simon /Users/simon/
+sudo chmod -R u+rw /Users/simon/
+simon
+source .vimrc
+ls ~/.viminf*
+touch .viminfo
+vi ~/.local/share/oh-my-zsh/custom/themes/gitster.zsh-theme
+cd root
+cd home
+cd .vim
+rm ~/.viminfo*
+chmod o+w ~/.viminfo
+chmod o+w ~/.vim/viminfo
+chmod o+w ~/.vim/.viminfo
+chmod o+w .vim
+sudo chmod o+w .vim
+sudo chmod g+w .vim
+git config --show-origin
+git config --local --edit
+git config --global --edit
+echo _
+tmux ~/.tmux.conf
+tmux source ~/.tmux.conf
+/Users/simon/.config/tmux/.tmux.conf 
+tmux -f ~/.config/tmux/.tmux.conf
+tmux -f '~/.config/tmux/.tmux.conf'
+tmux -f '$HOME/.config/tmux/.tmux.conf'
+tmux -h
+tmux --h
+tmux -v 
+tmux -f 'User/simon/.config/tmux/.tmux.conf'
+tmux -f '/User/simon/.config/tmux/.tmux.conf'
+tmux -f '/User/simon/.config/tmux/'
+tmux source ~/.confog/tmux/.tmux.conf
+tmux source ~/.config/tmux/.tmux.conf
+tmux -f '/User/simon/.config/tmux/tmux.conf'
+tmux source .tmux.conf
+exitr
+touch 1.txt | vi
+mkdir .test
+vi 2.txt
+mv 1.txt ~/.test
+cd .test
+ln -s ~/.test/1.txt ~/.test
+ln -s ~/.test/1.txt ~/.1.txt
+vi 1.txt
+vi .1.txt
+vi .config/zsh/.zshrc
+cat .babel.json
+$PATH
+mv .vimrc ~/.vim
+ln -s  ~/.vim/.vimrc ~/.vimrc
+man ln
+mv .vim .config/vim
+ln -s .config/vim ~/.vim
+mv .zprofile .config
+ln -s ~/.config/.zprofile ~/.zprofile
+mv .tmux.conf  ~/.config/tmux
+ln -s ~/.config/tmux/.tmux.conf ~/.tmux.conf
+mv .ShadowsocksX-NG .config
+ln -s ~/.config/.ShadowsocksX-NG  ~/.ShadowsocksX-NG 
+mv .prettierrc  ~/.config
+ln -s ~/.config/.prettierrc ~/.prettierrc  
+ln -s ~/.config/VSCode/ ~/User/ 
+ln -s ~/.config/VSCode/ ~/User 
+ln -s ~/.config/VSCode User 
+ln -s ~/.config/VSCode ~/User 
+cd User
+ln -s .config/VSCode User 
+ln -s .config/VSCode .User 
+mv VSCode .config
+chmod 777 VSCode
+chmod 777 ~/VSCode
+chmod -R 777 ~/VSCode
+VSCode\ 
+cd VSCode\ 
+cd VSCode
+mv ~/VSCode .config
+chmod -R 777 VSCode 
+ln -s .config/VSCode ~/User 
+ln -s ~/.config/Code/User ~/User
+mv ~/.npmrc .config
+ln -s ~/.config/.npmrc ~/.npmrc
+ln -s ~/.config/.gitconfig ~/.gitconfig
+htop
+tmux new -s Env
+vi /Users/simon/.config/oh-my-zsh/custom/themes/gitster.zsh-theme 
+tmux new -t Gotp
+tmux new -t Env
+tmux a #!
+j/Users/simon/Dev/C_exercises/1 ; exit;
+man npx
+npm --h
+npm -h
+npm help config
+ssh root@149.28.192.60 
+ssh root@gotipedia.space -p 26798
+ssh root@144.34.197.52 -p 26798
+ping 144.34.197.52
+ifconfig /flushdns
+ping gotipedia.spacew
+sudo killall -HUP mDNSResponder
+sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache
+nslookup
+man ssh-add
+ssh-add -K ~/.ssh/id_rsa
+ping 204.13.154.3
+ping 157.52.168.9
+mv .ssh .config
+ln -s ~/.config/.ssh ~/.ssh
+ln -s ~/.config/Rime ~/Rime 
+osascript -e 'id of app "Alfred3"'
+osascript -e 'id of app "Alfred"'
+osascript -e "Alfred"
+osascript -e '"Chrome"'
+osascript -e 'id of app "Chrome"'
+osascript -e 'id of app "VSCode"'
+osascript -e 'id of app "Visual Studio Code"'
+go -version
+go version
+mkdir go
+code double_pinyin_flypy.custom.yaml
+code double_pinyin_flypy.schema.yaml
+man vscode
+man code
+code --version
+code -n double_pinyin_flypy.custom.yaml
+code -n double_pinyin_flypy.schema.yaml
+touch 1.go
+make 1.go
+youtube-dl https://www.youtube.com/watch\?v\=YS4e4q9oBaU
+go 1.go
+man go
+go main.go
+/Users/simon/Dev/go/main ; exit;
+go get -v github.com/rocket049/aria2-trackers
+chmod 777 main
+main.go
+open main.go
+open main
+/Users/simon/Desktop/main ; exit;
+main
+youtube-dl https://www.youtube.com/watch\?v\=U1QkNUpuYCg
+/etc
+cd init.d
+brew service list
+brew services list
+brew services cleanup
+go env
+cd des
+./main
+mv Applications .config
+ln -s ~/.config/Applications ~/Applications
+/Users/simon/.config/Applications/aria2-tracker-update ; exit;
+touch 1.sh
+mv 1.sh Schedule.sh
+code Schedule.sh
+chmod 777 Schedule.sh
+bash ./Schedule.sh
+cat /etc/shells
+which bash
+trap
+. ./Schedule.sh
+. ~/Applications/Schedule.sh
+man aria2c 
+go
+cat | go help gopath
+less go help gopath
+less | go help gopath
+tmux new -s Gotp
+go help gopath
+go build main.go
+l;s
+man aria2
+/Users/simon/Desktop/aria2tracker ; exit;
+man aria2c
+aria2c -S --conf-path ~/.config/.aria2/aria2.conf
+aria2c  --conf-path ~/.config/.aria2/aria2.conf
+aria2c  --conf-path ~/.config/.aria2/aria2.conf  
+aria2c  --conf-path ~/.config/aria2/aria2.conf  
+/Users/simon/Desktop/Desktop ; exit;
+curl https://trackerslist.com/all.txt
+curl https://trackerslist.com/all.txt | awk NF
+curl -O https://trackerslist.com/all.txt | awk NF | sed ":a;N;s/\n/,/g;ta"
+curl -qO https://trackerslist.com/all.txt | awk NF | sed ":a;N;s/\n/,/g;ta"
+curl https://trackerslist.com/all.txt | awk NF | sed ":a;N;s/\n/,/g;ta"
+curl https://trackerslist.com/all.txt | awk NF | sed ":a;N;s/\n/,/g;ta" > 1.txt
+curl -O https://trackerslist.com/all.txt | awk NF | sed ":a;N;s/\n/,/g;ta" > 1.txt
+killall node
+node /Users/simon/Applications/UnblockNeteaseMusic/app.js -p 10001:10002
+defaults write /Applications/NesteaseMusic.app/Contents/Info.plist LSUIElement 1
+ps aux | grep npx
+ps aux | grep nondanee/unblockneteasemusic
+ps aux | grep @nondanee/unblockneteasemusic
+ps aux | grep unblockneteasemusic | awk $1
+ps aux | grep unblockneteasemusic > awk 
+ps aux | grep unblockneteasemusic | awk { print } 
+kill 46666
+kill $(ps aux | grep unblockneteasemusic | awk '{print $2}') 
+/Users/simon/Applications
+./Schedule.sh
+~/Library/LaunchAgents
+/Library
+vi com.custom.schedule.plist
+sudo vi com.custom.schedule.plist
+sudo launchctl load -w com.custom.schedule.plist
+cd libr
+cd ~/Library/LaunchAgents
+mv com.custom.schedule.plist /Library/LaunchDaemons 
+mv com.custom.schedule.plist /Library/LaunchDaemons/com.custom.schedule.plist 
+mv ~/Library/LaunchAgents/com.custom.schedule.plist /Library/LaunchDaemons/
+sudo mv ~/Library/LaunchAgents/com.custom.schedule.plist /Library/LaunchDaemons/
+cd /Library/LaunchDaemons
+launchctl load -w com.custom.schedule.plist
+launchctl start com.custom.schedule.plist
+sudo launchctl start com.custom.schedule.plist
+cd /tmo
+whereis npx
+whereis node
+which npx
+which aria2c
+launchctl stop com.custom.schedule.plist
+launchctl unload com.custom.schedule.plist
+vi AutoMakeLog.log
+launchctl list | grep 'custom'
+which node
+man  mkdir 
+vi ~/Library/Preferences/com.apple.HIToolbox.plist
+code ~/Library/Preferences/com.apple.HIToolbox.plist
+sudo code ~/Library/Preferences/com.apple.HIToolbox.plist
+sudo open ~/Library/Preferences/com.apple.HIToolbox.plist
+chmod +w AllNotes
+chmod go+w AllNotes
+chmod go-w AllNotes
+chmod go+w .images
+chmod g-w .images
+chmod g+w .images
+chmod 777 AllNotes
+man 7 signal
+brew cask install signal
+brew uninstall signal
+brew cask uninstall signal
+signal
+where signal
+whereis signal
+brew install signals
+brew install signal
+brew install sigaction 
+brew install SIGNAL
+man tty
+man kill
+man sigaction 
+go get -v github.com/sqs/goreturns
+man chmod
+chmod -R 777 .images
+ll 
+chmod a-wx *  
+vi passwd
+cd System
+dscl -list/Users
+dscl . -list/Users
+dscl . -list /Users
+sudo vi /etc/passwd
+vi /etc/group
+id 501
+id simon
+id
+chown simon:simon AllNotes
+chown simon:staff AllNotes
+osascript -e 'id of app "Typora"'
+vi /etc/passwd
+chmod 754 AllNotes
+chmod 755 AllNotes
+cd all
+ll -
+chmod 755 .images
+chown simon:wheel .images
+chown root:wheel .images
+chmod 777 .images
+sudo chmod 777 .images
+sudo chown simon:wheel .images
+cd ~/Documents/AllNotes
+chown simon:staff .images 
+chmod +t .images
+sudo chown root:wheel .images
+chmod +@ .images
+cd - 
+/Users
+cd /Users
+sudo chown simon:staff .images
+cd Users
+cd Shared
+ln -s ~/Documents/AllNotes/.images .images
+mv .images images
+sudo open -a typora
+cd edoc
+ll -a 
+chmod -t .images
+chmod -w .images
+chmod 444 .images
+chmod 754 .images
+ps aux | grep obs
+gosa
+/Users/simon/.config/Applications/aria2_tracker_src/
+kill 309
+sudo kill 309
+cd ${fileDirname}
+${fileDirname}
+echo ${fileDirname}
+cd aria2_tracker_src
+sudo launchctl load /Library/LaunchDaemons/com.custom.schedule.plist
+ps aux | grep aria2
+cd ~/Applications/aria2_tracker_src
+sudo vi /tmp/AutoMakeLog.err
+sudo vi /tmp/AutoMakeLog.log
+launchctl unstop  /Library/LaunchDaemons/com.custom.schedule.plist
+/Users/simon/.config/Applications/Schedule.sh; exit
+man launchctl
+sudo launchctl start  /Library/LaunchDaemons/com.custom.schedule.plist
+launchctl reboot /Library/LaunchDaemons/com.custom.schedule.plist
+vi /tmp/AutoMakeLog.log
+ps aux | grep unblockneteasemusic | awk '{print $1}' 
+ps aux | grep aria2 | awk '{print $1}' 
+sudo kill 23229 
+cd /tmp
+sudo rm AutoMakeLog.*
+ps aux | grep aria2 | awk '{print $2}' 
+vi AutoMakeLog.err
+ps aux | grep unblockneteasemusic | awk '{print $2}' 
+ps aux | grep unblockneteasemusic | awk '{print $2}' | kill
+sudo kill 310
+sudo rm /tmp/AutoMakeLog.err
+vi /tmp/AutoMakeLog.err
+cd Documents/AllNotes
+cd .images
+chmod 754 163reEng
+chmod 755 163reEng
+ping 194.124.33.234
+ping 38.65.25.167
+ping 185.183.104.240
+ping 89.238.160.168
+ping 185.200.119.230
+ping 81.90.189.197
+ping 5.183.179.1  
+45.144.242.4
+ping 45.144.242.4
+python 1.py
+python -u "/Users/simon/Desktop/untitled folder/1.py"
+cd untitled\ folder
+cd untitledf
+pip install
+pip --version
+pip3 install
+python -m venv env
+env 
+pip3 install requests
+pip3 install lxml
+ping tw2.oyvpnserver.com
+ping oyvpnserver.com
+man ping 
+ping -c 20 baidu.com
+ping 85.117.234.223
+python3 1.py
+curl https://raw.githubusercontent.com/DiCaprio17/ss-collect/master/ss-collect/free-ss.py
+/Users/simon/go/src/GoGetNode
+c d~
+cd sr 
+src
+cd GoGetNode
+go run
+go run main
+go get -u golang.org/x/net
+go get -u github.com/gocolly/colly/...
+go get github.com/anaskhan96/soup
+youtube-dl https://www.youtube.com/watch\?v\=C8LgvuEBraI
+/Users/simon/Desktop/GoGetNode ; exit;
+ping -c 5 baidu.com
+go doc regexp/syntax
+ping v
+ping baidu,com
+ping 139.162.67.40
+go build 
+git origin remote 
+ls -a 
+git remote show
+git clone https://github.com/goFindAlex/SS-freeURI.git
+git commit -m "Initial commit" 
+git config --global credential.helper osxkeychain
+git clone https://github.com/goFindAlex/SS-freeURI.git && cd SS-freeURI
+ping baidu.com
+ping 89.31.125.236
+211.21.214.234
+ping 211.21.214.234
+ping 199.223.119.83
+cd ss
+cd SS-freeURI
+git commit -m "sort URIs by average round-trip time"
+git push -u origin
+git pull remote
+git pull orgin
+git commit -m"add example output text" 
+git add ..
+git commit -m "wrong file. Reupload"
+open 
+open .
+git s
+/Users/simon/go/src/SS-freeURI/ 
+go build
+cat /etc/prod
+cat /proc/mtd
+ps aux | grep netease
+youtube-dl https://www.youtube.com/watch\?v\=LvgVSSpwND8\&t\=46s
+vim /etc/profile
+curl http://www.google.com
+brew install privoxy
+vim /etc/privoxy/config
+vi /usr/local/etc/privoxy/config
+whereis privoxy
+which privoxy
+privoxy
+ps aux | grep privoxy
+(ps aux | grep unblockneteasemusic | awk (print $2)
+(ps aux | grep unblockneteasemusic | awk print $2)
+ps aux | grep unblockneteasemusic | awk {print $2} 
+ps aux | grep unblockneteasemusic | awk {print $2 } 
+ps aux | grep unblockneteasemusic | awk print  
+ps aux | grep unblockneteasemusic | awk 
+ps aux | grep unblockneteasemusic | awk { print $2 }
+ps aux | grep unblockneteasemusic 
+ps aux | grep unblockneteasemusic | awk print $2
+ps aux | grep unblockneteasemusic | awk 'print $2'
+ps aux | grep unblockneteasemusic | awk 'print$2
+ps aux | grep unblockneteasemusic | awk {print $2 }
+ps aux | grep unblockneteasemusic | awk {$2}
+ps aux | grep unblockneteasemusic | awk {print$2}
+ps aux | grep unblockneteasemusic | awk
+ps aux | grep '[s]leep' | awk '{print $2}'
+ps aux | grep 'sleep' | awk '{print $2}'
+kill $(ps aux | grep unblocknetease | awk '{print $2}')
+curl http://google.com
+launchctl start /Library/LaunchDaemons/com.custom.schedule.plist
+aria2c  --conf-path ~/.config/aria2/aria2.conf
+/Users/simon/Desktop/SS-freeURI ; exit;
+youtube-dl -F https://www.youtube.com/watch\?v\=lKo4kIF7UdU
+youtube-dl https://www.youtube.com/watch\?v\=lKo4kIF7UdU
+su -i
+su - root
+su 
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD
+npm i -g puppeteer
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = 1
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+sudo npm i -g puppeteer
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true && npm install -g puppeteer
+echo "export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true && npm install -g puppeteer" | sudo sh
+dev 
+mkdir FreeSS
+code .
+npm i
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+unset PUPPETEER_SKIP_CHROMIUM_DOWNLOAD
+export PUPPETEER_DOWNLOAD_HOST=https://npm.taobao.org/mirrors
+youtube-dl --write-auto-sub https://www.youtube.com/watch\?v\=aIPqt-OdmS0 https://www.youtube.com/watch\?v\=kRDrlvO-Oz0 https://www.youtube.com/watch\?v\=sAuGH1Kto2I https://www.youtube.com/watch\?v\=FSH77vnOGqU
+export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;
+youtube-dl https://www.youtube.com/watch\?v\=6IOrp8HgnJU
+npm install clipboardy
+youtube-dl https://www.youtube.com/watch\?v\=MbnATLCuKI4
+youtube-dl https://www.youtube.com/watch\?v\=pixfH6yyqZk
+ping 3.113.2.71
+ping 18.176.54.219
+ping 198.199.104.200
+cd LaunchDaemons
+sudo mv com.custom.schedule.plist ~/Library/LaunchAgents
+launchctl load /Library/LaunchDaemons/com.custom.schedule.plist
+ps aux | grep schedule
+launchctl unload -w  ~/Library/LaunchAgents/com.custom.schedule.plist
+launchctl enable ~/Library/LaunchAgents/com.custom.schedule.plist
+launchctl error
+launchctl error 78
+~/Library/LaunchAgents/com.custom.schedule.plist
+~/Library/LaunchAgents/
+chmod a+x com.custom.schedule.plist
+sudo chmod a+x com.custom.schedule.plist
+chown simon:staff com.custom.schedule.plist
+sudo chown simon:staff com.custom.schedule.plist
+launchctl -w com.custom.schedule.plist
+sudo kill $(ps aux | grep unblocknetease | awk '{print $2}')
+vi ~/Library/LaunchAgenta/com.custom.schedule.plist
+/Users/simon/.config/Applications 
+ll -e
+launchctl load ~/Library/LaunchAgents/com.custom.schedule.plist
+/Users/simon/.config/Applications/ariaTracker
+/Users/simon/.config/Applications/Schedule.sh 
+plutil ~/Library/LaunchAgents/com.custom.schedule.plist
+vi ~/Library/LaunchAgents/com.custom.schedule.plist
+killall unblockneteasemusic
+launchctl start -w  ~/Library/LaunchAgents/com.custom.schedule.plist
+launchctl start  ~/Library/LaunchAgents/com.custom.schedule.plist
+launchctl stop  ~/Library/LaunchAgents/com.custom.schedule.plist
+launchctl load -w  ~/Library/LaunchAgents/com.custom.schedule.plist
+ps aux | grep unblocknetease | awk '{print $2}'
+launchctl unload ~/Library/LaunchAgents/com.custom.schedule.plist
+mv ~/Library/LaunchAgents/com.custom.schedule.plist /Library/LaunchDaemons
+sudo mv ~/Library/LaunchAgents/com.custom.schedule.plist /Library/LaunchDaemons
+launchctl load -w  /Library/LaunchDaemon/com.custom.schedule.plist
+launchctl load -w  /Library/LaunchDeamon/com.custom.schedule.plist
+launchctl stop  /Library/LaunchDaemons/com.custom.schedule.plist
+launchctl unload  /Library/LaunchDaemons/com.custom.schedule.plist
+echo HTTP_PROXY
+echo $HTTP_PROXY
+ps aux | grep aria2c
+cat /etc/youtube-dl.conf
+youtube-dl https://www.pornhub.com/view_video.php\?viewkey\=ph593935536610b
+youtube-dl https://www.pornhub.com/view_video.php\?viewkey\=ph5deee6065da64
+youtube-dl --write-auto-sub https://www.youtube.com/watch\?v\=2tvbkCW4OIY
+killall aria2
+kill aria2c
+killall aria2c
+sudo killall aria2c
+aria2c -D  --conf-path ~/.config/aria2/aria2.conf
+which vi
+whicm vim
+vim 
+whereis vim
+free
+FreeSS
+man scp
+scp -P 26798 index.js package.json root@gotipedia.space
+scp -P 26798 index.js package.json root@gotipedia.space:FreeSS
+export DISPLAY=localhost:0.0  
+echo $DISPLAY
+bwh -Y
+bwh -X
+pbpaste
+ssh -Y root@gotipedia.space
+ssh -Y -P 26798 root@gotipedia.space
+ssh -X -P 26798 root@gotipedia.space
+ssh  -P 26798 root@gotipedia.space
+echo $bwh
+echo bwh
+echo $(bwh)
+bwh 
+ssh root@139.180.197.84 
+ssh root@139.180.197.84
+ssh -X root@139.180.197.84 
+gos 
+git remote -v 
+node -v
+vi app.js
+cd models
+vi users.js
+vi Users.js
+vi User.js
+cat .babelrc
+cat package.json
+ll- a
+ll -a
+vi .babelrc
+cd ~/Dev/FreeSS
+vi package.json
+vi index.js
+node index
+youtube-dl --write-auto-sub https://www.youtube.com/watch\?v\=fqMOX6JJhGo
+ps aux | grep unblock
+/Volumes/HDD/Document/nerd-fonts-master/install.sh; exit
+/Volumes/HDD/Document/nerd-fonts-master/install.sh 
+/Volumes/HDD/Document/nerd-fonts-master/
+/Users/simon/Desktop/nerd-fonts-master 
+./install.sh
+./install.sh MesloLGM
+./install.sh Meslo
+go run main.go
+ssh -p 26798 root@gotipedia.space 
+history 
+ssh root@66.98.120.115 -p 26798
+cd .ssh
+vi config
+cd Library
+cd /
+cd etc
+cd ssh
+cd ssh_config
+vi  ssh_config
+ssh root@185.22.152.211 
+/private/etc/ssh/sshd_config 
+sudo vi /private/etc/ssh/sshd_config 
+sudo vi /private/etc/ssh/ssh_config 
+vim .zprofile
+vi .vimrc
+0a
+brew install vifm
+lfcd
+which lf
+/Users/simon/.config/Applications/ariaTracker ; exit;
+/Users/simon/Downloads/AirServer\ 7.2.0/Open\ Gatekeeper\ friendly/Open\ Gatekeeper\ friendly ; exit;
+brew install neovim
+nvim ~/.config/nvim/init.vim
+touch ~/.config/nvim/init.vim
+killall baidu
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \\
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+ln -s ~/.nvim ~/.config/nvim
+ln -s ~/.config/nvim ~/.nvim
+update-alternatives 
+v hello.sh
+source
+vi .zprofile
+vi vifmrc
+nvim vifmrc
+v .zshrc
+v .zprofile
+v fifmrc
+cd vifm
+v vifmrc
+ø
+mkdir recover
+cd recover
+v 1.js
+node nodemon 1.js
+nodemon 1.js
+source .tmux.conf
+tmux list-keys
+tmux reload
+tmux source
+tmux source-file
+tmux list key
+tmux list keys
+tmux list-key
+indkey -s '^o' 'vifm\n'
+tmux show-options -g | grep prefix
+\:qtmux source-file .tmux.co
+tmux send-keys -t 1 "ls -1" Enter
+tmux send-keys  "ls -1" Enter
+tmux send-keys  "vifm" Enter
+tmux kill-session #1
+tmuc
+zle -al
+tmux send "ls"
+tmux send 'ls'
+tmux send 'ls' Enter
+tmux la
+lks
+tmux show-option -qvg default-terminal
+tmux show-option -qvgs default-terminal
+brew upgrade tmux
+pip install pynvim
+v .tmux.conf
+vi .zshrc
+;s
+tmux source-file .tmux.conf
+\:wq
+run-help ytlist
+mkdir vim-TaiWan
+cd vim-TaiWan
+pbcopy pwd
+man pbcopy
+pwd | pbcopy
+echo MYVIMRC
+echo $MYVIMRC
+sudo spctl --master-disable
+ytlist https://www.youtube.com/playlist\?list\=PLBd8JGCAcUAH56L2CYF7SmWJYKwHQYUDI
+youtube-dl https://www.youtube.com/watch\?v\=l8iXMgk2nnY
+ytlist --playlist-start 23 https://www.youtube.com/playlist\?list\=PLBd8JGCAcUAH56L2CYF7SmWJYKwHQYUDI
+bindkey | grep ^[
+bindkey | grep "^["
+bindkey | grep ^\[
+bindkey | cat | grep "^["
+bindkey | grep \^\[
+bindkey | grep /^/[
+bindkey | grep '\^\['
+bindkey | grep '\^\[' | less
+npm init -y
+cd test 
+which npm
+npm i vue lodash babel-eslint node-fetch mocha
+npm config
+npm config get registry
+npm config get puppeteer_download_host
+ln -s ~/.config/zsh/.zprofile ~/.zprofile
+echo $NERDTREE_BOOKMARKS
+ps aux  | grep baidu
+ln -s ~/.config/ShadowsocksX-NG ~/.ShadowsocksX-NG
+ln -s ~/.config/ssh ~/.ssh
+man less
+less -  .zprofile
+less aliasrc
+less .zprofile
+ps aux | grep unblocknetease 
+cd aria2
+bg
+killall unblocknetease
+ps aux | unblockneteasemusic
+kill 226
+sudo kill 226
+killall -9 NeteaseMusic 
+killall -9 NeteaseMusic
+kill 65289
+openssl genrsa -out ca.key 2048
+openssl req -x509 -new -nodes -key ca.key -sha256 -days 1825 -out ca.crt -subj "/C=CN/CN=UnblockNeteaseMusic Root CA/O=simon"
+openssl genrsa -out server.key 2048
+openssl req -new -sha256 -key server.key -out server.csr -subj "/C=CN/L=Hangzhou/O=NetEase (Hangzhou) Network Co., Ltd/OU=IT Dept./CN=*.music.163.com"
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:music.163.com,DNS:*.music.163.com") -days 365 -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt
+node app.js -p 10001
+launchctl ls
+launchctl list
+launchctl list | grep schedule
+killall unblockNeteaseMusic
+kill -9 225
+sudo kill -9 225
+vi /etc/hosts
+node app.js -p 80
+sudo node app.js -p 80
+sudo vi /etc/hosts
+ping music.163.com
+node app.js -p 10001:10002 -f 59.111.181.60
+osascript -e 'id of app "iTerm 2"' 
+osascript -e 'id of app "iTerm2"' 
+osascript -e 'id of app "Visual Studio Code"' 
+killall npx
+ps aux | grep unblockneteasemusic
+ps aux | grep unblockneteasemusic | awk '{print $2}'
+sudo kill $(ps aux | grep unblockneteasemusic | awk '{print $2}')
+npx @nondanee/unblockneteasemusic -p 10001:10002
+netstat -tulp
+netstat -tul
+netstat -l
+netstat -tulpn
+ps aux | grep 10001
+cd UnblockNeteaseMusic-master
+lsof -nP -i4TCP:$PORT | grep LISTEN
+vi /Library/LaunchDaemons/com.custom.schedule.plist
+sudo v /Library/LaunchDaemons/com.custom.schedule.plist
+sudo vi /Library/LaunchDaemons/com.custom.schedule.plist
+ps aux | grep unblocknetease
+ps aux | grep node
+node app.js
+ps aux | grep node app.js
+node unblocknetease.js -p 10001:10002
+ps aux | grep unblocknetease.js 10001
+ps aux | grep unblocknetease.js\ 10001
+ps aux | grep unblocknetease.js\t10001
+ps aux | grep unblocknetease.js
+ps aux | grep unblocknetease.js\ -p
+ps aux | grep unblocknetease.js\ -p\ 10001
+ps aux | grep app.js\ -p\ 10001
+defaults write /Applications/NeteaseMusic.app/Contents/Info.plist LSUIElement 1
+sudo codesign -f -s - /Applications/NeteaseMusic.app
+kill $(ps aux | grep unblockneteasemusic | awk '{print $2}')
+lsof -i :10001
+ps aux | grep app.js | awk '{print $2}'
+kill $(ps aux | grep app.js | awk '{print $2}')
+git clone https://github.com/nondanee/UnblockNeteaseMusic.git
+git remote
+git fetch origin
+node app.js -p 10001:10002
+git current_branch
+source $ZSH/oh-my-zsh.sh
+sed -i 's/.$//' ~/.config/oh-my-zsh/lib/git.zsh
+ps aux | grep app.js
+[200~brew install fzf~
+brew install fzf
+(brew --prefix)/opt/fzf/install
+$(brew --prefix)/opt/fzf/install
+vim
+vi ~/.config/zsh/.zshrc
+v keybindrc
+yes | head 10
+yes | head -10
+yes
+n
+no
+fd
+find
+c d..
+ipconfig /flushdns
+sudo nvim /etc/hosts
+git config --global http.proxy http://127.0.0.1:1080
+git config --global https.proxy https://127.0.0.1:1080
+_
+echo $_
+cd git
+touch config
+cd tets
+git clone https://github.com/ryanoasis/nerd-fonts.git
+rm tets
+rm test
+rm -d test
+cd Applications
+cd UnblockNeteaseMusic
+cat app.js
+jkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj:q
+rm -d -r .git
+c dtest
+cd Dev/test
+Dev/test 
+;q
+\:bn
+\:bp
+\::bn
+youtube-dl https://www.youtube.com/watch\?v\=fP_ckZ30gbs3
+vim .config/zsh/.zshrc
+bindkey | grep ^L
+bindkey | grep '^L'
+bindkey | grep '\^L'
+bindkey | grep '\^L' | awk '{ print $2}'
+bindkey | grep '\^L' | awk '{ print $2}' | pbcopy
+vim .config/zsh/keybindrc
+v .config/zsh/vicd
+vi zsh/keybindrc
+keybind
+o````````````
+vi .config/zsh/keybindrc
+source zsh/keybindrc
+source .config/zsh/keybindrc
+lsllsllsls
+jkhkhklhkljh
+kdfljwelf
+fhefhewlk
+touch .hushlogin
+touch 1.js~
+code --extensions-dir vicd
+code --extensions-dir ~/.config/vscode/extensions
+code --extensions-dir /Users/simon/.local/share/code/extensions 
+code --user-data-dir /Users/simon/.local/share/code
+brew install ripgrep
+rg const -g *.js
+rg const -g '*.js'
+rg const -g '1.js'
+man rg 
+mkdir tttest
+touch index.js
+l:s
+npm i nodemon
+v .git
+dev/rec
+fzf index
+kkkhjj:q
+fzf -v
+fzf -version
+fzf --version
+fzf --preview
+fzf --height 40% --layout reverse --info inline --border \\
+    --preview 'file {}' --preview-window down:1:noborder \\
+    --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'
+fzf --preview 'bat --style=numbers --color=always {} | head -500'
+cd **
+cd rec/ls
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+man 2 ls
+bat --style=numbers --color=always hello.sh
+bat --style=numbers --color=always hello.sh | less -f
+\:ls
+npm i puppeteer
+cd tttest
+ddddev
+cd re
+cd rec
+re
+tttest
+mkdir t01
+mkdir t02
+cd t01
+mkdir tinside
+v 3.txt
+t02
+touch 03.txt
+v 03.txt
+touch .gitignore
+t01
+v 4.txt
+git list-file
+git status -u | less
+git commit -m "initial" 
+git remote add origin https://github.com/goFindAlex/dotfiles.git
+git remote -v
+git pull ...
+git pull origin
+git fetch origin master
+git push origin
+git pull
+git pull origin master
+git clone https://github.com/goFindAlex/dotfiles.git
+git push --set-upstream origin master
+git pull --allow-unrelated-histories
+git clone https://github.com/goFindAlex/dotfiles.git .config
+git status -t
+git commit -m "initial"
+rec
+killall TextEdit
+ps aux | grep TextEdit
+ps -ax | grep textedit
+ps -aux | grep textedit
+ps aux | grep textedit
+ps u | grep textedit
+ps a | grep textedit
+ps au | grep textedit
+.config/zsh/aliasrc
+v .config/zsh/aliasrc
+sv
+youtube-dl https://www.youtube.com/watch\?v\=E-ZbrtoSuzw
+getcwd()
+cal 12+5
+cal 12
+cal 6
+cal
+man cal
+rm thisone
+brew uninstall tmux
+brew upgrade python3
+v .zprofile.pysave
+python3 -m venv test-python
+source test-python/bin/activate
+which python
+python --version
+node 
+deactivate
+which tmux
+which python3
+python3 --version
+brew install tmux
+tmux kill-session -t 1
+tmux kill-session 0
+tmux kill-session -t 0
+tmux -CC attach
+tmux -CC 
+tmux -CC attach -t 1
+tmux -CC attach 
+tmux kill-session -t 2
+set -t $1 @origins "o_313a302c3130"
+tmux -CC a
+set -t $3 @origins "o_333a302c3130"
+tmux kill-session -t 4
+tmux ls 
+tmux kill-all
+tmux kill-sessions
+tmux -CC
+sls
+set -t $11 @origins "o_31313a302c2d3230"
+man tmux 
+Hello!
+tmux new-session -A -s main
+tmux new-session -A -s main -f $HOME/.config/tmux/tmux.conf
+tmux new-session -A -s main -f ~/.config/tmux/tmux.conf
+tmux -f ~/.config/tmux/tmux.conf new-session -A -s main
+tmux new -s gotp
+tmux a main
+tmux a -t main
+tmux ks
+tmux -f ~/.config/tmux/tmux.conf new -A -s main
+tmux new -A -f ~/.config/tmux/tmux.conf -s main
+tmux killsession
+tmux kill -t 1
+tmux kill-se -t 1
+tmux kill-sess -t 1
+tmux a#1
+cd tmux
+tmux -version
+eifhewifhewoifheofiehflsioewhf
+tmux kill-session -t gotp
+cat -v
+xxd -b 
+xxd 
+history
+killall karabiner
+code Vim-Tmux.itermkeymap
+lsvicd
+bindkey | grep \^:vert res +1
+bindkey | grep \^L
+clear-screen
+call clear-screen
+sh clear-screen
+zsh clear-screen
+defaults write com.apple.finder AppleShowAllFiles YES
+run-help lshfiewufhewiu
+run-help jewfhewi
+source .zshrc
+run-help jdhweifuhewifuhh
+run-help jdhweifuhewifuhhhh
+
+tmux a #1
+run-help fgfgdu
+ls ls
+tmux show-window -options
+run-help tmux
+tmux show-window-options
+tmux show-window-options -g mode-keys
+echo $TERM
+v /Users/simon/.config/tmux/plugins/nord-tmux/src/nord-status-content.conf 
+cd FreeSS
+lsssssssssssssssssssssssssssss
+llllllllllsss
+tmux source-file ~/.config/tmux/tmux.conf
+sv /etc/hosts
+hostname
+hostname -s
+Downloads
+down	Downloads
+Downloads/
+\:exit
+git v
+run-help fheifhewi
+run-help a
+a jljljljlkjhhhhkllllllllhhhhhhhhhhhhhhklllhlkjhkljhkjhkjhkjhkhhhkhkjls
+run-help fhdfhd
+run-help fkefjeof
+run-help dhjfhdjkfhdkfhkdlfhdsf
+bindkey | grep run-help
+ls 
+run-help dhehfeiwof
+run-help dheifhewifehfiohfheifwe
+t
+bindkey -
+bindkey -M
+source .zrofile
+source vicd
+\
+hkhkj
+dhjkefhdjkfhk
+source zsh/zshrc
+source zsh/,zshrc
+	v .con\
+
+source zsh/.zshrc
+exitv
+brew upgrade ctags
+brew upgrade ctag
+man ctags
+which ctags
+ctags --version
+ctags -version
+ctags -v
+node test.js
+node --experiment-import test.js
+npm init
+touch .babelrc
+rg --glob  const
+rg const
+rg --glob '!{.git,node_modules}' const
+Dev/newtest
+v\
+P\
+
+--v
+vvicd
+sl
+v zsh/keybindrc
+git commit -m "custom tmux theme; remove vim-grepper; refactor init.vim; add coc-settings"
+git commit -m "remove codeaction config in init.vim"
+npm i neovim -g
+sudo npm i neovim -g
+launchctl stop -w  /Library/LaunchDaemons/com.custom.schedule.plist
+launchctl start -w  /Library/LaunchDaemons/com.custom.schedule.plist
+ps -a
+r
+jnpm start
+v 2.js
+../Dev/newtest
+npm start
+git commit -m "update iterm config"
+git grancd 
+git granch
+mongod
+beh
+mkdir testgit
+touch m1.txt
+git commit -a -m "1st commit"
+git commit -m 
+git commit -m "first commit"
+touch m2.txt
+git commit -m '2nd commit'
+gos
+git config --global user.name "Alex"
+git config --list
+git config get user.name
+git branch 
+git branch feature
+git branch --all
+cd 
+cd testgit
+\
+Q\
+
+touch f1.txt
+git commit -m "first feature"
+touch f2.txt\
+\
+\
+
+git status\
+\
+
+git cm '2nd feature'
+git log --all
+wlhlqqq
+touch m3.txt
+git cm 
+git cm '3rd commit'
+killall thunder
+youtube-dl https://www.youtube.com/watch\?v\=OQeNjOVSa1Y
+youtube-dl --playlist-start 3 --playlist-end 5 https://www.youtube.com/watch\?v\=OQeNjOVSa1Y\&list\=PLtt_YYUGi1gUZmMA_xRV6cCikWybdAh9O
+youtube-dl https://www.youtube.com/watch\?v\=5bH2KnuRQcE
+ping gotipedia.com
+ping gotipedia.space
+youtube-dl https://www.youtube.com/watch\?v\=vuL1ZhPUw0E
+youtube-dl https://www.youtube.com/watch\?v\=xNevyMhIZ84
+youtube-dl https://www.youtube.com/watch\?v\=wqkkzXL_0_0
+youtube-dl https://www.youtube.com/watch\?v\=ygVf_I7vpdw
+cd ~/Downloads && git clone https://github.com/CodeTips/BaiduNetdiskPlugin-macOS.git && ./BaiduNetdiskPlugin-macOS/Other/Install.sh
+source ~/.zprofile
+source .zproffile
+clear\
+\
+
+git status --verbose
+git status --=u
+deb
+new
+newtest
+testgit
+v m2.txt
+git co feature
+git log --graph
+git checkout mastere
+git checkout feature
+git checkout branch
+git checkout master
+git merge feature
+git reflog
+git reset --hard a8a44fe
+git merge --squash feature
+git cm 'master and feature merged'
+git log 
+git config --global core.editor "nvim"
+git branch -a
+ls -al
+kjfhdjkfkfhdkj
+fhefjkdhfkdjsfls
+jdfhdfjkkfjfhdkjfhdskjls
+run-help fhdjkfhdskj
+run-help fdsjkfhdsjkcchhfhdskjf
+fdhjfdhfkljdhfkjdfhdkfhkjhkjhkjhkjhjkj
+fhjdfhdjkfhdskfhdjkfhdsjkfhdskjfhdhfdkjfhdsfkhjk
+fhdsjkfhdjfhdsj
+hfjkdsfhjkdsfhsdjk
+fhdjfhdsjkfdshffdshjk
+fhjdfhdskfh
+hfkdhfdkjfhsddhfjkdfhjdfhdjkfhkjdsfhdsjkfhdsjkfhjk
+jdhsjdshjddededddededddededddededddededddededh
+hdsjfhdsjkfhdsjk
+fhdsjkfhdskjfhdsjk
+dhfkjdsfhdjkfhdsjk
+fhdjksfhdsjkfhsdfkjdsh
+fjhdsjkfhdsjfkhdsjf
+fhdskjfhdsjkfhdskj
+fhdskjfhdskfjhdsjkf
+fhdskjfhsdjkfhdkjfhdsj
+fjhsdjkfhdfjhdsfjk
+fhjsdkfhsakljfhsdakljfhsdjka
+fhjkdsfhdfgjskfhsdjkf
+fhfdkjfhdskj hfhdfksdjhdfjkdhfjldfjdhfj
+texit
+tmux kill-session
+run-help hfdjfhsdjdjhfjkdsfhdjklfhdlkhksjfkjffjkfkjdshfjkdshfsjkd
+hfdjfhsdjdjhfjkdsfhdjklfhdlkhksjfkjffjkfkjdshfjkdshfsdDdkjdjkshdjsdhDsfdjhsdjskdhksjhdsjdhsjdlshdjhfjdhfjkdHHHH
+hejfhdjfdhfjk
+bindkey 
+bindkey|v
+tmux a 
+fhdjfhdjkfq
+jhdfdhjfk
+dfhdjkfhdsjkfhsdjkdfhjdjfhdskjf
+fhdkjhfd
+brew upgrade
+bindkey | v
+curl -fsSL https://raw.github.com/mislav/dotfiles/1500cd2/bin/tmux-vim-select-pane \\
+  -o /usr/local/bin/tmux-vim-select-pane
+tmux 
+tmux -f $1
+sudo chmod +x /usr/local/bin/tmux-vim-select-pane
+\:sp
+\:vs
+tmux -f ~/.config/tmux/tmux.conf
+fhjdsfhdsj
+jhefdhfhd
+fhjdjfhd
+dffdfdhjfdsfhldjhf
+\:res -1
+fhdkjfhdjkf:q
+tmux exit
+sv /usr/local/bin/tmux-vim-select-pane
+git rm scripts/tmux-vim-select-pane
+git reset
+git commit -m "keybinding change" 
+git commit -m "iterm settings update"
+cd server
+npm install
+npm update
+youtube-dl https://www.youtube.com/watch\?v\=Wy9q22isx3U
+youtube-dl -F https://www.youtube.com/watch\?v\=Wy9q22isx3U
+youtube-dl -f 22 https://www.youtube.com/watch\?v\=Wy9q22isx3U
+vue --update
+\:res +1
+sudo npm update -g @vue/cli
+brew install ffmpeg
+youtube-dl -f 248+251 https://www.youtube.com/watch\?v\=Wy9q22isx3U
+echo "\e[31mHello" 
+echo "hello"
+/Volumes/XiaoMi-usb0/Document 
+rm -d a
+rmdir a
+rm -r a
+rm -rf a
+rm -rf Document
+sudo rm -rf Document
+sudo rm -r Document
+lsof | grep -i Music
+lsof | grep -i Document
+lsof | grep -i usb0
+git commit
+git reset 
+git commit -m "backup abp.js"
+git commit -m "nul"
+git rm -r --cached .
+git status -u
+git commit -m "edit gitignore"
+git push
+bass-----
+base64 gfwlist.txt | echo "hello" >> test.txt
+base64 --decode gfwlist.txt | echo "hello" >> test.txt
+base64 --decode gfwlist.txt >> test.txt
+base64 --decode gfwlist.txt | echo "||hello.com" >>test.txt
+(base64 --decode gfwlist.txt | echo "||hello.com") >> test.txt
+base64 --decode gfwlist.txt && echo "||hello.com" >> test.txt
+echo "||hello" | base64 --decode gfwlist.txt 
+base64 --decode gfwlist
+base64 --decode gfwlist.txt
+echo "||hello"; base64 --decode gfwlist.txt
+base64 --decode gfwlist.txt; echo "||hello"
+base64 --decode gfwlist.txt; echo -n "||hello"
+base64 --decode gfwlist.txt; echo "\n||hello"
+base64 --decode gfwlist.txt; echo "\n\n||hello" >> tst.txt
+base64 --decode gfwlist.txt; echo "\n\n||hello"
+{base64 --decode gfwlist.txt; echo "\n\n||hello"} >> ttt.txt
+base64 {base64 --decode gfwlist.txt; echo "\n\n||hello"}
+man base 64
+man base64
+base64 -i {base64 --decode gfwlist.txt; echo "\n\n||hello"}
+{base64 --decode gfwlist.txt; echo "\n\n||hello"} >> test.txt && base64 -i test.txt -o res.txt
+base64 -d res.txt
+{base64 --decode gfwlist.txt; echo "\n\n||hello"} >> test.txt && base64 test.txt res.txt
+{base64 --decode gfwlist.txt; echo "\n\n||hello"} >> test.txt && base64 test.txt -o res.txt
+base64 --decode res.txt
+cat res.txt
+touch README.md
+git reset --hard
+fdjhf
+fdsjfhdsjfh
+dsjfhdsjfh
+fhdsjkfhdsj
+fhsdjkfhdsj
+run-help fhsdjkfhjs
+run-help fhsdjkfhjsfj
+run-help fhsdjkfhjsfjfdj
+run-help fhsdjkfhjsfjfdjj
+fhsdjkfhjsfjfdjjfd
+got
+server
+client
+vue create test
+test
+vue update
+vue upgrade
+vue
+vue --info
+vue info
+npm update -g @vue/cli
+npm i -g @vue/cli
+sudo npm i -g @vue/cli
+vue --version
+vue create gotipedia
+npm run serve
+npm uninstall -g @vue/cli
+sudo npm uninstall -g @vue/cli
+sudo npm install -g @vue/cli
+v package.json
+youtube-dl vimeo.com/video/383787098
+youtube-dl https://player.vimeo.com/video/383787098
+cd newtest
+fdhjkfdhjdhfjdfhdjfdjfhdjkhdjhjdheiuheifhhdjfhdjfhdjfdhj hdjfhdjf fhdjfdhjk 
+pgrep tmux
+pgrep aria2
+pgrep unblockneteasemusic
+pgrep unblockNeteaseMusic
+pgrep unblockNeteasemusic
+pgrep app.js
+pgrep app
+pgrep node
+fhjdfjkhdfkjhdffjdshfjkdffhjkfkdjshfjfkhfls
+hdsjfhdsjfhsdj fhsdjkfh jk dfhjk hfjkdkfjhdjkfhdsjk   hdasjkdh
+osascript -e 'id of app "Alfred 3"'
+git add
+ga .
+youtube-dl https://www.youtube.com/watch\?v\=iXozpbomAns
+youtube-d: 
+youtube-dl https://www.youtube.com/watch\?v\=HE7Iz7HLpYg
+youtube-dl --write-auto-sub https://www.youtube.com/watch\?v\=HE7Iz7HLpYg
+cd Downloads
+v Coronavirus\ -\ Doctors\ Arrested\ for\ revealing\ the\ truth-HE7Iz7HLpYg.en\ \[SubtitleTools.com\].srt
+cd Desktop
+brew update
+brew update youtube-dl
+brew upgrade youtube-dl
+youtube-dl https://www.youtube.com/watch\?v\=on8SzRBqZk0
+youtube-dl https://www.youtube.com/watch\?v\=TRL7o2kPqw0
+youtube-dl --write-sub https://www.youtube.com/watch\?v\=TRL7o2kPqw0
+youtube-dl https://www.youtube.com/watch\?v\=P9GQtvUKtHA
+youtube-dl --list-sub https://www.youtube.com/watch\?v\=TRL7o2kPqw0
+youtube-dl --sub-lang zh-Hans https://www.youtube.com/watch\?v\=TRL7o2kPqw0
+youtube-dl --all-subs https://www.youtube.com/watch\?v\=TRL7o2kPqw0
+ffmpeg -i cvsr.webm opt.mp4
+touch 01.json
+v 01.json
+youtube-dl https://www.youtube.com/watch\?v\=P9U1kwg6toY
+youtube-dl https://www.youtube.com/watch\?v\=behSjB8xL3w
+ffmpeg -i rename.mkv rename.mp4
+ffmpeg -i mla.mkv MLA2019Live.mp4
+youtube-dl https://www.youtube.com/watch\?v\=A4p1hpg8_Q0
+launchctl unload -w  /Library/LaunchDaemons/com.custom.schedule.plist
+youtube-dl https://www.youtube.com/watch\?v\=xq-aTe77bkA 
+\:vert res +1
+run-help H
+Hhl:vert res -1
+killall -9 NeteaseMusic && open -a NeteaseMusic
+ate
+date
+which echo
+ls ..
+cat
+ls -a
+cat .zprofile
+ls -l | tail -n1
+/sys
+cd /sys
+system
+sudo su
+cd go
+cd src
+open golang.org
+man  mkdir
+echo $?
+touch foo{1,2,10}
+env python
+which env
+brew install tldr
+sudo brew install tldr
+tldr ffmpeg
+bwh ls
+bwh journalctl
+deo 1 of 11
+[download]  12.3% of 111.26MiB at  2.77MiB/s ETA 00:35deo 1 of 11
+[youtube] Z56Jmr9Z34Q: Downloading webpage
+[youtube] Z56Jmr9Z34Q: Downloading video info webpage
+[download] Destination: /Users/simon/Desktop/Lecture 1 - Course Overview + The Shell (2020)-Z56Jmr9Z34Q.f137.mp4
+youtube-dl https://www.youtube.com/watch\?v\=Z56Jmr9Z34Q\&list\=PLRQmQC3wIq9xT03Jq6l2fwIzx8g4ThG0F
+tldr youtube-dl
+youtube-dl https://www.youtube.com/watch\?v\=Z56Jmr9Z34Q\&list\=PLRQmQC3wIq9x:vert res -1T03Jq6l2fwIzx8g4ThG0F
+youtube-dl --write-sub --skip-download https://www.youtube.com/watch\?v\=Z56Jmr9Z34Q\&list\=PLRQmQC3wIq9xT03Jq6l2fwIzx8g4ThG0F
+tmux ls
+tmux new -s GOTP
+tldr tmux
+v gray.tmuxtheme
+PS1=">"
+bwh
+cat .ssh/id_rsa.pub
+printf "hello"
+youtube-dl https://www.youtube.com/watch\?v\=E-ZbrtoSuzw\&t\=30s
+youtube-dl --write-sub https://www.youtube.com/watch\?v\=E-ZbrtoSuzw\&t\=30s
+\:vert res -1
+tmux source ~/.config/tmux/tmux.conf
+killall tmu
+killall tmux 
+killls
+cd gotipedia/
+npm install -g neovim
+sudo npm install -g neovim
+Dev/gotipedia
+cd nvim
+brew install ranger
+git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+v $1
+touch ~/.config/ranger/rc.conf
+v ~/.config/ranger/rc.conf
+brew upgrade fzf
+ranger -v
+ranger --version
+cd ~/.config/ranger/plugins/ranger_devicons
+brew uninstall ranger
+pip3 install ranger-fm
+pip install --upgrade pip
+pip3 install pynvim
+mux
+lq
+clear
+rg --files --no-ignore --hidden --follow --glob ""
+rg --files --no-ignore --hidden --follow
+fzf-cd-widget
+rg --hidden --files --null | xargs -0 dirname | uniq
+rg --hidden --files --null | dirname $pwd | uniq
+rg --sort-files --files --null 2> /dev/null | xargs -0 dirname | uniq
+brew install fd
+brew install w3mimgdisplay
+npm install -g imgcat-cli
+sudo npm install -g imgcat-cli
+run-help :q
+\u1f50e
+exec 1> >(sed -r 's/^(.*)/  \1/g')
+exec 1> >(sed 's/^/ /')
+ls -l exec 1> >(sed 's/^/ /')
+ls -l | exec 1> >(sed 's/^/ /')
+tput smam
+tput rmam
+zmodload zsh/terminfo zsh/system\
+autoload is-at-least\
+\
+indent_output() {\
+  while sysread line\
+  do\
+    testline=${line//$'\n'/$'\n'   }\
+    syswrite "   ${testline}"      \
+  done\
+}\
+\
+precmd() { sleep 0 }\
+\
+## i'm not sure exactly how far back it's safe to go with this\
+## 4.3.4 works; 4.2.1 hangs.\
+is-at-least 4.3.4 && exec  > >(indent_output)
+is-at-least 4.3.4 && exec  > >(indent_output)
+bin/colortest
+colortest
+ls colors
+LSCOLORS
+$LSCOLORS
+ls -G | awk '{print "    "$0}'
+ls -l | awk '{print "    "$0}'
+ls -l
+ls -ld
+alias ls
+ls | (while read; do echo "    $REPLY"; done)
+pwd | (while read; do echo "    $REPLY"; done)
+ls -G | sed "s/^/    /g"
+man ls | sed "s/^/    /g"
+man sed
+ls -C
+ls -CG
+ls | tr "\n" " "
+git statua
+gotipedia
+git status | ls | tr "\n" " "
+git status | tr "\n" " "
+git status | sed "s/^/    /g"
+ls | sed "s/^/    /g"
+ls --color=always| sed "s/^/    /g"
+CLICOLOR_FORCE=1 ls
+CLICOLOR_FORCE=1 ls | cat
+CLICOLOR_FORCE=1 ls | sed "s/^/    /g"
+CLICOLOR_FORCE=1 git status | sed "s/^/    /g"
+ls | exec 1>&3 3>&-
+$PS1
+echo $PS1
+ls | awk '{print "    "$0}'
+ls -1
+CLICOLOR_FORCE=1 git status | awk '{print "    "$0}'
+CLICOLOR_FORCE=1 ls | awk '{print "    "$0}'
+screenfetch
+tmux -v
+tmux --version
+tmux --v
+tmux -V
+\:a
+\:w
+echo -e "\033]6;1;bg;red;brightness;40\a"
+echo -e "\033]6;1;bg;green;brightness;44\a"
+echo -e "\033]6;1;bg;blue;brightness;52\a"
+lah
+la -h
+config
+s
+$(git_prompt_info)
+echo $(git_prompt_info)
+git config --get oh-my-zsh.hide-status
+cd dec
+colors
+echo -e "\033[0mNC (No color)"\
+echo -e "\033[1;37mWHITE\t\033[0;30mBLACK"\
+echo -e "\033[0;34mBLUE\t\033[1;34mLIGHT_BLUE"\
+echo -e "\033[0;32mGREEN\t\033[1;32mLIGHT_GREEN"\
+echo -e "\033[0;36mCYAN\t\033[1;36mLIGHT_CYAN"\
+echo -e "\033[0;31mRED\t\033[1;31mLIGHT_RED"\
+echo -e "\033[0;35mPURPLE\t\033[1;35mLIGHT_PURPLE"\
+echo -e "\033[0;33mYELLOW\t\033[1;33mLIGHT_YELLOW"\
+echo -e "\033[1;30mGRAY\t\033[0;37mLIGHT_GRAY"
+ks
+mkdir test
+echo $(command git config --get oh-my-zsh.hide-dirty)
+echo $(git config --get oh-my-zsh.hide-dirty)
+git config --get oh-my-zsh.hide-dirty)
+git config --get oh-my-zsh.hide-dirty
+killall tmux
+lf
+sh
+la -a
+grep import
+cd test
+grep list
+grep 1
+grep list 1.txt
+grep --color==auto list 1.txt
+ggrep
+ggrep --color==auto list 1.txt
+ggrep --color=auto list list 1.txt
+ggrep --color=auto list 1.txt
+brew install coreutils
+gls -Flh --group-directories-first
+gls --group-directories-first
+man gls
+gls --group-directories-first --color=auto
+cd gotipedia
+ls -G
+cd dev
+set -o vi off
+unset -o vi
+set -o vi
+echo $DITOR
+v ..config/zsh/.zprofile 
+ls -l  
+man ls
+set -o
+info -f zsh -n Keymaps\
+
+set -o\
+
+fhjdkfhkjhdkjfhdkkfjhdsjkf:q
+hdfkjfhdjkkjdfhdkjdhsjkdhsjkdfhjkfdhfjkhdjkfhdkjjdfhdksjfdjhfkdjfhjkfhfjdkfhdjhfkjdfhkdjhfdjkscd "$(dirname "$(fzf)")"
+d
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+take whatever
+application
+cd applications
+...
+cd app
+source .zprofile
+rm whatever
+rd whatever
+brew upgrade zsh-syntax-highlighting
+/Users/simon/Downloads/zsh-syntax-highlighting-master 
+make install
+?
+?!
+?!?
+echo git_current_branch
+git_current_branch
+git commit -m "tets"
+if [[ -n $STATUS ]]; echo "true"
+if [[ -n $STATUS ]]; then echo "true" else echo "false" fi
+touch 3.txt
+gc yey
+touch 4.txt
+STATUS=$(command git status --porcelain 2> /dev/null | tail -n1)
+git status --porcelain 2> /dev/null | tail -n1
+gc "fhkjdf"
+echo $STATUS
+  if [[ -n $STATUS ]]; then\
+    echo "true"\
+  else\
+    echo "false"\
+  fi\
+
+echo "fdfh" > 5.txt
+git status --porcelain --untracked-files=no
+git status --porcelain
+gs --stat
+git status --stat
+touch 1 
+rm 1
+touch 2.txt
+echo 'hello' > 2.txt
+cat 2.txt
+git diff --stat
+git status
+git status --untracked-files
+git status --untracked-files=no
+git status ${FLAGS} 2> /dev/null | tail -n1
+git status 2> /dev/null | tail -n1
+git status --untracked-files=no 2> /dev/null
+git status --untracked-files=no 2> /dev/null | tail -n1
+$(git status 2> /dev/null | tail -n1)
+$(command git status 2> /dev/null | tail -n1)
+status=$(command git status 2> /dev/null | tail -n1)
+STATUS=$(command git status 2> /dev/null | tail -n1)
+touch 3
+echo parse_git_dirty
+echo parse_git_dirty()
+echo $parse_git_dirty()
+parse_git_dirty()
+\:
+parse_git_dirty
+echo $(parse_git_dirty)
+gc dhksl
+touch 5
+git status -s
+gc hfdkf
+touch 45
+gc hfkdg
+touch dhskjfhd
+gc jdls
+touch dhskjfhdsjk
+touch dhsfhdskffdsf
+gc fhdkjfhdsjk
+git status -uno --porcelain --ignore-submodules
+touch fhifhdsifhdsf
+gc dhfkfjhdifui
+touch gfuegfuegfew
+echo 2437889 > 45.txt
+gc hdueidhiwe
+gc dieroiew
+touch fyiueyf
+gc hkfhdlk
+gc hdeiwofheowif
+gc djdj
+touch 1.vim
+dev/test
+v -u NONE
+b
+\:v
+echo $EDITOR
+echo $VISUAL
+brew upgrade nnn
+brew install nnn
+nnn --version
+nnn -h
+brew uninstall nnn
+brew install nnn --HEAD
+nnn -v
+curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs | sh
+brew install lsix
+brew upgrade bash
+brew install bash
+brew install ImageMagick
+imgcat
+imgcat cd "$(dirname "$(fzf)")"
+imgcat 613614.jpg
+bash
+brew install sxiu
+brew install sxiv
+brew upgrade nvim
+vicd
+V
+export CARGO_HTTP_PROXY=http://127.0.0.1:1087
+export CARGO_HTTP_PROXY=
+cargo install --path .
+nnn
+l
+ll
+run-help rm
+rm foo1 foo10 foo2
+cl
+rd test
+man rmdir
+alias rd
+rd -p test
+rm -rf test
+take learn_ts
+npm i  -g typescript
+sudo npm i  -g typescript
+source .co
+socd "$(dirname "$(fzf)")"
+xxd -psd
+xxd -ps\
+
+i
+dhskd
+man xxd
+man bindkey
+abc def hjf
+abc def/hi/jk
+xxd
+dev/learn_ts
+desktop
+compinit
+man tmux
+v ~/.config/tmux/tmux.conf
+vi nvim/init.vim
+brew install bat
+brew install bat --HEAD
+youtube-dl --write-sub https://www.youtube.com/watch?v=JFr28K65-5E
+youtube-dl https://www.youtube.com/watch\?v=5yAnbYNqU5A&t=107s
+v .config/tmux/tmux.conf
+youtube-dl --write-sub 'https://www.youtube.com/watch?v=JFr28K65-5E'
+v.
+zle -la
+dfhjkcd "$(dirname "$(fzf)")"dfhkjdfvq
+djfh:q
+zle
+man zle
+bindkey -l
+bindkey | cat
+bindkey | less
+brew install zshzle
+zsh -la
+ka tmux
+tmux
+npm root -g
+npm i -g eslint 
+sudo npm i -g eslint 
+cd Documents
+cd AllNotes
+cat Keys.md
+bat keys.md
+nvim -u NONE
+rg --files --hidden --follow --no-ignore-vcs -g "" | fzf
+rg --files --hidden --follow --no-ignore-vcs -g "" hello
+rg --files --hidden --follow --no-ignore-vcs -g '!{node_modules,.git}' | fzf
+rg --files --hidden --follow --no-ignore-vcs -g '!{node_modules,.git}'
+sudo find . -name '.DS_Store' -type f -delete
+ddjfhdkfhd
+bindkey | grep clear
+run-help jdfhdjkf
+dhskfhdsjfk fhdjk cd "$(dirname "$(fzf)")"hfdkj hdfsk 
+fhdjskf fhdjks cd "$(dirname "$(fzf)")" fsdkj hkjdsf jkf sdhkjfhdjks hfdkjsfhdjsk hhdsfkhskd 
+dhsjkf fhdsjk fhdskj fhkj fdskjhkj  cd "$(dirname "$(fzf)")"fhdksj fsdkj h h
+fhsdjk fhdskj cd "$(dirname "$(fzf)")"
+fhdkjfhdsjk  cd "$(dirname "$(fzf)")"fdhjksh fhdskj hjk fhdskj fhskjd 
+source .config/zsh/.vifmzshrc
+cod
+Documents
+md 
+md mynote
+rmdir mynote
+take mynote
+touch note1 note2 note3 
+//
+note
+c
+cd --
+dev/my
+Dev/mynote
+mynote
+take devnote
+touch 1 2 3 4 5
+ls devnote
+ls mynote
+rm -rf mynote/devnote/
+ls mynote/devnote
+exec zsh
+youtube-dl https://www.youtube.com/watch?v=Qem8cpbJeYc
+echo $fpath
+ls $path
+man autoload
+brew upgrade zsh
+echo $shell
+echo $path
+brew info zsh
+bat /etc/shells
+dscl . read /Users/$User UserShell
+dscl . read /Users/$USER UserShell
+brew install zsh
+ls -la /usr/local/bin/zs*
+brew list
+brew list zsh
+sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
+which zsh
+zsh --version
+bat bindkey
+bindkey |bat
+run-help youtube
+youtube-dl https://www.youtube.com/watch?v=OnUiHLYZgaA
+run-help doc
+cd .
+youtube-dl https://www.youtube.com/watch\?v\=Qem8cpbJeYc
+youtube-dl https://www.youtube.com/watch\?v\=XA2WjJbmmoM\&t\=3328s
+youtube-dl https://www.youtube.com/watch\?v\=OnUiHLYZgaA
+bindkey -v
+bindkey -e
+bat | bindkey
+man fg | bat
+man rg | bat
+fzf
+bindkey
+gf
+fzf-file-widget
+cd "$(dirname "$(fzf)")"
+brew reinstall fzf
+$SHELL
+source /usr/local/opt/fzf/shell/key-bindings.zsh
+v .zshrc 
+\:s
+\
+
+brew install tree
+cd $HOME
+cd "$(fd -t d | fzf --preview='tree -L 1 {}' --bind='space:toggle-preview' --preview-window=:hidden)"
+fd -H -t d
+q
+fd -H -t d | fzf
+cd "fd -H -t d | fzf"
+cd "$(fd -H -t d | fzf)"
+open_with_fzf() {\
+    fd -t f -H -I | fzf -m --preview="xdg-mime query default {}" | xargs -ro -d "\n" open 2>&-\
+    zle accept-line\
+}
+open README.md
+open_with_fzf() {\
+    fd -t f -H -I | fzf -m --preview='xdg-mime query default {}' | xargs -ro -d '\n' open 2>&-\
+    zle accept-line\
+}
+open_with_fzf
+fzf_cd
+open .config/README.md
+fd -t f -H -I | fzf -m --preview='xdg-mime query default {}' | xargs -ro -d '\n'
+fd -t f -H -I | fzf -m --preview='xdg-mime query default {}' | xargs -ro -d '\n' open
+brew install xargs
+brew install findutils
+man xargs
+which xargs
+which gxargs
+.config/README.md 
+fd -t f -H -I | fzf -m --preview='xdg-mime query default {}' | gxargs -ro -d '\n' open
+man gxargs
+fd -t f -H -I | fzf -m --preview='xdg-mime query default {}' | gxargs -ro -d '\n' open 2>&-
+viu/README.md 
+.vuerc 
+    fd -t f -H -I | fzf -m --preview='{}' | gxargs -ro -d '\n' open 2>&1
+man open
+echo $FZF_DEFAULT_COMMAND
+exec $FZF_DEFAULT_COMMAND
+djfkdhfffhdkfhdjkfhdsjkfdjhfdkj  
+fsjkfhdkf
+bindkey | $PAGER
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+echo $FZF_DEFAULT_OPTS
+abc def ghj
+abc def ghu
+source .config/zsh/.zprofile
+fd -t f -H -I | fzf -m | gxargs -ro -d "\n" open 2>&-
+cd $HOME && cd "$(fd -H -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
+v .config/zsh/.zshrc 
+nvim .config/zsh/.zshrc
+git config --get user.name
+git config --global user.email="gofindalex@gmail.com"
+git config --global user.email "gofindalex@gmail.com"
+vi
+youtube-dl https://www.youtube.com/watch?v=JgZu5-FNeMk&t=605s
+youtube-dl https://www.youtube.com/watch?v=__cR7uPBOIk
+curl cheat.sh/tmux
+curl cheat.sh/tmux  bat
+curl cheat.sh/tmux | bat
+ytl https://www.youtube.com/playlist?list=PL4cUxeGkcC9goXbgTDQ0n_4TBzOO0ocPR
+git config --get user.email
+ls .config
+bat config
+tmux [C
+cat .git/HEAD
+cd ruby
+command-t
+cd ext
+cd command-t/.
+make clean
+ruby extconf.rb
+make
+nvim .config/zsh/aliasrc
+git branch spacefn
+git checkout spacefn
+run-help gb
+run-help gbH
+run-help FHDJKSFHDSKJFH
+run-help FHDJKSFHDSKJFHHHHHHHHHHHHHH
+cd ~
+run-help dhskjfdhjskHHHHHHHHHH
+run-help dhskjfdhjskHHHHHHHHHHHHHHH
+run-help dhskjfdhjskHHHHHHHHHHHHHHHHHHHHHHHHH
+grh
+gco -- karabiner/karabiner.json
+youtube-dl https://www.youtube.com/watch?v=CRlGDDprdOQ
+youtube-dl https://www.youtube.com/watch?v=PO6DxfGPQvw
+youtube-dl https://www.youtube.com/watch?v=VxpCgQyUXlI
+youtube-dl 'https://www.youtube.com/watch?v=VxpCgQyUXlI'
+youtube-dl "https://www.youtube.com/watch?v=VxpCgQyUXlI"
+youtube-dl https://www.youtube.com/watch\?v=VxpCgQyUXlI
+tldr rg
+curl cheat.sh/rg
+gem install neovim
+sudo gem install neovim
+rm Git.md
+g
+false
+true
+vimtutor
+jobs
+fg 2
+fg vimtutor
+cd..
+man rg
+Desktop
+cd Git
+tldr rename
+rename -vne 's/(.*)(- )(.*)/$3/' *.mp4
+rename -vne 's/(.*)(- )(.*)/$3/' *
+rename -vne 's/(\d\d)(.*)( - )(.*)/$1$3$4/' *
+man rename
+rename -ve 's/(\d\d)(.*)( - )(.*)/$1$3$4/' *
+dev
+take heyhey
+gitinit
+git init
+touch 1.txt
+alias ga
+gac "1st commit"
+gac
+gac "second"
+v 1.txt
+git reset HEAD~ 1.txt
+gitlog
+git reset HEAD 1.txt
+git reset e0f32a6
+gd
+gco -- 1.txt
+bat 1.txt
+git revert e0f32a6
+youtube-dl https://www.youtube.com/watch?v=I6oD_eXXYpE
+youtube-dl https://www.youtube.com/watch?v=QXQqfb4GwO8
+v .config/zsh/aliasrc 
+git rm --cached karabiner/karabiner.json
+gb feature
+brew upgrade git
+brew uninstall git
+cat /usr/local/etc/gitconfig
+git
+brew install git
+brew link --overwrite git
+which git
+brew upgrade git --HEAD
+brew upgrade --HEAD git
+brew upgrade --fetch-HEAD git
+echo 'export PATH="/usr/local/sbin:$PATH"' >> ~/.zshrc
+git --version
+git config --global mergetool.fugitive.cmd 'nvim -f -c "Gdiff" "$MERGED"'\
+git config --global merge.tool fugitive\
+
+git config g
+git config -g
+git config --global
+git config --get-all
+git config --global --get-all
+git config
+git config -l
+git log
+git mergetool
+git config --global mergetool.fugitive.cmd 'nvim -f -c "Gvdiffsplit!" "$MERGED"'
+git config --global merge.tool fugitive
+nvim --version
+nvim
+gco feature
+git branch
+gco spacefn
+..
+Dev/heyhey
+su -u 
+sudo
+xxd -ps
+sudo -U
+whoami
+sudo -u simon
+echo $0
+man sudo
+man su
+dscl . -read /Users/$USER UserShell
+sudo dscl . -change /Users/root UserShell /bin/sh /usr/local/bin/zsh
+dscl . -read /Users/root UserShell
+CheatSheets
+cd ..
+Utils
+touch Zsh.md
+touch v Zsh.md
+rm v
+v Zsh.md
+echo $EUID
+sudo -u
+sudo -s
+su
+rm .zshrc
+vifm
+youtube-dl https://www.youtube.com/watch?v=Yqs3ZbE_HN0
+gb rooter
+gb -a
+gbn rooter
+curl cheat.sh/git
+curl cheat.sh/git | bat
+man git-checkout
+man git-branche
+man git-branch
+gb
+gco rooter
+find . -name '.DS_Store' -type f -delete
+ytl https://www.youtube.com/watch?v=DuQKrTweWA4&list=PLkEZWD8wbltmcZQaA0ism9k2E6MGRnHZ7
+ytl https://www.youtube.com/playlist?list=PLkEZWD8wbltmcZQaA0ism9k2E6MGRnHZ7
+git clone https://github.com/233boy/v2ray 233
+gco master
+233
+gco 4f9a0f3
+git log 7c5757d 4f9a0f3
+glog log 7c5757d
+gcm
+glog 4f9a0f3 f2b1562
+git diff 4f9a0f3 f2b1562
+glog 4f9a0f3..f2b1562
+git diff 4f9a0f3 fa9fd18
+youtube-dl --skip-download --write-sub https://www.youtube.com/watch?v=2sjqTHE0zok
+man youtube-dl
+youtube-dl --skip-download --write-auto-sub https://www.youtube.com/watch?v=2sjqTHE0zok
+v .gitignore
+ytl 'https://www.youtube.com/watch?v=DuQKrTweWA4&list=PLkEZWD8wbltmcZQaA0ism9k2E6MGRnHZ7'
+exit
+echo -ne '\e[5 q'
+echo -ne '\e[1 q'
+which shell
+echo $SHELL
+launchctl load -w  /Library/LaunchDaemons/com.custom.schedule.plist
+gdiff
+rd 233
+rm -rf 233
+git stash show 0
+git stash apply
+git stash push -m "tetst"
+git stash showwww
+git stash push
+git stash show -p 
+git diff init.vim
+git diff nvim/init.vim
+git stash show -p
+git stash clear
+git stash
+git stash list
+git stash drop
+git stash pop
+git stash nvim/init.vim
+git stash push nvim/init.vim
+man git-reset
+git show -p
+git commit -m 'test'
+alias
+gss
+source .config/zsh/.zshrc
+gc
+gc hello
+v index.js
+v index.ts
+v README.md
+gc another hello
+gc 'another hello'
+git reset HEAD
+bat index.ts
+git stash show
+git reset HEAD~
+gc 'yet another commit'
+git reset HEAD~2
+ggit diff
+gc whatever
+git diff --cached 
+brew install diff
+which diff
+which gdiff
+v .config/zsh/.zprofile 
+man fd
+tldr fd
+diffutils
+brew install diffutils
+which diffutils
+ld
+.config/
+cd =
+cd +
+cd -
+h
+v .config/zsh/keybindrc 
+v  
+pwd
+echo $HOME
+echo $pwd
+echo ${pwd}
+echo ${PWD}
+something
+zhs
+cd Rime
+unsetopt flow_control
+zsh 
+v .config/zsh/appearance.zsh
+fhdkjfd
+dhskfdhjk
+v .config/zsh/.zshrc
+ga
+gc again
+ls -lah
+echo -lah
+echo echo
+echo
+hello 1 2
+echo 1 2
+hhhh rt ty yu io op
+op
+brew doctor
+where gdiff
+diff "$(git diff --staged)" "$(git diff --cached)"
+gs
+git diff
+git diff -staged
+git add .
+git diff --staged
+git diff --cached
+diff "$(git diff --staged) > staged.txt" "$(git diff --cached) > cache.txt"
+diff "$(git diff --staged > staged.txt)" "$(git diff --cached > cache.txt)"
+tldr diff
+diff -u staged.txt cache.txt
+cat staged.txt
+diff "$(git diff --staged >&staged.txt)" "$(git diff --cached >&cache.txt)"
+diff <"$(git diff --staged > staged.txt)" <"$(git diff --cached > cache.txt)"
+diff <"$(git diff --staged > staged.txt) <$(git diff --cached > cache.txt)
+diff <$(git diff --staged > staged.txt) <$(git diff --cached > cache.txt)
+echo "hello simon" > 1.txt
+echo "hello alex" > 2.txt
+diff 1.txt 2.txt
+diff staged.txt cache.txt
+diff <$(git diff --staged) <$(git diff --cached)
+diff $(git diff --staged) $(git diff --cached)
+man diff
+diff <(git diff --staged) <(git diff --cached)
+diff <(git diff --staged > 3.txt) <(git diff --cached > 4.txt)
+bat 3.txt
+bat 4.txt
+cd Volumes
+hdd
+cd users/simon
+cd users
+cd simon
+echo $PATH
+where diff
+diff
+glog
+git show HEAD
+bindkey | bat
+which viu
+where viu
+viu
+viu 613614.jpg
+/
+~
+zsh
+git rm --cached aria2/aria2.conf
+.config
+gb -b codi
+alias gb
+git checkout -b codi
+man fzf
+man git-log
+man git-add
+v .config/zsh/keybindrc
+tmux a
+ranger
+env
+env | grep coc
+cd Applications Desktop Dev Documents Downloads Library Movies Music Pictures Public app
+\:q
+echo $tty
+fg
+echo $(tty)
+brew intall stow
+brew install stow
+tmux -f /Users/simon/.config/tmux/tmux.conf new -A -s MAIN
+le
+v
+Alex.files
+karabiner
+ls
+rm .DS_STORE
+stow -vt ~ karabiner
+cd .config
+rm -rf karabiner
+mv * ./karabiner
+mv * mkdir karabiner
+mkdir karabiner
+mv * karabiner/
+mv * karabiner
+cd assets
+cd complex_modifications
+-
+cd karabiner
+stow -nvt ~ karabiner
+cd zsh
+rm .DS_Store
+la
+stow -nvt ~ karabiner zsh
+stow -vt ~ karabiner zsh

@@ -21,6 +21,5 @@ export PUPPETEER_DOWNLOAD_HOST=https://npm.taobao.org/mirrors
 if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 fi
-[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
 # export FZF_DEFAULT_OPTS="--no-mouse --height 40% -1 --multi --inline-info --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:hidden:wrap' --bind 'f4:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept'"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!{.git,node_modules}"'

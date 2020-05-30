@@ -31,7 +31,8 @@ vnoremap                  X               "_d
 noremap                   Y               y$
 inoremap          <expr> <CR>             exists('*complete_info') ? complete_info()['selected'] != '-1' ? '<C-y>' : '<C-g>u<CR>' : pumvisible() ? '<C-y>' : '<C-g>u<CR>'
 nnoremap <silent> <expr> <CR>             empty(&buftype) ? '@@' : '<CR>'
-inoremap <silent> <expr> <TAB>            pumvisible() ? '<C-n>' : <SID>alex#general#checkbs() ? '<TAB>' : coc#refresh()
+" inoremap <silent> <expr> <TAB>            pumvisible() ? '\<C-n>' : <SID>alex#general#checkbs() ? '\<TAB>' : coc#refresh()
+inoremap <silent> <expr> <TAB>            pumvisible() ? '<C-n>' : alex#general#checkbs() ? '<TAB>' : coc#refresh()
 inoremap <silent> <expr> <S-TAB>          pumvisible() ? '<C-p>' : '<C-h>'
 inoremap <silent> <expr> <C-space>        coc#refresh()
 nnoremap                 <Tab>            za

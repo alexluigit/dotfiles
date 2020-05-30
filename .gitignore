@@ -5,6 +5,7 @@ karabiner/.config/karabiner/automatic_backups/
 karabiner/.config/karabiner.json
 nvim/.config/nvim/plugged/
 nvim/.config/nvim/coc_data/
+nvim/.config/nvim/.netrwhist
 Rime/Rime/*/
 Rime/Rime/*dict.yaml
 Rime/Rime/*schema.yaml
@@ -15,5 +16,6 @@ vifm/
 !vifm/.config/vifm/vifmrc
 zsh/.config/zsh/.zcompdump*
 zsh/.config/zsh/aliasrc
-ranger/.config/ranger/plugins/
 zsh/.config/zsh/plugins/
+zsh/.config/zsh/cache/
+ranger/.config/ranger/plugins/

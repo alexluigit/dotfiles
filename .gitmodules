@@ -1,0 +1,43 @@
+[submodule "nvim/.config/nvim/pack/bundle/opt/fzf"]
+	path = nvim/.config/nvim/pack/bundle/opt/fzf
+	url = https://github.com/junegunn/fzf
+[submodule "nvim/.config/nvim/pack/bundle/opt/fzf.vim"]
+	path = nvim/.config/nvim/pack/bundle/opt/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "nvim/.config/nvim/pack/bundle/opt/coc.nvim"]
+	path = nvim/.config/nvim/pack/bundle/opt/coc.nvim
+	url = https://github.com/neoclide/coc.nvim
+	branch = release
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-commentary"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-fugitive"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-surround"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-repeat"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "nvim/.config/nvim/pack/bundle/opt/onedark.vim"]
+	path = nvim/.config/nvim/pack/bundle/opt/onedark.vim
+	url = https://github.com/joshdick/onedark.vim
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-floaterm"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-floaterm
+	url = https://github.com/voldikss/vim-floaterm
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-sneak"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-sneak
+	url = https://github.com/justinmk/vim-sneak
+[submodule "nvim/.config/nvim/pack/bundle/opt/auto-pairs"]
+	path = nvim/.config/nvim/pack/bundle/opt/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-devicons"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-polyglot"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot
+[submodule "nvim/.config/nvim/pack/bundle/opt/nvim-colorizer.lua"]
+	path = nvim/.config/nvim/pack/bundle/opt/nvim-colorizer.lua
+	url = https://github.com/norcalli/nvim-colorizer.lua

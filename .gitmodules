@@ -22,7 +22,7 @@
 	url = https://github.com/tpope/vim-repeat
 [submodule "nvim/.config/nvim/pack/bundle/opt/onedark.vim"]
 	path = nvim/.config/nvim/pack/bundle/opt/onedark.vim
-	url = https://github.com/joshdick/onedark.vim
+	url = https://github.com/goFindAlex/onedark.vim
 [submodule "nvim/.config/nvim/pack/bundle/opt/vim-floaterm"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-floaterm
 	url = https://github.com/voldikss/vim-floaterm

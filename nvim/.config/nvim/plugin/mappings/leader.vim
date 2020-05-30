@@ -3,11 +3,13 @@ nnoremap <silent>        <leader><space>  <C-^>
 nnoremap <silent>        <leader>.        :e $MYVIMRC<CR>
 nnoremap <silent>        <leader>:        :Commands<CR>
 nnoremap <silent>        <leader>b        :Buffers<CR>
-nnoremap <silent>        <leader>c        :<C-u>CocList commands<cr>
+nnoremap <silent>        <leader>c        :BCommits!<CR>
+nnoremap <silent>        <localleader>c   :Commits!<CR>
 nnoremap <silent>        <leader>d        :q!<CR>
 nnoremap <silent>        <leader>e        :CocCommand explorer<CR>
 nnoremap                 <localleader>e   :edit <C-R>=expand('%:p:h') . '/'<CR>
 nnoremap <silent>        <leader>f        :Files<CR>
+nnoremap <silent>        <localleader>f   :All<CR>
 nnoremap <silent>        <leader>g        :G<CR>
 nnoremap <silent>        <leader>gd       :diffget //2<CR>
 nnoremap <silent>        <leader>gj       :diffget //3<CR>
@@ -23,7 +25,6 @@ nmap                     <leader>qf       <Plug>(coc-fix-current)
 nnoremap                 <leader>r        :%s///gc<left><left><left>
 xnoremap                 <leader>r        :s///gc<left><left><left>
 nnoremap <silent>        <leader>s        :vert sb#<CR>
-nnoremap <silent>        <leader>sa       :All<CR>
 nnoremap <silent>        <leader>t        :let @/ = ''<CR>
 nnoremap <silent>        <leader>x        :x<CR>
 noremap  <silent>        <leader>y        "+y

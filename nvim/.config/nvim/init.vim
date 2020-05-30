@@ -13,3 +13,5 @@ packadd! onedark.vim
 packadd! auto-pairs
 packadd! fzf
 packadd! fzf.vim
+" Use vim-pathogen for update helptags, after that disable it 
+" packadd! vim-pathogen

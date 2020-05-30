@@ -2,6 +2,7 @@
 	path = nvim/.config/nvim/pack/bundle/opt/onedark.vim
 	url = https://github.com/joshdick/onedark.vim
 [submodule "nvim-colorizer"]
+        ignore = dirty
 	path = nvim/.config/nvim/pack/bundle/opt/nvim-colorizer.lua
 	url = https://github.com/norcalli/nvim-colorizer.lua
 [submodule "vim-floaterm"]

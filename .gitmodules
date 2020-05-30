@@ -34,3 +34,7 @@
 [submodule "fzf.vim"]
 	path = nvim/.config/nvim/pack/bundle/opt/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
+[submodule "coc.nvim"]
+	path = nvim/.config/nvim/pack/bundle/opt/coc.nvim
+	url = https://github.com/neoclide/coc.nvim
+	branch = release

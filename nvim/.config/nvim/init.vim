@@ -1,19 +1,15 @@
-" Plugins
-call plug#begin('~/.config/nvim/plugged')
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-repeat'
-  Plug 'honza/vim-snippets'
-  Plug 'ryanoasis/vim-devicons'
-  Plug 'ThePrimeagen/vim-be-good'
-  Plug 'joshdick/onedark.vim'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'norcalli/nvim-colorizer.lua'
-  Plug 'voldikss/vim-floaterm'
-  Plug 'justinmk/vim-sneak'
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'sheerun/vim-polyglot' " language pack
-call plug#end()
+if has('nvim')
+  packadd! coc.nvim
+  packadd! nvim-colorizer.lua
+  packadd! vim-floaterm
+endif
+packadd! vim-surround
+packadd! vim-fugitive
+packadd! vim-commentary
+packadd! vim-repeat
+packadd! vim-sneak
+packadd! vim-devicons
+packadd! onedark.vim
+packadd! auto-pairs
+packadd! fzf
+packadd! fzf.vim

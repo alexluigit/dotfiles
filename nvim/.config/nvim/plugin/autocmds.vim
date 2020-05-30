@@ -1,3 +1,4 @@
+au! VimEnter * if argc() == 0 | exec "History" | endif
 au! BufWritePost $MYVIMRC source $MYVIMRC
 au! BufWinEnter * call alex#general#root(expand("%"), &buftype)
 

@@ -9,9 +9,8 @@ nvim/.config/nvim/.netrwhist
 Rime/Rime/*/
 Rime/Rime/*dict.yaml
 Rime/Rime/*schema.yaml
-tmux/
-!tmux/.config/tmux/themes/
-!tmux/.config/tmux/tmux.conf
+tmux/.config/tmux/plugins/
+tmux/.config/tmux/saved-session/
 vifm/
 !vifm/.config/vifm/vifmrc
 zsh/.config/zsh/.zcompdump*

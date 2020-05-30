@@ -1,0 +1,11 @@
+set -goq @color-current "#00ff5f"
+
+set -gF status-style bg="#282c34"
+set -gwF window-status-style fg="#8a8a8a"
+set -gwF window-status-current-style "fg=#{@color-current},bold,bright"
+set -gF  message-style bg="#282c34"
+set -gF status-left "  "
+set -gF status-justify left
+set -gw window-status-format         ' #W '
+set -gw window-status-current-format ' #W '
+set -g status-right ""

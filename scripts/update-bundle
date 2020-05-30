@@ -1,0 +1,26 @@
+#!/bin/sh
+
+set -e
+
+# Conditionals here are to ensure we only do any work in submodules under
+# nvim/.config/nvim/pack:
+
+git submodule foreach '
+  if [ "${path##nvim/.config/nvim/pack/}" != "$path" ]; then
+    NAME=$(basename $path)
+    BRANCH=$(git config -f $toplevel/.gitmodules submodule."$NAME".branch || echo master)
+    git checkout $BRANCH
+  fi
+'
+
+git submodule foreach '
+  if [ "${path##nvim/.config/nvim/pack/}" != "$path" ]; then
+    git pull --recurse-submodules || :
+  fi
+'
+
+git submodule foreach '
+  if [ "${path##nvim/.config/nvim/pack/}" != "$path" ]; then
+    git submodule update --init --recursive || :
+  fi
+'

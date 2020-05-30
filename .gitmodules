@@ -38,3 +38,6 @@
 	path = nvim/.config/nvim/pack/bundle/opt/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
 	branch = release
+[submodule "vim-pathogen"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen

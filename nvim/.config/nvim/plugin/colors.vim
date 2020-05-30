@@ -1,4 +1,8 @@
 colorscheme onedark
+hi NormalNC guifg=#ABB2BF guibg=#3B4048
+hi DiffAdd guifg=#98C379 guibg=#282C34
+hi DiffChange guifg=#E5C07B guibg=#282C34
+hi LineNr guifg=#5C6370
 " Current window statusline
 hi Dirty guifg=#30302C guibg=#df5f87 gui=bold
 hi Clean guifg=#30302C guibg=#87af87 gui=bold

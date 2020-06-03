@@ -1,13 +1,71 @@
+[alias]
+	abbrev = !sh -c 'git rev-parse --short ${1-`echo HEAD`}' -
+	ack = grep --break --heading
+	amend = commit --amend -v
+	both = diff --ignore-submodules=dirty HEAD
+	br = branch
+	ci = commit -v
+	co = checkout
+	count = !git --no-pager log --oneline | wc -l
+	cp = cherry-pick
+        ff = merge --ff-only
+	# Shortcut for updating all remotes and fast-forwarding to a specific one:
+	# eg. `git get upstream/master`
+	get = "!f() { git fresh && git ff \"$@\"; }; f"
+
+	fixup = !sh -c 'git commit --fixup=$1 ${@:2}' -
+	fresh = remote update --prune
+	full = show --format=fuller
+	# equivalent to: graph --all
+        gr = !git --paginate log --graph --all --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset'
+	graph = !git --paginate log --graph --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset'
+	# Show just the HEAD commit message (no indent) and nothing else
+	msg = !git --paginate log -1 --pretty=format:%B
+	no-edit = commit --amend --no-edit
+	one = !git --paginate log --pretty=format:'%C(auto)%h%Creset %s%C(auto)%d%Creset %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset'
+	p = add -p
+	reword = commit --amend --only -v --
+	rollback = !sh -c 'git reset --merge HEAD~${1-1}' -
+	sl = !git --paginate log --graph --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset' --all --simplify-by-decoration
+	st = status
+	stsh = stash --keep-index
+	staash = stash --include-untracked
+	staaash = stash --all
+	ten = !git --paginate log -10 --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset'
+	wc = whatchanged
+	# similar to whatchanged, but gives a dir-level overview (takes param to
+	# diff against; defaults to HEAD if not provided)
+	wd = !git --paginate diff --dirstat=cumulative,files,0
+[core]
+	editor = nvim
+	pager = less -S
+[github]
+	username = goFindAlex
+[grep]
+	lineNumber = true
 [http]
 	proxy = http://127.0.0.1:1087
 [https]
 	proxy = https://127.0.0.1:1087
-[user]
-	name = Alex
-	email = gofindalex@gmail.com
-[core]
-	editor = nvim
+[interactive]
+	diffFilter = diff-highlight
+[log]
+	decorate = short
 [mergetool "fugitive"]
 	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 [merge]
 	tool = fugitive
+[pager]
+	diff = ~/bin/diff-highlight | menos -iFMRSX --pattern='^(commit|diff)'
+	log = ~/bin/diff-highlight | menos -iFMRSX --pattern='^(commit|diff)'
+	show = ~/bin/diff-highlight | menos -iFMRSX --pattern='^(commit|diff)'
+	show-branch = true
+	status = true
+	whatchanged = ~/bin/diff-highlight | menos -iFMRSX --pattern='^(commit|diff)'
+[rebase]
+	autosquash = true
+[status]
+	submodulesummary = true
+[user]
+	name = Alex
+	email = gofindalex@gmail.com

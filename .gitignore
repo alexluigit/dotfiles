@@ -3,7 +3,6 @@ ssh/
 export/*License/
 karabiner/.config/karabiner/automatic_backups/
 karabiner/.config/karabiner/karabiner.json
-nvim/.config/nvim/plugged/
 nvim/.config/nvim/coc_data/
 nvim/.config/nvim/.netrwhist
 Rime/Rime/*/
@@ -17,4 +16,4 @@ zsh/.config/zsh/.zcompdump*
 zsh/.config/zsh/plugins/
 zsh/.config/zsh/cache/
 ranger/.config/ranger/plugins/
-__pycache__/
+*.pyc

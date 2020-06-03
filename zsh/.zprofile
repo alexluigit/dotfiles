@@ -7,21 +7,17 @@ export EDITOR="nvim"
 export TERM="xterm-256color"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # ~/ clean-up
-export GOPATH="$HOME/Dev/go"
-export PATH="$PATH:$HOME/bin:$GOPATH/bin:/Library/Frameworks/Python.framework/Versions/3.8/bin"
+export GOPATH=$HOME/Dev/go
 export CARGO_HOME=~/Dev/.cargo
 export RUSTUP_HOME=~/Dev/.rustup
-# export PATH="$PATH:/Library/Frameworks/Python.framework/Versions/3.8/bin"
-export LESSHISTFILE="-"
-export ZDOTDIR="$HOME/.config/zsh"
+export ZDOTDIR=$HOME/.config/zsh
+export ZSH_CACHE_DIR=$ZDOTDIR/cache
+export HISTFILE=$ZSH_CACHE_DIR/history
+export LESSHISTFILE=$ZSH_CACHE_DIR/.lesshst
+export PATH=$PATH:$HOME/bin:$GOPATH/bin:/Library/Frameworks/Python.framework/Versions/3.8/bin
 # dealwith GFW
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 export npm_config_registry=https://registry.npm.taobao.org/
 export PUPPETEER_DOWNLOAD_HOST=https://npm.taobao.org/mirrors
-# Setup fzf
-if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
-fi
-# export FZF_DEFAULT_OPTS="--no-mouse --height 40% -1 --multi --inline-info --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:hidden:wrap' --bind 'f4:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept'"
-# export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob '!{.git/**,node_modules/**}''
+export PATH=$PATH:/usr/local/opt/fzf/bin
 export FZF_DEFAULT_COMMAND='fd -t f -H -E .git'

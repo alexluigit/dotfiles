@@ -9,8 +9,6 @@ setopt MENU_COMPLETE # Tab once to get completion directly.
 unsetopt nomatch # Paste url without escape
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=$ZDOTDIR/cache/history
-LESSHISTFILE=$ZDOTDIR/cache/.lesshst
 autoload -U colors && colors # Enable colors and change prompt
 # Make completion:
 # - Case-insensitive.
@@ -24,7 +22,6 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' list-colors '' # Colorize completions using default `ls` colors.
 _comp_options+=(globdots)		# Include hidden files.
 
-# TODO: clear up to /usr/local/share using symlink
 [ -f "$ZDOTDIR/appearance.zsh" ] && source "$ZDOTDIR/appearance.zsh"
 [ -f "$ZDOTDIR/keybind.zsh" ] && source "$ZDOTDIR/keybind.zsh"
 [ -f "$ZDOTDIR/alias.zsh" ] && source "$ZDOTDIR/alias.zsh"
@@ -32,7 +29,6 @@ _comp_options+=(globdots)		# Include hidden files.
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/plugins/dotenv/dotenv.plugin.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
 
 # Start session with tmux

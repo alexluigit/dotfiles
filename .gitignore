@@ -2,7 +2,7 @@ aria2/
 ssh/
 export/*License/
 karabiner/.config/karabiner/automatic_backups/
-karabiner/.config/karabiner.json
+karabiner/.config/karabiner/karabiner.json
 nvim/.config/nvim/plugged/
 nvim/.config/nvim/coc_data/
 nvim/.config/nvim/.netrwhist
@@ -14,7 +14,6 @@ tmux/.config/tmux/saved-session/
 vifm/
 !vifm/.config/vifm/vifmrc
 zsh/.config/zsh/.zcompdump*
-zsh/.config/zsh/aliasrc
 zsh/.config/zsh/plugins/
 zsh/.config/zsh/cache/
 ranger/.config/ranger/plugins/

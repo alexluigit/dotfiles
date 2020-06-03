@@ -5,7 +5,6 @@ vnoremap                  >               >gv
 xmap                      af              <Plug>(coc-funcobj-a)
 omap                      af              <Plug>(coc-funcobj-a)
 xmap                      ac              <Plug>(coc-classobj-a)
-" nmap                      go              :silent! !open <cfile><CR>:echo ''<CR>
 nmap     <silent>         go              :silent! !open <cfile><CR>
 omap                      ac              <Plug>(coc-classobj-a)
 nmap     <silent>         gd              <Plug>(coc-definition)
@@ -31,18 +30,8 @@ vnoremap                  X               "_d
 noremap                   Y               y$
 inoremap          <expr> <CR>             exists('*complete_info') ? complete_info()['selected'] != '-1' ? '<C-y>' : '<C-g>u<CR>' : pumvisible() ? '<C-y>' : '<C-g>u<CR>'
 nnoremap <silent> <expr> <CR>             empty(&buftype) ? '@@' : '<CR>'
-" inoremap <silent> <expr> <TAB>            pumvisible() ? '\<C-n>' : <SID>alex#general#checkbs() ? '\<TAB>' : coc#refresh()
 inoremap <silent> <expr> <TAB>            pumvisible() ? '<C-n>' : alex#general#checkbs() ? '<TAB>' : coc#refresh()
 inoremap <silent> <expr> <S-TAB>          pumvisible() ? '<C-p>' : '<C-h>'
-inoremap <silent> <expr> <C-space>        coc#refresh()
 nnoremap                 <Tab>            za
-nnoremap <silent>        <Up>             :cprevious<CR>
-nnoremap <silent>        <Down>           :cnext<CR>
-nnoremap <silent>        <Left>           :cpfile<CR>
-nnoremap <silent>        <Right>          :cnfile<CR>
-nnoremap <silent>        <S-Up>           :lprevious<CR>
-nnoremap <silent>        <S-Down>         :lnext<CR>
-nnoremap <silent>        <S-Left>         :lpfile<CR>
-nnoremap <silent>        <S-Right>        :lnfile<CR>
 nnoremap <silent>        <F4>             :Helptags<CR>
 nnoremap                 <F6>             <C-i>

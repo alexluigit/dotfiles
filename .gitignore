@@ -17,4 +17,4 @@ zsh/.config/zsh/.zcompdump*
 zsh/.config/zsh/plugins/
 zsh/.config/zsh/cache/
 ranger/.config/ranger/plugins/
-nvim/.config/nvim/pythonx/__pycache__/
+__pycache__/

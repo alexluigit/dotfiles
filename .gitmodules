@@ -33,6 +33,7 @@
 	path = nvim/.config/nvim/pack/bundle/opt/fzf
 	url = https://github.com/junegunn/fzf
 [submodule "fzf.vim"]
+        ignore = dirty
 	path = nvim/.config/nvim/pack/bundle/opt/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
 [submodule "coc.nvim"]
@@ -42,3 +43,21 @@
 [submodule "vim-pathogen"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen
+[submodule "ranger"]
+	path = nvim/.config/nvim/pack/bundle/opt/ranger
+	url = https://github.com/kevinhwang91/rnvimr
+[submodule "vim-dirvish"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-dirvish
+	url = https://github.com/justinmk/vim-dirvish
+[submodule "vim-unimpaired"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired
+[submodule "vim-markdown"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown
+[submodule "ultisnips"]
+	path = nvim/.config/nvim/pack/bundle/opt/ultisnips
+	url = https://github.com/SirVer/ultisnips
+[submodule "tabular"]
+	path = nvim/.config/nvim/pack/bundle/opt/tabular
+	url = https://github.com/godlygeek/tabular

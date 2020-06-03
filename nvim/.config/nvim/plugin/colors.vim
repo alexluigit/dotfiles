@@ -1,7 +1,10 @@
 colorscheme onedark
+let g:onedark_terminal_italics = 1
 hi NormalNC guifg=#ABB2BF guibg=#3B4048
-hi DiffAdd guifg=#98C379 guibg=#282C34
-hi DiffChange guifg=#E5C07B guibg=#282C34
+hi DiffAdd guifg=#98C379 guibg=default gui=bold
+hi DiffDelete guifg=#E06C75 guibg=default gui=bold
+hi DiffText guifg=#E5C07B guibg=default gui=bold
+hi DiffChange guifg=#E5C07B guibg=default gui=bold
 hi LineNr guifg=#5C6370
 " Current window statusline
 hi Dirty guifg=#30302C guibg=#df5f87 gui=bold

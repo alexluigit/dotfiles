@@ -2,7 +2,7 @@ set hidden nobackup nowritebackup noswapfile
 set smarttab expandtab shiftwidth=2 softtabstop=2
 set history=200
 set linebreak nowrap " display long lines in just one line
-set iskeyword+=- " treat dash separated words as a word text object
+" set iskeyword+=- " treat dash separated words as a word text object
 set ignorecase smartcase " ignore case when searching but still respect capital input
 set smartindent
 set path+=**
@@ -17,3 +17,5 @@ set termguicolors
 set relativenumber
 set splitright splitbelow diffopt+=vertical " default diff split splits open at the bottom and right
 set noshowmode noshowcmd
+" set formatoptions=jql
+

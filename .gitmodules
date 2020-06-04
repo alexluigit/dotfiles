@@ -1,6 +1,3 @@
-[submodule "onedark"]
-	path = nvim/.config/nvim/pack/bundle/opt/onedark.vim
-	url = https://github.com/joshdick/onedark.vim
 [submodule "nvim-colorizer"]
         ignore = dirty
 	path = nvim/.config/nvim/pack/bundle/opt/nvim-colorizer.lua

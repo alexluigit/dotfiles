@@ -20,9 +20,6 @@
 [submodule "vim-sneak"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-sneak
 	url = https://github.com/justinmk/vim-sneak
-[submodule "vim-devicons"]
-	path = nvim/.config/nvim/pack/bundle/opt/vim-devicons
-	url = https://github.com/ryanoasis/vim-devicons
 [submodule "auto-pairs"]
 	path = nvim/.config/nvim/pack/bundle/opt/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs

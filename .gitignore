@@ -8,6 +8,9 @@ nvim/.config/nvim/.netrwhist
 Rime/Rime/*/
 Rime/Rime/*dict.yaml
 Rime/Rime/*schema.yaml
+Rime/Rime/user.yaml
+scripts/bin/*/
+!scripts/bin/scripts/
 tmux/.config/tmux/plugins/
 tmux/.config/tmux/saved-session/
 vifm/

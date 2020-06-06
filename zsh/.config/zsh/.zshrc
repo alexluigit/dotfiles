@@ -30,7 +30,6 @@ source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/plugins/dotenv/dotenv.plugin.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
-
 # Start session with tmux
 # if [ -z "$TMUX" ] && [ ${UID} != 0 ]
 #  then tmux -f /Users/simon/.config/tmux/tmux.conf new -A -s MAIN

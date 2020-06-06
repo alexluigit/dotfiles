@@ -55,3 +55,6 @@
 [submodule "tabular"]
 	path = nvim/.config/nvim/pack/bundle/opt/tabular
 	url = https://github.com/godlygeek/tabular
+[submodule "ferret"]
+	path = nvim/.config/nvim/pack/bundle/opt/ferret
+	url = https://github.com/wincent/ferret

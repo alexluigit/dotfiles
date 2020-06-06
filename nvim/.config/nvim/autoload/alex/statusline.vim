@@ -1,12 +1,14 @@
-function! Stl_Win_Enter()
-  if &ft=='fzf' | return | endif
+function s:statusline_init() 
   let b:is_dirty             = strlen(system("git status -s")) > 0 ? 1 : 0
   let b:git_info             = '  ' . ' '. toupper(fugitive#head()) . ' '
   let b:file_head            = filereadable(expand("%"))?expand("%:h") . '/':''
   let b:file_title           = expand("%:t")
   let b:coc_current_function = ''
   let b:stl_ft               = WebDevIconsGetFileTypeSymbol()
-  setl winhl=Normal:Normal,NormalNC:NormalNC
+endfunction
+
+function! alex#statusline#focus()
+  call s:statusline_init()
   setl stl=%#Dirty#%{b:is_dirty?get(b:,'git_info',''):''}%#Clean#%{b:is_dirty?'':get(b:,'git_info','')}
   setl stl+=%<
   setl stl+=%#FileHead#\ %{b:file_head}
@@ -18,9 +20,7 @@ function! Stl_Win_Enter()
   setl stl+=\ \ \ %#StlCol#\ %3l:%-3c\ %#Percent#\ %4L\ \|%5.(%p%%\ %)
 endfunction
 
-function! Stl_Win_Leave()
-  if &ft=='fzf' | set showtabline=1 | return | endif
-  setl winhl=Normal:NormalNC
+function! alex#statusline#blur()
   setl stl=%#DirtyNC#%{b:is_dirty?get(b:,'git_info',''):''}%#CleanNC#%{b:is_dirty?'':get(b:,'git_info','')}
   setl stl+=%<
   setl stl+=%#FileHeadNC#\ %{b:file_head}

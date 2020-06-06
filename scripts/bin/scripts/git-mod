@@ -1,0 +1,16 @@
+#!/bin/sh
+install() {
+  local MName=$(sed 's|.*/||' <<< "$1")
+  local IPath="nvim/.config/nvim/pack/bundle/opt/$MName"
+  git stash --all && git submodule add --name $MName $1 $IPath
+  git commit -m "Add submodule $MName" && git stash pop 
+}
+
+uninstall() {
+  local MPath=$(git submodule | grep "$1" | awk '{print $2}')
+  [[ $(echo "$MPath" | wc -l) -gt 1 ]] && echo $MPath && exit 1
+  local MName=$(sed 's|.*/||' <<< "$MPath")
+  git stash --all && git submodule deinit -f "$MPath" && git rm -f "$MPath" && git commit -m "Remove submodule $MName" && rm -rf ".git/modules/$MName"; git stash pop
+}
+
+"$@"

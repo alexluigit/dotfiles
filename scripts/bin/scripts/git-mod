@@ -2,7 +2,7 @@
 install() {
   local MName=$(sed 's|.*/||' <<< "$1")
   local IPath="nvim/.config/nvim/pack/bundle/opt/$MName"
-  git stash --all && git submodule add --name $MName $1 $IPath
+  git stash --include-untracked && git submodule add --name $MName $1 $IPath
   git commit -m "Add submodule $MName" && git stash pop 
 }
 

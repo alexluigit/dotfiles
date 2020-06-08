@@ -55,3 +55,6 @@
 [submodule "tabular"]
 	path = nvim/.config/nvim/pack/bundle/opt/tabular
 	url = https://github.com/godlygeek/tabular
+[submodule "vim-eunuch"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-eunuch
+	url = https://github.com/tpope/vim-eunuch

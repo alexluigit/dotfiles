@@ -58,3 +58,6 @@
 [submodule "vim-eunuch"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch
+[submodule "vim-easy-align"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align

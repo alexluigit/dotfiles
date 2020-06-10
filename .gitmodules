@@ -61,3 +61,6 @@
 [submodule "vim-easy-align"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
+[submodule "nvim-lsp"]
+	path = nvim/.config/nvim/pack/bundle/opt/nvim-lsp
+	url = https://github.com/neovim/nvim-lsp

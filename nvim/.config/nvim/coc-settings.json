@@ -20,15 +20,5 @@
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
-  // explorer
-  "explorer.width": 30,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.file.showHiddenFiles": true,
-  "explorer.previewAction.onHover": false,
-  "explorer.quitOnOpen": true,
-  "explorer.keyMappings": {
-    "v": "open:vsplit",
-    "u": "gotoParent"
-  },
   "tsserver.trace.server": "verbose"
 }

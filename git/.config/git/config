@@ -1,42 +1,42 @@
 [alias]
-	abbrev   =  !sh -c 'git rev-parse --short ${1-`echo HEAD`}' -
-	ack      =  grep --break --heading
-	amend    =  commit --amend -v
-	both     =  diff --ignore-submodules=dirty HEAD
-	br       =  branch
+        abbrev   =  !sh -c 'git rev-parse --short ${1-`echo HEAD`}' -
+        ack      =  grep --break --heading
+        amend    =  commit --amend -v
+        both     =  diff --ignore-submodules=dirty HEAD
+        br       =  branch
         brco     =  !sh -c 'git branch "$1" && git checkout "$1"' -
-	ci       =  commit -v
-	co       =  checkout
-	count    =  !git --no-pager log --oneline | wc -l
-	cp       =  cherry-pick
-	# http://stackoverflow.com/questions/224687/git-find-duplicate-blobs-files-in-this-tree/8408640#8408640
-	dupes    =  !"git ls-tree -r HEAD | cut -c 13- | sort | uniq -D -w 40"
+        ci       =  commit -v
+        co       =  checkout
+        count    =  !git --no-pager log --oneline | wc -l
+        cp       =  cherry-pick
+        # http://stackoverflow.com/questions/224687/git-find-duplicate-blobs-files-in-this-tree/8408640#8408640
+        dupes    =  !"git ls-tree -r HEAD | cut -c 13- | sort | uniq -D -w 40"
         ff       =  merge --ff-only
-	fresh    =  remote update --prune
-	# Shortcut for updating all remotes and fast-forwarding to a specific one: eg. `git get upstream/master`
-	get      =  "!f() { git fresh && git ff \"$@\"; }; f"
-	fixup    =  !sh -c 'git commit --fixup=$1 ${@:2}' -
-	full     =  show --format=fuller
-	gr       =  !git --paginate log --graph --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset'
-	# equivalent to: graph --all
+        fresh    =  remote update --prune
+        # Shortcut for updating all remotes and fast-forwarding to a specific one: eg. `git get upstream/master`
+        get      =  "!f() { git fresh && git ff \"$@\"; }; f"
+        fixup    =  !sh -c 'git commit --fixup=$1 ${@:2}' -
+        full     =  show --format=fuller
+        gr       =  !git --paginate log --graph --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset'
+        # equivalent to: graph --all
         graph    =  !git --paginate log --graph --all --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset'
-	# Show just the HEAD commit message (no indent) and nothing else
-	msg      =  !git --paginate log -1 --pretty=format:%B
-	noedit   =  commit --amend --no-edit
-	one      =  !git --paginate log --pretty=format:'%C(auto)%h%Creset %s%C(auto)%d%Creset %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset'
-	p        =  add -p
+        # Show just the HEAD commit message (no indent) and nothing else
+        msg      =  !git --paginate log -1 --pretty=format:%B
+        noedit   =  commit --amend --no-edit
+        one      =  !git --paginate log --pretty=format:'%C(auto)%h%Creset %s%C(auto)%d%Creset %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset'
+        p        =  add -p
         pushwhat =  !git log origin/master..master
-	reword   =  commit --amend --only -v --
-	rollback =  !sh -c 'git reset --merge HEAD~${1-1}' -
-	sl       =  !git --paginate log --graph --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset' --all --simplify-by-decoration
-	st       =  status
-	stsh     =  stash --keep-index
-	staash   =  stash --include-untracked
-	staaash  =  stash --all
-	ten      =  !git --paginate log -10 --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset'
-	wc       =  whatchanged
-	# similar to whatchanged, but gives a dir-level overview (takes param to diff against; defaults to HEAD if not provided)
-	wd       =  !git --paginate diff --dirstat=cumulative,files,0
+        reword   =  commit --amend --only -v --
+        rollback =  !sh -c 'git reset --merge HEAD~${1-1}' -
+        sl       =  !git --paginate log --graph --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset' --all --simplify-by-decoration
+        st       =  status
+        stsh     =  stash --keep-index
+        staash   =  stash --include-untracked
+        staaash  =  stash --all
+        ten      =  !git --paginate log -10 --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset'
+        wc       =  whatchanged
+        # similar to whatchanged, but gives a dir-level overview (takes param to diff against; defaults to HEAD if not provided)
+        wd       =  !git --paginate diff --dirstat=cumulative,files,0
 [branch]
 	autosetuprebase = local
 [color]

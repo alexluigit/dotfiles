@@ -25,6 +25,7 @@ _comp_options+=(globdots)		# Include hidden files.
 [ -f "$ZDOTDIR/appearance.zsh" ] && source "$ZDOTDIR/appearance.zsh"
 [ -f "$ZDOTDIR/keybind.zsh" ] && source "$ZDOTDIR/keybind.zsh"
 [ -f "$ZDOTDIR/alias.zsh" ] && source "$ZDOTDIR/alias.zsh"
+[ -f "$ZDOTDIR/function.zsh" ] && source "$ZDOTDIR/function.zsh"
 [ -f "$ZDOTDIR/lib/.linuxify" ] && source "$ZDOTDIR/lib/.linuxify"
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/plugins/dotenv/dotenv.plugin.zsh

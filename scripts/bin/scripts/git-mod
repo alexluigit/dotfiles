@@ -10,7 +10,7 @@ uninstall() {
   local MPath=$(git submodule | grep "$1" | awk '{print $2}')
   [[ $(echo "$MPath" | wc -l) -gt 1 ]] && echo $MPath && exit 1
   local MName=$(sed 's|.*/||' <<< "$MPath")
-  git stash --all && git submodule deinit -f "$MPath" && git rm -f "$MPath" && git commit -m "Remove submodule $MName" && rm -rf ".git/modules/$MName"; git stash pop
+  git stash --include-untracked && git submodule deinit -f "$MPath" && git rm -f "$MPath" && git commit -m "Remove submodule $MName" && rm -rf ".git/modules/$MName"; git stash pop
 }
 
 "$@"

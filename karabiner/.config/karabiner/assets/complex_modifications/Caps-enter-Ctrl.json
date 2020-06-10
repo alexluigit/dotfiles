@@ -26,7 +26,7 @@
       ]
     },
     {
-      "description": "Capslock to left_control",
+      "description": "Post escape if caps is pressed alone, left_ctrl otherwise",
       "manipulators": [
         {
           "from": {
@@ -42,7 +42,7 @@
           ],
           "to_if_alone": [
             {
-              "key_code": "vk_none"
+              "key_code": "escape"
             }
           ],
           "type": "basic"

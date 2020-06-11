@@ -53,7 +53,7 @@
 	editor = nvim
 	pager = less -S
 [github]
-	username = goFindAlex
+	username = alexluigit
 [grep]
 	lineNumber = true
 [http]
@@ -83,4 +83,4 @@
 	submodulesummary = true
 [user]
 	name = Alex
-	email = gofindalex@gmail.com
+	email = hellosimon1103@hotmail.com

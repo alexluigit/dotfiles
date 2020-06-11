@@ -17,9 +17,7 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 # Mkdir and cd into immediately
-function take() {
-  mkdir -p $@ && cd ${@:$#}
-}
+function take() { mkdir -p $@ && cd ${@:$#} }
 
 updir_on_the_fly() {
   if [ -z $BUFFER ]; then 
@@ -32,32 +30,44 @@ updir_on_the_fly() {
 zle -N updir_on_the_fly
 bindkey "^\\" updir_on_the_fly
 
+# TODO fzf_open --> fzf_music & fzf_video
+# fzf_checkout_branch/commit
 fzf_open() {
   fd -t f -L --ignore-file /Volumes/HDD/.fdignore . /Volumes/HDD | fzf -m | gxargs -ro -d '\n' open >/dev/null
 }
 zle -N fzf_open
 bindkey '^o' fzf_open
 
-fzf_vim_open() {
-  fd -t f -H -I . ~ | fzf -m | gxargs -ro -d '\n' nvim 2>&-
+fzf_vim() {
+  fd -t f -H -I --ignore-file ~/.fdignore . ~ | fzf -m | gxargs -ro -d '\n' nvim 2>&-
   zle reset-prompt; zle-line-init
 }
-zle -N fzf_vim_open
-bindkey '^p' fzf_vim_open
+zle -N fzf_vim
 
-fzf_cd() {
-  # local dir=${PWD}
-  # cd ~ ; cd "$(fd -H -t d | fzf --preview='tree -L 1 {}' --bind='space:toggle-preview' --preview-window=:hidden)"
-  # cd ~ ; cd "$(fd -H -t d | fzf --preview='tree -L 1 {}')"
-  local destination=$(fd -H -t d . / | fzf --preview='tree -L 1 {}') 
-  [[ ! -z "$destination" ]] && cd "$destination" 
-  # cd $(fd -H -t d . '/' | fzf --preview='tree -L 1 {}')
-  # zle accept-line
-  # [[ ${PWD} = $HOME ]] && cd $dir 
-  zle reset-prompt
+fzf_note() {
+  local NPath='/Users/simon/Documents/AllNotes/'
+  fd -t f . $NPath | sed "s|$NPath||" | fzf -m --preview="bat -p --color=always $NPath{}" | sed "s|^|$NPath|" | gxargs -ro -d '\n' nvim
+  zle reset-prompt 2>&1; zle-line-init 2>&1
 }
-zle -N fzf_cd
-bindkey '^t' fzf_cd
+zle -N fzf_note
+bindkey '^n' fzf_note
+
+fcd() {
+  local destination=$(fd -H -t d -d ${2:-5} . ${1:-/} | fzf --preview='tree -L 1 {}') 
+  [[ ! -z "$destination" ]] && cd "$destination" 
+  zle reset-prompt 2>&-
+}
+zle -N fcd
+bindkey '^t' fcd
+
+fproject() { 
+  local prefix="/Users/$USER/dev/"
+  local destination=$(fd -H -t d -d 1 . ~/dev | sed "s|$prefix||" | fzf --preview="tree -L 1 $prefix{}" )
+  [[ ! -z "$destination" ]] && cd "/Users/simon/dev/$destination" 
+  zle reset-prompt 2>&1; zle-line-init 2>&1
+}
+zle -N fproject
+bindkey '^p' fproject
 
 fzf-history-widget() {
   local selected num

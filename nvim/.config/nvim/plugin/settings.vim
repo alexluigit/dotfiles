@@ -1,6 +1,6 @@
 set hidden nobackup nowritebackup noswapfile
 set smarttab expandtab shiftwidth=2 softtabstop=2
-set history=200
+set history=10000
 set linebreak nowrap " display long lines in just one line
 set ignorecase smartcase " ignore case when searching but still respect capital input
 set smartindent

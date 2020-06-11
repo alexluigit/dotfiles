@@ -4,8 +4,8 @@ nnoremap <silent>        <leader>:        :Commands<CR>
 nnoremap <silent>        <leader>.        :call Twf()<CR>
 nnoremap <silent>        <leader>,        :Commands<CR>
 nnoremap <silent>        <leader>b        :Buffers<CR>
-nnoremap <silent>        <leader>c        :BCommits!<CR>
-nnoremap <silent>        <localleader>c   :Commits!<CR>
+nnoremap <silent>        <leader>c        :Commits!<CR>
+nnoremap <silent>        <localleader>c   :BCommits!<CR>
 nnoremap                 <leader>d        :!mkdir %
 nnoremap                 <leader>e        :e %
 nnoremap <silent>        <leader>f        :BLines!<CR>

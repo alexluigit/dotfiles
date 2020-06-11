@@ -1,6 +1,6 @@
   augroup Window
     au!
-    au VimEnter * if argc() == 0 | set stl=%#Normal# | exec("History") | endif
+    au VimEnter * if argc() == 0 | set stl=%#Normal# | exec("Files") | endif
     " Statusline
     autocmd BufWinEnter,FocusGained,VimEnter,WinEnter * if alex#autocmds#should_use_statusline() | call alex#statusline#focus() | endif
     autocmd FocusLost,WinLeave * if alex#autocmds#should_use_statusline() | call alex#statusline#blur() | endif

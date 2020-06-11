@@ -12,8 +12,6 @@ Rime/Rime/*schema.yaml
 Rime/Rime/user.yaml
 scripts/bin/*/
 !scripts/bin/scripts/
-tmux/.config/tmux/plugins/
-tmux/.config/tmux/saved-session/
 vifm/.config/vifm/*
 !vifm/.config/vifm/vifmrc
 zsh/.config/zsh/.zcompdump*

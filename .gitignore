@@ -3,7 +3,8 @@ ssh/
 export/*License/
 karabiner/.config/karabiner/automatic_backups/
 karabiner/.config/karabiner/karabiner.json
-nvim/.config/nvim/coc_data/
+nvim/.config/nvim/coc/*
+!nvim/.config/nvim/coc/ultisnips
 nvim/.config/nvim/.netrwhist
 Rime/Rime/*/
 Rime/Rime/*dict.yaml

@@ -1,4 +1,4 @@
-let g:coc_data_home = '~/.config/nvim/coc_data'
+let g:coc_data_home = '~/.config/nvim/coc'
 " textobj
 xmap                      af              <Plug>(coc-funcobj-a)
 omap                      af              <Plug>(coc-funcobj-a)

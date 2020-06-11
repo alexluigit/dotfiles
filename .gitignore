@@ -14,7 +14,7 @@ scripts/bin/*/
 !scripts/bin/scripts/
 tmux/.config/tmux/plugins/
 tmux/.config/tmux/saved-session/
-vifm/
+vifm/.config/vifm/*
 !vifm/.config/vifm/vifmrc
 zsh/.config/zsh/.zcompdump*
 zsh/.config/zsh/plugins/

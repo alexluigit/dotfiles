@@ -33,7 +33,7 @@ zle -N updir_on_the_fly
 bindkey "^\\" updir_on_the_fly
 
 fzf_open() {
-  fd -t f -L -E '*Library*' . /Volumes/HDD | fzf -m | gxargs -ro -d '\n' open >/dev/null
+  fd -t f -L --ignore-file /Volumes/HDD/.fdignore . /Volumes/HDD | fzf -m | gxargs -ro -d '\n' open >/dev/null
 }
 zle -N fzf_open
 bindkey '^o' fzf_open
@@ -103,16 +103,3 @@ bindkey '^x^x' edit-command-line
 # Autosuggest small word
 bindkey '^[[1;5C' vi-forward-word
 bindkey '^[[1;5D' vi-backward-word
-
-
-# Quit vifm and change dir
-# vicd()
-# {
-#   local dst="$(command vifm --choose-dir - "$@")"
-#     if [ -z "$dst" ]; then
-#       echo 'Directory picking cancelled/failed'
-#         return 1
-#         fi
-#         cd "$dst"
-# }
-# bindkey -s '^o' 'vicd\n'

@@ -17,4 +17,4 @@ export PATH=$PATH:$HOME/bin/scripts:$GOPATH/bin:/usr/local/opt/fzf/bin:/Library/
 # dealwith GFW
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 export PUPPETEER_DOWNLOAD_HOST=https://npm.taobao.org/mirrors
-export FZF_DEFAULT_COMMAND='fd -t f -H -E .git'
+export FZF_DEFAULT_COMMAND="fd -t f -H --ignore-file ~/.fdignore"

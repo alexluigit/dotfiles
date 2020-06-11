@@ -10,5 +10,8 @@
     " Miscs
     au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
     au TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 500)
-    au TextYankPost * if v:event.operator ==# 'y' | call Osc52Yank() | endif
+    if exists("g:tty") 
+      au TextYankPost * if v:event.operator ==# 'y' | call Osc52Yank() | endif 
+    else | set clipboard=unnamedplus
+    endif
   augroup END

@@ -1,4 +1,4 @@
-let g:statusline_ft_blacklist = [ 'fzf', 'diff', 'fugitiveblame', 'qf']
+let g:statusline_ft_blacklist = [ '', 'fzf', 'diff', 'fugitiveblame', 'qf' ]
 " let g:ownsyntax_blacklist = [ '', 'dirvish' ]
 let g:ownsyntax_blacklist = [ '' ]
 function! alex#autocmds#should_use_statusline() abort
@@ -12,11 +12,3 @@ function! alex#autocmds#should_use_ownsyntax() abort
   " if !empty(&buftype) | return 0 | endif
   return &buflisted
 endfunction
-function! alex#autocmds#window_focus()
-  ownsyntax on
-endfunction
-
-function! alex#autocmds#window_blur()
-  ownsyntax off
-endfunction
-

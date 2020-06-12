@@ -1,4 +1,4 @@
-# TODO: add display element for superuser, nested shell
+# TODO add display element for superuser, nested shell
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
 local bg_jobs="%(1j.%{$fg_bold[yellow]%}! .)"
 PROMPT='$ret_status $bg_jobs%{$reset_color%}%{$fg_bold[cyan]%}${PWD/#$HOME/~}  '
@@ -27,6 +27,11 @@ RPROMPT='$(git_prompt_info)%{$reset_color%}'
 
 PROMPT_PREFIX=" "
 PROMPT_SUFFIX="%{$reset_color%}"
-PROMPT_DIRTY=" %{$fg[red]%} "
+PROMPT_DIRTY=" %{$fg[magenta]%} "
 PROMPT_CLEAN=" %{$fg[blue]%} "
 
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[alias]=fg=yellow,bold
+ZSH_HIGHLIGHT_STYLES[builtin]=fg=blue,bold
+ZSH_HIGHLIGHT_STYLES[function]=fg=yellow,bold
+ZSH_HIGHLIGHT_STYLES[command]=fg=blue,bold

@@ -22,10 +22,10 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' list-colors '' # Colorize completions using default `ls` colors.
 _comp_options+=(globdots)		# Include hidden files.
 
+[ -f "$ZDOTDIR/function.zsh" ] && source "$ZDOTDIR/function.zsh"
 [ -f "$ZDOTDIR/appearance.zsh" ] && source "$ZDOTDIR/appearance.zsh"
 [ -f "$ZDOTDIR/keybind.zsh" ] && source "$ZDOTDIR/keybind.zsh"
 [ -f "$ZDOTDIR/alias.zsh" ] && source "$ZDOTDIR/alias.zsh"
-[ -f "$ZDOTDIR/function.zsh" ] && source "$ZDOTDIR/function.zsh"
 # [ -f "$ZDOTDIR/lib/.linuxify" ] && source "$ZDOTDIR/lib/.linuxify"
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/plugins/dotenv/dotenv.plugin.zsh

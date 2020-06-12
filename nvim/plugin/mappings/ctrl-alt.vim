@@ -12,3 +12,5 @@ nnoremap <silent>        <M-k>            :resize +5<CR>
 nnoremap <silent>        <M-l>            :vert resize +5<CR>
 cnoremap                 <C-a>            <Home>
 cnoremap                 <C-e>            <End>
+inoremap <silent> <expr> <C-j>            pumvisible() ? '<C-n>' : '<C-j>'
+inoremap <silent> <expr> <C-k>            pumvisible() ? '<C-p>' : '<C-k>'

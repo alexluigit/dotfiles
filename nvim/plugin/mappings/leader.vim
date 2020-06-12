@@ -22,5 +22,5 @@ nnoremap                 <leader>r        :%s///gc<left><left><left>
 xnoremap                 <leader>r        :s///gc<left><left><left>
 nnoremap <silent>        <leader>s        :vert sb#<CR>
 nnoremap <silent>        <leader>t        :ColorizerToggle<CR>
-nnoremap <silent>        <leader>w        :w<CR>
-nnoremap <silent>        <leader>x        :x<CR>
+nnoremap <silent>        <leader>w        :silent! w<CR>
+nnoremap <silent>        <leader>x        :silent! x<CR>

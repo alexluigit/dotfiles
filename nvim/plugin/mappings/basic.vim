@@ -15,4 +15,6 @@ vnoremap                  X               "_d
 noremap                   Y               y$
 nnoremap <silent> <expr> <CR>             empty(&buftype) ? '@@' : '<CR>'
 nnoremap                 <Tab>            za
+inoremap          <expr> <CR>             exists('*complete_info') ? complete_info()['selected'] != '-1' ? '<C-y>' : '<C-g>u<CR>' : pumvisible() ? '<C-y>' : '<C-g>u<CR>'
+nnoremap                 <F4>             :Helptags<CR>
 nnoremap                 <F6>             <C-i>

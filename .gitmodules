@@ -19,9 +19,6 @@
 [submodule "vim-sneak"]
 	path = nvim/pack/bundle/opt/vim-sneak
 	url = https://github.com/justinmk/vim-sneak
-[submodule "auto-pairs"]
-	path = nvim/pack/bundle/opt/auto-pairs
-	url = https://github.com/jiangmiao/auto-pairs
 [submodule "fzf"]
 	path = nvim/pack/bundle/opt/fzf
 	url = https://github.com/junegunn/fzf

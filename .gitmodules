@@ -2,6 +2,7 @@
 	path = nvim/pack/bundle/opt/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
 [submodule "nvim-colorizer.lua"]
+	ignore = dirty
 	path = nvim/pack/bundle/opt/nvim-colorizer.lua
 	url = https://github.com/norcalli/nvim-colorizer.lua
 [submodule "vim-surround"]

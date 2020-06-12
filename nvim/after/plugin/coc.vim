@@ -21,8 +21,20 @@ nmap                     <leader>qf       <Plug>(coc-fix-current)
 inoremap          <expr> <CR>             exists('*complete_info') ? complete_info()['selected'] != '-1' ? '<C-y>' : '<C-g>u<CR>' : pumvisible() ? '<C-y>' : '<C-g>u<CR>'
 inoremap <silent> <expr> <TAB>            pumvisible() ? '<C-n>' : <SID>check_backspace() ? '<TAB>' : coc#refresh()
 inoremap <silent> <expr> <S-TAB>          pumvisible() ? '<C-p>' : '<C-h>'
-
+" helper function
 function! s:check_backspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+" extensions
+" let g:coc_global_extensions = [
+"   \ 'coc-snippets',
+"   \ 'coc-pairs',
+"   \ 'coc-tsserver',
+"   \ 'coc-emoji',
+"   \ 'coc-yaml',
+"   \ 'coc-python',
+"   \ 'coc-prettier',
+"   \ 'coc-vimlsp',
+"   \ 'coc-json',
+"   \ ]

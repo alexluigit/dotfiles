@@ -16,4 +16,4 @@ set termguicolors
 set relativenumber
 set splitright splitbelow diffopt+=vertical " default diff split splits open at the bottom and right
 set noshowmode noshowcmd
-colorscheme onedark
+colorscheme gruvbox

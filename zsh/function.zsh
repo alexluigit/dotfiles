@@ -93,9 +93,9 @@ tmux-automation() {
     if ! grep -q "$DIGEST" ~/.local/..tmux.digests 2> /dev/null; then
       cat .tmux
       read -k 1 -r \
-        'REPLY?Trust (and run) this .tmux file? (t = trust, otherwise = skip) '
+        'REPLY?Trust (and run) this .tmux file? (y = trust, otherwise = skip) '
       echo
-      if [[ $REPLY =~ ^[Tt]$ ]]; then
+      if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo "$DIGEST" >> ~/.local/..tmux.digests
         ./.tmux
         return

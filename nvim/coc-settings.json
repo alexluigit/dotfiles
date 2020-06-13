@@ -20,5 +20,8 @@
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
+  "git.changedSign.text": "⏽",
+  "git.addedSign.text": "⏽",
+  "git.removedSign.text": "⏽",
   "tsserver.trace.server": "verbose"
 }

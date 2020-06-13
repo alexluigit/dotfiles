@@ -1,5 +1,5 @@
 " echo command in GNU-coreutils doesn't work well with osc52?
-let $PATH=substitute($PATH, '/usr/local/opt/coreutils/libexec/gnubin:', '', '')
+" let $PATH=substitute($PATH, '/usr/local/opt/coreutils/libexec/gnubin:', '', '')
 
 function! Osc52Yank()
 " Inspired by https://github.com/fcpg/vim-osc52/blob/master/plugin/osc52.vim

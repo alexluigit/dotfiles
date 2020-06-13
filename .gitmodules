@@ -41,3 +41,6 @@
 [submodule "vim-markdown"]
 	path = nvim/pack/bundle/opt/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown
+[submodule "auto-pairs"]
+	path = nvim/pack/bundle/opt/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs

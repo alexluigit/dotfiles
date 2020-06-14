@@ -44,3 +44,6 @@
 [submodule "auto-pairs"]
 	path = nvim/pack/bundle/opt/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs
+[submodule "vifm.vim"]
+	path = nvim/pack/bundle/opt/vifm.vim
+	url = https://github.com/vifm/vifm.vim

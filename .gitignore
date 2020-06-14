@@ -10,8 +10,8 @@ Rime/*/
 Rime/*dict.yaml
 Rime/*schema.yaml
 Rime/user.yaml
-vifm/*
-!vifm/vifmrc
+vifm/vifminfo
+vifm/vifm-help.txt
 zsh/.zcompdump*
 zsh/plugins/
 zsh/cache/

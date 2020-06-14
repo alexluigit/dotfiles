@@ -29,9 +29,6 @@
 [submodule "vim-pathogen"]
 	path = nvim/pack/bundle/opt/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen
-[submodule "vim-dirvish"]
-	path = nvim/pack/bundle/opt/vim-dirvish
-	url = https://github.com/justinmk/vim-dirvish
 [submodule "vim-eunuch"]
 	path = nvim/pack/bundle/opt/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch

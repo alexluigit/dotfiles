@@ -10,5 +10,5 @@ alias la="gls -Flha --group-directories-first --color=auto"
 alias t="tmux-automation"
 alias ka="killall"
 alias v='nvim -c "let g:tty='\''$(tty)'\''"'
-alias f="fzf-cd"
-alias fv="fzf-vim"
+alias c="fzf-cd"
+alias f="vifm"

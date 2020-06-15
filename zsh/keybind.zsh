@@ -1,10 +1,3 @@
-# Init CursorShape
-zle-line-init() {
-  echo -ne "\e[5 q" # zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-}
-zle -N zle-line-init
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
 # Use Emacs mode (since EDITOR=nvim, if using bindkey -e,  zsh will turn on vi-mode automatically)
 bindkey -e
 # Use vim keys in tab complete menu:
@@ -17,7 +10,6 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey "^\\" updir-onthefly
 bindkey '^o' fzf-open
 bindkey '^n' fzf-note
-bindkey '^t' fzf-cd
 bindkey '^p' fzf-project
 bindkey '^r' fzf-history
 bindkey '^z' fg-bg

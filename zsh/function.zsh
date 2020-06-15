@@ -1,3 +1,9 @@
+zle-line-init() {
+  echo -ne "\e[5 q" # zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+}
+zle -N zle-line-init
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
 mkcd() { mkdir -p $@ && cd ${@:$#} }
 
 updir-onthefly() {

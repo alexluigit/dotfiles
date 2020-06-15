@@ -1,4 +1,4 @@
-" vim: filetype=vim :
+" vim: filetype=vifm :
 set vicmd=nvim " Command used to edit files in various contexts.  The default is vim.
 set syscalls " This makes vifm perform file operations on its own instead of relying on standard utilities like `cp`.
 set trash " Trash Directory, better do not change it. 
@@ -19,14 +19,18 @@ set nohlsearch
 set incsearch
 set scrolloff=4 " Try to leave some space from cursor to upper/lower border in lists
 set slowfs=curlftpfs " Don't do too many requests to slow file systems
-set statusline=" %A%10u:%-7g %=%20d  "
+set dotdirs=rootparent " Dot't show '../' since it is unnecessary  
+" set statusline=" %A%10u:%-7g %=%20d  "
+set statusline=" %=%l/%S "
+set rulerformat=""
 
-mark b ~/bin/
+mark a /Volumes/HDD/
 mark h ~/
+mark d ~/Desktop
 
 " What should be saved automatically between vifm sessions.  Drop "savedirs" value if you don't want vifm to remember last visited directories for you.
 set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
-filter /^.*\.(DS_Store|hushlogin|CFUserTextEncoding|zcompdump)$/
+filter /^\.(DS_Store|DocumentRevisions.*|Spotlight-.*|TemporaryItems|Trashes|fseventsd)\/?$/
 
 " Like leader in vim
 nnoremap <space>q :q<cr>
@@ -51,6 +55,8 @@ nnoremap A cw
 nnoremap <space>c :write | edit $MYVIFMRC | restart<cr>
 " Toggle wrap setting on ,w key
 nnoremap <space>w :set wrap!<cr>
+" Use backtick for mark trigger
+nnoremap ` '
 " Example of standard two-panel file managers mappings
 nnoremap <f3> :!less %f<cr>
 nnoremap <f4> :edit<cr>
@@ -60,14 +66,14 @@ nnoremap <f7> :mkdir<space>
 nnoremap <f8> :delete<cr>
 
 command! df df -h %m 2> /dev/null
-command! diff vim -d %f %F
+command! diff nvim -d %f %F
 command! zip zip -r %f.zip %f
 command! run !! ./%f
 command! make !!make %a
 command! mkcd :mkdir %a | cd %a
 command! reload :write | restart
 
-source $VIFM/scripts/filetypes
+source $VIFM/filetypes
 
 " ----------------------- Settings documentation -------------------------------
 " ------------------------------------------------------------------------------

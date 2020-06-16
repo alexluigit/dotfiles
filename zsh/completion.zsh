@@ -5,7 +5,6 @@
 # - Use fzf completion **
 autoload -Uz compinit
 compinit -d $ZDOTDIR/cache/zcompdump-$ZSH_VERSION
-compinit -u
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'

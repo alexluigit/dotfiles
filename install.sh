@@ -1,6 +1,6 @@
 #!/bin/sh
 echo $PWD
-ln -s $PWD/zshenv ~/.zshenv
+ln -s $PWD/zsh/.zshenv ~/.zshenv
 ln -s $PWD/zsh ~/.config/zsh
 ln -s $PWD/nvim ~/.config/nvim
 ln -s $PWD/karabiner ~/.config/karabiner

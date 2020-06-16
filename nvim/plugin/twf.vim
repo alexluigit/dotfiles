@@ -14,10 +14,9 @@ function! TwfExit(path)
 endfunction
 
 function! Twf()
-  vnew
+  to vnew
   let temp = tempname()
   call termopen('twf ' . @# . ' > ' . temp, { 'on_exit': TwfExit(temp) })
   setl norelativenumber | set ft=fzf
   startinsert
 endfunction
-

@@ -20,5 +20,4 @@ if [[ $USER == "simon" ]]; then
   ln -s $PWD/rime ~/Library/Rime
   ln -s $PWD/git ~/.config/git
 fi
-git submodule init && git submodule update
-echo "Done."
+git submodule init && git submodule update && echo "Done."

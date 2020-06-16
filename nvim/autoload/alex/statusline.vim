@@ -1,16 +1,28 @@
-function s:statusline_init() 
-  let b:is_dirty             = strlen(system("git status -s")) > 0 ? 1 : 0
+function! alex#statusline#init() abort
   let b:git_info             = '  ' . ' '. toupper(fugitive#head()) . ' '
   let b:file_head            = filereadable(expand("%"))?expand("%:h") . '/':''
   let b:file_title           = expand("%:t")
   let b:coc_current_function = ''
   let b:stl_ft               = WebDevIconsGetFileTypeSymbol()
+  return
+endfunction
+
+let s:mode_map = {
+      \     'n': 'NORMAL', 'i': 'INSERT', 'R': 'REPLACE', 'v': 'V', 'V': 'V', "\<C-v>": 'V',
+      \     'c': 'COMMAND', 's': 'SELECT', 'S': 'S-LINE', "\<C-s>": 'S-BLOCK', 't': 'TERMINAL'
+      \   }
+function! alex#statusline#mode() abort
+  return get(s:mode_map, mode(), '')
 endfunction
 
 function! alex#statusline#focus()
   if alex#autocmds#should_use_statusline() 
-    call s:statusline_init()
-    setl stl=%#Dirty#%{b:is_dirty?get(b:,'git_info',''):''}%#Clean#%{b:is_dirty?'':get(b:,'git_info','')}
+    call alex#statusline#init()
+    setl stl=%#NormalColor#%{(mode()=='n')?get(b:,'git_info',''):''}
+    setl stl+=%#InsertColor#%{(mode()=='i')?get(b:,'git_info',''):''}
+    setl stl+=%#ReplaceColor#%{(mode()=='R')?get(b:,'git_info',''):''}
+    setl stl+=%#CommandColor#%{(mode()=='c')?get(b:,'git_info',''):''}
+    setl stl+=%#VisualColor#%{(alex#statusline#mode()=='V')?get(b:,'git_info',''):''}
     setl stl+=%<
     setl stl+=%#FileHead#\ %{b:file_head}
     setl stl+=%#FileMod#%{&mod?get(b:,'file_title',''):''}%#FileUnMod#%{&mod?'':get(b:,'file_title','')}
@@ -24,12 +36,12 @@ endfunction
 
 function! alex#statusline#blur()
   if alex#autocmds#should_use_statusline() 
-    setl stl=%#DirtyNC#%{b:is_dirty?get(b:,'git_info',''):''}%#CleanNC#%{b:is_dirty?'':get(b:,'git_info','')}
+    setl stl=%#ModeNC#%{get(b:,'git_info','')}
     setl stl+=%<
     setl stl+=%#FileHeadNC#\ %{b:file_head}
     setl stl+=%#FileModNC#%{&mod?get(b:,'file_title',''):''}%#FileUnModNC#%{&mod?'':get(b:,'file_title','')}
     setl stl+=\ %#FileModNC#%m%#FuncNC#
-    setl stl+=%=%#StlFiletypeNC#%{b:stl_ft}
-    setl stl+=\ \ \ %#StlColNC#\ %3l:%-3c\ %#PercentNC#\ %4L\ \|%5.(%p%%\ %)
+    setl stl+=%=%{b:stl_ft}
+    setl stl+=\ \ \ \ %3l:%-3c\ \ %4L\ \|%5.(%p%%\ %)
   endif
 endfunction

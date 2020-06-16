@@ -23,5 +23,6 @@
   "git.changedSign.text": "⏽",
   "git.addedSign.text": "⏽",
   "git.removedSign.text": "⏽",
+  "git.changeRemovedSign.text": "⏽",
   "tsserver.trace.server": "verbose"
 }

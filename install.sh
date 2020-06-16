@@ -13,6 +13,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   ln -s $PWD/tmux/tmux.conf ~/.tmux.conf
   ln -s $PWD/vifm ~/.config/vifm
   ln -s $PWD/scripts ~/bin/scripts
+  ln -s $PWD/zsh/plugins/fzf ~/.config/nvim/pack/bundle/opt/fzf
 fi
 if [[ $USER == "simon" ]]; then
   ln -s $PWD/shadowsocks ~/.ShadowsocksX-NG

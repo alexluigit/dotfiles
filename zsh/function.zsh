@@ -1,6 +1,7 @@
-zle-line-init() {
-  echo -ne "\e[5 q" # zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-}
+autoload -Uz bracketed-paste-magic # auto escape url
+zle -N bracketed-paste bracketed-paste-magic
+
+zle-line-init() { echo -ne "\e[5 q" } # zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
 zle -N zle-line-init
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
@@ -19,15 +20,12 @@ zle -N updir-onthefly
 # TODO fzf-open --> fzf-music & fzf-video
 # TODO fzf-vim -->  fzf-edit
 # TODO fzf-git-checkout
-fzf-open() {
-  fd -t f -L --ignore-file /Volumes/HDD/.fdignore . /Volumes/HDD | fzf -m | gxargs -ro -d '\n' open >/dev/null
-}
+fzf-open() { fd -t f -L --ignore-file /Volumes/HDD/.fdignore . /Volumes/HDD | fzf -m | gxargs -ro -d '\n' open >/dev/null }
 zle -N fzf-open
 
 fzf-vim() {
   fd -t f -H -I --ignore-file ~/.fdignore . ~ | fzf -m | gxargs -ro -d '\n' nvim 2>&-
   zle reset-prompt 2>&1; zle-line-init 2>&1
-  # zle reset-prompt; zle-line-init
 }
 zle -N fzf-vim
 

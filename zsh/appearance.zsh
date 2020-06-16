@@ -1,4 +1,5 @@
 # TODO add display element for superuser, nested shell
+autoload -U colors && colors # Enable colors and change prompt
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
 local bg_jobs="%(1j.%{$fg_bold[yellow]%}! .)"
 PROMPT='$ret_status $bg_jobs%{$reset_color%}%{$fg_bold[cyan]%}${PWD/#$HOME/~}  '

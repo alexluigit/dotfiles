@@ -3,8 +3,6 @@ ssh/
 export/*License/
 karabiner/automatic_backups/
 karabiner/karabiner.json
-nvim/coc/*
-!nvim/coc/ultisnips
 nvim/.netrwhist
 Rime/*/
 Rime/*dict.yaml
@@ -12,8 +10,6 @@ Rime/*schema.yaml
 Rime/user.yaml
 vifm/vifminfo
 vifm/vifm-help.txt
-zsh/.zcompdump*
 zsh/plugins/
 zsh/cache/
-ranger/plugins/
 *.pyc

@@ -8,7 +8,7 @@
     au BufEnter,FocusGained,VimEnter,WinEnter * call alex#window#focus()
     au FocusLost,WinLeave * call alex#window#blur()
     " Miscs
-    au TermOpen * setlocal nonu norelativenumber
+    au TermEnter * setlocal nonu norelativenumber
     au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
     au TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 500)
     if exists("g:tty") 

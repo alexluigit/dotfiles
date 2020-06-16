@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "pwd: $PWD"
-echo "Please confirm your pwd and backup your config before installation."
+echo "Please confirm your pwd before installation."
 read -p "Press y to continue, otherwise to quit: " REPLY
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   [[ ! -d $HOME/.config ]] && mkdir ~/.config
@@ -20,4 +20,5 @@ if [[ $USER == "simon" ]]; then
   ln -s $PWD/rime ~/Library/Rime
   ln -s $PWD/git ~/.config/git
 fi
+git submodule init && git submodule update
 echo "Done."

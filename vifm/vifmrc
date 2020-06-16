@@ -21,7 +21,7 @@ set scrolloff=4 " Try to leave some space from cursor to upper/lower border in l
 set slowfs=curlftpfs " Don't do too many requests to slow file systems
 set dotdirs=rootparent " Dot't show '../' since it is unnecessary  
 " set statusline=" %A%10u:%-7g %=%20d  "
-set statusline=" %=%l/%S "
+set statusline=" %T %=%l/%S "
 set rulerformat=""
 
 mark a /Volumes/HDD/

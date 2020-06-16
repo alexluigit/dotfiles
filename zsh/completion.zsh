@@ -10,4 +10,3 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors '' # Colorize completions using default `ls` colors.
 _comp_options+=(globdots)		# Include hidden files.
-source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null

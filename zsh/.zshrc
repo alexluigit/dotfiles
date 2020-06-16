@@ -10,6 +10,7 @@ setopt MENU_COMPLETE # Tab once to get completion directly.
 
 # Aspects
 source "$ZDOTDIR/function.zsh"
+source "$ZDOTDIR/fzf-widgets.zsh"
 source "$ZDOTDIR/appearance.zsh"
 source "$ZDOTDIR/alias.zsh"
 source "$ZDOTDIR/completion.zsh"
@@ -19,3 +20,4 @@ source "$ZDOTDIR/keybind.zsh"
 source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$ZDOTDIR/plugins/dotenv/dotenv.plugin.zsh"
 source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$ZDOTDIR/plugins/fzf/shell/completion.zsh" 2> /dev/null

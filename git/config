@@ -50,6 +50,7 @@
 [color "status"]
 	untracked = blue
 [core]
+	ignorecase = false
 	editor = nvim
 	pager = less -S
 [github]

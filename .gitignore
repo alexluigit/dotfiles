@@ -9,6 +9,5 @@ rime/*schema.yaml
 rime/user.yaml
 vifm/vifminfo
 vifm/vifm-help.txt
-zsh/plugins/
 zsh/cache/
 *.pyc

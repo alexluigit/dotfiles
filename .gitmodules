@@ -20,12 +20,6 @@
 [submodule "vim-sneak"]
 	path = nvim/pack/bundle/opt/vim-sneak
 	url = https://github.com/justinmk/vim-sneak
-[submodule "fzf"]
-	path = nvim/pack/bundle/opt/fzf
-	url = https://github.com/junegunn/fzf
-[submodule "fzf.vim"]
-	path = nvim/pack/bundle/opt/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
 [submodule "vim-pathogen"]
 	path = nvim/pack/bundle/opt/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen
@@ -44,3 +38,15 @@
 [submodule "vifm.vim"]
 	path = nvim/pack/bundle/opt/vifm.vim
 	url = https://github.com/vifm/vifm.vim
+[submodule "zsh-autosuggestions"]
+	path = zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh-syntax-highlighting"]
+	path = zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "fzf"]
+	path = zsh/plugins/fzf
+	url = https://github.com/junegunn/fzf
+[submodule "fzf.vim"]
+	path = nvim/pack/bundle/opt/fzf.vim
+	url = https://github.com/junegunn/fzf.vim

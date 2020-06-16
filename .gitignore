@@ -3,7 +3,6 @@ ssh/
 export/*License/
 karabiner/automatic_backups/
 karabiner/karabiner.json
-nvim/.netrwhist
 rime/*/
 rime/*dict.yaml
 rime/*schema.yaml

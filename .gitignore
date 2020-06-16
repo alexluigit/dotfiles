@@ -4,10 +4,10 @@ export/*License/
 karabiner/automatic_backups/
 karabiner/karabiner.json
 nvim/.netrwhist
-Rime/*/
-Rime/*dict.yaml
-Rime/*schema.yaml
-Rime/user.yaml
+rime/*/
+rime/*dict.yaml
+rime/*schema.yaml
+rime/user.yaml
 vifm/vifminfo
 vifm/vifm-help.txt
 zsh/plugins/

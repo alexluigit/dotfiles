@@ -27,62 +27,6 @@ call s:set('g:WebDevIconsUnicodeDecorateFolderNodesSymlinkSymbol',  '')
 " local functions {{{2
 "========================================================================
 " scope: local
-function s:getDistro()
-  if exists('s:distro')
-    return s:distro
-  endif
-  if executable('lsb_release')
-    let s:lsb = system('lsb_release -i')
-    if s:lsb =~# 'Arch'
-      let s:distro = ''
-    elseif s:lsb =~# 'Ubuntu'
-      let s:distro = ''
-    elseif s:lsb =~# 'Cent'
-      let s:distro = ''
-    elseif s:lsb =~# 'Debian'
-      let s:distro = ''
-    elseif s:lsb =~# 'Dock'
-      let s:distro = ''
-    else
-      let s:distro = ''
-    endif
-    return s:distro
-  endif
-  let s:distro = ''
-  return s:distro
-endfunction
-
-" scope: local
-function s:isDarwin()
-  if exists('s:is_darwin')
-    return s:is_darwin
-  endif
-  if exists('g:WebDevIconsOS')
-    let s:is_darwin = g:WebDevIconsOS ==? 'Darwin'
-    return s:is_darwin
-  endif
-  if has('macunix')
-    let s:is_darwin = 1
-    return s:is_darwin
-  endif
-  if ! has('unix')
-    let s:is_darwin = 0
-    return s:is_darwin
-  endif
-  if system('uname -s') ==# "Darwin\n"
-    let s:is_darwin = 1
-  else
-    let s:is_darwin = 0
-  endif
-  return s:is_darwin
-endfunction
-
-" scope: local
-function! s:strip(input)
-  return substitute(a:input, '^\s*\(.\{-}\)\s*$', '\1', '')
-endfunction
-
-" scope: local
 function! s:setDictionaries()
   let s:file_node_extensions = {
         \ 'styl'     : '',
@@ -332,28 +276,6 @@ function! s:DevIconsGetArtifactFix()
     let artifactFix = ''
   endif
   return artifactFix
-endfunction
-
-" scope: public
-function! WebDevIconsGetFileFormatSymbol(...)
-  let fileformat = ''
-  let bomb = ''
-  if (&bomb && g:WebDevIconsUnicodeByteOrderMarkerDefaultSymbol !=? '')
-    let bomb = g:WebDevIconsUnicodeByteOrderMarkerDefaultSymbol . ' '
-  endif
-  if &fileformat ==? 'dos'
-    let fileformat = ''
-  elseif &fileformat ==? 'unix'
-    if s:isDarwin()
-      let fileformat = ''
-    else
-      let fileformat = s:getDistro()
-    endif
-  elseif &fileformat ==? 'mac'
-    let fileformat = ''
-  endif
-  let artifactFix = s:DevIconsGetArtifactFix()
-  return bomb . fileformat . artifactFix
 endfunction
 
 " call setup after processing all the functions (to avoid errors) {{{1

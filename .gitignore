@@ -3,10 +3,7 @@ ssh/
 export/*License/
 karabiner/automatic_backups/
 karabiner/karabiner.json
-rime/*/
-rime/*dict.yaml
-rime/*schema.yaml
-rime/user.yaml
+rime/
 vifm/vifminfo
 vifm/vifm-help.txt
 zsh/cache/

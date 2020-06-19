@@ -50,3 +50,6 @@
 [submodule "fzf.vim"]
 	path = nvim/pack/bundle/opt/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
+[submodule "rime"]
+	path = rime
+	url = https://github.com/alexluigit/rime

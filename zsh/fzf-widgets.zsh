@@ -1,6 +1,7 @@
 # TODO fzf-open --> fzf-music & fzf-video
 # TODO fzf-vim -->  fzf-edit
 # TODO fzf-git-checkout
+# TODO fzf-ctrl-t
 fzf-open() { fd -t f -L --ignore-file /Volumes/HDD/.fdignore . /Volumes/HDD | fzf -m | gxargs -ro -d '\n' open >/dev/null }
 zle -N fzf-open
 

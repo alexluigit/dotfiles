@@ -13,7 +13,7 @@ set signcolumn=yes " CoC suggest
 set foldmethod=indent " not as cool as syntax, but faster
 set foldlevelstart=99 " start unfolded
 set termguicolors
-set relativenumber
+set number relativenumber
 set splitright splitbelow diffopt+=vertical " default diff split splits open at the bottom and right
 set noshowmode noshowcmd
 colorscheme gruvbox

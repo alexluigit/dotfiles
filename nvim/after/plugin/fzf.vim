@@ -14,5 +14,7 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 let g:fzf_action = {
   \ 'ctrl-t': function('s:newtabsplit'),
   \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit' }
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-z': '' } " ctrl-z in fzf window is a bug?
+
 " let g:fzf_buffers_jump = 1

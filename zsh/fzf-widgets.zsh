@@ -11,14 +11,14 @@ fzf-vim() {
 zle -N fzf-vim
 
 fzf-note() {
-  local NPath='/Users/simon/Documents/AllNotes/'
+  local NPath="/Users/$USER/Documents/AllNotes/"
   fd -t f . $NPath | sed "s|$NPath||" | fzf -m --preview="bat -p --color=always $NPath{}" | sed "s|^|$NPath|" | gxargs -ro -d '\n' nvim
   zle reset-prompt 2>&1; zle-line-init 2>&1
 }
 zle -N fzf-note
 
 fzf-cd() {
-  local destination=$(fd -H -t d -d ${2:-5} . ${1:-/} | fzf --preview='tree -L 1 {}') 
+  local destination=$(fd -H -L -t d -d ${2:-5} . ${1:-/Volumes/HDD} | fzf --preview='tree -L 1 {}') 
   [[ ! -z "$destination" ]] && cd "$destination" 
   zle reset-prompt 2>&-
 }
@@ -27,7 +27,7 @@ zle -N fzf-cd
 fzf-project() { 
   local prefix="/Users/$USER/dev/"
   local destination=$(fd -H -t d -d 1 . ~/dev | sed "s|$prefix||" | fzf --preview="tree -L 1 $prefix{}" )
-  [[ ! -z "$destination" ]] && cd "/Users/simon/dev/$destination" 
+  [[ ! -z "$destination" ]] && cd "/Users/$USER/dev/$destination" 
   zle reset-prompt 2>&1; zle-line-init 2>&1
 }
 zle -N fzf-project

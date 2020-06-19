@@ -38,7 +38,7 @@ tmux-automation() {
       read -k 1 -r 'REPLY?Trust (and run) this .tmux file? (t = trust, otherwise = skip) '
       echo
       if [[ $REPLY =~ ^[Tt]$ ]]; then
-        echo "$DIGEST" >> ~/..tmux.digests
+        echo "$DIGEST" >> ~/.local/..tmux.digests
         ./.tmux
         return
       fi

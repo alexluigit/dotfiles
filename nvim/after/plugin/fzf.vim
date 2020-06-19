@@ -15,6 +15,7 @@ let g:fzf_action = {
   \ 'ctrl-t': function('s:newtabsplit'),
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit',
-  \ 'ctrl-z': '' } " ctrl-z in fzf window is a bug?
+  \ 'ctrl-z': ''
+  \ } " ctrl-z in fzf window is a bug?
 
 " let g:fzf_buffers_jump = 1

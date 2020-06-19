@@ -1,5 +1,5 @@
 nnoremap <silent>        <C-b>            :Buffer<CR>  
-nnoremap <silent>        <C-f>            :Files<CR>
+nnoremap <silent>        <C-f>            :GFiles<CR>
 nnoremap <silent>        <C-h>            :wincmd h<CR>
 nnoremap <silent>        <C-j>            :wincmd j<CR>
 nnoremap <silent>        <C-k>            :wincmd k<CR>

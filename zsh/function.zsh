@@ -3,7 +3,6 @@ zle -N bracketed-paste bracketed-paste-magic
 
 zle-line-init() { echo -ne "\e[5 q" } # zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
 zle -N zle-line-init
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 mkcd() { mkdir -p $@ && cd ${@:$#} }
 fg-bg() { [[ $#BUFFER -eq 0 ]] && { fg; zle reset-prompt; zle-line-init } || zle push-input }

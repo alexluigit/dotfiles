@@ -1,27 +1,30 @@
+# Meta syntax
 autoload -U colors && colors # Enable colors and change prompt
 setopt PROMPT_SUBST
 typeset -A ALEX
 ALEX[ITALIC_ON]=$'\e[3m'
 ALEX[ITALIC_OFF]=$'\e[23m'
-# Init timer and beam shape cursor before every cmd
-preexec() { echo -ne '\e[5 q'; cmd_start=$(($(print -P %D{%s%6.})/1000)) }
-precmd() { [ $cmd_start ] && { local cmd_end=$(($(print -P %D{%s%6.})/1000)); elapsed=$((cmd_end-cmd_start)) }}
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[alias]=fg=yellow,bold
+ZSH_HIGHLIGHT_STYLES[builtin]=fg=blue,bold
+ZSH_HIGHLIGHT_STYLES[function]=fg=yellow,bold
+ZSH_HIGHLIGHT_STYLES[command]=fg=blue,bold
+local rc="%{$reset_color%}"
+
 # Handle shell level for no-tmux, default-tmux, tmux-automation sessions
 function shell_level() { 
   local shlv
   [[ -z "$TMUX" ]] &&  shlv=$SHLVL || \
   { export ZLE_RPROMPT_INDENT=0; [[ -z $(ps aux | grep '[.]/.tmux') ]] && \
   shlv=$(($SHLVL - 1)) || shlv=$(($SHLVL - 2)) };
-  [[ shlv -gt 1 ]] && echo "[$shlv] " || echo ""
+  [[ shlv -gt 1 ]] && echo "%F{yellow}%B[$shlv]%b%f " || echo ""
 }
-local bg_jobs="%(1j.%{$fg_bold[yellow]%} .)"
-local privileges="%(#.%{$fg_bold[yellow]%} .)"
-local ret_status="%(?:%{$fg_bold[green]%} :%{$fg_bold[red]%} %s)"
-local rc="%{$reset_color%}"
+# Check background_job, super_user, exit code (Use ternary operators here)
+local bg_jobs="%(1j.%{$fg_bold[magenta]%} .)"
+local privileges="%(#.%{$fg_bold[red]%} .)"
+local ret_status="%(?:%{$fg_bold[cyan]%} :%{$fg_bold[red]%} %s)"
 PROMPT="$(shell_level)$bg_jobs$privileges$ret_status$rc "
 
-local cwd="%F{109}%~%f"
-# timer="%{$ALEX[ITALIC_ON]%}$elapsed ms%{$ALEX[ITALIC_OFF]%}"
 local staged="" 
 local unstaged="" 
 local untracked="" 
@@ -41,11 +44,22 @@ function parse_git_status() {
   [[ $STATUS == *\ [ADMR]* ]] && unstaged="%{$fg_bold[red]%}ﬨ";
   [[ $STATUS == *\?* ]] && untracked="%{$fg_bold[blue]%}ﬨ";
 }
-RPROMPT='%F{222}%{$ALEX[ITALIC_ON]%}$elapsed ms%{$ALEX[ITALIC_OFF]%}%f $(git_prompt_info) $cwd$rc'
-# RPROMPT="$timer $(git_prompt_info) $cwd$rc"
+# Init timer and beam shape cursor before every cmd 
+# NOTE: preexec() and precmd() are builtin function in zsh.(bash has precmd() but not preexec())
+function preexec() { echo -ne '\e[5 q'; cmd_start=$(($(print -P %D{%s%6.})/1000)) }
+function precmd() { [ $cmd_start ] && { local cmd_end=$(($(print -P %D{%s%6.})/1000)); timer="%F{222}%{$ALEX[ITALIC_ON]%}$((cmd_end-cmd_start)) ms%{$ALEX[ITALIC_OFF]%}%f" }}
+RPROMPT='$timer $(git_prompt_info) $cwd_head$cwd_tail'
 
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[alias]=fg=yellow,bold
-ZSH_HIGHLIGHT_STYLES[builtin]=fg=blue,bold
-ZSH_HIGHLIGHT_STYLES[function]=fg=yellow,bold
-ZSH_HIGHLIGHT_STYLES[command]=fg=blue,bold
+# Seperate path with head and tail
+# NOTE: chpwd_functions are predefined mod in zsh
+# Here we are changing the default behaviour
+chpwd_prompt () {
+  local HPWD=${(%)${:-%~}} # $PWD with ~ abbreviations
+  case $HPWD in
+    *?/*) cwd_head="%F{109}%{$ALEX[ITALIC_ON]%}${HPWD%/*}/%{$ALEX[ITALIC_OFF]%}%f"; cwd_tail="%F{109}%B${HPWD##*/}%b%f";;
+    *) cwd_head="%F{109}%B$HPWD%b%f"; cwd_tail="";;
+  esac
+}
+# Trigger the chpwd hooks once
+# NOTE: this line should appear in the end (after the prompt definition)
+chpwd_functions+=(chpwd_prompt); cd .

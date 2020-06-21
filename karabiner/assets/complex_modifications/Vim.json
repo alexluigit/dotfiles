@@ -1,16 +1,14 @@
 {
-  "title": "Vim",
+  "title": "Vimway",
   "rules": [
     {
-      "description": "Left cmd + hjkl to arrow keys Vim",
+      "description": "Left cmd + hjkl to arrow keys",
       "manipulators": [
         {
           "from": {
             "key_code": "h",
             "modifiers": {
-              "mandatory": [
-                "left_command"
-              ]
+              "mandatory": ["left_command"]
             }
           },
           "to": [
@@ -24,9 +22,7 @@
           "from": {
             "key_code": "j",
             "modifiers": {
-              "mandatory": [
-                "left_command"
-              ]
+              "mandatory": ["left_command"]
             }
           },
           "to": [
@@ -40,9 +36,7 @@
           "from": {
             "key_code": "k",
             "modifiers": {
-              "mandatory": [
-                "left_command"
-              ]
+              "mandatory": ["left_command"]
             }
           },
           "to": [
@@ -56,9 +50,7 @@
           "from": {
             "key_code": "l",
             "modifiers": {
-              "mandatory": [
-                "left_command"
-              ]
+              "mandatory": ["left_command"]
             }
           },
           "to": [
@@ -70,56 +62,36 @@
         }
       ]
     },
-
     {
-      "description": "Right cmd to control",
+      "description": "Swap ; and :",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "right_command",
+            "key_code": "semicolon",
             "modifiers": {
-              "optional": [
-                "caps_lock"
-              ]
+              "mandatory": ["shift"],
+              "optional": ["caps_lock"]
             }
           },
           "to": [
             {
-              "key_code": "left_control"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com.googlecode.iterm2$"
-              ]
+              "key_code": "semicolon"
             }
           ]
-        }
-      ]
-    },
-    {
-      "description": "Ctrl-shift K to forward del",
-      "manipulators": [
+        },
         {
           "type": "basic",
           "from": {
-            "key_code": "k",
+            "key_code": "semicolon",
             "modifiers": {
-              "mandatory": [
-                "left_control",
-                "left_shift"
-              ]
+              "optional": ["caps_lock"]
             }
           },
           "to": [
             {
-              "key_code": "delete_or_backspace",
-              "modifiers": [
-                "fn"
-              ]
+              "key_code": "semicolon",
+              "modifiers": ["left_shift"]
             }
           ]
         }

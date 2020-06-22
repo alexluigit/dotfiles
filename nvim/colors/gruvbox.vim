@@ -761,42 +761,12 @@ hi! link ALEWarningSign GruvboxYellowSign
 hi! link ALEInfoSign GruvboxBlueSign
 
 " }}}
-" Dirvish: {{{
 
-hi! link DirvishPathTail GruvboxAqua
-hi! link DirvishArg GruvboxYellow
-
-" }}}
 " Vim Multiple Cursors: {{{
 
 call s:HL('multiple_cursors_cursor', s:none, s:none, s:inverse)
 call s:HL('multiple_cursors_visual', s:none, s:bg2)
 
-" }}}
-" coc.nvim: {{{
-
-hi! link CocErrorSign GruvboxRedSign
-hi! link CocWarningSign GruvboxOrangeSign
-hi! link CocInfoSign GruvboxYellowSign
-hi! link CocHintSign GruvboxBlueSign
-hi! link CocErrorFloat GruvboxRed
-hi! link CocWarningFloat GruvboxOrange
-hi! link CocInfoFloat GruvboxYellow
-hi! link CocHintFloat GruvboxBlue
-hi! link CocDiagnosticsError GruvboxRed
-hi! link CocDiagnosticsWarning GruvboxOrange
-hi! link CocDiagnosticsInfo GruvboxYellow
-hi! link CocDiagnosticsHint GruvboxBlue
-
-hi! link CocSelectedText GruvboxRed
-hi! link CocCodeLens GruvboxGray
-
-call s:HL('CocErrorHighlight', s:none, s:none, s:undercurl, s:red)
-call s:HL('CocWarningHighlight', s:none, s:none, s:undercurl, s:orange)
-call s:HL('CocInfoHighlight', s:none, s:none, s:undercurl, s:yellow)
-call s:HL('CocHintHighlight', s:none, s:none, s:undercurl, s:blue)
-
-" }}}
 
 " Filetype specific -----------------------------------------------------------
 " Diff: {{{
@@ -1171,7 +1141,7 @@ endfunction
 
 " }}}
 
-" Miscs {{{
+" Statusline {{{
 
 " Current window statusline
 call s:HL('NormalColor', s:bg0, s:blue, s:bold)

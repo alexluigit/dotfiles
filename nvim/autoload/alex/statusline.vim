@@ -9,8 +9,7 @@ endfunction
 
 let s:mode_map = {
       \     'n': 'NORMAL', 'i': 'INSERT', 'R': 'REPLACE', 'v': 'V', 'V': 'V', "\<C-v>": 'V',
-      \     'c': 'COMMAND', 's': 'SELECT', 'S': 'S-LINE', "\<C-s>": 'S-BLOCK', 't': 'TERMINAL'
-      \   }
+      \     'c': 'COMMAND', 's': 'SELECT', 'S': 'S-LINE', "\<C-s>": 'S-BLOCK', 't': 'TERMINAL' }
 function! alex#statusline#mode() abort
   return get(s:mode_map, mode(), '')
 endfunction

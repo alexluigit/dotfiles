@@ -1,2 +1,2 @@
-set iskeyword-=#
+" set iskeyword-=#
 set formatoptions-=cro

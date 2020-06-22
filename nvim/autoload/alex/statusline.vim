@@ -2,7 +2,7 @@ function! alex#statusline#init() abort
   let b:git_info             = '  ' . ' '. toupper(fugitive#head()) . ' '
   let b:file_head            = filereadable(expand("%"))?expand("%:h") . '/':''
   let b:file_title           = expand("%:t")
-  let b:coc_current_function = ''
+  let b:current_function = ''
   let b:stl_ft               = WebDevIconsGetFileTypeSymbol()
   return
 endfunction
@@ -26,8 +26,8 @@ function! alex#statusline#focus()
     setl stl+=%#FileHead#\ %{b:file_head}
     setl stl+=%#FileMod#%{&mod?get(b:,'file_title',''):''}%#FileUnMod#%{&mod?'':get(b:,'file_title','')}
     setl stl+=\ %#FileMod#%m
-    setl stl+=%#Func#\ %{strlen(b:coc_current_function)==0?'':'\:'}
-    setl stl+=\ %#Func#%{get(b:,'coc_current_function','')}
+    setl stl+=%#Func#\ %{strlen(b:current_function)==0?'':'\:'}
+    setl stl+=\ %#Func#%{get(b:,'current_function','')}
     setl stl+=%=%#StlFiletype#\ %{b:stl_ft}
     setl stl+=\ \ \ %#StlCol#\ %3l:%-3c\ %#Percent#\ %4L\ \|%5.(%p%%\ %)
   endif

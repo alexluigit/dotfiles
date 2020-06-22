@@ -47,3 +47,6 @@
 [submodule "rime"]
 	path = rime
 	url = https://github.com/alexluigit/rime
+[submodule "nvim-lsp"]
+	path = nvim/pack/bundle/opt/nvim-lsp
+	url = https://github.com/neovim/nvim-lsp

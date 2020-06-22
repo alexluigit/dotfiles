@@ -28,9 +28,10 @@ zle -N edit-command-line
 bindkey '^x^x' edit-command-line
 
 # Autosuggest small word
-bindkey '^[[1;5C' vi-forward-word
-bindkey '^[[1;5D' vi-backward-word
-# bindkey '^f' delete-word
-# bindkey '^j' backward-kill-line
-# bindkey '^l' delete-char
-# bindkey '^b' beginning-of-line
+bindkey '^[[18;2~' vi-forward-word
+bindkey '^[[17;2~' vi-backward-word
+
+# delete-word
+# backward-kill-line
+# delete-char
+# beginning-of-line

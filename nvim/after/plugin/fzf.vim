@@ -34,10 +34,10 @@ let g:fzf_action = {
 " Define Files to have --prompt for fzf_cycle
 command! -bang -nargs=* Files
 \ call fzf#run(fzf#wrap({'source': 'fd -t f -H', 
-\ 'options': [ '--prompt', 'Files> ', '--preview', '~/.config/nvim/pack/bundle/opt/fzf.vim/bin/preview.sh {}'] } ))
+\ 'options': [ '-m', '--prompt', 'Files> ', '--preview', '~/.config/nvim/pack/bundle/opt/fzf.vim/bin/preview.sh {}'] } ))
 command! -bang -nargs=* All
 \ call fzf#run(fzf#wrap({'source': 'fd -t f -H -I -E .git . "$HOME"', 
-\ 'options': [ '--prompt', 'All> ', '--preview', '~/.config/nvim/pack/bundle/opt/fzf.vim/bin/preview.sh {}'] } ))
+\ 'options': [ '-m', '--prompt', 'All> ', '--preview', '~/.config/nvim/pack/bundle/opt/fzf.vim/bin/preview.sh {}'] } ))
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
 \   'rg --column --line-number --hidden --smart-case --no-heading --color=always '.shellescape(<q-args>), 1,

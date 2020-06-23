@@ -1,6 +1,3 @@
-autoload -Uz bracketed-paste-magic # auto escape url
-zle -N bracketed-paste bracketed-paste-magic
-
 zle-line-init() { echo -ne "\e[5 q" } # zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
 zle -N zle-line-init
 

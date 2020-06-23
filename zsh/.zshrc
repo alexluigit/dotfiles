@@ -7,6 +7,7 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS # Delete empty lines from history file
 setopt HIST_IGNORE_SPACE # Ignore a record starting with a space
 setopt MENU_COMPLETE # Tab once to get completion directly.
+setopt NONOMATCH # This will enable url paste without quote
 
 # Aspects
 source "$ZDOTDIR/function.zsh"

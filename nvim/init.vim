@@ -1,5 +1,7 @@
 if has('nvim')
   packadd! nvim-lsp
+  packadd! deoplete.nvim
+  packadd! deoplete-lsp
   packadd! nvim-colorizer.lua
 endif
 packadd! fzf
@@ -13,3 +15,5 @@ packadd! vim-eunuch
 packadd! vim-sneak
 packadd! vim-easy-align
 packadd! vim-markdown
+
+" let g:deoplete#enable_at_startup = 1

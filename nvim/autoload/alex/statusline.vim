@@ -2,6 +2,7 @@ function! alex#statusline#init() abort
   let b:git_info             = '  ' . ' '. toupper(fugitive#head()) . ' '
   let b:file_head            = filereadable(expand("%"))?expand("%:h") . '/':''
   let b:file_title           = expand("%:t")
+  " TODO: maybe put autocomplete preview here? Inline?
   let b:current_function = ''
   let b:stl_ft               = WebDevIconsGetFileTypeSymbol()
   return

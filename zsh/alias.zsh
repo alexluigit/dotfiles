@@ -10,7 +10,7 @@ alias ka="killall"
 alias v='nvim -c "let g:tty='\''$(tty)'\''"'
 alias c="fzf-cd"
 alias f="vifm ."
-alias t="trash"
+alias d="trash"
 alias g="git status"
 alias -g G="| grep"
 alias -g B="| bat"

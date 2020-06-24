@@ -33,6 +33,7 @@ noremap  <silent>       <leader>p        "+P
 nnoremap <silent>       <leader>q        :q<CR>
 nnoremap                <leader>r        :%s///gc<left><left><left>
 xnoremap                <leader>r        :s///gc<left><left><left>
+nnoremap <silent>       <localleader>s   :UltiSnipsEdit<CR>
 nnoremap <silent>       <leader>t        :ColorizerToggle<CR>
 nnoremap <silent>       <leader>u        <C-r>
 nnoremap <silent>       <leader>v        :vert sb#<CR>

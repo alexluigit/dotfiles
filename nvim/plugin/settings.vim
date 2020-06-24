@@ -1,5 +1,5 @@
 set hidden nobackup nowritebackup noswapfile
-set smarttab expandtab shiftwidth=2 softtabstop=2
+set smarttab expandtab tabstop=2 shiftwidth=2 softtabstop=2
 set smartindent autoindent
 set history=10000
 set linebreak nowrap " display long lines in just one line

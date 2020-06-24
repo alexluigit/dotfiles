@@ -14,6 +14,9 @@ nnoremap <silent>       <leader>f        :Lines!<CR>
 nnoremap <silent>       <localleader>f   :call Twf()<CR>
 nnoremap <silent>       <leader>l        :BLines<CR>
 nnoremap <silent>       <leader>s        :Snippets<CR>
+imap                    <c-x><c-k>       <plug>(fzf-complete-word)
+imap                    <c-x><c-f>       <plug>(fzf-complete-path)
+imap                    <c-x><c-l>       <plug>(fzf-complete-line)
 " fugitive
 nnoremap <silent>       <leader>d        :Gdiff
 nnoremap <silent>       <leader>g        :Git<CR>
@@ -35,3 +38,4 @@ nnoremap <silent>       <leader>u        <C-r>
 nnoremap <silent>       <leader>v        :vert sb#<CR>
 nnoremap <silent>       <leader>w        :silent! w<CR>
 nnoremap <silent>       <leader>x        :silent! x<CR>
+

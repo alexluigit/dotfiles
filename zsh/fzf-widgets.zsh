@@ -6,34 +6,40 @@ function fzf-open() {
   local fPath="/Volumes/HDD/"
   fd -t f -L --ignore-file $fPath.fdignore . $fPath | sed "s|$fPath||" \
   | fzf -m --preview="du -h $fPath{} && echo && file -b $fPath{}| tr -s ',' '\n'" \
-  | sed "s|^|$fPath|" | gxargs -ro -d '\n' open >/dev/null 
+  | sed "s|^|$fPath|" | gxargs -ro -d '\n' open >/dev/null
 }
 zle -N fzf-open
 
 function fzf-vim() {
-  fd -t f -H -I --ignore-file ~/.fdignore . ~ | fzf -m | gxargs -ro -d '\n' nvim 2>&-
+  fd -t f -H -I --ignore-file ~/.fdignore . ~ \
+  | fzf -m | gxargs -ro -d '\n' nvim 2>&-
   zle reset-prompt 2>&1; zle-line-init 2>&1
 }
 zle -N fzf-vim
 
 function fzf-note() {
   local nPath="/Users/$USER/Documents/AllNotes/"
-  fd -t f . $nPath | sed "s|$nPath||" | fzf -m --preview="bat -p --color=always $nPath{}" | sed "s|^|$nPath|" | gxargs -ro -d '\n' nvim
+  fd -t f . $nPath | sed "s|$nPath||" \
+  | fzf -m --preview="bat -p --color=always $nPath{}" \
+  | sed "s|^|$nPath|" | gxargs -ro -d '\n' nvim
   zle reset-prompt 2>&1; zle-line-init 2>&1
 }
 zle -N fzf-note
 
 function fzf-cd() {
-  local destination=$(fd -H -L -t d -d ${2:-5} . ${1:-/Volumes/HDD} | fzf --preview='tree -L 1 {}') 
-  [[ ! -z "$destination" ]] && cd "$destination" 
-  zle reset-prompt 2>&-
+  # local destination=$(fd -H -L -t d -d ${2:-4} . ${1:-/Volumes/HDD} \
+  local destination=$(fd -H -L -t d . ${1:-/Volumes/HDD} \
+  | fzf --preview='tree -L 1 {}')
+  # [[ ! -z "$destination" ]] && cd "$destination"
+  [[ -n "$destination" ]] && cd "$destination"
+  zle reset-prompt 2>/dev/null
 }
 zle -N fzf-cd
 
-function fzf-project() { 
+function fzf-project() {
   local prefix="/Users/$USER/dev/"
   local destination=$(fd -H -t d -d 1 . ~/dev | sed "s|$prefix||" | fzf --preview="tree -L 1 $prefix{}" )
-  [[ ! -z "$destination" ]] && cd "/Users/$USER/dev/$destination" 
+  [[ ! -z "$destination" ]] && cd "/Users/$USER/dev/$destination"
   zle reset-prompt 2>&1; zle-line-init 2>&1
 }
 zle -N fzf-project

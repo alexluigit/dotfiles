@@ -7,6 +7,7 @@ endif
 packadd! fzf
 packadd! fzf.vim
 packadd! vifm.vim
+packadd! ultisnips
 packadd! vim-surround
 packadd! vim-fugitive
 packadd! vim-commentary
@@ -15,5 +16,3 @@ packadd! vim-eunuch
 packadd! vim-sneak
 packadd! vim-easy-align
 packadd! vim-markdown
-
-" let g:deoplete#enable_at_startup = 1

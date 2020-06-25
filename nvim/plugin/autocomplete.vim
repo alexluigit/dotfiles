@@ -6,8 +6,8 @@ let g:UltiSnipsEditSplit="vertical" " Edit snippets in vert split
 let g:ulti_expand_or_jump_res = 0 " Set once for HandleTab function
 function! HandleTab() abort
   " First, try to expand or jump on UltiSnips.
-  call UltiSnips#ExpandSnippetOrJump()
-  if g:ulti_expand_or_jump_res > 0 | return "" | endif
+  call UltiSnips#ExpandSnippet()
+  if g:ulti_expand_res > 0 | return "" | endif
   " Then, check if we're in a completion menu
   if pumvisible() | return "\<C-n>" | endif
   " Then check if we're indenting.

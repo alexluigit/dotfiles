@@ -8,9 +8,6 @@
 [submodule "vim-fugitive"]
 	path = nvim/pack/bundle/opt/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
-[submodule "vim-commentary"]
-	path = nvim/pack/bundle/opt/vim-commentary
-	url = https://github.com/tpope/vim-commentary
 [submodule "vim-repeat"]
 	path = nvim/pack/bundle/opt/vim-repeat
 	url = https://github.com/tpope/vim-repeat

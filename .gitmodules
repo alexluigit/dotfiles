@@ -62,3 +62,6 @@
 [submodule "targets.vim"]
 	path = nvim/pack/bundle/opt/targets.vim
 	url = https://github.com/wellle/targets.vim
+[submodule "vim-dispatch"]
+	path = nvim/pack/bundle/opt/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch

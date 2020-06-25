@@ -23,6 +23,7 @@ set dotdirs=rootparent " Dot't show '../' since it is unnecessary
 " set statusline=" %A%10u:%-7g %=%20d
 set statusline=" %T %=%l/%S "
 set rulerformat=""
+set trashdir="~/.Trash"
 
 mark a /Volumes/HDD/
 mark h ~/

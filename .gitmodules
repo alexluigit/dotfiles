@@ -65,3 +65,6 @@
 [submodule "vim-dispatch"]
 	path = nvim/pack/bundle/opt/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch
+[submodule "vim-projectionist"]
+	path = nvim/pack/bundle/opt/vim-projectionist
+	url = https://github.com/tpope/vim-projectionist

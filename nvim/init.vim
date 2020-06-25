@@ -14,6 +14,8 @@ packadd! vim-surround
 packadd! vim-fugitive
 packadd! vim-repeat
 packadd! vim-eunuch
+" packadd! vim-dispatch
+" packadd! vim-projectionist
 packadd! vim-sneak
 packadd! vim-easy-align
 packadd! vim-markdown

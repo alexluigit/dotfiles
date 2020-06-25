@@ -1,11 +1,11 @@
 #!/bin/sh
 add() {
   local nvimPath='nvim/pack/bundle/opt/'
-  local zshPath='zsh/plugins/' 
+  local zshPath='zsh/plugins/'
   local mName=$(sed 's|.*/||' <<< "$1")
   echo "1) nvim -> $nvimPath$mName"
   echo "2) zsh  -> $zshPath$mName"
-  read -p "Please choose target directory : " REPLY 
+  read -p "Please choose target directory : " REPLY
   case $REPLY in
     1) iPath=$nvimPath;;
     2) iPath=$zshPath;;
@@ -31,6 +31,10 @@ removeHelper() {
   git submodule deinit -f "$mPath" && \
   git rm -f "$mPath" && git commit -m "Remove submodule $mName" && \
   rm -rf ".git/modules/$mName"
+}
+
+update() {
+  git submodule foreach git pull origin master
 }
 
 needStash() {

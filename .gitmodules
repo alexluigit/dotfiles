@@ -62,3 +62,6 @@
 [submodule "vim-textobj-user"]
 	path = nvim/pack/bundle/opt/vim-textobj-user
 	url = https://github.com/kana/vim-textobj-user
+[submodule "targets.vim"]
+	path = nvim/pack/bundle/opt/targets.vim
+	url = https://github.com/wellle/targets.vim

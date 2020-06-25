@@ -1,4 +1,4 @@
-call alex#autocmds#defer('call alex#autocmds#deoplete_init()')
+call alex#lazy#defer('call alex#lazy#deoplete_init()')
 
 let g:UltiSnipsExpandTrigger = '<C-t>'
 let g:UltiSnipsEditSplit="vertical" " Edit snippets in vert split

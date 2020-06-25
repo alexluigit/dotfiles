@@ -12,33 +12,19 @@ function! alex#autocmds#should_use_ownsyntax() abort
   return &buflisted
 endfunction
 
-function! alex#autocmds#idleboot() abort
-  " Make sure we automatically call alex#autocmds#idleboot() only once.
-  augroup Idleboot
-    autocmd!
-  augroup END
-  " Make sure we run deferred tasks exactly once.
-  doautocmd User AlexDefer
-  autocmd! User AlexDefer
-endfunction
-
-" Generic mechanism for scheduling a unit of deferable work.
-function! alex#autocmds#defer(evalable) abort
-  if has('autocmd') && has('vim_starting')
-    " Note that these commands are not defined in a group, so that we can call
-    " this function multiple times. We rely on autocmds#idleboot to ensure that
-    " this event is only fired once.
-    execute 'autocmd User AlexDefer ' . a:evalable
-  else
-    execute a:evalable
-  endif
-endfunction
-
-let s:deoplete_init_done=0
-function! alex#autocmds#deoplete_init() abort
-  if s:deoplete_init_done || !has('nvim') | return | endif
-  let s:deoplete_init_done=1 | call deoplete#enable()
-  call deoplete#custom#source('file', 'rank', 2000)
-  call deoplete#custom#source('ultisnips', 'rank', 1000)
-  call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+function! alex#autocmds#yankpost()
+" echo command in GNU-coreutils doesn't work well with osc52?
+" let $PATH=substitute($PATH, '/usr/local/opt/coreutils/libexec/gnubin:', '', '')
+  silent! lua require'vim.highlight'.on_yank("IncSearch", 500)
+" Only usee Osc52Yank when tty variable has been passed in
+  if !exists("g:tty") | set clipboard=unnamedplus | return | endif
+  " Inspired by https://github.com/fcpg/vim-osc52/blob/master/plugin/osc52.vim
+  " For better understanding OSC 52: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html
+  let buffer=system('base64', @0)
+" Remove the trailing newline.
+  let buffer=substitute(buffer, "\n", "", "")
+" Now wrap the whole thing in <start-dcs><start-osc52>...<end-osc52><end-dcs>.
+  let buffer='\ePtmux;\e\e]52;c;'.buffer.'\x07\e\x5c'
+" Disable GNU-coreutils bdfore echo
+  silent exe "!echo -ne ".shellescape(buffer)." > ".shellescape(g:tty)
 endfunction

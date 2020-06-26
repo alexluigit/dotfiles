@@ -1,18 +1,23 @@
+function! alex#autocmds#init() abort
+  set stl=%#Normal#
+  if argc() == 0 | call TryGFiles() | endif
+endfunction
+
 let g:statusline_ft_blacklist = [ 'fzf', 'diff', 'fugitiveblame', 'qf' ]
-let g:ownsyntax_blacklist = [ '' ]
 function! alex#autocmds#should_use_statusline() abort
   if index(g:statusline_ft_blacklist, &filetype) != -1 | return 0 | endif
   if !empty(&buftype) | return 0 | endif
   return &buflisted
 endfunction
 
+let g:ownsyntax_blacklist = [ '' ]
 function! alex#autocmds#should_use_ownsyntax() abort
   if index(g:ownsyntax_blacklist, &filetype) != -1 | return 0 | endif
   " if !empty(&buftype) | return 0 | endif
   return &buflisted
 endfunction
 
-function! alex#autocmds#yankpost()
+function! alex#autocmds#yankpost() abort
 " echo command in GNU-coreutils doesn't work well with osc52?
 " let $PATH=substitute($PATH, '/usr/local/opt/coreutils/libexec/gnubin:', '', '')
   silent! lua require'vim.highlight'.on_yank("IncSearch", 500)

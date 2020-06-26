@@ -1,6 +1,7 @@
 augroup BetterFocus
   au!
-  au VimEnter * if argc() == 0 | set stl=%#Normal# | call TryGFiles() | endif
+  " Remove Statusline and open fzf on VimEnter (only when arglist is empty)
+  au VimEnter * call alex#autocmds#init()
   " Active | inactive windodw
   au BufEnter,FocusGained,VimEnter,WinEnter * call alex#window#focus()
   au FocusLost,WinLeave * call alex#window#blur()

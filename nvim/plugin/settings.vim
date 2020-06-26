@@ -1,9 +1,13 @@
 set hidden nobackup nowritebackup noswapfile
-set smarttab expandtab tabstop=2 shiftwidth=2 softtabstop=2
+set smarttab expandtab shiftwidth=2 softtabstop=2
 set smartindent autoindent
-set history=10000
 set linebreak nowrap " display long lines in just one line
 set ignorecase smartcase " ignore case when searching but still respect capital input
+set number relativenumber
+set splitright splitbelow diffopt+=vertical " default diff split splits open at the bottom and right
+set noshowmode noshowcmd
+set scrolloff=999 " Always keep cursor in the middle when <C-d> and <C-u>
+set history=10000
 set path+=**
 set wildmenu
 set updatetime=500 " CursorHold event will respect this value
@@ -13,9 +17,6 @@ set signcolumn=yes " Always show signcolumn
 set foldmethod=indent " not as cool as syntax, but faster
 set foldlevelstart=99 " start unfolded
 set termguicolors
-set number relativenumber
-set splitright splitbelow diffopt+=vertical " default diff split splits open at the bottom and right
-set noshowmode noshowcmd
 set lazyredraw " dont redraw screen during macro execution
 set undodir=$HOME/.local/share/nvim/undo " adds ability to undo changes even if vim was previously closed
 set undofile

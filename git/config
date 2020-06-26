@@ -26,6 +26,7 @@
         p        =  add -p
         l        =  !git loghelpers pretty_git_log
         la       =  !git l --all
+        lg       =  !git l --grep
         unpushed =  !git log origin/master..master
         reword   =  commit --amend --only -v --
         rollback =  !sh -c 'git reset --merge HEAD~${1-1}' -

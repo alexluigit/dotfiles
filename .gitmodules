@@ -68,3 +68,7 @@
 [submodule "vim-projectionist"]
 	path = nvim/pack/bundle/opt/vim-projectionist
 	url = https://github.com/tpope/vim-projectionist
+[submodule "coc.nvim"]
+	path = nvim/pack/bundle/opt/coc.nvim
+	url = https://github.com/neoclide/coc.nvim
+	branch = release

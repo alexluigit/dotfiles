@@ -1,8 +1,8 @@
 # Options
-setopt auto_cd # Change dir without typing cd
-setopt auto_pushd # Push dir into dir stack
-setopt pushd_ignore_dups
-setopt pushdminus
+setopt AUTO_CD # Change dir without typing cd
+setopt AUTO_PUSHD # Push dir into dir stack
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHDMINUS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS # Delete empty lines from history file
 setopt HIST_IGNORE_SPACE # Ignore a record starting with a space

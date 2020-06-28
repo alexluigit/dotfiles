@@ -10,14 +10,21 @@ augroup BetterFocus
   au FocusLost,WinLeave * call alex#statusline#blur()
   " Don't show number in vifm/twf
   au TermEnter * setlocal nonu norelativenumber
-augroup END
+augroup end
+
+augroup AutoCompletion
+  au!
+  au FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
 augroup Idleboot
   au!
   if has('vim_starting')
     au CursorHold,CursorHoldI * call alex#lazy#idleboot() " Lazy load some plugin
   endif
-augroup END
+augroup end
 
 augroup Miscellaneous
   au!
@@ -33,6 +40,4 @@ augroup Miscellaneous
   au FileType * setlocal fo-=c fo-=r fo-=o
   " fzf-cycle helper
   au Filetype fzf let g:term_meta = get(b:, 'term_title', '')
-  " Close preview window when complete finishes
-  au CompleteDone * pclose
-augroup END
+augroup end

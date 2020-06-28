@@ -1,7 +1,7 @@
 augroup BetterFocus
   au!
   " Remove Statusline and open fzf on VimEnter (only when arglist is empty)
-  au VimEnter * call alex#autocmds#init()
+  au VimEnter * call alex#autocmds#vim_enter()
   " Active | inactive windodw
   au BufEnter,FocusGained,VimEnter,WinEnter * call alex#window#focus()
   au FocusLost,WinLeave * call alex#window#blur()
@@ -12,7 +12,7 @@ augroup BetterFocus
   au TermEnter * setlocal nonu norelativenumber
 augroup end
 
-augroup AutoCompletion
+augroup Coc
   au!
   au FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.

@@ -1,3 +1,10 @@
+let s:statusline_ft_blacklist = [ 'fzf', 'diff', 'fugitiveblame', 'qf' ]
+function! alex#statusline#allow() abort
+  if index(s:statusline_ft_blacklist, &filetype) != -1 | return 0 | endif
+  if !empty(&buftype) | return 0 | endif
+  return &buflisted
+endfunction
+
 function! alex#statusline#init() abort
   let b:git_info             = '  ' . ' '. toupper(fugitive#head()) . ' '
   let b:file_head            = filereadable(expand("%"))?expand("%:h") . '/':''
@@ -16,7 +23,7 @@ function! alex#statusline#mode() abort
 endfunction
 
 function! alex#statusline#focus()
-  if alex#autocmds#should_use_statusline() 
+  if alex#statusline#allow()
     call alex#statusline#init()
     setl stl=%#NormalColor#%{(mode()=='n')?get(b:,'git_info',''):''}
     setl stl+=%#InsertColor#%{(mode()=='i')?get(b:,'git_info',''):''}
@@ -35,7 +42,7 @@ function! alex#statusline#focus()
 endfunction
 
 function! alex#statusline#blur()
-  if alex#autocmds#should_use_statusline() 
+  if alex#statusline#allow()
     setl stl=%#ModeNC#%{get(b:,'git_info','')}
     setl stl+=%<
     setl stl+=%#FileHeadNC#\ %{b:file_head}

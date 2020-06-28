@@ -1,20 +1,6 @@
-function! alex#autocmds#init() abort
+function! alex#autocmds#vim_enter() abort
   set stl=%#Normal#
   if argc() == 0 | call TryGFiles() | endif
-endfunction
-
-let g:statusline_ft_blacklist = [ 'fzf', 'diff', 'fugitiveblame', 'qf' ]
-function! alex#autocmds#should_use_statusline() abort
-  if index(g:statusline_ft_blacklist, &filetype) != -1 | return 0 | endif
-  if !empty(&buftype) | return 0 | endif
-  return &buflisted
-endfunction
-
-let g:ownsyntax_blacklist = [ '' ]
-function! alex#autocmds#should_use_ownsyntax() abort
-  if index(g:ownsyntax_blacklist, &filetype) != -1 | return 0 | endif
-  " if !empty(&buftype) | return 0 | endif
-  return &buflisted
 endfunction
 
 function! alex#autocmds#yankpost() abort

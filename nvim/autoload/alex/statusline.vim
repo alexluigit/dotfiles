@@ -6,7 +6,7 @@ function! alex#statusline#allow() abort
 endfunction
 
 function! alex#statusline#init() abort
-  let b:branch               = !empty(fugitive#head()) ? (' ' . ' '. toupper(fugitive#head()) . ' ') : ''
+  let b:branch               = !empty(fugitive#head()) ? ('  '.' '.toupper(fugitive#head())) : ''
   let b:file_head            = filereadable(expand("%"))?expand("%:h") . '/':''
   let b:file_title           = expand("%:t")
   let b:current_function = '' " TODO: maybe put autocomplete preview here
@@ -22,7 +22,7 @@ endfunction
 function! alex#statusline#focus()
   if alex#statusline#allow()
     call alex#statusline#init()
-    setl stl=%#NormalColor#%10{(mode()=='n'&&!empty(b:branch))?get(b:,'branch',''):(empty(b:branch)&&mode()=='n')?'NORMAL\ \ ':''}
+    setl stl=%#NormalColor#%-10.{(mode()=='n'&&!empty(b:branch))?get(b:,'branch',''):(empty(b:branch)&&mode()=='n')?'\ \ \ NORMAL':''}
     setl stl+=%#InsertColor#%10{(mode()=='i')?'INSERT\ \ ':''}
     setl stl+=%#ReplaceColor#%10{(mode()=='R')?'REPLAC\ \ ':''}
     setl stl+=%#CommandColor#%10{(mode()=='c')?'COMMND\ \ ':''}
@@ -40,7 +40,7 @@ endfunction
 
 function! alex#statusline#blur()
   if alex#statusline#allow()
-    setl stl=%#ModeNC#%{get(b:,'git_info','')}
+    setl stl=%#ModeNC#%-10.{get(b:,'branch','')}
     setl stl+=%<
     setl stl+=%#FileHeadNC#\ %{b:file_head}
     setl stl+=%#FileModNC#%{&mod?get(b:,'file_title',''):''}%#FileUnModNC#%{&mod?'':get(b:,'file_title','')}

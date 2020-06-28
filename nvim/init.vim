@@ -7,6 +7,10 @@ packadd! fzf.vim
 packadd! vifm.vim
 packadd! ultisnips
 packadd! tcomment_vim
+packadd! vim-textobj-user
+packadd! vim-textobj-quotes
+packadd! vim-textobj-indent
+packadd! vim-textobj-comment
 packadd! vim-sneak
 packadd! vim-easy-align
 packadd! vim-markdown

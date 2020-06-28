@@ -6,11 +6,11 @@ function! alex#statusline#allow() abort
 endfunction
 
 function! alex#statusline#init() abort
-  let b:branch               = !empty(fugitive#head()) ? ('  '.' '.toupper(fugitive#head())) : ''
-  let b:file_head            = filereadable(expand("%"))?expand("%:h") . '/':''
-  let b:file_title           = expand("%:t")
+  let b:branch           = !empty(fugitive#head()) ? ('  '.' '.toupper(fugitive#head())) : ''
+  let b:file_head        = filereadable(expand("%"))?expand("%:h") . '/':''
+  let b:file_title       = expand("%:t")
   let b:current_function = '' " TODO: maybe put autocomplete preview here
-  let b:stl_ft               = WebDevIconsGetFileTypeSymbol()
+  let b:stl_ft           = WebDevIconsGetFileTypeSymbol()
   return
 endfunction
 

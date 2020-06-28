@@ -3,7 +3,7 @@ function! alex#autocmds#vim_enter() abort
   if argc() == 0 | call TryGFiles() | endif
 endfunction
 
-function! alex#autocmds#yankpost() abort
+function! alex#autocmds#yank_post() abort
 " echo command in GNU-coreutils doesn't work well with osc52?
 " let $PATH=substitute($PATH, '/usr/local/opt/coreutils/libexec/gnubin:', '', '')
   silent! lua require'vim.highlight'.on_yank("IncSearch", 500)

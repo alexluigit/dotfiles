@@ -33,7 +33,7 @@ augroup Miscellaneous
   " If path doesn't exist, just create it
   au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
   " Highlight yanked content for 500 ms and send OSC52 seqs to tty
-  au TextYankPost * call alex#autocmds#yankpost()
+  au TextYankPost * call alex#autocmds#yank_post()
   " Change to US input source when leaving insert mode
   au InsertLeave * silent execute('!xkbswitch -s 1')
   " Don't help me to auto comment newline

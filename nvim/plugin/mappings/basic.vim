@@ -37,6 +37,3 @@ nnoremap <silent>        <Up>         :cprevious<CR>
 nnoremap <silent>        <Down>       :cnext<CR>
 nnoremap <silent>        <Left>       :cpfile<CR>
 nnoremap <silent>        <Right>      :cnfile<CR>
-" If popup menu is visiable, use C-j,k to navigate
-inoremap <silent> <expr> <C-j>        pumvisible() ? '<C-n>' : '<C-j>'
-inoremap <silent> <expr> <C-k>        pumvisible() ? '<C-p>' : '<C-k>'

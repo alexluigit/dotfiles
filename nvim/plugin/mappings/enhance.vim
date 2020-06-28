@@ -10,6 +10,8 @@ nnoremap <expr>         j             (v:count > 5 ? "m'" . v:count : '') . 'j'
 " Don't add n/N motion to jumplist
 noremap  <silent>       n             :keepj norm! n<cr>
 noremap  <silent>       N             :keepj norm! N<cr>
+" Silent undo
+nnoremap <silent>       u             :silent norm! u<cr>
 " Disable EX mode
 nnoremap                Q             <Nop>
 " Yank to end of line
@@ -23,7 +25,17 @@ nnoremap <silent>      <F4>           :cclose<CR>
 nnoremap               <F6>           <C-i>
 nnoremap               <Tab>          za
 " TextObj: `ia`, `aa` for inside/around angle, bracket.(save <shift> for `<`)
-omap                   aa             a<
-xmap                   aa             a<
-omap                   ia             i<
-xmap                   ia             i<
+omap                    aa             a<
+xmap                    aa             a<
+omap                    ia             i<
+xmap                    ia             i<
+" Textobj: function
+xmap                    af             <Plug>(coc-funcobj-a)
+omap                    af             <Plug>(coc-funcobj-a)
+xmap                    if             <Plug>(coc-funcobj-i)
+omap                    if             <Plug>(coc-funcobj-i)
+" Textobj: class
+xmap                    ac             <Plug>(coc-classobj-a)
+omap                    ac             <Plug>(coc-classobj-a)
+xmap                    ic             <Plug>(coc-classobj-i)
+omap                    ic             <Plug>(coc-classobj-i)

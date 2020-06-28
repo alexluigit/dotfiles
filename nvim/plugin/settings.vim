@@ -18,8 +18,9 @@ set foldmethod=indent " not as cool as syntax, but faster
 set foldlevelstart=99 " start unfolded
 set termguicolors
 set lazyredraw " dont redraw screen during macro execution
-set undodir=$HOME/.local/share/nvim/undo " adds ability to undo changes even if vim was previously closed
-set undofile
-set undolevels=1000 undoreload=10000
-
+if has("persistent_undo")
+  set undodir=$HOME/.local/share/nvim/undo " adds ability to undo changes even if vim was previously closed
+  set undofile
+" set undolevels=1000 undoreload=10000
+endif
 colorscheme gruvbox

@@ -31,6 +31,19 @@ function! s:ctrl_k() abort
   return coc#refresh()
 endfunction
 
+" extensions
+" let g:coc_global_extensions = [
+"   \ 'coc-tsserver',
+"   \ 'coc-vimlsp',
+"   \ 'coc-python',
+"   \ 'coc-json',
+"   \ 'coc-yaml',
+"   \ 'coc-tailwindcss',
+"   \ 'coc-ultisnips',
+"   \ 'coc-git',
+"   \ 'coc-prettier',
+"   \ ]
+
 " ---------------- deoplete + ultisnip ------------------
 " let s:deoplete_init_done=0
 " function! s:deoplete_init() abort

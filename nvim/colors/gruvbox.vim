@@ -525,24 +525,6 @@ call s:HL('DiffChange', s:aqua, s:none, s:bold)
 call s:HL('DiffText',   s:yellow, s:none, s:bold)
 
 " }}}
-" Spelling: {{{
-
-if has("spell")
-  " Not capitalised word, or compile warnings
-  if g:gruvbox_improved_warnings == 0
-    call s:HL('SpellCap',   s:none, s:none, s:undercurl, s:red)
-  else
-    call s:HL('SpellCap',   s:green, s:none, s:bold . s:italic)
-  endif
-  " Not recognized word
-  call s:HL('SpellBad',   s:none, s:none, s:undercurl, s:blue)
-  " Wrong spelling for selected region
-  call s:HL('SpellLocal', s:none, s:none, s:undercurl, s:aqua)
-  " Rare word
-  call s:HL('SpellRare',  s:none, s:none, s:undercurl, s:purple)
-endif
-
-" }}}
 
 " Plugin specific -------------------------------------------------------------
 " Sneak: {{{
@@ -568,21 +550,12 @@ hi! link ShowMarksHLm GruvboxBlueSign
 
 " }}}
 
-" Asynchronous Lint Engine: {{{
-
-call s:HL('ALEError', s:none, s:none, s:undercurl, s:red)
-call s:HL('ALEWarning', s:none, s:none, s:undercurl, s:yellow)
-call s:HL('ALEInfo', s:none, s:none, s:undercurl, s:blue)
-hi! link ALEErrorSign GruvboxRedSign
-hi! link ALEWarningSign GruvboxYellowSign
-hi! link ALEInfoSign GruvboxBlueSign
-
-" }}}
-
 " Vim Multiple Cursors: {{{
 
 call s:HL('multiple_cursors_cursor', s:none, s:none, s:inverse)
 call s:HL('multiple_cursors_visual', s:none, s:bg2)
+
+" }}}
 
 " Filetype specific -----------------------------------------------------------
 " Diff: {{{

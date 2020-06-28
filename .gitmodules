@@ -78,3 +78,6 @@
 [submodule "vim-textobj-quotes"]
 	path = nvim/pack/bundle/opt/vim-textobj-quotes
 	url = https://github.com/beloglazov/vim-textobj-quotes
+[submodule "vim-textobj-indent"]
+	path = nvim/pack/bundle/opt/vim-textobj-indent
+	url = https://github.com/kana/vim-textobj-indent

@@ -5,6 +5,7 @@ read -p "Press y to continue, otherwise to quit: " REPLY
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   [[ ! -d $HOME/.config ]] && mkdir ~/.config
   echo "Creating symlink..."
+  ln -s $PWD/alacritty ~/.config/alacritty
   ln -s $PWD/zsh/.zshenv ~/.zshenv
   ln -s $PWD/zsh ~/.config/zsh
   ln -s $PWD/nvim ~/.config/nvim

@@ -350,7 +350,8 @@ call s:HL('GruvboxOrangeSign', s:orange, s:sign_column, s:invert_signs)
 
 " Normal text
 call s:HL('Normal', s:fg1, s:bg0)
-call s:HL('NormalNC', s:fg2, s:bg2)
+" call s:HL('NormalNC', s:gray, s:bg2)
+call s:HL('NormalNC', s:gray)
 " Correct background (see issue #7):
 " --- Problem with changing between dark and light on 256 color terminal
 " --- https://github.com/morhetz/gruvbox/issues/7
@@ -358,7 +359,7 @@ if s:is_dark | set background=dark | else | set background=light | endif
 
 if version >= 700
   " Screen line that the cursor is
-  call s:HL('CursorLine',   s:none, s:bg1)
+  call s:HL('CursorLine', s:none, s:bg1)
   " Screen column that the cursor is
   hi! link CursorColumn CursorLine
   " Tab pages line filler
@@ -888,7 +889,7 @@ call s:HL('FileHead', s:gb.light3, s:gb.dark2, s:italic)
 call s:HL('FileUnMod', s:gb.light0, s:gb.dark2, s:bold)
 call s:HL('FileMod', s:green, s:gb.dark2, s:bold)
 hi Func guifg=#d7875f guibg=#30302C gui=italic
-hi StlFiletype guifg=#808070 guibg=#30302C
+hi StlFiletype guifg=#808070 guibg=#30302C gui=bold
 hi StlCol guifg=#a8a897 guibg=#4e4e43
 hi Percent guifg=#30302C guibg=#949484 gui=bold
 " Non-current window statusline
@@ -896,7 +897,8 @@ call s:HL('ModeNC', s:bg0, s:gb.light4, s:bold)
 call s:HL('FileHeadNC', s:gb.light4, s:bg2)
 call s:HL('FileUnModNC', s:gb.light2, s:bg2, s:bold)
 call s:HL('FileModNC', s:gb.neutral_green, s:bg2, s:bold)
-call s:HL('FuncNC', s:gb.light4, s:bg2)
+" call s:HL('FuncNC', s:gb.light4, s:bg2)
+call s:HL('FuncNC', s:gb.light4, s:none, s:bold)
 " Tabline
 " hi TabLine     ctermfg=White ctermbg=Black cterm=None
 " hi TabLineFill ctermfg=White ctermbg=Black cterm=None

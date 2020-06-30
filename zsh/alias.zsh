@@ -11,7 +11,7 @@ alias v='nvim -c "let g:tty='\''$(tty)'\''"'
 alias c="fzf-cd"
 alias f="vifm ."
 alias d="trash"
-alias g="git status"
+alias g="git"
 alias -g G="| grep"
 alias -g B="| bat"
 alias -g W="| wc -l"

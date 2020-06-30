@@ -1,5 +1,5 @@
 " vim: filetype=vim :
-" 
+"
 " Filetypes/directories
 set classify=' :dir:/, :exe:, :reg:, :link:,? :?:, ::../::'
 " Specific files
@@ -112,11 +112,15 @@ filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
 filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,
        \ open -a Preview.app,
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm 
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
        \ identify %f
        " \ tput cup %py %px > /dev/tty && /usr/local/bin/imgcat --width %pw --height %ph %c:p > /dev/tty
        " \ tput cup %py %px > /dev/tty && ~/bin/scripts/imgcat %c:p > /dev/tty
        " \ viu -w %pw -h %ph %c
+" fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
+"         \ vifmimg draw %px %py %pw %ph %c
+"         \ %pc
+"         \ vifmimg clear
 filetype *.md5
        \ {Check MD5 hash sum}
        \ md5sum -c %f %S,

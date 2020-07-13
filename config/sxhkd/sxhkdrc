@@ -1,0 +1,32 @@
+# Restart bspwm
+super + shift + Delete
+  bspc wm -r
+
+# Focus on window in direction
+super + {h,j,k,l}
+	bspc node -f {west,south,north,east}
+
+# focus or send to the given desktop
+super + {_,shift + }{1-5}
+	bspc {desktop -f,node -d} ^{1-5}
+
+# Close window / quit program
+super + {_, shift} q
+  xdo { close, kill }
+
+# Quick launch
+super + { b, d, f, t }
+  { chromium, dmenu_run, thunar, alacritty }
+
+button8
+  xdotool key 'Control_L+w'
+
+button9
+  xdotool key 'Control_L+t'
+
+# Screenshots
+Print
+  screenshot full
+
+shift + Print
+  screenshot select

@@ -1,0 +1,3 @@
+# If you use bluetooth keyboard, this line will save your life
+# https://unix.stackexchange.com/questions/408461/where-is-the-default-repeat-rate-for-xset-stored
+exec /usr/bin/X -nolisten tcp -ardelay 250 -arinterval 20 "$@"

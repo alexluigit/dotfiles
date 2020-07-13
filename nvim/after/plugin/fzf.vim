@@ -1,5 +1,6 @@
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 let g:fzf_tags_command = 'ctags -R'
+
+" Make this func public because VimEnter calls it
 function! TryGFiles() abort
   if alex#git#isGitRepo() == 0 | execute('GitFiles') | else | execute("Files") | endif
 endfunction
@@ -17,7 +18,7 @@ function! s:fzf_cycle(...)
   for cmd in s:commands
     if stridx(get(g:, 'term_meta', ''), cmd) > 0
       let s:next = s:commands[(index(s:commands, cmd) + 1) % len(s:commands)]
-      execute s:next | call feedkeys('i') | return
+      execute s:next | setl norelativenumber | return
     endif
   endfor
 endfunction

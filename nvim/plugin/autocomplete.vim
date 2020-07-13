@@ -1,7 +1,7 @@
 nmap     <silent>         gd              <Plug>(coc-definition)
 nmap     <silent>         gy              <Plug>(coc-type-definition)
 nmap     <silent>         gr              <Plug>(coc-references)
-nmap     <silent>         gi              <Plug>(coc-implementation)
+nmap     <silent>         gm              <Plug>(coc-implementation)
 nnoremap <silent>         K               :call CocAction('doHover')<cr>
 nmap     <silent>         <C-s>           <Plug>(coc-range-select)
 nmap     <silent>         <leader>j       <Plug>(coc-diagnostic-next)
@@ -14,6 +14,7 @@ let g:UltiSnipsExpandTrigger = '<nop>'
 let g:UltiSnipsJumpForwardTrigger = '<nop>'
 let g:UltiSnipsJumpBackwardTrigger = '<nop>'
 let g:UltiSnipsEditSplit="vertical" " Edit snippets in vert split
+let g:UltiSnipsSnippetDirectories=["ultisnips"] " Default path is uppercase
 
 let g:ulti_jump_forwards_res = 0
 function! s:ctrl_j() abort
@@ -31,7 +32,7 @@ function! s:ctrl_k() abort
   return coc#refresh()
 endfunction
 
-" extensions
+" " extensions
 " let g:coc_global_extensions = [
 "   \ 'coc-tsserver',
 "   \ 'coc-vimlsp',
@@ -43,7 +44,7 @@ endfunction
 "   \ 'coc-git',
 "   \ 'coc-prettier',
 "   \ ]
-
+"
 " ---------------- deoplete + ultisnip ------------------
 " let s:deoplete_init_done=0
 " function! s:deoplete_init() abort

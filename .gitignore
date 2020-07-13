@@ -3,6 +3,6 @@ config/vifm/vifminfo
 config/vifm/vifm-help.txt
 config/vifm/vifmimgpdffile
 config/vifm/vifmimgpdfpage
-zsh/cache/
+config/zsh/cache/
 config/shadowsocks/config.json
 *.pyc

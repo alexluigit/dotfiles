@@ -1,0 +1,3 @@
+#!/bin/sh
+# This script is called on startup to remap keys.
+[[ -z $(pidof xcape) ]] && xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'

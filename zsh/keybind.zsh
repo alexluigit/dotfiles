@@ -8,33 +8,32 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 # Custom function keybind
 bindkey "^\\" updir-onthefly
-bindkey '^o' fzf-open
-bindkey '^n' fzf-note
-bindkey '^p' fzf-project
-bindkey '^r' fzf-history
-bindkey '^z' fg-bg
+bindkey '^f'  smart-ctrl-f # Forward char       or  "find"
+bindkey '^l'  smart-ctrl-l # Clear screen       or  "Line complete"
+bindkey '^n'  smart-ctrl-n # Forward word       or  "Notes"
+bindkey '^p'  smart-ctrl-p # Backward word      or  "Projects"
+bindkey '^o'  fzf-open
+bindkey '^r'  fzf-history
+bindkey '^t'  fzf-starstar
+bindkey '^z'  fg-bg
+
+# Autosuggest small word
+bindkey '^[OQ' vi-backward-word # Remap to ^;
+bindkey '^[OR' vi-forward-word # Remap to ^'
 
 # History searching base on what you already typed
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down
+bindkey "^j" down-line-or-beginning-search
+bindkey '^k' up-line-or-beginning-search
 
-# Edit the current command line in $EDITOR
+# Edit current command in $EDITOR
 autoload edit-command-line
 zle -N edit-command-line
 bindkey '^x^x' edit-command-line
 
-# Autosuggest small word
-# bindkey '^[[18;2~' vi-forward-word
-# bindkey '^[[17;2~' vi-backward-word
-
-bindkey '^[OQ' vi-backward-word
-bindkey '^[OR' vi-forward-word
-
 # delete-word
 # backward-kill-line
-# delete-char
 # beginning-of-line

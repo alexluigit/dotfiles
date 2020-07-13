@@ -1,10 +1,8 @@
-.DS_Store
-aria2/
 ssh/
-export/*License/
-karabiner/automatic_backups/
-karabiner/karabiner.json
-vifm/vifminfo
-vifm/vifm-help.txt
+config/vifm/vifminfo
+config/vifm/vifm-help.txt
+config/vifm/vifmimgpdffile
+config/vifm/vifmimgpdfpage
 zsh/cache/
+config/shadowsocks/config.json
 *.pyc

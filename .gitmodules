@@ -64,11 +64,14 @@
 	path = nvim/pack/bundle/opt/vim-textobj-user
 	url = https://github.com/kana/vim-textobj-user
 [submodule "vim-textobj-quotes"]
+	ignore = untracked
 	path = nvim/pack/bundle/opt/vim-textobj-quotes
 	url = https://github.com/beloglazov/vim-textobj-quotes
 [submodule "vim-textobj-indent"]
+	ignore = untracked
 	path = nvim/pack/bundle/opt/vim-textobj-indent
 	url = https://github.com/kana/vim-textobj-indent
 [submodule "vim-textobj-comment"]
+	ignore = untracked
 	path = nvim/pack/bundle/opt/vim-textobj-comment
 	url = https://github.com/glts/vim-textobj-comment

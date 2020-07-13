@@ -1,0 +1,136 @@
+# Window
+window:
+  dimensions:
+   columns: 180
+   lines: 53
+  padding:
+   x: 10
+   y: 10
+  position:
+   x: 0
+   y: 0
+  decorations: none
+scrolling:
+  history: 10000
+  multiplier: 3
+background_opacity: 0.90
+
+# Font
+font:
+  normal:
+    family: VictorMono Nerd Font
+    style: ExtraLight
+  bold:
+    family: VictorMono Nerd Font
+    style: SemiBold
+  italic:
+    family: VictorMono Nerd Font
+    style: ExtraLight Italic
+  bold_italic:
+    family: VictorMono Nerd Font
+    style: SemiBold Italic
+  offset:
+    x: 0
+    y: 4
+  glyph_offset:
+    x: 0
+    y: 2
+  size: 13.0
+draw_bold_text_with_bright_colors: true
+
+# Colors (Gruvbox dark)
+colors:
+  primary:
+    hard contrast: background = '#1d2021'
+    background: '#282828'
+    soft contrast: background = '#32302f'
+    foreground: '#ebdbb2'
+  normal:
+    black:   '#282828'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#a89984'
+  bright:
+    black:   '#928374'
+    red:     '#fb4934'
+    green:   '#b8bb26'
+    yellow:  '#fabd2f'
+    blue:    '#83a598'
+    magenta: '#d3869b'
+    cyan:    '#599caa'
+    white:   '#ebdbb2'
+    # cyan:    '#8ec07c'
+
+visual_bell:
+ animation: EaseOutExpo
+ duration: 3
+ color: '#ffffff'
+
+live_config_reload: true
+
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+  - { mouse: Right,  action: Copy }
+
+key_bindings:
+  # Fix broken terminal
+  - { key: I,          mods: Control,        chars: "\x1b[17~" }
+  - { key: Semicolon,  mods: Control,        chars: "\x1bOQ"   }
+  - { key: Apostrophe, mods: Control,        chars: "\x1bOR"   }
+  - { key: Comma,      mods: Control,        chars: "\x1b[21~" }
+  - { key: Period,     mods: Control,        chars: "\x1b[23~" }
+  - { key: V,          mods: Super|Control,  action: Paste     }
+  - { key: C,          mods: Super|Control,  action: Copy      }
+  # Vi Mode
+  - { key: Space,  mods: Shift|Control, mode: Vi, action: ScrollToBottom          }
+  - { key: Space,  mods: Shift|Control,           action: ToggleViMode            }
+  - { key: Escape,                      mode: Vi, action: ClearSelection          }
+  - { key: I,                           mode: Vi, action: ScrollToBottom          }
+  - { key: I,                           mode: Vi, action: ToggleViMode            }
+  - { key: Y,      mods: Control,       mode: Vi, action: ScrollLineUp            }
+  - { key: E,      mods: Control,       mode: Vi, action: ScrollLineDown          }
+  - { key: G,                           mode: Vi, action: ScrollToTop             }
+  - { key: G,      mods: Shift,         mode: Vi, action: ScrollToBottom          }
+  - { key: B,      mods: Control,       mode: Vi, action: ScrollPageUp            }
+  - { key: F,      mods: Control,       mode: Vi, action: ScrollPageDown          }
+  - { key: U,      mods: Control,       mode: Vi, action: ScrollHalfPageUp        }
+  - { key: D,      mods: Control,       mode: Vi, action: ScrollHalfPageDown      }
+  - { key: Y,                           mode: Vi, action: Copy                    }
+  - { key: Y,                           mode: Vi, action: ClearSelection          }
+  - { key: V,                           mode: Vi, action: ToggleNormalSelection   }
+  - { key: V,      mods: Shift,         mode: Vi, action: ToggleLineSelection     }
+  - { key: V,      mods: Control,       mode: Vi, action: ToggleBlockSelection    }
+  - { key: V,      mods: Alt,           mode: Vi, action: ToggleSemanticSelection }
+  - { key: Return,                      mode: Vi, action: Open                    }
+  - { key: K,                           mode: Vi, action: Up                      }
+  - { key: J,                           mode: Vi, action: Down                    }
+  - { key: H,                           mode: Vi, action: Left                    }
+  - { key: L,                           mode: Vi, action: Right                   }
+  - { key: Key0,                        mode: Vi, action: First                   }
+  - { key: Key4,                        mode: Vi, action: Last                    }
+  - { key: Key5,                        mode: Vi, action: Bracket                 }
+  - { key: Key6,                        mode: Vi, action: FirstOccupied           }
+  - { key: H,      mods: Shift,         mode: Vi, action: High                    }
+  - { key: M,      mods: Shift,         mode: Vi, action: Middle                  }
+  - { key: L,      mods: Shift,         mode: Vi, action: Low                     }
+  - { key: B,                           mode: Vi, action: SemanticLeft            }
+  - { key: W,                           mode: Vi, action: SemanticRight           }
+  - { key: E,                           mode: Vi, action: SemanticRightEnd        }
+
+  # Seems coming soon...
+  # - { key: Slash,                       mode: Vi, action: Search                  }
+  # - { key: Slash,  mods: Shift,         mode: Vi, action: SearchReverse           }
+  # - { key: N,                           mode: Vi, action: SearchNext              }
+  # - { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
+
+  # Why Shift + thesekey not working?
+  # - { key: Key4,   mods: Shift,         mode: Vi, action: Last                    }
+  # - { key: Key5,   mods: Shift,         mode: Vi, action: Bracket                 }
+  # - { key: Key6,   mods: Shift,         mode: Vi, action: FirstOccupied           }
+  # - { key: B,      mods: Shift,         mode: Vi, action: WordLeft                }
+  # - { key: W,      mods: Shift,         mode: Vi, action: WordRight               }
+  # - { key: E,      mods: Shift,         mode: Vi, action: WordRightEnd            }

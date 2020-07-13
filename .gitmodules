@@ -1,33 +1,33 @@
 [submodule "nvim-colorizer.lua"]
 	ignore = dirty
-	path = nvim/pack/bundle/opt/nvim-colorizer.lua
+	path = config/nvim/pack/bundle/opt/nvim-colorizer.lua
 	url = https://github.com/norcalli/nvim-colorizer.lua
 [submodule "vim-surround"]
-	path = nvim/pack/bundle/opt/vim-surround
+	path = config/nvim/pack/bundle/opt/vim-surround
 	url = https://github.com/tpope/vim-surround
 [submodule "vim-fugitive"]
-	path = nvim/pack/bundle/opt/vim-fugitive
+	path = config/nvim/pack/bundle/opt/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
 [submodule "vim-repeat"]
-	path = nvim/pack/bundle/opt/vim-repeat
+	path = config/nvim/pack/bundle/opt/vim-repeat
 	url = https://github.com/tpope/vim-repeat
 [submodule "vim-sneak"]
-	path = nvim/pack/bundle/opt/vim-sneak
+	path = config/nvim/pack/bundle/opt/vim-sneak
 	url = https://github.com/justinmk/vim-sneak
 [submodule "vim-pathogen"]
-	path = nvim/pack/bundle/opt/vim-pathogen
+	path = config/nvim/pack/bundle/opt/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen
 [submodule "vim-eunuch"]
-	path = nvim/pack/bundle/opt/vim-eunuch
+	path = config/nvim/pack/bundle/opt/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch
 [submodule "vim-easy-align"]
-	path = nvim/pack/bundle/opt/vim-easy-align
+	path = config/nvim/pack/bundle/opt/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
 [submodule "vim-markdown"]
-	path = nvim/pack/bundle/opt/vim-markdown
+	path = config/nvim/pack/bundle/opt/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown
 [submodule "vifm.vim"]
-	path = nvim/pack/bundle/opt/vifm.vim
+	path = config/nvim/pack/bundle/opt/vifm.vim
 	url = https://github.com/vifm/vifm.vim
 [submodule "zsh-autosuggestions"]
 	path = config/zsh/plugins/zsh-autosuggestions
@@ -39,39 +39,39 @@
 	path = config/zsh/plugins/fzf
 	url = https://github.com/junegunn/fzf
 [submodule "fzf.vim"]
-	path = nvim/pack/bundle/opt/fzf.vim
+	path = config/nvim/pack/bundle/opt/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
 [submodule "rime"]
 	path = rime
 	url = https://github.com/alexluigit/rime
 [submodule "ultisnips"]
-	path = nvim/pack/bundle/opt/ultisnips
+	path = config/nvim/pack/bundle/opt/ultisnips
 	url = https://github.com/SirVer/ultisnips
 [submodule "tcomment_vim"]
-	path = nvim/pack/bundle/opt/tcomment_vim
+	path = config/nvim/pack/bundle/opt/tcomment_vim
 	url = https://github.com/tomtom/tcomment_vim
 [submodule "vim-dispatch"]
-	path = nvim/pack/bundle/opt/vim-dispatch
+	path = config/nvim/pack/bundle/opt/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch
 [submodule "vim-projectionist"]
-	path = nvim/pack/bundle/opt/vim-projectionist
+	path = config/nvim/pack/bundle/opt/vim-projectionist
 	url = https://github.com/tpope/vim-projectionist
 [submodule "coc.nvim"]
-	path = nvim/pack/bundle/opt/coc.nvim
+	path = config/nvim/pack/bundle/opt/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
 	branch = release
 [submodule "vim-textobj-user"]
-	path = nvim/pack/bundle/opt/vim-textobj-user
+	path = config/nvim/pack/bundle/opt/vim-textobj-user
 	url = https://github.com/kana/vim-textobj-user
 [submodule "vim-textobj-quotes"]
 	ignore = untracked
-	path = nvim/pack/bundle/opt/vim-textobj-quotes
+	path = config/nvim/pack/bundle/opt/vim-textobj-quotes
 	url = https://github.com/beloglazov/vim-textobj-quotes
 [submodule "vim-textobj-indent"]
 	ignore = untracked
-	path = nvim/pack/bundle/opt/vim-textobj-indent
+	path = config/nvim/pack/bundle/opt/vim-textobj-indent
 	url = https://github.com/kana/vim-textobj-indent
 [submodule "vim-textobj-comment"]
 	ignore = untracked
-	path = nvim/pack/bundle/opt/vim-textobj-comment
+	path = config/nvim/pack/bundle/opt/vim-textobj-comment
 	url = https://github.com/glts/vim-textobj-comment

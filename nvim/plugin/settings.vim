@@ -32,6 +32,7 @@ if has("persistent_undo")
   set undofile
 " set undolevels=1000 undoreload=10000
 endif
+if !has("Darwin") | set clipboard=unnamedplus | endif
 colorscheme gruvbox
 hi! Normal guibg=NONE
 hi! NormalNC guibg=NONE

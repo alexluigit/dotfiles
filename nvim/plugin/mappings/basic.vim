@@ -30,8 +30,12 @@ nnoremap <silent>        <M-l>        :vert resize +5<CR>
 " Emacs keybinding
 cnoremap                 <C-a>        <Home>
 cnoremap                 <C-e>        <End>
-cnoremap                 <C-b>        <S-Left>
-cnoremap                 <C-f>        <S-Right>
+cnoremap                 <C-b>        <Left>
+inoremap                 <C-b>        <Left>
+cnoremap                 <M-b>        <S-Left>
+cnoremap                 <C-f>        <Right>
+inoremap                 <C-f>        <Right>
+cnoremap                 <M-f>        <S-Right>
 " Map <cmd-hjkl> to arrow keys in karabiner or other mapping programs
 nnoremap <silent>        <Up>         :cprevious<CR>
 nnoremap <silent>        <Down>       :cnext<CR>

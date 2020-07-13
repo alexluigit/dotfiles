@@ -1,3 +1,6 @@
+" Map semicolon to colon, hit twice for semicolon
+map                     ;           :
+noremap                 ;;          ;
 " Do not jump to next when searching with *
 nnoremap                *             :keepj norm! mp*`p<cr>
 xnoremap                *             ymp:keepj norm! /\V<C-r>=escape(@",'/\')<cr><C-v><C-m>`p<cr>

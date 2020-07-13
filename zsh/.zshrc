@@ -7,12 +7,15 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS # Delete empty lines from history file
 setopt HIST_IGNORE_SPACE # Ignore a record starting with a space
 setopt MENU_COMPLETE # Tab once to get completion directly.
-setopt NONOMATCH # This will enable url paste without quote
+setopt NONOMATCH # Enable url paste without quote
+setopt PROMPT_SUBST # Enable prompt parameter expansion, command substitution and arithmetic expansion
+autoload -U colors && colors # Enable colors and change prompt
 
 # Aspects
+source "$ZDOTDIR/appearance.zsh"
 source "$ZDOTDIR/function.zsh"
 source "$ZDOTDIR/fzf-widgets.zsh"
-source "$ZDOTDIR/appearance.zsh"
+source "$ZDOTDIR/fzf-git.zsh"
 source "$ZDOTDIR/alias.zsh"
 source "$ZDOTDIR/completion.zsh"
 source "$ZDOTDIR/keybind.zsh"

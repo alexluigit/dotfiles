@@ -75,3 +75,6 @@
 	ignore = untracked
 	path = config/nvim/pack/bundle/opt/vim-textobj-comment
 	url = https://github.com/glts/vim-textobj-comment
+[submodule "z"]
+	path = config/zsh/plugins/z
+	url = https://github.com/rupa/z

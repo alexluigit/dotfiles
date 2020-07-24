@@ -81,3 +81,6 @@
 [submodule "browser-playerctl"]
 	path = local/apps/browser-playerctl
 	url = https://github.com/alexluigit/browser-playerctl
+[submodule "vb4c"]
+	path = local/apps/vb4c
+	url = https://github.com/alexluigit/vb4c

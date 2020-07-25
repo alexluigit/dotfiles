@@ -1,20 +1,25 @@
-# Use neovim for vim if present.
-command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
+# general
 alias c="fzf-cd"
 alias d="gio trash"
 alias f="vifmrun ."
-alias g="git"
-alias s="sudo"
 alias t="tmux-automation"
 alias v='nvim -c "let g:tty='\''$(tty)'\''"'
 alias ka="killall"
-alias la="ls -Flha --group-directories-first --color=auto"
-alias ls="ls -a --group-directories-first --color=auto"
 alias md="mkdir -p"
+alias sv="sudoedit"
 alias yd="youtube-dl --write-sub --write-auto-sub -o '~/Desktop/%(title)s-%(id)s.%(ext)s'"
 alias ydl="youtube-dl --yes-playlist --write-sub --write-auto-sub -o '~/Desktop/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
-alias -g G="| rg"
+alias ls="ls --group-directories-first --color=auto"
+alias la='ls -lAFh'   #long list,show almost all,show type,human readable
+alias ldot='ls -ld .*'
+alias lsize='ls -1FSsh'
+alias lart='ls -1aFcrt'
 alias -g B="| bat"
+alias -g F="| fzf"
+alias -g G="| rg"
+alias -g NE="2> /dev/null"
+alias -g NUL="> /dev/null 2>&1"
+alias -g S="| sort -n -r"
 alias -g W="| wc -l"
 
 # git

@@ -1,53 +1,40 @@
-#!/bin/zsh
-echo "Current Directory: $PWD"
+#!/bin/sh
 CFGDIR="$HOME/.config"
 SCRIPTDIR="$HOME/.local/bin"
+APPDIR="$HOME/.local/apps"
 
-check-dir(){
+checkdir() {
+  echo "Current Directory: $PWD"
   [[ ! -d $CFGDIR ]] && mkdir $CFGDIR || echo "$HOME/.config exists"
 }
 
-dotconfig() {
+config() {
   find $CFGDIR -maxdepth 1 -type l -delete
-  for i in $(du -d 1 "$PWD/config" | cut -f2); ln -s "$i" "$CFGDIR"
+  for i in $(du -d 1 "$PWD/config" | cut -f2)
+    do ln -s "$i" "$CFGDIR"
+  done
   rm $CFGDIR/config
 }
 
 scripts() {
   find $SCRIPTDIR -maxdepth 1 -type l -delete
-  for i in $(find "$PWD/local/bin" -type f -executable); ln -s $i $SCRIPTDIR
+  for i in $(find "$PWD/local/bin" -type f -executable)
+    do ln -s $i $SCRIPTDIR
+  done
 }
 
-zsh() {
-  ln -s $PWD/zsh $CFGDIR
+zshenv() {
+  rm ~/.zshenv
+  ln -s $PWD/config/zsh/zshenv $HOME/.zshenv
 }
 
-nvim() {
-  ln -s $PWD/nvim $CFGDIR
+apps() {
+  find $APPDIR -maxdepth 1 -type l -delete
+  for i in $(du -d 1 "$PWD/local/apps" | cut -f2)
+    do ln -s "$i" "$APPDIR"
+  done
+  rm $APPDIR/apps
 }
 
 "$@"
 # git submodule init && git submodule update && echo "Done."
-
-# Keybinding
-# ln -s $PWD/sxhkd ~/.config/sxhkd
-# Configure shadowsocks
-# ln -s $PWD/shadowsocks ~/.config/shadowsocks
-
-# ssh config
-# ln -s $PWD/ssh ~/.ssh
-
-# Rime input
-# ln -s $PWD/rime ~/.config/ibus/rime
-
-# Git
-# ln -s $PWD/git ~/.config/git
-
-# Auto start program
-# ln -s $PWD/.xprofile ~/.xprofile
-
-# Karabiner
-# ln -s $PWD/karabiner ~/.config/karabiner
-
-# rm nvim/pack/bundle/opt/fzf
-# ln -s $PWD/zsh/plugins/fzf ~/.config/nvim/pack/bundle/opt/fzf

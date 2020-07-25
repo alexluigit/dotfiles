@@ -21,9 +21,7 @@ forgit::log() {
         --bind=\"ctrl-y:execute-silent(echo {} |grep -Eo '[a-f0-9]+' | head -1 | tr -d '\n' |${FORGIT_COPY_CMD:-pbcopy})\"
         $FORGIT_LOG_FZF_OPTS
     "
-    graph=--graph
-    [[ $FORGIT_LOG_GRAPH_ENABLE == false ]] && graph=
-    eval "git log $graph --color=always --format='%C(auto)%h%d %s %C(black)%C(bold)%cr' $* $forgit_emojify" |
+    eval "git log --graph --color=always --format='%C(auto)%h%d %s %C(black)%C(bold)%cr' $* $forgit_emojify" |
         FZF_DEFAULT_OPTS="$opts" fzf --preview="$cmd"
 }
 
@@ -212,18 +210,29 @@ $FZF_DEFAULT_OPTS
 --bind='alt-w:toggle-preview-wrap'
 --preview-window='right:60%'
 +1
-$FORGIT_FZF_DEFAULT_OPTS
 "
 
-# register aliases
-# shellcheck disable=SC2139
-if [[ -z "$FORGIT_NO_ALIASES" ]]; then
-    alias "${forgit_add:-ga}"='forgit::add'
-    alias "${forgit_reset_head:-grh}"='forgit::reset::head'
-    alias "${forgit_log:-glo}"='forgit::log'
-    alias "${forgit_diff:-gd}"='forgit::diff'
-    alias "${forgit_ignore:-gi}"='forgit::ignore'
-    alias "${forgit_restore:-gcf}"='forgit::restore'
-    alias "${forgit_clean:-gclean}"='forgit::clean'
-    alias "${forgit_stash_show:-gss}"='forgit::stash::show'
-fi
+fco_preview() {
+  local tags branches target
+  branches=$(
+    git --no-pager branch --all \
+      --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
+    | sed '/^$/d') || return
+  tags=$(
+    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
+  target=$(
+    (echo "$branches"; echo "$tags") |
+    fzf --no-hscroll --no-multi -n 2 \
+        --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'") || return
+  git checkout $(awk '{print $2}' <<<"$target" )
+}
+
+alias fga='forgit::add'
+alias fgb='fco_preview'
+alias fgr='forgit::reset::head'
+alias fgl='forgit::log'
+alias fgd='forgit::diff'
+alias fgi='forgit::ignore'
+alias fgc='forgit::restore'
+alias fgt='forgit::clean' #'t' for trash
+alias fgs='forgit::stash::show'

@@ -1,0 +1,10 @@
+{
+  "server": "YOURHOST",
+  "server_port": 443,
+  "local_port": 1087,
+  "password": "YOURPASS",
+  "timeout": 60,
+  "method": "chacha20-ietf-poly1305",
+  "plugin": "v2ray-plugin",
+  "plugin_opts": "tls;host=YOURHOST"
+}

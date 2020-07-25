@@ -35,8 +35,11 @@ font:
   glyph_offset:
     x: 0
     y: 2
-  size: 13.0
+  size: 14.0
 draw_bold_text_with_bright_colors: true
+
+cursor:
+  vi_mode_style: Underline
 
 # Colors (Gruvbox dark)
 colors:
@@ -65,7 +68,7 @@ colors:
     white:   '#ebdbb2'
     # cyan:    '#8ec07c'
 
-visual_bell:
+bell:
  animation: EaseOutExpo
  duration: 3
  color: '#ffffff'
@@ -83,7 +86,7 @@ key_bindings:
   - { key: Apostrophe, mods: Control,        chars: "\x1bOR"   }
   - { key: Comma,      mods: Control,        chars: "\x1b[21~" }
   - { key: Period,     mods: Control,        chars: "\x1b[23~" }
-  - { key: V,          mods: Super|Control,  action: Paste     }
+  - { key: V,          mods: Control,        action: Paste     }
   - { key: C,          mods: Super|Control,  action: Copy      }
   # Vi Mode
   - { key: Space,  mods: Shift|Control, mode: Vi, action: ScrollToBottom          }
@@ -120,12 +123,10 @@ key_bindings:
   - { key: B,                           mode: Vi, action: SemanticLeft            }
   - { key: W,                           mode: Vi, action: SemanticRight           }
   - { key: E,                           mode: Vi, action: SemanticRightEnd        }
-
-  # Seems coming soon...
-  # - { key: Slash,                       mode: Vi, action: Search                  }
-  # - { key: Slash,  mods: Shift,         mode: Vi, action: SearchReverse           }
-  # - { key: N,                           mode: Vi, action: SearchNext              }
-  # - { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
+  - { key: Slash,                       mode: Vi, action: SearchForward           }
+  - { key: Slash,  mods: Shift,         mode: Vi, action: SearchBackward          }
+  - { key: N,                           mode: Vi, action: SearchNext              }
+  - { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
 
   # Why Shift + thesekey not working?
   # - { key: Key4,   mods: Shift,         mode: Vi, action: Last                    }

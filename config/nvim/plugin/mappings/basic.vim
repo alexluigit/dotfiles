@@ -11,13 +11,10 @@ vnoremap <silent>         K           :m '<-2<CR>gv=gv
 nnoremap <silent>         -           :EditVifm <bar> setl statusline=%#Normal#<cr>
 " <CR> to repeat last macro
 nnoremap <silent> <expr> <CR>         empty(&buftype) ? '@@' : '<CR>'
-" Map <F1> to toggle a side terminal window
+" Toggle a side terminal window
 " https://gist.github.com/ram535/b1b7af6cd7769ec0481eb2eed549ea23#file-gistfile1-vim-L4
 nnoremap <silent>        <F1>         :call MonkeyTerminalToggle()<CR>
 tnoremap <silent>        <F1>          <C-\><C-n>:call MonkeyTerminalToggle()<CR>
-" Toggle comment using tcomment_vim
-nmap                     <C-c>        gc
-xmap                     <C-c>        gc
 " Window navigation and resize
 nnoremap <silent>        <C-h>        :wincmd h<CR>
 nnoremap <silent>        <C-j>        :wincmd j<CR>
@@ -30,12 +27,14 @@ nnoremap <silent>        <M-l>        :vert resize +5<CR>
 " Emacs keybinding
 cnoremap                 <C-a>        <Home>
 cnoremap                 <C-e>        <End>
-cnoremap                 <C-b>        <Left>
-inoremap                 <C-b>        <Left>
-cnoremap                 <M-b>        <S-Left>
-cnoremap                 <C-f>        <Right>
-inoremap                 <C-f>        <Right>
-cnoremap                 <M-f>        <S-Right>
+cnoremap                 <F6>         <Left>
+cnoremap                 <C-o>        <Right>
+cnoremap                 <F2>         <S-Left>
+cnoremap                 <F3>         <S-Right>
+inoremap                 <F6>         <Left>
+inoremap                 <C-o>        <Right>
+inoremap                 <F2>         <S-Left>
+inoremap                 <F3>         <S-Right>
 " Map <cmd-hjkl> to arrow keys in karabiner or other mapping programs
 nnoremap <silent>        <Up>         :cprevious<CR>
 nnoremap <silent>        <Down>       :cnext<CR>

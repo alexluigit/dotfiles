@@ -22,17 +22,14 @@ set lazyredraw " dont redraw screen during macro execution
 set list
 set fillchars=diff:∙               " BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
 set fillchars+=fold:·              " MIDDLE DOT (U+00B7, UTF-8: C2 B7)
-set listchars+=tab:▷┅                 " WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7)
-if has('nvim-0.3.1')
-  set fillchars+=eob:\              " suppress ~ at EndOfBuffer
-  set fillchars+=vert:\              " BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
-endif
+set listchars+=tab:▷·              " WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7)
+set fillchars+=eob:\               " suppress ~ at EndOfBuffer
+set fillchars+=vert:\              " supress sign between vertical splits
 if has("persistent_undo")
   set undodir=$HOME/.local/share/nvim/undo " adds ability to undo changes even if vim was previously closed
   set undofile
 " set undolevels=1000 undoreload=10000
 endif
-if !has("Darwin") | set clipboard=unnamedplus | endif
 colorscheme gruvbox
 hi! Normal guibg=NONE
 hi! NormalNC guibg=NONE

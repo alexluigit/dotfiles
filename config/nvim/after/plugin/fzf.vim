@@ -27,8 +27,7 @@ let g:fzf_action = {
   \ 'ctrl-t': function('s:newtabsplit'),
   \ 'ctrl-n': function('s:fzf_cycle'),
   \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit',
-  \ 'ctrl-l': 'e',
+  \ 'ctrl-l': 'vsplit',
   \ 'ctrl-z': 'arga' } " ctrl-z in fzf window is a bug?
 
 " Define Files to have --prompt for fzf_cycle
@@ -36,7 +35,7 @@ command! -bang -nargs=* Files
 \ call fzf#run(fzf#wrap({'source': 'fd -t f -H',
 \ 'options': [ '-m', '--prompt', 'Files> ', '--preview', '~/.config/nvim/pack/bundle/opt/fzf.vim/bin/preview.sh {}'] } ))
 command! -bang -nargs=* All
-\ call fzf#run(fzf#wrap({'source': 'fd -t f -H -I --ignore-file ~/.fdignore . "$HOME"',
+\ call fzf#run(fzf#wrap({'source': 'fd -t f -H --ignore-file ~/.config/fd/fdignore . "$HOME"',
 \ 'options': [ '-m', '--prompt', 'All> ', '--preview', '~/.config/nvim/pack/bundle/opt/fzf.vim/bin/preview.sh {}'] } ))
 command! -bang -nargs=* Rg
 \ call fzf#vim#grep(
@@ -47,6 +46,7 @@ command! -bang -nargs=* Rg
 command! -bang -nargs=* GGrep
 \ call fzf#vim#grep('git grep --line-number '.shellescape(<q-args>), 0,
 \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
 " let g:fzf_buffers_jump = 1
 " command! -nargs=* -complete=dir Cd call fzf#run(fzf#wrap(
 "   \ {'source': 'find '.(empty(<f-args>) ? '.' : <f-args>).' -type d',

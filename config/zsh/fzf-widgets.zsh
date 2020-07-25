@@ -1,14 +1,31 @@
 # TODO fzf-music
-# TODO fzf-git
-
 fzf-cd() {
-  local destination=$(fd -H -L -t d . ${1:-/media/HDD} \
-  | fzf --preview='tree -L 1 {}')
-  [[ -n "$destination" ]] && cd "$destination"
-  zle reset-prompt 2>/dev/null
+  local drivePath="$HOME/Documents/Drive/"
+  local dir="$1/"
+  local defaultPath="$HOME/"
+  local dest=$(fd -H -L -t d $2 --ignore-file $XDG_CONFIG_HOME/fd/fdignore . ${1:-$defaultPath} \
+  | sed "s|^$drivePath|/media/HDD/|" | sed "s|^$dir||" | fzf --preview="tree -L 1 $dir{}")
+  [[ -z "$dest" ]] && return || { cd "$dir$dest" && zle reset-prompt 2>/dev/null }
 }
-smart-ctrl-f() { [[ -n $BUFFER ]] && { zle forward-char; return } || fzf-cd }
-zle -N smart-ctrl-f
+fcd-or-find() { [[ -z $BUFFER ]] && fzf-cd $PWD || { BUFFER="vifmrun ."; zle accept-line } }; zle -N fcd-or-find
+fzf-project() { fzf-cd ~/Dev -d1 }; zle -N fzf-project
+
+fzf-open() {
+  local dir="$1/" fdCmd="$2" previewCmd="$3" openCmd="$4"
+  local dftFd="fd -t f -L --ignore-file $XDG_CONFIG_HOME/fd/fdignore"
+  local dftDir="$HOME/" dftPreview="du -h" dftOpen=xdg-open
+  eval "${fdCmd:-$dftFd} . ${dir:-$dftDir}" | sed "s|^$dir||" \
+  | fzf -m --preview="${previewCmd:-$dftPreview} $dir{}" \
+  | sed "s|^|$dir|" | xargs -ro -d '\n' ${openCmd:-$dftOpen} 2>&1
+  zle reset-prompt; zle-line-init
+}
+fzf-dot() { fzf-open ~/Dev/Alex.files 'fd -tf -H --ignore-file ~/.config/fd/dotignore' 'bat -p --color=always' 'nvim' }
+forwardchar-or-open() { [[ -n $BUFFER ]] && { zle forward-char; return } || fzf-open $PWD }
+zle -N forwardchar-or-open
+backwardchar-or-edit() { [[ -n $BUFFER ]] && { zle backward-char; return } || fzf-dot }
+zle -N backwardchar-or-edit
+fzf-note() { fzf-open ~/Documents/AllNotes 'fd -tf' 'bat -p --color=always' nvim }
+zle -N fzf-note
 
 fzf-history() {
   local selected num
@@ -23,42 +40,8 @@ fzf-history() {
 }
 zle -N fzf-history
 
-fzf-note() {
-  local nPath="$HOME/Documents/AllNotes/"
-  fd -t f . $nPath | sed "s|$nPath||" \
-  | fzf -m --preview="bat -p --color=always $nPath{}" \
-  | sed "s|^|$nPath|" | xargs -ro -d '\n' nvim
-  zle reset-prompt 2>&1; zle-line-init 2>&1
-}
-smart-ctrl-n() { [[ -n $BUFFER ]] && { zle forward-word; return } || fzf-note }
-zle -N smart-ctrl-n
-
-fzf-open() {
-  local fPath="/media/HDD/"
-  fd -t f -L --ignore-file $fPath.fdignore . $fPath | sed "s|$fPath||" \
-  | fzf -m --query=${(q)LBUFFER} --preview="du -h $fPath{}" \
-  | sed "s|^|$fPath|" | xargs -ro -d '\n' xdg-open >/dev/null
-}
-zle -N fzf-open
-
-fzf-project() {
-  local prefix="$HOME/Dev/"
-  local destination=$(fd -H -t d -d 1 . ~/Dev | sed "s|$prefix||" | fzf --preview="tree -L 1 $prefix{}" )
-  [[ ! -z "$destination" ]] && cd "$prefix$destination"
-  zle reset-prompt 2>&1; zle-line-init 2>&1
-}
-smart-ctrl-p() { [[ -n $BUFFER ]] && { zle backward-word; return } || fzf-project }
-zle -N smart-ctrl-p
-
-fzf-starstar() {
-  BUFFER="$BUFFER**"
-  zle end-of-line; zle fzf-completion;
-}
+fzf-starstar() { BUFFER="$BUFFER**"; zle end-of-line; zle fzf-completion; }
 zle -N fzf-starstar
 
-# fzf-vim() {
-#   fd -t f -H -I --ignore-file ~/.fdignore . ~ \
-#   | fzf -m | xargs -ro -d '\n' nvim 2>&-
-#   zle reset-prompt 2>&1; zle-line-init 2>&1
-# }
-# zle -N fzf-vim
+fzf-pac-sync() { sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}") }
+fzf-pac-local() { sudo pacman -Rns $(pacman -Qeq | fzf -m --preview="pacman -Si {}") }

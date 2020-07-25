@@ -1,20 +1,16 @@
-mkcd() { mkdir -p $@ && cd ${@:$#} } # As the name implies
+mkcd() { mkdir -p $@ && cd ${@:$#} }
 
-# Use one key toggle fore/background
 fg-bg() { [[ $#BUFFER -eq 0 ]] && { fg; zle reset-prompt; zle-line-init } || zle push-input }
-zle -N fg-bg
+zle -N fg-bg # Use one key toggle fore/background
 
-# Up a dir anytime
 updir-onthefly() {
   [[ -z $BUFFER ]] && { cd ..; zle reset-prompt } \
-  || { zle kill-whole-line && cd ..; zle reset-prompt; zle yank }
-}
-zle -N updir-onthefly
+  || { zle kill-whole-line && cd ..; zle reset-prompt; zle yank }}
+zle -N updir-onthefly # Up a dir anytime
 
-# Smart C-l, accept autosuggestion while typing, otherwise clear screen (empty buffer)
-smart-ctrl-l() { [[ -z $BUFFER ]] && zle clear-screen || zle autosuggest-accept }
-zle -N smart-ctrl-l
-ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(smart-ctrl-l)
+clear-or-complete() { [[ -z $BUFFER ]] && zle clear-screen || zle autosuggest-accept }
+zle -N clear-or-complete # Smart C-l, accept autosuggestion while typing, otherwise clear screen
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(clear-or-complete)
 
 tmux-automation() {
   # Make sure even pre-existing tmux sessions use the latest SSH_AUTH_SOCK. (Inspired by: https://gist.github.com/lann/6771001)
@@ -28,3 +24,31 @@ tmux-automation() {
   local SESSION_NAME=$(basename "${$(pwd)//[.:]/_}")
   env SSH_AUTH_SOCK=$SOCK_SYMLINK tmux new -A -s "$SESSION_NAME"
 }
+
+ex() {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.tar.xz)    tar xJf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else; echo "'$1' is not a valid file"; fi
+}
+
+unalias z
+z() {
+  [[ -z "$*" ]] && cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')" \
+  || { _last_z_args="$@"; _z "$@" }
+}
+zz() { cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")" }
+alias j=z; alias jj=zz

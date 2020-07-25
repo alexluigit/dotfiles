@@ -6,20 +6,21 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-# Custom function keybind
-bindkey "^\\" updir-onthefly
-bindkey '^f'  smart-ctrl-f # Forward char       or  "find"
-bindkey '^l'  smart-ctrl-l # Clear screen       or  "Line complete"
-bindkey '^n'  smart-ctrl-n # Forward word       or  "Notes"
-bindkey '^p'  smart-ctrl-p # Backward word      or  "Projects"
-bindkey '^o'  fzf-open
+# TODO:clipboard
+# smart keys
+bindkey "^\\"    updir-onthefly
+bindkey '^f'     fcd-or-find
+bindkey '^[[17~' backwardchar-or-edit # Ramap <C-i> to F6
+bindkey '^o'     forwardchar-or-open
+bindkey '^z'     fg-bg
+bindkey '^l'     clear-or-complete
+bindkey '^[OQ'   vi-backward-word # Remap <ctrl-;> to F2 and <ctrl-'> to F3
+bindkey '^[OR'   vi-forward-word # This key can also trigger partial autocomplete
+
+bindkey '^n'  fzf-note
+bindkey '^p'  fzf-project
 bindkey '^r'  fzf-history
 bindkey '^t'  fzf-starstar
-bindkey '^z'  fg-bg
-
-# Autosuggest small word
-bindkey '^[OQ' vi-backward-word # Remap to ^;
-bindkey '^[OR' vi-forward-word # Remap to ^'
 
 # History searching base on what you already typed
 autoload -U up-line-or-beginning-search

@@ -1,32 +1,106 @@
-# Restart bspwm
-super + shift + Delete
-  bspc wm -r
-
-# Focus on window in direction
-super + {h,j,k,l}
-	bspc node -f {west,south,north,east}
-
+##-------------------------------------------------------------------##
+#                                Focus                                #
+##-------------------------------------------------------------------##
 # focus or send to the given desktop
-super + {_,shift + }{1-5}
-	bspc {desktop -f,node -d} ^{1-5}
+super + {_, shift + } {1-7}
+	bspc {desktop -f,node -d} ^{1-7}
+# send current window to (and focus) given desktop
+super + control + {1-7}
+	bspc node -d ^{1-7} --follow
+# focus on window in direction
+super + {h, j, k, l}
+	bspc node -f {west,south,north,east}
+# swap the current node and the biggest local node
+super + s
+	{ bspc node -s biggest.local || bspc node -s next.local }
+# alternate between the tiled and monocle layout
+super + f
+	bspc desktop -l next
+# toggle floating on and off
+super + shift + f
+  bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
+# rotate the tree from the current nodes parent
+super + Tab
+  bspc node @parent -C forward
+# last focus desktop
+super + grave
+	bspc desktop last --focus
 
-# Close window / quit program
+##-------------------------------------------------------------------##
+#                                Size                                 #
+##-------------------------------------------------------------------##
+# equalize or balance all window
+hyper + {e, b}
+	bspc node @/ -{E,B}
+# preselect the ratio
+hyper + {1-9}
+	bspc node -o 0.{1-9}
+# cancel the preselection for the focused node
+hyper + space
+	bspc node -p cancel
+# expand a window by moving one of its side outward
+hyper + {h, j, k, l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+# contract a window by moving one of its side outward
+hyper + {o, i, u, y}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+# move a floating window
+hyper + {p, bracketleft, bracketright, backslash}
+  xdo move {-x -20, -y +20, -y -20, -x +20}
+
+##-------------------------------------------------------------------##
+#                            Quick launch                             #
+##-------------------------------------------------------------------##
+super + w
+	chromium && sleep 10 && rm -rf ~/.pki
+super + {n, e}
+  {nautilus, alacritty}
+# rofi
+super + shift + ctrl + alt + r
+	rofi -show run
+super + m
+	netease-cloud-music-gtk
+	# netease-cloud-music --ignore-certificate-errors --force-device-scale-factor=2
+##-------------------------------------------------------------------##
+#                            Quit/Restart                             #
+##-------------------------------------------------------------------##
 super + {_, shift} q
   xdo { close, kill }
+button{8,9}
+  xdotool key {'Control_L+w','Control_L+t'}
+# restart sxhkd
+super + shift + BackSpace
+  killall sxhkd && sxhkd &
+super + shift + {r, s}
+  prompt {"Reboot?" "reboot", "Shutdown?" "sudo -A shutdown -h now"}
+super + shift + Escape
+	prompt 'Leave Xorg?' 'killall Xorg'
+shift + Delete
+	systemctl suspend
 
-# Quick launch
-super + { b, d, f, t }
-  { chromium, dmenu_run, thunar, alacritty }
-
-button8
-  xdotool key 'Control_L+w'
-
-button9
-  xdotool key 'Control_L+t'
+##-------------------------------------------------------------------##
+#                                Media                                #
+##-------------------------------------------------------------------##
+# playerctl
+XF86Audio{Prev,Play,Next}
+	music-control {previous,play-pause,next}
+# volume
+XF86Audio{Lower,Raise}Volume
+	pactl set-sink-volume alsa_output.usb-Focusrite_Scarlett_2i4_USB-00.analog-surround-40 {-8%,+8%}
+XF86AudioMute
+	pactl set-sink-mute alsa_output.usb-Focusrite_Scarlett_2i4_USB-00.analog-surround-40 toggle
 
 # Screenshots
 Print
   screenshot full
-
 shift + Print
   screenshot select
+
+##-------------------------------------------------------------------##
+#                                Miscs                                #
+##-------------------------------------------------------------------##
+hyper + XF86AudioRaiseVolume
+  sleep 0.2 && xdotool key 'F12'
+# Restart bspwm
+# super + shift + Delete
+#   killall bspwm

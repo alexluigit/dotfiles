@@ -37,7 +37,13 @@ removeHelper() {
 }
 
 update() {
-  git submodule foreach git pull origin master
+  local mPath=$(git submodule | grep "$1" | awk '{print $2}')
+  [[ $(echo "$mPath" | wc -l) -gt 1 ]] && echo "More than 1 match" && echo $mPath && exit 1
+  git submodule update --recursive --remote $mPath
+}
+
+updateall() {
+  git submodule update --recursive --remote
 }
 
 needStash() {

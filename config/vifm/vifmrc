@@ -33,9 +33,6 @@ mark d ~/Desktop
 set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
 filter /^\.(DS_Store|DocumentRevisions.*|Spotlight-.*|TemporaryItems|Trashes|fseventsd)\/?$/
 
-" <tab> feels not very natural
-nnoremap <C-h> :wincmd h
-nnoremap <C-l> :wincmd l<cr>
 " Like leader in vim
 nnoremap <space>q :q<cr>
 " Display sorting dialog
@@ -62,8 +59,10 @@ nnoremap ` '
 " Example of standard two-panel file managers mappings
 nnoremap <space>e :edit<space>
 nnoremap <space>d :mkdir<space>
-nnoremap <space>c :copy<cr>
+nnoremap <space>c :!chmod  %c<left><left><left>
 nnoremap <space>m :move<cr>
+
+source $VIFM/filetypes
 
 command! df df -h %m 2> /dev/null
 command! diff nvim -d %f %F
@@ -73,7 +72,6 @@ command! make !!make %a
 command! mkcd :mkdir %a | cd %a
 command! reload :write | restart
 
-source $VIFM/filetypes
 
 " ----------------------- Settings documentation -------------------------------
 " ------------------------------------------------------------------------------

@@ -1,0 +1,9 @@
+#!/bin/sh
+playerctl -p chrome $1
+# make sure new album image loaded
+title=$(playerctl -p chrome metadata title)
+artist=$(playerctl -p chrome metadata artist)
+artUrl=$(sed 's/=w60-h60/=w150-h150/' <<< $(playerctl -p chrome metadata mpris:artUrl))
+coverPath="$XDG_CACHE_HOME/covers/youtubemusic.jpg"
+curl "$artUrl" -o $coverPath \
+&& notify=$(notify-send.py --hint string:image-path:file://$coverPath -i youtube -a youtube --replaces-process youtube "$title" "$artist")

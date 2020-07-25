@@ -1,42 +1,7 @@
 [alias]
 	abv      =  !sh -c 'git rev-parse --short ${1-`echo HEAD`}' -
-	ack      =  grep --break --heading
-	amend    =  commit --amend -v
-	br       =  !git loghelpers pretty_git_branch
-	bs       =  !git loghelpers pretty_git_branch_sorted
-	bone     =  !git --paginate log --graph --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset' --all --simplify-by-decoration
-	both     =  diff --ignore-submodules=dirty HEAD
-	cb       =  !sh -c 'git branch "$1" && git checkout "$1"' -
-	ci       =  commit -v
-	co       =  checkout
-	count    =  !git --no-pager log --oneline | wc -l
-	cp       =  cherry-pick
-	# http://stackoverflow.com/questions/224687/git-find-duplicate-blobs-files-in-this-tree/8408640#8408640
-	dupes    =  !git ls-tree -r HEAD | cut -c 13- | sort | uniq -D -w 40
-	ff       =  merge --ff-only
-	fresh    =  remote update --prune
-	fu       =  !sh -c 'git commit --fixup=$1 ${@:2}' -
-	# Shortcut for updating all remotes and fast-forwarding to a specific one: eg. `git get upstream/master`
-	get      =  !f() { git fresh && git ff \"$@\"; }; f
-	h        =  !git r -1
-	hp       =  show --format=fuller
-	gr       =  !git loghelpers pretty_git_graph
-	graph    =  !git gr --all
-	noedit   =  commit --amend --no-edit
-	p        =  add -p
-	l        =  !git loghelpers pretty_git_log
-	la       =  !git l --all
-	lg       =  !git l --grep
-	unpushed =  !git log origin/master..master
-	reword   =  commit --amend --only -v --
-	rollback =  !sh -c 'git reset --merge HEAD~${1-1}' -
-	r        =  !GIT_NO_PAGER=1 git l -30
-	ra       =  !GIT_NO_PAGER=1 git l -30
-	st       =  status
-	stsh     =  stash --keep-index
-	staash   =  stash --include-untracked
-	# similar to whatchanged, but gives a dir-level overview (takes param to diff against; defaults to HEAD if not provided)
-	wd       =  !git --paginate diff --dirstat=cumulative,files,0
+	fixup    =  !sh -c 'git commit --fixup=$1 ${@:2}' -
+	rewind   =  !sh -c 'git reset --merge HEAD~${1-1}' -
 [branch]
 	autosetuprebase = local
 [color]
@@ -59,7 +24,6 @@
 	whitespace = red reverse
 [core]
 	ignorecase = false
-	editor = nvim
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [github]
 	username = alexluigit
@@ -87,3 +51,5 @@
 [user]
 	name = Alex
 	email = hellosimon1103@hotmail.com
+[credential]
+	helper = store

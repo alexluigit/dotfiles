@@ -17,9 +17,9 @@
 # used to split on them. A } in the commit subject or any other field will
 # break this.
 
-LOG_HASH="%C(always,yellow)%h%C(always,reset)"
-LOG_RELATIVE_TIME="%C(always,green)(%ar)%C(always,reset)"
-LOG_AUTHOR="%C(always,blue)<%an>%C(always,reset)"
+LOG_HASH="%C(always,yellow bold)%h%C(always,reset)"
+LOG_RELATIVE_TIME="%C(always,green bold)(%ar)%C(always,reset)"
+LOG_AUTHOR="%C(always,blue bold)<%an>%C(always,reset)"
 LOG_SUBJECT="%s"
 LOG_REFS="%C(always,red)%d%C(always,reset)"
 

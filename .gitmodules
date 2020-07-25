@@ -79,6 +79,7 @@
 	path = config/zsh/plugins/z
 	url = https://github.com/rupa/z
 [submodule "browser-playerctl"]
+	ignore = dirty
 	path = local/apps/browser-playerctl
 	url = https://github.com/alexluigit/browser-playerctl
 [submodule "vb4c"]

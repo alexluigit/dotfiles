@@ -8,11 +8,13 @@ endfunction
 function! alex#window#focus()
   if alex#window#allow_ownsyntax()
     ownsyntax on
+    exec("ColorizerAttachToBuffer")
   endif
 endfunction
 
 function! alex#window#blur()
   if alex#window#allow_ownsyntax()
+    " exec("ColorizerDetachFromBuffer")
     ownsyntax off
   endif
 endfunction

@@ -40,4 +40,6 @@ augroup Miscellaneous
   au FileType * setlocal fo-=c fo-=r fo-=o
   " fzf-cycle helper
   au Filetype fzf let g:term_meta = get(b:, 'term_title', '')
+  " <tab> also fold/unfold patch in fugitive
+  au Filetype fugitive nmap <buffer> <Tab> =
 augroup end

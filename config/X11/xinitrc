@@ -1,10 +1,11 @@
 #!/bin/sh
-ibus-daemon -drx &
 easystroke --config-dir $XDG_CONFIG_HOME/easystroke &
-# fcitx5 &
 remaps &
-sxhkd &
 xrdb -merge $XDG_CONFIG_HOME/X11/xresources
+sxhkd &
+deadd-notification-center &
+fcitx &
+
 # Finally, window manager
 exec bspwm
 # ssh-agent bspwm

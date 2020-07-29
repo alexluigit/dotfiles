@@ -56,7 +56,7 @@ super + w
 super + {n, e}
   {nautilus, alacritty}
 super + shift + ctrl + alt + r
-	rofi -no-lazy-grab -show combi -theme ~/.config/rofi/launchers/blurry.rasi
+	rofi -no-lazy-grab -show combi -theme ~/.config/rofi/themes/launcher.rasi
 super + m
 	chromium --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod
 

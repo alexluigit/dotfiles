@@ -12,13 +12,13 @@ setopt NONOMATCH # Enable url paste without quote
 setopt PROMPT_SUBST # Enable prompt parameter expansion, command substitution and arithmetic expansion
 
 # Aspects
-source $ZDOTDIR/appearance.zsh
-source $ZDOTDIR/widgets.zsh
-source $ZDOTDIR/fzf-widgets.zsh
-source $ZDOTDIR/fzf-git.zsh
-source $ZDOTDIR/alias.zsh
-source $ZDOTDIR/completion.zsh
-source $ZDOTDIR/keybind.zsh
+source $ZDOTDIR/lib/appearance.zsh
+source $ZDOTDIR/lib/widgets.zsh
+source $ZDOTDIR/lib/fzf-widgets.zsh
+source $ZDOTDIR/lib/fzf-git.zsh
+source $ZDOTDIR/lib/alias.zsh
+source $ZDOTDIR/lib/completion.zsh
+source $ZDOTDIR/lib/keybind.zsh
 
 # Plugins
 source $ZDOTDIR/plugins/z/z.sh

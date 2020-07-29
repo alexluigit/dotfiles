@@ -33,8 +33,8 @@ super + grave
 hyper + {e, b}
 	bspc node @/ -{E,B}
 # preselect the ratio
-hyper + {1-9}
-	bspc node -o 0.{1-9}
+hyper + {2-9}
+	bspc node -o 0.{2-9}
 # cancel the preselection for the focused node
 hyper + space
 	bspc node -p cancel
@@ -49,18 +49,17 @@ hyper + {p, bracketleft, bracketright, backslash}
   xdo move {-x -20, -y +20, -y -20, -x +20}
 
 ##-------------------------------------------------------------------##
-#                            Quick launch                             #
+#                             Launch apps                             #
 ##-------------------------------------------------------------------##
 super + w
 	chromium && sleep 10 && rm -rf ~/.pki
 super + {n, e}
   {nautilus, alacritty}
-# rofi
 super + shift + ctrl + alt + r
-	rofi -show run
+	rofi -no-lazy-grab -show combi -theme ~/.config/rofi/launchers/blurry.rasi
 super + m
-	netease-cloud-music-gtk
-	# netease-cloud-music --ignore-certificate-errors --force-device-scale-factor=2
+	chromium --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod
+
 ##-------------------------------------------------------------------##
 #                            Quit/Restart                             #
 ##-------------------------------------------------------------------##
@@ -68,9 +67,8 @@ super + {_, shift} q
   xdo { close, kill }
 button{8,9}
   xdotool key {'Control_L+w','Control_L+t'}
-# restart sxhkd
 super + shift + BackSpace
-  killall sxhkd && sxhkd &
+	pkill -USR1 -x sxhkd
 super + shift + {r, s}
   prompt {"Reboot?" "reboot", "Shutdown?" "sudo -A shutdown -h now"}
 super + shift + Escape
@@ -84,12 +82,13 @@ shift + Delete
 # playerctl
 XF86Audio{Prev,Play,Next}
 	music-control {previous,play-pause,next}
+hyper + XF86Audio{Prev,Play}
+	music-control loop {Playlist,Track}
 # volume
 XF86Audio{Lower,Raise}Volume
 	pactl set-sink-volume alsa_output.usb-Focusrite_Scarlett_2i4_USB-00.analog-surround-40 {-8%,+8%}
 XF86AudioMute
 	pactl set-sink-mute alsa_output.usb-Focusrite_Scarlett_2i4_USB-00.analog-surround-40 toggle
-
 # Screenshots
 Print
   screenshot full
@@ -99,8 +98,16 @@ shift + Print
 ##-------------------------------------------------------------------##
 #                                Miscs                                #
 ##-------------------------------------------------------------------##
+# Escape
+	# xvkbd -xsendevent -text "\[!]"
+XF86MonBrightness{Down,Up}
+	xvkbd -xsendevent -text {"\[!]","\[@]"}
+XF86Launch{A,B}
+	xvkbd -xsendevent -text {"\[#]","\[$]"}
+XF86KbdBrightness{Down,Up}
+	xvkbd -xsendevent -text {"\[%]","\[^]"}
 hyper + XF86AudioRaiseVolume
-  sleep 0.2 && xdotool key 'F12'
+	xvkbd -xsendevent -text "\[F12]"
 # Restart bspwm
 # super + shift + Delete
 #   killall bspwm

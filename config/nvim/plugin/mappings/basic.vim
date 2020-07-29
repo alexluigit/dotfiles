@@ -13,8 +13,8 @@ nnoremap <silent>         -           :EditVifm <bar> setl statusline=%#Normal#<
 nnoremap <silent> <expr> <CR>         empty(&buftype) ? '@@' : '<CR>'
 " Window navigation and resize
 nnoremap <silent>        <C-h>        :wincmd h<CR>
-nnoremap <silent>        <C-j>        :wincmd j<CR>
-nnoremap <silent>        <C-k>        :wincmd k<CR>
+nnoremap <silent>        <Down>       :wincmd j<CR>
+nnoremap <silent>        <Up>         :wincmd k<CR>
 nnoremap <silent>        <C-l>        :wincmd l<CR>
 nnoremap <silent>        <M-h>        :vert resize -5<CR>
 nnoremap <silent>        <M-j>        :resize -5<CR>
@@ -27,8 +27,6 @@ cnoremap                 <F2>         <S-Left>
 cnoremap                 <F3>         <S-Right>
 cnoremap                 <F6>         <Home>
 cnoremap                 <C-o>        <End>
-cnoremap                 <C-j>        <Down>
-cnoremap                 <C-k>        <Up>
 inoremap                 <C-b>        <Left>
 inoremap                 <C-f>        <Right>
 inoremap                 <F2>         <S-Left>

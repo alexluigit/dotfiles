@@ -11,10 +11,6 @@ vnoremap <silent>         K           :m '<-2<CR>gv=gv
 nnoremap <silent>         -           :EditVifm <bar> setl statusline=%#Normal#<cr>
 " <CR> to repeat last macro
 nnoremap <silent> <expr> <CR>         empty(&buftype) ? '@@' : '<CR>'
-" Toggle a side terminal window
-" https://gist.github.com/ram535/b1b7af6cd7769ec0481eb2eed549ea23#file-gistfile1-vim-L4
-nnoremap <silent>        <F1>         :call MonkeyTerminalToggle()<CR>
-tnoremap <silent>        <F1>          <C-\><C-n>:call MonkeyTerminalToggle()<CR>
 " Window navigation and resize
 nnoremap <silent>        <C-h>        :wincmd h<CR>
 nnoremap <silent>        <C-j>        :wincmd j<CR>
@@ -25,18 +21,23 @@ nnoremap <silent>        <M-j>        :resize -5<CR>
 nnoremap <silent>        <M-k>        :resize +5<CR>
 nnoremap <silent>        <M-l>        :vert resize +5<CR>
 " Emacs keybinding
-cnoremap                 <C-a>        <Home>
-cnoremap                 <C-e>        <End>
-cnoremap                 <F6>         <Left>
-cnoremap                 <C-o>        <Right>
+cnoremap                 <C-b>        <Left>
+cnoremap                 <C-f>        <Right>
 cnoremap                 <F2>         <S-Left>
 cnoremap                 <F3>         <S-Right>
-inoremap                 <F6>         <Left>
-inoremap                 <C-o>        <Right>
+cnoremap                 <F6>         <Home>
+cnoremap                 <C-o>        <End>
+cnoremap                 <C-j>        <Down>
+cnoremap                 <C-k>        <Up>
+inoremap                 <C-b>        <Left>
+inoremap                 <C-f>        <Right>
 inoremap                 <F2>         <S-Left>
 inoremap                 <F3>         <S-Right>
+inoremap                 <F6>         <Home>
+inoremap                 <C-o>        <End>
+
 " Map <cmd-hjkl> to arrow keys in karabiner or other mapping programs
-nnoremap <silent>        <Up>         :cprevious<CR>
-nnoremap <silent>        <Down>       :cnext<CR>
-nnoremap <silent>        <Left>       :cpfile<CR>
-nnoremap <silent>        <Right>      :cnfile<CR>
+" nnoremap <silent>        <Up>         :cprevious<CR>
+" nnoremap <silent>        <Down>       :cnext<CR>
+" nnoremap <silent>        <Left>       :cpfile<CR>
+" nnoremap <silent>        <Right>      :cnfile<CR>

@@ -1,10 +1,11 @@
 let mapleader=" "
 
 " search / replace
-nnoremap <silent>       <C-f>            :call TryGFiles()<CR>
+nnoremap                <C-f>            yiw:BLines<CR>
 xnoremap <silent>       <C-f>            ygv:<C-u>BLines <C-r>0<CR>
-nnoremap                <C-p>            :CocSearch <C-r>=expand("<cword>")<CR>
-xnoremap <silent>       <C-p>            y:CocSearch <C-r>0<CR>/<C-r>0<CR>
+nnoremap <silent>       <C-p>            :call TryGFiles()<CR>
+nnoremap                <leader>pw       :CocSearch <C-r>=expand("<cword>")<CR>
+xnoremap <silent>       <leader>pw       y:CocSearch <C-r>0<CR>/<C-r>0<CR>
 nnoremap                <leader>r        :%s///gc<left><left><left>
 xnoremap                <leader>r        :s///gc<left><left><left>
 
@@ -16,7 +17,6 @@ nnoremap <silent>       <leader>b        :Buffers<CR>
 nnoremap <silent>       <leader>c        :BCommits!<CR>
 nnoremap <silent>       <leader>f        :Lines!<CR>
 nnoremap <silent>       <leader>h        :Helptags<CR>
-nnoremap <silent>       <leader>s        :Snippets<CR>
 
 " navigation
 nmap     <silent>       <leader>j        <Plug>(coc-diagnostic-next)
@@ -42,7 +42,7 @@ nnoremap <silent>       <leader>n        :nohlsearch<C-r>=has('diff')?'<Bar>diff
 nnoremap <silent>       <leader>o        :tabedit %<cr>
 nnoremap <silent>       <leader>p        :r !xclip -o -sel clip<CR>
 nnoremap <silent>       <leader>q        :q<CR>
-nnoremap <silent>       <localleader>s   :UltiSnipsEdit<CR>
+nnoremap <silent>       <leader>s        :UltiSnipsEdit<CR>
 nnoremap <silent>       <leader>t        :set relativenumber!<CR>
 nnoremap <silent>       <leader>u        <C-r>
 nnoremap <silent>       <leader>v        :vert sb#<CR>

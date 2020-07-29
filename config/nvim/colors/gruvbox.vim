@@ -885,7 +885,7 @@ call s:HL('ReplaceColor', s:bg0, s:yellow, s:bold)
 call s:HL('VisualColor', s:bg0, s:purple, s:bold)
 call s:HL('SelectColor', s:bg0, s:aqua, s:bold)
 call s:HL('CommandColor', s:bg0, s:red, s:bold)
-call s:HL('FileHead', s:gb.light3, s:gb.dark2, s:italic)
+call s:HL('FileHead', s:gb.light3, s:gb.dark2)
 call s:HL('FileUnMod', s:gb.light0, s:gb.dark2, s:bold)
 call s:HL('FileMod', s:green, s:gb.dark2, s:bold)
 hi Func guifg=#d7875f guibg=#30302C gui=italic

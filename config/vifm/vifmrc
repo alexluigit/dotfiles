@@ -23,6 +23,7 @@ set dotdirs=rootparent " Dot't show '../' since it is unnecessary
 " set statusline=" %A%10u:%-7g %=%20d
 set statusline=" %T %=%l/%S "
 set rulerformat=""
+set confirm=permdelete
 set trashdir="~/.local/share/Trash/files"
 
 mark a /Volumes/HDD/

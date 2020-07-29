@@ -4,7 +4,7 @@ window:
    columns: 180
    lines: 53
   padding:
-   x: 10
+   x: 15
    y: 10
   position:
    x: 0
@@ -13,7 +13,7 @@ window:
 scrolling:
   history: 10000
   multiplier: 3
-background_opacity: 0.90
+background_opacity: 0.7
 
 # Font
 font:
@@ -84,6 +84,7 @@ key_bindings:
   - { key: I,          mods: Control,        chars: "\x1b[17~" }
   - { key: Semicolon,  mods: Control,        chars: "\x1bOQ"   }
   - { key: Apostrophe, mods: Control,        chars: "\x1bOR"   }
+  - { key: Return,     mods: Control,        chars: "\x1b[14~" }
   - { key: Comma,      mods: Control,        chars: "\x1b[21~" }
   - { key: Period,     mods: Control,        chars: "\x1b[23~" }
   - { key: V,          mods: Control,        action: Paste     }

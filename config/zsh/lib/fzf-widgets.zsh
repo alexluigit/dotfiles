@@ -49,3 +49,11 @@ zle -N fzf-starstar
 
 fzf-dirstack() { dirs -v | awk '{ $1=""; print $0 }' | fzf; zle accept-line }
 zle -N fzf-dirstack
+
+fzf-pac-sync() { sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}") }
+fzf-pac-local() { sudo pacman -Rns $(pacman -Qeq | fzf -m --preview="pacman -Si {}") }
+
+fzf-z() {
+  [[ -z "$*" ]] && cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')" \
+  || { _last_z_args="$@"; _z "$@" }
+}

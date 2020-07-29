@@ -2,6 +2,8 @@
 alias c="fzf-cd"
 alias d="gio trash"
 alias f="vifmrun ."
+alias j="z"
+alias jj="fzf-z"
 alias t="tmux-automation"
 alias v='nvim -c "let g:tty='\''$(tty)'\''"'
 alias ka="killall"
@@ -15,8 +17,7 @@ alias ldot='ls -ld .*'
 alias lsize='ls -1FSsh'
 alias lart='ls -1aFcrt'
 alias -g B="| bat"
-alias -g F="| fzf"
-alias -g G="| rg"
+alias -g F="| fzf" alias -g G="| rg"
 alias -g NE="2> /dev/null"
 alias -g NUL="> /dev/null 2>&1"
 alias -g S="| sort -n -r"
@@ -58,46 +59,3 @@ alias pacupg="sudo pacman -Syu"
 alias pacaur="pacman -Qm"
 alias pacorp="pacman -Qdt"
 alias pacrmo="sudo pacman -Rns $(pacman -Qtdq)" # remove orphan
-
-# functions
-mkcd() { mkdir -p $@ && cd ${@:$#} }
-
-tmux-automation() {
-  # https://gist.github.com/lann/6771001
-  local SOCK_SYMLINK=~/.ssh/ssh_auth_sock
-  [ -r "$SSH_AUTH_SOCK" -a ! -L "$SSH_AUTH_SOCK" ] && ln -sf "$SSH_AUTH_SOCK" $SOCK_SYMLINK
-  [[ -n "$@" ]] && { env SSH_AUTH_SOCK=$SOCK_SYMLINK tmux "$@"; return }
-  [ -x .tmux ] && { ./.tmux; return }
-  local SESSION_NAME=$(basename "${$(pwd)//[.:]/_}")
-  env SSH_AUTH_SOCK=$SOCK_SYMLINK tmux new -A -s "$SESSION_NAME"
-}
-
-ex() {
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.tar.xz)    tar xJf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else; echo "'$1' is not a valid file"; fi
-}
-
-fzf-pac-sync() { sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}") }
-fzf-pac-local() { sudo pacman -Rns $(pacman -Qeq | fzf -m --preview="pacman -Si {}") }
-
-z() {
-  [[ -z "$*" ]] && cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')" \
-  || { _last_z_args="$@"; _z "$@" }
-}
-zz() { cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")" }
-alias j=z; alias jj=zz

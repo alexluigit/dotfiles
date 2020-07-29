@@ -1,6 +1,6 @@
 [colors]
 ; ARGB color (e.g. #f00, #ff992a, #ddff1023)
-bg = #99000000
+bg = #FF000000
 fg = #000000
 ac = #FEC006
 trans = #00000000
@@ -86,10 +86,10 @@ type = internal/date
 interval = 10
 format-margin = 4
 time = "%H:%M"
-date = "%b-%d"
-label = %date%  %time%
+; date = "%b-%d"
+label = %time%
 label-background = ${colors.bg}
-label-font = 3
+label-font = 2
 label-padding = 2
 
 [module/pulseaudio]

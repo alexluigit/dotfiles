@@ -1,5 +1,6 @@
 #!/bin/sh
 easystroke --config-dir $XDG_CONFIG_HOME/easystroke &
+xsetroot -cursor_name left_ptr
 remaps &
 xrdb -merge $XDG_CONFIG_HOME/X11/xresources
 sxhkd &

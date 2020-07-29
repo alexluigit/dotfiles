@@ -7,23 +7,27 @@ fzf-cd() {
   | sed "s|^$drivePath|/media/HDD/|" | sed "s|^$dir||" | fzf --preview="tree -L 1 $dir{}")
   [[ -z "$dest" ]] && return || { cd "$dir$dest" && zle reset-prompt 2>/dev/null }
 }
-fcd-or-find() { [[ -z $BUFFER ]] && fzf-cd $PWD || { BUFFER="vifmrun ."; zle accept-line } }; zle -N fcd-or-find
 fzf-project() { fzf-cd ~/Dev -d1 }; zle -N fzf-project
 
 fzf-open() {
   local dir="$1/" fdCmd="$2" previewCmd="$3" openCmd="$4"
   local dftFd="fd -t f -L --ignore-file $XDG_CONFIG_HOME/fd/fdignore"
   local dftDir="$HOME/" dftPreview="du -h" dftOpen=xdg-open
-  eval "${fdCmd:-$dftFd} . ${dir:-$dftDir}" | sed "s|^$dir||" \
-  | fzf -m --preview="${previewCmd:-$dftPreview} $dir{}" \
+  eval "${fdCmd:-$dftFd} . '${dir:-$dftDir}'" | sed "s|^$dir||" \
+  | fzf -m --preview="${previewCmd:-$dftPreview} '$dir'{}" \
   | sed "s|^|$dir|" | xargs -ro -d '\n' ${openCmd:-$dftOpen} 2>&1
   zle reset-prompt; zle-line-init
 }
-fzf-dot() { fzf-open ~/Dev/Alex.files 'fd -tf -H --ignore-file ~/.config/fd/dotignore' 'bat -p --color=always' 'nvim' }
+fzf-dot() {
+  cd ~/Dev/Alex.files
+  fzf-open ~/Dev/Alex.files \
+  'fd -tf -H --ignore-file ~/.config/fd/dotignore' \
+  'bat -p --color=always' 'nvim'
+  cd -; zle reset-prompt; zle-line-init
+}
+zle -N fzf-dot
 forwardchar-or-open() { [[ -n $BUFFER ]] && { zle forward-char; return } || fzf-open $PWD }
 zle -N forwardchar-or-open
-backwardchar-or-edit() { [[ -n $BUFFER ]] && { zle backward-char; return } || fzf-dot }
-zle -N backwardchar-or-edit
 fzf-note() { fzf-open ~/Documents/AllNotes 'fd -tf' 'bat -p --color=always' nvim }
 zle -N fzf-note
 
@@ -43,5 +47,5 @@ zle -N fzf-history
 fzf-starstar() { BUFFER="$BUFFER**"; zle end-of-line; zle fzf-completion; }
 zle -N fzf-starstar
 
-fzf-pac-sync() { sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}") }
-fzf-pac-local() { sudo pacman -Rns $(pacman -Qeq | fzf -m --preview="pacman -Si {}") }
+fzf-dirstack() { dirs -v | awk '{ $1=""; print $0 }' | fzf; zle accept-line }
+zle -N fzf-dirstack

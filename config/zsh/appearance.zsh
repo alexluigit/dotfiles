@@ -89,9 +89,9 @@ chpwd_prompt () {
 # Check background_job, super_user, exit code (Use ternary operators here)
 local bg_jobs="%(1j.%{$fg_bold[red]%} .)"
 local privileges="%(#.%{$fg_bold[red]%} .)"
-local up_prompt=' $bg_jobs$privileges$cwd_head$cwd_tail $(git_prompt_info)$timer'
+local up_prompt='$bg_jobs$privileges$cwd_head$cwd_tail $(git_prompt_info)$timer'
 local line_break=$'\n'%{$reset_color%}
-local ret_status="%(?:%{$fg_bold[green]%}   :%{$fg_bold[red]%}   %s)"
+local ret_status="%(?:%{$fg_bold[green]%}  :%{$fg_bold[red]%}  %s)"
 PROMPT="$up_prompt$line_break$ret_status"
 # chpwd_functions are hook funcs that will be exec after pwd change
 # Add to chpwd hook and trigger the chpwd hooks once, this line should appear after the prompt definition

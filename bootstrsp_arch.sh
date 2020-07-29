@@ -30,7 +30,7 @@ BUILDS=(
 # This approach is much persistent than execute setxkbmap in ~/.xinitrc
 # Settings below will not lost during bluetooth reconnection or plug/unplug keyboard
 # See: https://wiki.archlinux.org/index.php/Xorg/Keyboard_configuration
-localectl --no-convert set-x11-keymap us "" "" caps:ctrl_modifier,shift:both_capslock
+localectl --no-convert set-x11-keymap us "" "" caps:ctrl_modifier,shift:both_capslock_cancel
 
 # Bluetooth setting
 # Privoxy config

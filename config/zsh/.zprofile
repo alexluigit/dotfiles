@@ -20,8 +20,8 @@ export PATH=$PATH:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin
 
 # Default programs
 export EDITOR="nvim"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export FZF_DEFAULT_COMMAND="fd -t f -H --ignore-file $XDG_CONFIG_HOME/fd/fdignore"
+export MANPAGER="nvim +set\ filetype=man -"
+export FZF_DEFAULT_COMMAND="fd -t f -L --ignore-file $XDG_CONFIG_HOME/fd/fdignore"
 
 # App Scale (4k monitor)
 export GDK_SCALE=2

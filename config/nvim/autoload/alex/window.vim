@@ -1,4 +1,4 @@
-let s:ownsyntax_blacklist = [ '' ]
+let s:ownsyntax_blacklist = [ '', 'man', 'qf']
 function! alex#window#allow_ownsyntax() abort
   if index(s:ownsyntax_blacklist, &filetype) != -1 | return 0 | endif
   " if !empty(&buftype) | return 0 | endif

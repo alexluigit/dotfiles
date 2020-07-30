@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+[[ $(xprop -id $(xdotool getwindowfocus) WM_NAME | cut -d '"' -f 2) != "Alacritty" ]] && xvkbd -xsendevent -text {"\[Down]","\[Up]"} || xvkbd -xsendevent -text {"\\Cj","\\Ck"}

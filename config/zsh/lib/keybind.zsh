@@ -12,8 +12,8 @@ bindkey '^e'     edit-command-line
 bindkey '^f'     file-or-forwardchar
 bindkey '^g'     fzf-dot
 bindkey '^[[17~' beginning-of-line # C-i -> F6
-bindkey '^[[B'   down-line-or-beginning-search # Down
-bindkey '^[[A'   up-line-or-beginning-search # Up
+bindkey '^j'     down-line-or-beginning-search
+bindkey '^k'     up-line-or-beginning-search
 bindkey '^l'     clear-or-complete
 bindkey '^n'     fzf-note
 bindkey '^o'     eol-or-fzf-z

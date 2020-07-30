@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-[[ $(xprop -id $(xdotool getwindowfocus) WM_NAME | cut -d '"' -f 2) == "$1" ]] && "$@"
-

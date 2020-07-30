@@ -23,11 +23,12 @@ fzf-dot() {
   fzf-open ~/Dev/Alex.files \
   'fd -tf -H --ignore-file ~/.config/fd/dotignore' \
   'bat -p --color=always' 'nvim'
-  cd -; zle reset-prompt; zle-line-init
+  cd -; zle reset-prompt;
 }
-zle -N fzf-dot
-forwardchar-or-open() { [[ -n $BUFFER ]] && { zle forward-char; return } || fzf-open $PWD }
-zle -N forwardchar-or-open
+bol-or-fdot() { [[ -n $BUFFER ]] && { zle beginning-of-line } || fzf-dot }
+zle -N bol-or-fdot
+forwardchar-or-fzf-z() { [[ -n $BUFFER ]] && { zle forward-char; return } || fzf-z }
+zle -N forwardchar-or-fzf-z
 fzf-note() { fzf-open ~/Documents/AllNotes 'fd -tf' 'bat -p --color=always' nvim }
 zle -N fzf-note
 
@@ -55,5 +56,7 @@ fzf-pac-local() { sudo pacman -Rns $(pacman -Qeq | fzf -m --preview="pacman -Si 
 
 fzf-z() {
   [[ -z "$*" ]] && cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')" \
-  || { _last_z_args="$@"; _z "$@" }
+  || { _last_z_args="$@"; _z "$@"; zle reset-prompt }
 }
+eol-or-open() { [[ -n $BUFFER ]] && { zle end-of-line; return } || fzf-open $PWD }
+zle -N eol-or-open

@@ -4,7 +4,7 @@
 # - Substring complete (ie. bar -> foobar).
 # - Use fzf completion **
 autoload -Uz compinit
-compinit -d $ZDOTDIR/cache/zcompdump-$ZSH_VERSION
+compinit -d $ZSH_CACHE_DIR/zcompdump-$ZSH_VERSION
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'

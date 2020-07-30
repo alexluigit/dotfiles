@@ -10,14 +10,13 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey '^a'     fzf-dirstack
 bindkey '^e'     edit-command-line
 bindkey '^f'     file-or-forwardchar
-bindkey '^g'     fzf-dot
-bindkey '^[[17~' beginning-of-line # C-i -> F6
+bindkey '^[[17~' bol-or-fdot # C-i -> F6
 bindkey '^j'     down-line-or-beginning-search
 bindkey '^k'     up-line-or-beginning-search
 bindkey '^l'     clear-or-complete
 bindkey '^n'     fzf-note
-bindkey '^o'     eol-or-fzf-z
-bindkey '^p'     forwardchar-or-open
+bindkey '^o'     eol-or-open
+bindkey '^p'     forwardchar-or-fzf-z
 bindkey '^r'     fzf-history
 bindkey '^t'     fzf-starstar
 bindkey '^u'     kill-and-yank-buffer

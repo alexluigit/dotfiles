@@ -1,5 +1,6 @@
 # Options
 setopt AUTO_CD # Change dir without typing cd
+setopt CD_SILENT
 setopt AUTO_PUSHD # Push dir into dir stack
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_MINUS

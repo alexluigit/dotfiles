@@ -3,7 +3,6 @@ alias c="fzf-cd"
 alias d="gio trash"
 alias f="vifmrun ."
 alias j="z"
-alias jj="fzf-z"
 alias t="tmux-automation"
 alias v='nvim -c "let g:tty='\''$(tty)'\''"'
 alias ka="killall"

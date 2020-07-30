@@ -33,9 +33,3 @@ inoremap                 <F2>         <S-Left>
 inoremap                 <F3>         <S-Right>
 inoremap                 <F6>         <Home>
 inoremap                 <C-o>        <End>
-
-" Map <cmd-hjkl> to arrow keys in karabiner or other mapping programs
-" nnoremap <silent>        <Up>         :cprevious<CR>
-" nnoremap <silent>        <Down>       :cnext<CR>
-" nnoremap <silent>        <Left>       :cpfile<CR>
-" nnoremap <silent>        <Right>      :cnfile<CR>

@@ -53,8 +53,10 @@ hyper + {p, bracketleft, bracketright, backslash}
 ##-------------------------------------------------------------------##
 super + w
 	chromium && sleep 10 && rm -rf ~/.pki
-super + {n, e}
-  {nautilus, alacritty}
+super + {e, v}
+  alacritty {_, -e vifmrun}
+super + o; {n}
+	nautilus
 super + shift + ctrl + alt + r
 	rofi -no-lazy-grab -show combi -theme ~/.config/rofi/themes/launcher.rasi
 super + m
@@ -98,16 +100,10 @@ shift + Print
 ##-------------------------------------------------------------------##
 #                                Miscs                                #
 ##-------------------------------------------------------------------##
-# Escape
-	# xvkbd -xsendevent -text "\[!]"
-XF86MonBrightness{Down,Up}
-	xvkbd -xsendevent -text {"\[!]","\[@]"}
-XF86Launch{A,B}
-	xvkbd -xsendevent -text {"\[#]","\[$]"}
-XF86KbdBrightness{Down,Up}
-	xvkbd -xsendevent -text {"\[%]","\[^]"}
+control + space; {1,2,3,4,5,6,7,8,9,0,minus,equal}
+	xvkbd -xsendevent -text {"\[!]","\[@]","\[#]","\[$]","\[%]","\[^]","\[&]","\[*]","\[(]","\[)]","\[_]","\[+]"}
+# XF86MonBrightness{Down,Up}
+# XF86Launch{A,B}
+# XF86KbdBrightness{Down,Up}
 hyper + XF86AudioRaiseVolume
 	xvkbd -xsendevent -text "\[F12]"
-# Restart bspwm
-# super + shift + Delete
-#   killall bspwm

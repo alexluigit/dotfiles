@@ -1,4 +1,6 @@
-# Window
+env:
+  TERM: xterm-256color
+
 window:
   dimensions:
    columns: 180

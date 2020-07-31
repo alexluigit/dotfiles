@@ -2,7 +2,7 @@
 bspc rule -r "*"
 
 launchPolybar &
-xwallpaper --zoom ~/Pictures/Wallpaper/Fuji-mountain.jpg &
+xwallpaper --zoom ~/Pictures/Wallpaper/Dany-0.png &
 picom --xrender-sync-fence --experimental-backends &
 autolock &
 killall redshift && redshift &

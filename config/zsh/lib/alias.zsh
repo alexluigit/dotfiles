@@ -50,11 +50,11 @@ alias glp="git loghelpers pretty_git_log --all" # log grep, in case forgit::log 
 alias gra="git loghelpers pretty_git_graph --all"
 alias gre="GIT_NO_PAGER=1 git loghelpers pretty_git_log --all -30" # recent
 alias gwd="git --paginate diff --dirstat=cumulative,files,0"
-alias fgb='fzf-branch'
-alias fgl='fzf-log'
-alias fgd='fzf-diff'
-alias fgi='fzf-ignore'
-alias fgs='fzf-stash-show'
+alias fgb="fzf-git-branch"
+alias fgl="fzf-git-log"
+alias fgd="fzf-git-diff"
+alias fgs="fzf-git-stash"
+# alias fgi="fzf-ignore"
 
 # pacman
 alias pas="fzf-pac-sync"

@@ -2,7 +2,7 @@ inside-worktree() { git rev-parse --is-inside-work-tree >/dev/null; }
 gitpager=$(git config core.pager || echo 'cat')
 
 # git commit viewer
-fzf-log() {
+fzf-git-log() {
     inside-worktree || return 1
     local cmd opts graph files
     files=$(sed -nE 's/.* -- (.*)/\1/p' <<< "$*") # extract files parameters for `git show` command
@@ -18,7 +18,7 @@ fzf-log() {
 }
 
 # git diff viewer
-fzf-diff() {
+fzf-git-diff() {
     inside-worktree || return 1
     local cmd files opts commit repo
     [[ $# -ne 0 ]] && {
@@ -39,7 +39,7 @@ fzf-diff() {
 }
 
 # git stash viewer
-fzf-stash-show() {
+fzf-git-stash() {
     inside-worktree || return 1
     local cmd opts
     cmd="echo {} |cut -d: -f1 |xargs -I% git stash show --color=always --ext-diff % |$gitpager"
@@ -68,7 +68,7 @@ $FZF_DEFAULT_OPTS
 +1
 "
 
-fzf-branch() {
+fzf-git-branch() {
   local tags branches target
   branches=$(
     git --no-pager branch --all \

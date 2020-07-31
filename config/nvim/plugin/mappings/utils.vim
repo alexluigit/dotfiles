@@ -1,7 +1,7 @@
 let mapleader=" "
 
 " search / replace
-nnoremap                <C-f>            yiw:BLines<CR>
+nnoremap <silent>       <C-f>            yiw:BLines<CR>
 xnoremap <silent>       <C-f>            ygv:<C-u>BLines <C-r>0<CR>
 nnoremap <silent>       <C-p>            :call TryGFiles()<CR>
 nnoremap                <leader>pw       :CocSearch <C-r>=expand("<cword>")<CR>

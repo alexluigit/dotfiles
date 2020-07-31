@@ -16,6 +16,8 @@ alias la='ls -lAFh'   #long list,show almost all,show type,human readable
 alias ldot='ls -ld .*'
 alias lsize='ls -1FSsh'
 alias lart='ls -1aFcrt'
+alias trals="ls $XDG_DATA_HOME/Trash/files"
+alias tracl="rm -rf $XDG_DATA_HOME/Trash/{files,info}/*"
 alias -g B="| bat"
 alias -g F="| fzf" alias -g G="| rg"
 alias -g NE="2> /dev/null"

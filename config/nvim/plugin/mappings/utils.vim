@@ -48,3 +48,4 @@ nnoremap <silent>       <leader>u        <C-r>
 nnoremap <silent>       <leader>v        :vert sb#<CR>
 nnoremap <silent>       <leader>w        :silent! w<CR>
 nnoremap <silent>       <leader>x        :silent! x<CR>
+nmap                    <S-BS>           :call alex#utils#syntax_group()<CR>

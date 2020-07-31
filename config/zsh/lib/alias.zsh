@@ -2,6 +2,7 @@
 alias c="fzf-cd"
 alias d="gio trash"
 alias f="vifmrun ."
+alias g="inside-worktree && nvim -c Gstatus || return 1"
 alias j="z"
 alias t="tmux-automation"
 alias v='nvim -c "let g:tty='\''$(tty)'\''"'

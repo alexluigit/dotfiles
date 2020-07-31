@@ -4,6 +4,7 @@ function! alex#autocmds#vim_enter() abort
     call man#show_toc()
     wincmd H | vert res 40 | setl stl= | wincmd l
   return | endif
+  if &ft=="fugitive" | wincmd o | return | endif
   if argc() == 0 | call TryGFiles() | return | endif
 endfunction
 

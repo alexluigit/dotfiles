@@ -34,12 +34,12 @@ augroup Miscellaneous
   au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
   " Highlight yanked content for 500 ms and send OSC52 seqs to tty
   au TextYankPost * call alex#autocmds#yank_post()
-  " Change to US input source when leaving insert mode
-  au InsertLeave * silent execute('!xkbswitch -s 1')
   " Don't help me to auto comment newline
   au FileType * setlocal fo-=c fo-=r fo-=o
   " fzf-cycle helper
   au Filetype fzf let g:term_meta = get(b:, 'term_title', '')
-  " <tab> also fold/unfold patch in fugitive
+  " <tab> key fold/unfold patch in fugitive
   au Filetype fugitive nmap <buffer> <Tab> =
+  " change layout when nvim window resize
+  au VimResized * execute('wincmd =')
 augroup end

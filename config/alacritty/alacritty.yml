@@ -15,7 +15,6 @@ scrolling:
   multiplier: 3
 background_opacity: 0.7
 
-# Font
 font:
   normal:
     family: VictorMono Nerd Font
@@ -41,7 +40,6 @@ draw_bold_text_with_bright_colors: true
 cursor:
   vi_mode_style: Underline
 
-# Colors (Gruvbox dark)
 colors:
   primary:
     hard contrast: background = '#1d2021'
@@ -128,11 +126,3 @@ key_bindings:
   - { key: Slash,  mods: Shift,         mode: Vi, action: SearchBackward          }
   - { key: N,                           mode: Vi, action: SearchNext              }
   - { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
-
-  # Why Shift + thesekey not working?
-  # - { key: Key4,   mods: Shift,         mode: Vi, action: Last                    }
-  # - { key: Key5,   mods: Shift,         mode: Vi, action: Bracket                 }
-  # - { key: Key6,   mods: Shift,         mode: Vi, action: FirstOccupied           }
-  # - { key: B,      mods: Shift,         mode: Vi, action: WordLeft                }
-  # - { key: W,      mods: Shift,         mode: Vi, action: WordRight               }
-  # - { key: E,      mods: Shift,         mode: Vi, action: WordRightEnd            }

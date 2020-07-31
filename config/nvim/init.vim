@@ -1,7 +1,5 @@
-if has('nvim')
-  packadd! coc.nvim
-  packadd! nvim-colorizer.lua
-endif
+packadd! coc.nvim
+packadd! nvim-colorizer.lua
 packadd! fzf
 packadd! fzf.vim
 packadd! vifm.vim

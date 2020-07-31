@@ -65,7 +65,6 @@ configuration {
 /*	dpi: -1;*/
 /*	scrollbar-width: 8;*/
 /*	fake-background: "screenshot";*/
-/*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
 /*	theme: ;*/

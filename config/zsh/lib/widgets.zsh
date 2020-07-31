@@ -5,11 +5,11 @@ autoload -U down-line-or-beginning-search; zle -N down-line-or-beginning-search
 kill-and-yank-buffer() { echo -n "$BUFFER" | xclip -selection clipboard; zle kill-whole-line }
 zle -N kill-and-yank-buffer
 
-file-or-forwardchar() { [[ -z $BUFFER ]] && BUFFER="vifmrun ."; zle accept-line || zle forward-char }
+file-or-forwardchar() { [[ -z $BUFFER ]] && { BUFFER="vifmrun ."; zle accept-line } || zle forward-char }
 zle -N file-or-forwardchar
 
 fg-bg() { [[ $#BUFFER -eq 0 ]] && { fg; zle reset-prompt; zle-line-init } || zle push-input }
-zle -N fg-bg # Use one key toggle fore/background
+zle -N fg-bg
 
 updir-onthefly() {
   [[ -z $BUFFER ]] && { cd ..; zle reset-prompt } \

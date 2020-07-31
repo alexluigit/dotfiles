@@ -16,7 +16,7 @@ bindkey '^k'     up-line-or-beginning-search
 bindkey '^l'     clear-or-complete
 bindkey '^n'     fzf-note
 bindkey '^o'     eol-or-open
-bindkey '^p'     forwardchar-or-fzf-z
+bindkey '^p'     fzf-z
 bindkey '^r'     fzf-history
 bindkey '^t'     fzf-starstar
 bindkey '^u'     kill-and-yank-buffer

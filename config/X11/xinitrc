@@ -4,6 +4,7 @@ xsetroot -cursor_name left_ptr
 remaps &
 xrdb -merge $XDG_CONFIG_HOME/X11/xresources
 sxhkd &
+aria2c --input-file=/home/alex/.cache/aria2/aria2.session &
 deadd-notification-center &
 fcitx &
 

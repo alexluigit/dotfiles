@@ -1,11 +1,3 @@
-" -----------------------------------------------------------------------------
-" File: gruvbox.vim
-" Description: Retro groove color scheme for Vim
-" Author: morhetz <morhetz@gmail.com>
-" Source: https://github.com/morhetz/gruvbox
-" Last Modified: 12 Aug 2017
-" -----------------------------------------------------------------------------
-
 " Supporting code -------------------------------------------------------------
 " Initialisation: {{{
 
@@ -877,8 +869,6 @@ endfunction
 " }}}
 
 " Statusline {{{
-
-" Current window statusline
 call s:HL('NormalColor', s:bg0, s:blue, s:bold)
 call s:HL('InsertColor', s:bg0, s:green, s:bold)
 call s:HL('ReplaceColor', s:bg0, s:yellow, s:bold)
@@ -892,18 +882,22 @@ hi Func guifg=#d7875f guibg=#30302C gui=italic
 hi StlFiletype guifg=#808070 guibg=#30302C gui=bold
 hi StlCol guifg=#a8a897 guibg=#4e4e43
 hi Percent guifg=#30302C guibg=#949484 gui=bold
-" Non-current window statusline
 call s:HL('ModeNC', s:bg0, s:gb.light4, s:bold)
 call s:HL('FileHeadNC', s:gb.light4, s:bg2)
 call s:HL('FileUnModNC', s:gb.light2, s:bg2, s:bold)
 call s:HL('FileModNC', s:gb.neutral_green, s:bg2, s:bold)
 " call s:HL('FuncNC', s:gb.light4, s:bg2)
 call s:HL('FuncNC', s:gb.light4, s:none, s:bold)
-" Tabline
+" }}}
+
+" Fugitive {{{
+call s:HL('fugitiveUnstagedSection', s:fg1, s:none, s:bold)
+" }}}
+
+" Tabline {{{
 " hi TabLine     ctermfg=White ctermbg=Black cterm=None
 " hi TabLineFill ctermfg=White ctermbg=Black cterm=None
 " hi TabLineSel  ctermfg=Black ctermbg=White cterm=None
-
 " }}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

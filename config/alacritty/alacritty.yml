@@ -19,7 +19,7 @@ background_opacity: 0.85
 
 font:
   normal:
-    family: VictorMono Nerd Font
+    family: Victor Mono
     style: ExtraLight
   bold:
     family: VictorMono Nerd Font
@@ -32,7 +32,7 @@ font:
     style: SemiBold Italic
   offset:
     x: 0
-    y: 4
+    y: 0
   glyph_offset:
     x: 0
     y: 2

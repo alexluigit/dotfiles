@@ -16,5 +16,6 @@ packadd! vim-surround
 packadd! vim-fugitive
 packadd! vim-repeat
 packadd! vim-eunuch
+packadd! vim-polyglot
 " packadd! vim-dispatch
 " packadd! vim-projectionist

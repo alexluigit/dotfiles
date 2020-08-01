@@ -1,16 +1,17 @@
+let mapleader=" "
+
 " Open file/link under cursor
 nmap     <silent>         go          :silent! !open <cfile><CR>
 nmap     <silent>         gx          :TODO:openInBrowser
-" Start interactive EasyAlign
-xmap                      ga          <Plug>(EasyAlign)
-nmap                      ga          <Plug>(EasyAlign)
 " Verticle line move
 vnoremap <silent>         J           :m '>+1<CR>gv=gv
 vnoremap <silent>         K           :m '<-2<CR>gv=gv
 " Vifm replace netrw
 nnoremap <silent>         -           :EditVifm <bar> setl statusline=%#Normal#<cr>
-" <CR> to repeat last macro
-nnoremap <silent> <expr> <CR>         empty(&buftype) ? '@@' : '<CR>'
+" <C-:>, <C-'>, <C-Cr> map to F2, F3, F4 in terminal emulator
+nnoremap <silent>        <F2>         :tabprev<CR>
+nnoremap <silent>        <F3>         :tabnext<CR>
+nnoremap <silent>        <F4>         :cclose<CR>
 " Window navigation and resize
 nnoremap <silent>        <C-h>        :wincmd h<CR>
 nnoremap <silent>        <C-j>        :wincmd j<CR>

@@ -17,7 +17,7 @@ source $ZDOTDIR/lib/appearance.zsh
 source $ZDOTDIR/lib/widgets.zsh
 source $ZDOTDIR/lib/fzf-widgets.zsh
 source $ZDOTDIR/lib/fzf-git.zsh
-source $ZDOTDIR/lib/alias.zsh
+source $ZDOTDIR/lib/aliases.zsh
 source $ZDOTDIR/lib/completion.zsh
 source $ZDOTDIR/lib/keybind.zsh
 

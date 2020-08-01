@@ -46,10 +46,3 @@ command! -bang -nargs=* Rg
 command! -bang -nargs=* GGrep
 \ call fzf#vim#grep('git grep --line-number '.shellescape(<q-args>), 0,
 \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
-
-" let g:fzf_buffers_jump = 1
-" command! -nargs=* -complete=dir Cd call fzf#run(fzf#wrap(
-"   \ {'source': 'find '.(empty(<f-args>) ? '.' : <f-args>).' -type d',
-"   \  'sink': 'cd'}))
-" [Commands] --expect expression for directly executing the command
-" let g:fzf_commands_expect = 'ctrl-x'

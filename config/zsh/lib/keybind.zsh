@@ -1,6 +1,21 @@
-# Since EDITOR=nvim, if using bindkey -e,  zsh will turn on vi-mode automatically
-bindkey -e
-# Use vim keys in tab complete menu:
+stty -ixon # Disable XON/XOFF flow control
+bindkey -v # vi-mode
+KEYTIMEOUT=1
+
+# Better vi-mode
+for m in visual viopp; do
+  for c in {a,i}{\',\",\`}; do
+    bindkey -M $m $c select-quoted
+  done
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $m $c select-bracketed
+  done
+done
+bindkey -a cs change-surround
+bindkey -a ds delete-surround
+bindkey -a ys add-surround
+bindkey -M vicmd  'k' up-line-in-buffer # Do not go search history
+bindkey -M visual 'S' add-surround
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
@@ -18,6 +33,7 @@ bindkey '^n'     fzf-note
 bindkey '^o'     eol-or-open
 bindkey '^p'     fzf-z
 bindkey '^r'     fzf-history
+bindkey '^s'     autopair
 bindkey '^t'     fzf-starstar
 bindkey '^u'     kill-and-yank-buffer
 bindkey '^z'     fg-bg

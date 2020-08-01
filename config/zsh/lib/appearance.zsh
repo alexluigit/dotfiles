@@ -1,27 +1,27 @@
-##-------------------------------------------------------------------##
-#                         Syntax highlighting                         #
-##-------------------------------------------------------------------##
+# Syntax highlighting
 autoload -U colors && colors # Enable colors
-typeset -A ALEX
-ALEX[ITALIC_ON]=$'\e[3m'
-ALEX[ITALIC_OFF]=$'\e[23m'
+italicize() { printf "%b%s%b" '\e[3m' "$@" '\e[23m' }
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[alias]=fg=yellow,bold
 ZSH_HIGHLIGHT_STYLES[builtin]=fg=blue,bold
 ZSH_HIGHLIGHT_STYLES[function]=fg=yellow,bold
 ZSH_HIGHLIGHT_STYLES[command]=fg=blue,bold
 
-##-------------------------------------------------------------------##
-#                            Cursor shape                             #
-##-------------------------------------------------------------------##
+# Cursor shape
 zle-line-init() { echo -ne "\e[5 q" } # zle -K viins, initiate `vi insert` as keymap
 preexec_functions+=(zle-line-init) # Init timer and beam shape cursor before every cmd
 zle -N zle-line-init # Enable cursor shape when entering zsh
+zle-keymap-select() { # Change cursor shape for different vi modes.
+  if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+    echo -ne '\e[3 q'
+  elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] \
+       || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
 
-##-------------------------------------------------------------------##
-#                                 Git                                 #
-##-------------------------------------------------------------------##
-# Outputs current branch info
+# Git
 local staged unstaged untracked
 git_prompt_info() {
   local ref
@@ -30,7 +30,6 @@ git_prompt_info() {
   parse_git_status
   echo "$staged$unstaged$untracked %F{222}%B${${ref:u}#REFS/HEADS/}%b%f "
 }
-# Check staged/unstaged/untracked
 parse_git_status() {
   local STATUS
   STATUS=$(git status --porcelain | colrm 3 | uniq | paste -d: -s -)
@@ -39,9 +38,6 @@ parse_git_status() {
   [[ $STATUS == *\?* ]] && untracked="%{$fg_bold[blue]%}ﬨ";
 }
 
-##-------------------------------------------------------------------##
-#                                Timer                                #
-##-------------------------------------------------------------------##
 # preexec() and precmd() are hook functions in zsh. (bash has precmd() but not preexec())
 preexec_timer() { cmd_start=$(($(print -P %D{%s%6.})/1000)) }
 precmd_timer() {
@@ -51,17 +47,14 @@ precmd_timer() {
   local time_min=$(printf %i $(echo "$time_sec/60" | bc -l))
   local time_min_tail=$(printf %i $(($time_sec-$time_min*60)))
   { [[ $time_sec -ge 1 ]] && [[ $time_min -eq 0 ]] } \
-  && timer_result="%B$time_sec%b %{$ALEX[ITALIC_ON]%}sec%{$ALEX[ITALIC_OFF]%}" \
-  || timer_result="%B$time_ms%b %{$ALEX[ITALIC_ON]%}ms%{$ALEX[ITALIC_OFF]%}"
+  && timer_result="%B$time_sec%b $(italicize sec)" \
+  || timer_result="%B$time_ms%b $(italicize ms)"
   [[ $time_min -ge 1 ]] \
-  && timer_result="%B$time_min%b %{$ALEX[ITALIC_ON]%}min%{$ALEX[ITALIC_OFF]%} %B$time_min_tail%b %{$ALEX[ITALIC_ON]%}sec%{$ALEX[ITALIC_OFF]%}"
+  && timer_result="%B$time_min%b $(italicize min) %B$time_min_tail%b $(italicize sec)"
   timer="%F{152}  $timer_result %f" }
 }
 preexec_functions+=(preexec_timer); precmd_functions+=(precmd_timer)
 
-##-------------------------------------------------------------------##
-#                              Nice PWD                               #
-##-------------------------------------------------------------------##
 # Seperate path with head and tail
 chpwd_prompt () {
   local HPWD=${(%)${:-%~}} # $PWD with ~ abbreviations
@@ -83,9 +76,6 @@ chpwd_prompt () {
   esac
 }
 
-##-------------------------------------------------------------------##
-#                             Assembling                              #
-##-------------------------------------------------------------------##
 # Check background_job, super_user, exit code (Use ternary operators here)
 local bg_jobs="%(1j.%{$fg_bold[red]%} .)"
 local privileges="%(#.%{$fg_bold[red]%} .)"

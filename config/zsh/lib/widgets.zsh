@@ -1,26 +1,19 @@
-autoload -U edit-command-line; zle -N edit-command-line
-autoload -U up-line-or-beginning-search; zle -N up-line-or-beginning-search
-autoload -U down-line-or-beginning-search; zle -N down-line-or-beginning-search
-
 kill-and-yank-buffer() { echo -n "$BUFFER" | xclip -selection clipboard; zle kill-whole-line }
-zle -N kill-and-yank-buffer
-
 file-or-forwardchar() { [[ -z $BUFFER ]] && { BUFFER="vifmrun ."; zle accept-line } || zle forward-char }
-zle -N file-or-forwardchar
-
 fg-bg() { [[ $#BUFFER -eq 0 ]] && { fg; zle reset-prompt; zle-line-init } || zle push-input }
-zle -N fg-bg
-
-updir-onthefly() {
-  [[ -z $BUFFER ]] && { cd ..; zle reset-prompt } \
+updir-onthefly() { [[ -z $BUFFER ]] && { cd ..; zle reset-prompt } \
   || { zle kill-whole-line && cd ..; zle reset-prompt; zle yank }}
-zle -N updir-onthefly # Up a dir anytime
-
 clear-or-complete() { [[ -z $BUFFER ]] && zle clear-screen || zle autosuggest-accept }
-zle -N clear-or-complete # Smart C-l, accept autosuggestion while typing, otherwise clear screen
-ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(clear-or-complete)
-
 mkcd() { mkdir -p $@ && cd ${@:$#} }
+
+typeset -gA AUTOPAIR_PAIRS
+AUTOPAIR_PAIRS=('`' '`' "'" "'" '"' '"' '{' '}' '[' ']' '(' ')' ' ' ' ')
+autopair() {
+# TODO
+  read -sk RES
+  RBUFFER=$RES$AUTOPAIR_PAIRS[$RES]
+  zle forward-char
+}
 
 tmux-automation() {
   # https://gist.github.com/lann/6771001
@@ -51,3 +44,17 @@ ex() {
     esac
   else; echo "'$1' is not a valid file"; fi
 }
+
+zle -N kill-and-yank-buffer
+zle -N file-or-forwardchar
+zle -N fg-bg
+zle -N updir-onthefly
+zle -N clear-or-complete; ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(clear-or-complete)
+zle -N autopair
+autoload -Uz move-line-in-buffer; zle -N up-line-in-buffer move-line-in-buffer
+autoload -Uz select-quoted; zle -N select-quoted
+autoload -Uz select-bracketed; zle -N select-bracketed
+autoload -Uz surround; zle -N delete-surround surround; zle -N add-surround surround; zle -N change-surround surround
+autoload -Uz edit-command-line; zle -N edit-command-line
+autoload -Uz up-line-or-beginning-search; zle -N up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search; zle -N down-line-or-beginning-search

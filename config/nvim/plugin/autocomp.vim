@@ -2,7 +2,6 @@ inoremap <expr><silent>   <Tab>           <SID>tab()
 inoremap <expr><silent>   <CR>            <SID>enter()
 inoremap <expr><silent>   <C-j>           <SID>ctrl_j()
 inoremap <expr><silent>   <C-k>           <SID>ctrl_k()
-imap                      <C-d>           <plug>Isurround
 imap                      <C-x><C-k>      <plug>(fzf-complete-word)
 imap                      <C-x><C-f>      <plug>(fzf-complete-path)
 imap                      <C-x><C-l>      <plug>(fzf-complete-line)

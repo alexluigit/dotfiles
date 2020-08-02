@@ -2,9 +2,6 @@
 	ignore = dirty
 	path = config/nvim/pack/bundle/opt/nvim-colorizer.lua
 	url = https://github.com/norcalli/nvim-colorizer.lua
-[submodule "vim-surround"]
-	path = config/nvim/pack/bundle/opt/vim-surround
-	url = https://github.com/tpope/vim-surround
 [submodule "vim-fugitive"]
 	path = config/nvim/pack/bundle/opt/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive

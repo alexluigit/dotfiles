@@ -8,8 +8,7 @@ set sortnumbers " Natural sort of (version) numbers within text.
 set undolevels=100
 set vimhelp " Use Vim's format of help file, opposite is 'novimhelp'
 set norunexec " Press return to run executable.
-colorscheme gruvbox
-set timefmt=%m/%d\ %H:%M " See man date or man strftime for details.
+set timefmt=%d-%b\ %H:%M " See man date or man strftime for details.
 set wildmenu " Show list of matches on tab completion in command-line mode
 set wildstyle=popup
 set suggestoptions=normal,visual,view,otherpane,keys,marks,registers " Display suggestions in normal, visual and view modes for keys, marks and registers (at most 5 files).
@@ -20,21 +19,21 @@ set incsearch
 set scrolloff=4 " Try to leave some space from cursor to upper/lower border in lists
 set slowfs=curlftpfs " Don't do too many requests to slow file systems
 set dotdirs=rootparent " Dot't show '../' since it is unnecessary
-" set statusline=" %A%10u:%-7g %=%20d
-set statusline=" %T %=%l/%S "
+set statusline="  %A %T %=%d %l/%S "
 set rulerformat=""
 set confirm=permdelete
 set trashdir="~/.local/share/Trash/files"
+set vifminfo=dhistory,chistory,state,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
+colorscheme gruvbox
 
 mark a /Volumes/HDD/
+mark c ~/.config
+mark d ~/Downloads/
+mark D ~/Desktop
 mark h ~/
-mark d ~/Desktop
 mark w ~/Pictures/Wallpaper
 
-" What should be saved automatically between vifm sessions.  Drop "savedirs" value if you don't want vifm to remember last visited directories for you.
-set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
-filter /^\.(DS_Store|DocumentRevisions.*|Spotlight-.*|TemporaryItems|Trashes|fseventsd)\/?$/
-
+nnoremap ; :
 nnoremap <C-h> <C-w>h
 nnoremap <BS> <C-w>h
 nnoremap <C-l> <C-w>l
@@ -43,9 +42,8 @@ nnoremap s :sort<cr>
 nnoremap S :shell<cr>
 nnoremap <Tab> :view<cr>
 vnoremap <Tab> :view<cr>gv
-nnoremap o :!xdg-open %f<cr>
-nnoremap yd :!printf %d | pbcopy<cr>
-nnoremap yf :!printf %c:p | pbcopy<cr>
+nnoremap yd :!printf %d | xclip -selection clipboard<cr>
+nnoremap yf :!printf %c:p | xclip -selection clipboard<cr>
 nnoremap cc cw<c-u>
 nnoremap <space>. :write | edit $MYVIFMRC | restart<cr>
 nnoremap <space>w :set wrap!<cr>
@@ -55,8 +53,6 @@ nnoremap <space>d :mkdir<space>
 nnoremap <space>c :!chmod  %c<left><left><left>
 nnoremap <space>m :move<cr>
 
-source $VIFM/filetypes
-
 command! df df -h %m 2> /dev/null
 command! diff nvim -d %f %F
 command! zip zip -r %f.zip %f
@@ -64,3 +60,6 @@ command! run !! ./%f
 command! make !!make %a
 command! mkcd :mkdir %a | cd %a
 command! reload :write | restart
+
+source $VIFM/icons
+source $VIFM/filetypes

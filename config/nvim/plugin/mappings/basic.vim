@@ -1,12 +1,10 @@
 let mapleader=" "
 
-" Open file/link under cursor
-nmap     <silent>         go          :silent! !open <cfile><CR>
+nmap                     <C-b>        <C-v>
+nmap     <silent>         go          :silent! !xdg-open <cfile><CR>
 nmap     <silent>         gx          :TODO:openInBrowser
-" Verticle line move
 vnoremap <silent>         J           :m '>+1<CR>gv=gv
 vnoremap <silent>         K           :m '<-2<CR>gv=gv
-" Vifm replace netrw
 nnoremap <silent>         -           :EditVifm <bar> setl statusline=%#Normal#<cr>
 " <C-:>, <C-'>, <C-Cr> map to F2, F3, F4 in terminal emulator
 nnoremap <silent>        <F2>         :tabprev<CR>

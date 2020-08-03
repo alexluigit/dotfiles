@@ -78,7 +78,7 @@ chpwd_prompt () {
 
 # Check background_job, super_user, exit code (Use ternary operators here)
 local bg_jobs="%(1j.%{$fg_bold[red]%} .)"
-local privileges="%(#.%{$fg_bold[red]%} .)"
+local privileges="%(#.%{$fg_bold[red]%}  .)"
 local line_break=$'\n'%{$reset_color%}
 local ret_status="%(?:%{$fg_bold[green]%}  :%{$fg_bold[red]%}  %s)"
 PROMPT='$bg_jobs$privileges$cwd_head$cwd_tail $(git_prompt_info)$timer$line_break$ret_status'

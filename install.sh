@@ -25,7 +25,7 @@ scripts() {
 
 zshenv() {
   rm ~/.zshenv
-  ln -s $PWD/config/zsh/.zshenv $HOME/.zshenv
+  ln -s $PWD/config/zsh/zshenv $HOME/.zshenv
 }
 
 apps() {

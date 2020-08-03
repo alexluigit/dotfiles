@@ -29,7 +29,7 @@ bol-or-fdot() { [[ -n $BUFFER ]] && { zle beginning-of-line } || fzf-dot }
 zle -N bol-or-fdot
 eol-or-open() { [[ -n $BUFFER ]] && { zle end-of-line; return } || fzf-open $PWD }
 zle -N eol-or-open
-fzf-note() { fzf-open ~/Documents/AllNotes 'fd -tf' 'bat -p --color=always' nvim }
+fzf-note() { fzf-open ~/Documents/Notes 'fd -tf' 'bat -p --color=always' nvim }
 zle -N fzf-note
 
 fzf-history() {
@@ -57,7 +57,7 @@ fzf-pac-local() { sudo pacman -Rns $(pacman -Qeq | fzf -m --preview="pacman -Si 
 fzf-z() {
   local homepre="/home/alex"
   local drivepre="/media/HDD"
-  dest=$(_z -l 2>&1 | sed '/\/home$/d' | sed "s|\s$homepre|  |" \
+  dest=$(_z -l 2>&1 | sed '/\/home$\|\/$/d' | sed "s|\s$homepre|  |" \
   | sed "s|\s$drivepre|  |" | awk '{$1=""; print $0}' \
   | fzf +s --tac | sed "s|  |$drivepre|" | sed "s|  |$homepre|")
   [[ -z $dest ]] && return || cd $dest

@@ -1,0 +1,10 @@
+UserKnownHostsFile ~/.config/ssh/known_hosts
+IdentityFile ~/.config/ssh/id_rsa
+
+Host *
+
+Host goti
+  HostName gotipedia.space
+  User root
+  Port 26798
+  IdentityFile ~/.config/ssh/id_rsa

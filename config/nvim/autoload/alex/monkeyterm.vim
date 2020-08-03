@@ -3,7 +3,7 @@ let s:monkey_terminal_window = -1
 let s:monkey_terminal_buffer = -1
 let s:monkey_terminal_job_id = -1
 
-function! MonkeyTerminalOpen()
+function! alex#monkeyterm#open()
   " Check if buffer exists, if not create a window and a buffer
   if !bufexists(s:monkey_terminal_buffer)
     " Creates a window call monkey_terminal
@@ -33,24 +33,24 @@ function! MonkeyTerminalOpen()
   startinsert
 endfunction
 
-function! MonkeyTerminalToggle()
+function! alex#monkeyterm#toggle()
   if win_gotoid(s:monkey_terminal_window)
-    call MonkeyTerminalClose()
+    call alex#monkeyterm#close()
   else
-    call MonkeyTerminalOpen()
+    call alex#monkeyterm#open()
   endif
 endfunction
 
-function! MonkeyTerminalClose()
+function! alex#monkeyterm#close()
   if win_gotoid(s:monkey_terminal_window)
     " close the current window
     hide
   endif
 endfunction
 
-function! MonkeyTerminalExec(cmd)
+function! alex#monkeyterm#exec(cmd)
   if !win_gotoid(s:monkey_terminal_window)
-    call MonkeyTerminalOpen()
+    call alex#monkeyterm#open()
   endif
   " clear current input
   call jobsend(s:monkey_terminal_job_id, "clear\n")
@@ -65,5 +65,5 @@ endfunction
 " augroup go
 "   autocmd!
 "   autocmd BufRead,BufNewFile *.go set filetype=go
-"   autocmd FileType go nnoremap <F5> :call MonkeyTerminalExec('go run ' . expand('%'))<cr>
+"   autocmd FileType go nnoremap <F5> :call alex#monkeyterm#Exec('go run ' . expand('%'))<cr>
 " augroup END

@@ -47,4 +47,6 @@ nnoremap <silent>       <leader>t        :set relativenumber!<CR>
 nnoremap <silent>       <leader>v        :vert sb#<CR>
 nnoremap <silent>       <leader>w        :silent! w<CR>
 nnoremap <silent>       <leader>x        :silent! x<CR>
+map      <silent>       <F1>             :call alex#monkeyterm#toggle()<CR>
+tmap     <silent>       <F1>             <C-\><C-n>:call alex#monkeyterm#toggle()<CR>
 nmap                    <F5>             :call alex#utils#syntax_group()<CR>

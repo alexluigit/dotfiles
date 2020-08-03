@@ -1,7 +1,6 @@
 # general
-alias c="fzf-cd"
 alias d="gio trash"
-alias f="vifmrun ."
+alias f="fzf-cd"
 alias g="inside-worktree && nvim -c Gstatus || return 1"
 alias j="z"
 alias t="tmux-automation"

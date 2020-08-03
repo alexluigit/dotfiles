@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 bspc rule -r "*"
 
 launchPolybar &
@@ -6,6 +6,8 @@ xwallpaper --zoom ~/Pictures/Wallpaper/Dany-0.png &
 picom --xrender-sync-fence --experimental-backends &
 autolock &
 killall redshift && redshift &
+pgrep bspsubscribe || bspsubscribe &
+pgrep bspswallow || bspswallow &
 
 bspc monitor DP-0 -d Dev Web Doc Music aa bb cc
 
@@ -32,8 +34,5 @@ bspc rule -a Chromium:crx_cinhimbnkkaeohfgghhklpknlkffjgod desktop='^4' state=ti
 # bspc rule -a mplayer2 state=floating
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
-
-(bspc subscribe node_add | while read add; do
-[[ $(bspc wm -g | awk -F ':' '{print $(NF-2)}') == 'LM' ]] && bspc desktop -l next; done &)
 
 (sleep 3; npx --cache ~/.cache/npm @nondanee/unblockneteasemusic -p 10001:10002 &)

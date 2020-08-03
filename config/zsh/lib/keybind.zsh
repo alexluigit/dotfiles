@@ -1,6 +1,6 @@
 stty -ixon # Disable XON/XOFF flow control
 bindkey -v # vi-mode
-KEYTIMEOUT=1
+KEYTIMEOUT=0
 
 # Better vi-mode
 for m in visual viopp; do

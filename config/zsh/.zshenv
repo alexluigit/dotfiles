@@ -18,6 +18,8 @@ export CARGO_HOME=$XDG_DATA_HOME/cargo
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export RBENV_ROOT=$XDG_DATA_HOME/rbenv
 export PATH=$PATH:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin
+# Devices
+export SOUND_DEVICE=alsa_output.usb-Focusrite_Scarlett_2i4_USB-00.analog-surround-40
 # Programs
 export EDITOR="nvim"
 export MANPAGER="nvim +set\ filetype=man -"

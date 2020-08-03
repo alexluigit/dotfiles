@@ -1,59 +1,55 @@
 # focus or send to the given desktop
+# send current window to (and focus) given desktop
+# focus on window in direction
+# swap the current node and the biggest local node
+# alternate between the tiled and monocle layout
+# rotate the tree from the current nodes parent
+# last focus desktop
 super + {_, shift + } {1-7}
 	bspc {desktop -f,node -d} ^{1-7}
-# send current window to (and focus) given desktop
 super + control + {1-7}
 	bspc node -d ^{1-7} --follow
-# focus on window in direction
 super + {h, j, k, l}
 	bspc node -f {west,south,north,east}
-# swap the current node and the biggest local node
 super + s
-	{ bspc node -s biggest.local || bspc node -s next.local }
-# alternate between the tiled and monocle layout
+	bspc node -s biggest.local || bspc node -s next.local
 super + f
 	bspc desktop -l next
-# toggle floating on and off
-super + shift + f
-	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
-# rotate the tree from the current nodes parent
 super + Tab
 	bspc node @parent -C forward
-# last focus desktop
 super + grave
 	bspc desktop last --focus
 
 # equalize or balance all window
+# toggle floating on and off
+# preselect the ratio
+# cancel the preselection for the focused node
+# expand a window by moving one of its side outward
+# contract a window by moving one of its side outward
+# move a floating window
 hyper + {e, b}
 	bspc node @/ -{E,B}
-# preselect the ratio
+hyper + f
+	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
 hyper + {2-9}
 	bspc node -o 0.{2-9}
-# cancel the preselection for the focused node
 hyper + space
 	bspc node -p cancel
-# expand a window by moving one of its side outward
 hyper + {h, j, k, l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-# contract a window by moving one of its side outward
 hyper + {o, i, u, y}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-# move a floating window
 hyper + {p, bracketleft, bracketright, backslash}
 	xdo move {-x -20, -y +20, -y -20, -x +20}
 
-super + w
-	chromium & sleep 2 && rm -rf ~/.pki
-super + r
-	rofi -no-lazy-grab -show combi -theme ~/.config/rofi/themes/launcher.rasi
+super + {w,m}
+	chromium-open {newtab,music}
+super {_, shift + ctrl + alt} + r
+	rofi -no-lazy-grab -show {combi,drun} -theme ~/.config/rofi/themes/launcher.rasi
 super + {e, v}
 	alacritty {_, -e vifmrun}
 super + o; {n}
 	nautilus
-super + shift + ctrl + alt + r
-	rofi -no-lazy-grab -show drun -theme ~/.config/rofi/themes/launcher.rasi
-super + m
-	chromium --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod & sleep 2 && rm -rf ~/.pki
 
 super + {_, shift} q
 	xdo { close, kill }
@@ -70,14 +66,10 @@ XF86Audio{Prev,Play,Next}
 	music-control {previous,play-pause,next}
 hyper + XF86Audio{Prev,Play}
 	music-control {shuffle ON,loop Track}
-XF86Audio{Lower,Raise}Volume
-	pactl set-sink-volume alsa_output.usb-Focusrite_Scarlett_2i4_USB-00.analog-surround-40 {-8%,+8%}
-XF86AudioMute
-	pactl set-sink-mute alsa_output.usb-Focusrite_Scarlett_2i4_USB-00.analog-surround-40 toggle
-Print
-	screenshot full
-shift + Print
-	screenshot select
+XF86Audio{LowerVolume,RaiseVolume,Mute}
+	pactl set-sink-{volume $SOUND_DEVICE -8%,volume $SOUND_DEVICE +8%,mute $SOUND_DEVICE toggle}
+{_,shift} + Print
+	screenshot {full,select}
 
 button{8,9}
 	xdotool key {'Control_L+w','Control_L+t'}

@@ -11,11 +11,11 @@ for m in visual viopp; do
     bindkey -M $m $c select-bracketed
   done
 done
-bindkey -a cs change-surround
-bindkey -a ds delete-surround
-bindkey -a ys add-surround
-bindkey -M vicmd  'k' up-line-in-buffer # Do not go search history
-bindkey -M visual 'S' add-surround
+bindkey -a            cs  change-surround
+bindkey -a            ds  delete-surround
+bindkey -a            ys  add-surround
+bindkey -M vicmd      'k' up-line-in-buffer # Do not go search history
+bindkey -M visual     'S' add-surround
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char

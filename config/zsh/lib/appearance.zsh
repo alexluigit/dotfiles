@@ -25,8 +25,8 @@ zle -N zle-keymap-select
 local staged unstaged untracked
 git_prompt_info() {
   local ref
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
-  ref=$(git rev-parse --short HEAD 2> /dev/null) || return 0
+  ref=$(git symbolic-ref HEAD 2>/dev/null) || \
+  ref=$(git rev-parse --short HEAD 2>/dev/null) || return 0
   parse_git_status
   echo "$staged$unstaged$untracked %F{222}%B${${ref:u}#REFS/HEADS/}%b%f "
 }
@@ -79,10 +79,8 @@ chpwd_prompt () {
 # Check background_job, super_user, exit code (Use ternary operators here)
 local bg_jobs="%(1j.%{$fg_bold[red]%} .)"
 local privileges="%(#.%{$fg_bold[red]%} .)"
-local up_prompt='$bg_jobs$privileges$cwd_head$cwd_tail $(git_prompt_info)$timer'
 local line_break=$'\n'%{$reset_color%}
 local ret_status="%(?:%{$fg_bold[green]%}  :%{$fg_bold[red]%}  %s)"
-PROMPT="$up_prompt$line_break$ret_status"
-# chpwd_functions are hook funcs that will be exec after pwd change
-# Add to chpwd hook and trigger the chpwd hooks once, this line should appear after the prompt definition
+PROMPT='$bg_jobs$privileges$cwd_head$cwd_tail $(git_prompt_info)$timer$line_break$ret_status'
+# trigger the chpwd hooks once, this line should appear after the prompt definition
 chpwd_functions+=(chpwd_prompt); cd .

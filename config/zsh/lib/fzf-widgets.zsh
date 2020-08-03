@@ -1,37 +1,11 @@
 # TODO fzf-music
-fzf-cd() {
-  local drivePath="$HOME/Documents/Drive/"
-  local dir="$1/"
-  local defaultPath="$HOME/"
-  local dest=$(fd -H -L -t d $2 --ignore-file $XDG_CONFIG_HOME/fd/fdignore . ${1:-$defaultPath} \
-  | sed "s|^$drivePath|/media/HDD/|" | sed "s|^$dir||" | fzf --preview="tree -L 1 $dir{}")
-  [[ -z "$dest" ]] && return || { cd "$dir$dest" && zle reset-prompt 2>/dev/null }
-}
-fzf-project() { fzf-cd ~/Dev -d1 }; zle -N fzf-project
-
-fzf-open() {
-  local dir="$1/" fdCmd="$2" previewCmd="$3" openCmd="$4"
-  local dftFd="fd -t f -L --ignore-file $XDG_CONFIG_HOME/fd/fdignore"
-  local dftDir="$HOME/" dftPreview="du -h" dftOpen=xdg-open
-  eval "${fdCmd:-$dftFd} . '${dir:-$dftDir}'" | sed "s|^$dir||" \
-  | fzf -m --preview="${previewCmd:-$dftPreview} '$dir'{}" \
-  | sed "s|^|$dir|" | xargs -ro -d '\n' ${openCmd:-$dftOpen} 2>&1
-  zle reset-prompt; zle-line-init
-}
-fzf-dot() {
-  cd ~/Dev/Alex.files
-  fzf-open ~/Dev/Alex.files \
-  'fd -tf -H --ignore-file ~/.config/fd/dotignore' \
-  'bat -p --color=always' 'nvim'
-  cd -; zle reset-prompt;
-}
-bol-or-fdot() { [[ -n $BUFFER ]] && { zle beginning-of-line } || fzf-dot }
-zle -N bol-or-fdot
-eol-or-open() { [[ -n $BUFFER ]] && { zle end-of-line; return } || fzf-open $PWD }
-zle -N eol-or-open
-fzf-note() { fzf-open ~/Documents/Notes 'fd -tf' 'bat -p --color=always' nvim }
-zle -N fzf-note
-
+bol-or-fdot() { [[ -n $BUFFER ]] && { zle beginning-of-line } || __fzf-dot }
+eol-or-open() { [[ -n $BUFFER ]] && { zle end-of-line; return } || __fzf-open $PWD }
+fzf-note() { __fzf-open ~/Documents/Notes 'fd -tf' nvim }
+fzf-starstar() { BUFFER="$BUFFER**"; zle end-of-line; zle fzf-completion; }
+fzf-dirstack() { dirs -v | awk '{ $1=""; print $0 }' | fzf; zle accept-line }
+fzf-pac-sync() { sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}") }
+fzf-pac-local() { sudo pacman -Rns $(pacman -Qeq | fzf -m --preview="pacman -Si {}") }
 fzf-history() {
   local selected num
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
@@ -43,17 +17,6 @@ fzf-history() {
   zle reset-prompt
   return $ret
 }
-zle -N fzf-history
-
-fzf-starstar() { BUFFER="$BUFFER**"; zle end-of-line; zle fzf-completion; }
-zle -N fzf-starstar
-
-fzf-dirstack() { dirs -v | awk '{ $1=""; print $0 }' | fzf; zle accept-line }
-zle -N fzf-dirstack
-
-fzf-pac-sync() { sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}") }
-fzf-pac-local() { sudo pacman -Rns $(pacman -Qeq | fzf -m --preview="pacman -Si {}") }
-
 fzf-z() {
   local homepre="/home/alex"
   local drivepre="/media/HDD"
@@ -63,4 +26,27 @@ fzf-z() {
   [[ -z $dest ]] && return || cd $dest
   zle reset-prompt
 }
+fzf-cd() {
+  local drivePath="$HOME/Documents/Drive/"
+  local dir="$1/"
+  local defaultPath="$HOME/"
+  local dest=$(fd -H -L -t d $2 . ${1:-$defaultPath} \
+  | sed "s|^$drivePath|/media/HDD/|" | sed "s|^$dir||" | fzf --preview="tree -L 1 $dir{}")
+  [[ -z "$dest" ]] && return || { cd "$dir$dest" && zle reset-prompt 2>/dev/null }
+}
+__fzf-open() {
+  local dir="$1/" fdCmd="${2:-fd -tf -L}" openCmd="${3:-xdg-open}"
+  eval "$fdCmd . '$dir'" | sed "s|^$dir||" \
+  | fzf -m --preview="preview '$dir'{}" \
+  | sed "s|^|$dir|" | xargs -ro -d '\n' $openCmd 2>&1
+  zle reset-prompt; zle-line-init
+}
+__fzf-dot() { cd ~/Dev/Alex.files; __fzf-open ~/Dev/Alex.files 'fd -tf -H' nvim; cd -; zle reset-prompt; }
+
+zle -N bol-or-fdot
+zle -N eol-or-open
+zle -N fzf-note
+zle -N fzf-starstar
+zle -N fzf-dirstack
+zle -N fzf-history
 zle -N fzf-z

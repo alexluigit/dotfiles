@@ -1,0 +1,6 @@
+.git
+.cache
+.local
+Calibre Library
+node_modules
+VSTPlugins

@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+newtab() { [ -n $(__check_chromium) ] && __use_exist || __cleanstart }
+music() { wid=$(__check_music); [ -n $wid ] && __music_switch $wid || __openmusic }
+
+__check_chromium() { xdotool search --desktop $(xdotool get_desktop) --name 'Chromium' }
+__use_exist() { xdotool search --onlyvisible --name 'Chromium' windowactivate \
+  --sync key --clearmodifiers --window 0 ctrl+t }
+__cleanstart() { chromium & sleep 2 && rm -rf ~/.pki }
+__check_music() { xdotool search --name 'Youtube Music' }
+__music_switch() { xdotool windowactivate $1 }
+__openmusic() { chromium --profile-directory=Default \
+  --app-id=cinhimbnkkaeohfgghhklpknlkffjgod & sleep 2 && rm -rf ~/.pki }
+
+"$@"

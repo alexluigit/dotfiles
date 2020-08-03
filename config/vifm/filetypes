@@ -1,5 +1,6 @@
 " vim: filetype=vifm :
 fileviewer */ tree %c -L 1
+fileviewer \.*/ ls %c
 fileviewer *.pdf pdftotext -nopgbrk %c -
 fileviewer *.mp3 mp3info
 fileviewer *.flac soxi

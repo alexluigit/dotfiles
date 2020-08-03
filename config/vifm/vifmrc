@@ -26,7 +26,7 @@ set trashdir="~/.local/share/Trash/files"
 set vifminfo=dhistory,chistory,state,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
 colorscheme gruvbox
 
-mark a /Volumes/HDD/
+mark a /media/HDD/
 mark c ~/.config
 mark d ~/Downloads/
 mark D ~/Desktop

@@ -1,5 +1,5 @@
 kill-and-yank-buffer() { echo -n "$BUFFER" | xclip -selection clipboard; zle kill-whole-line }
-file-or-forwardchar() { [[ -z $BUFFER ]] && { BUFFER="vifmrun ."; zle accept-line } || zle forward-char }
+file-or-forwardchar() { [[ -z $BUFFER ]] && { BUFFER="vifmrun ."; zle accept-line } || zle forward-char; clear }
 fg-bg() { [[ $#BUFFER -eq 0 ]] && { fg; zle reset-prompt; zle-line-init } || zle push-input }
 updir-onthefly() { [[ -z $BUFFER ]] && { cd ..; zle reset-prompt } \
   || { zle kill-whole-line && cd ..; zle reset-prompt; zle yank }}
@@ -7,11 +7,14 @@ clear-or-complete() { [[ -z $BUFFER ]] && zle clear-screen || zle autosuggest-ac
 mkcd() { mkdir -p $@ && cd ${@:$#} }
 
 typeset -gA AUTOPAIR_PAIRS
-AUTOPAIR_PAIRS=('`' '`' "'" "'" '"' '"' '{' '}' '[' ']' '(' ')' ' ' ' ')
+AUTOPAIR_PAIRS=('`' '`' "'" "'" '"' '"' '{' '}' '[' ']' '(' ')' '<' '>' ' ' ' ')
 autopair() {
-# TODO
   read -sk RES
-  RBUFFER=$RES$AUTOPAIR_PAIRS[$RES]
+  [ $RES == 'a' ] && RES='<'
+  [ $RES == 'c' ] && RES='{'
+  [ $RES == 'b' ] && RES='('
+  [ $RES == 'q' ] && RES='"'
+  RBUFFER=$RES$AUTOPAIR_PAIRS[$RES]$RBUFFER
   zle forward-char
 }
 

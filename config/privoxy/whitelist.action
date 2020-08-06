@@ -46,6 +46,7 @@ neteasemusic = +forward-override{forward 127.0.0.1:10001}
 .bwh88.net
 .cdnjs.com
 .cowtransfer.com
+.cloudflare.com
 .csdn.net
 .cstimer.net
 .ctrip.com
@@ -63,10 +64,10 @@ neteasemusic = +forward-override{forward 127.0.0.1:10001}
 .feng.com
 .fliggy.com
 .gitee.com
-.github.io
 .githubassets.com
 .guokr.com
-.hdlsb.com
+.hdslb.com
+.hosting24.com
 .huya.com
 .iqiyi.com
 .ithome.com

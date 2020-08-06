@@ -1,5 +1,5 @@
 user-manual /usr/share/doc/privoxy/user-manual/
-confdir /etc/privoxy
+confdir /home/alex/.config/privoxy
 logdir /var/log/privoxy
 # actionsfile match-all.action # Actions that are applied to all sites and maybe overruled later on.
 # actionsfile default.action   # Main actions file

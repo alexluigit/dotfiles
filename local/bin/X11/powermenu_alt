@@ -1,11 +1,5 @@
 #!/bin/bash
-
-## Author : Aditya Shakya (adi1090x)
-## Mail : adi1090x@gmail.com
-## Github : @adi1090x
-## Reddit : @adi1090x
-
-rofi_command="rofi -theme $HOME/.config/polybar/scripts/themes/powermenu_alt.rasi"
+rofi_command="rofi -theme $HOME/.config/rofi/themes/powermenu_alt.rasi"
 
 uptime=$(uptime -p | sed -e 's/up //g')
 
@@ -28,15 +22,13 @@ case $chosen in
         systemctl reboot
         ;;
     $lock)
-        i3lock
+        betterlockscreen -l
         ;;
     $suspend)
         mpc -q pause
-        amixer set Master mute
         systemctl suspend
         ;;
     $logout)
-        openbox --exit
+        killall Xorg
         ;;
 esac
-

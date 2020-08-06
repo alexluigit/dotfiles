@@ -46,7 +46,7 @@ type=custom/text
 content = "  "
 content-font = 7
 content-margin = 2
-click-left = ~/.config/polybar/scripts/launcher
+click-left = "rofi-open app drun"
 
 [module/xwindow]
 type = internal/xwindow
@@ -110,7 +110,7 @@ label-muted-padding = 4
 type = custom/text
 content = 
 content-foreground = ${colors.white}
-click-left = ~/.config/polybar/scripts/powermenu_alt
+click-left = powermenu_alt
 
 [module/music]
 type = custom/script

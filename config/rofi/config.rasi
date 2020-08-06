@@ -144,14 +144,3 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
-
-* {
-    background:                     #00000000;
-    background-color:               #00000066;
-    background-entry:               #00000033;
-    background-alt:                 #f2f2f215;
-    foreground:                     #f2f2f2EE;
-    foreground-selected:            #ffffffFF;
-    urgent:                         #E91E6366;
-    urgent-selected:                #E91E6377;
-}

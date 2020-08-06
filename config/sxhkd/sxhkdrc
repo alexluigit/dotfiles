@@ -1,82 +1,70 @@
-# focus or send to the given desktop
-# send current window to (and focus) given desktop
-# focus on window in direction
-# swap the current node and the biggest local node
-# alternate between the tiled and monocle layout
-# rotate the tree from the current nodes parent
-# last focus desktop
-super + {_, shift + } {1-7}
+# Focus
+super + {_,shift + } {1-7}
 	bspc {desktop -f,node -d} ^{1-7}
 super + control + {1-7}
 	bspc node -d ^{1-7} --follow
-super + {h, j, k, l}
+super + {h,j,k,l}
 	bspc node -f {west,south,north,east}
 super + s
 	bspc node -s biggest.local || bspc node -s next.local
 super + f
 	bspc desktop -l next
 super + Tab
-	bspc node @parent -C forward
+        bspc node focused -f next
 super + grave
 	bspc desktop last --focus
 
-# equalize or balance all window
-# toggle floating on and off
-# preselect the ratio
-# cancel the preselection for the focused node
-# expand a window by moving one of its side outward
-# contract a window by moving one of its side outward
-# move a floating window
-hyper + {e, b}
-	bspc node @/ -{E,B}
-hyper + f
-	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
+# Window size
+hyper + {h,j,k,l}
+	bspc node --presel-dir '~{west,south,north,east}'
 hyper + {2-9}
 	bspc node -o 0.{2-9}
 hyper + space
 	bspc node -p cancel
-hyper + {h, j, k, l}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-hyper + {o, i, u, y}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-hyper + {p, bracketleft, bracketright, backslash}
-	xdo move {-x -20, -y +20, -y -20, -x +20}
+hyper + super + {h,j,k,l}
+	bsp_resize {west,south,north,east} 50
+hyper + {e, b}
+	bspc node @/ -{E,B}
+hyper + f
+	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
+hyper + {y,u,i,o}
+	xdo move {-x -20,-y +20,-y -20,-x +20}
 
+# Launch
 super + {w,m}
 	chromium-open {newtab,music}
-super {_, shift + ctrl + alt} + r
-	rofi -no-lazy-grab -show {combi,drun} -theme ~/.config/rofi/themes/launcher.rasi
+super {_,shift + ctrl + alt} + r
+	rofi-open app {combi,drun}
 super + {e, v}
-	alacritty {_, -e vifmrun}
+	alacritty {_,-e vifmrun}
 super + o; {n}
 	nautilus
-
-super + {_, shift} q
-	xdo { close, kill }
+super + {_,shift} q
+	xdo {close,kill}
+super + Escape
+	powermenu_alt
 super + shift + BackSpace
 	pkill -USR1 -x sxhkd
-super + shift + {r, s}
-	prompt {"Reboot?" "reboot", "Shutdown?" "sudo -A shutdown -h now"}
-super + shift + Escape
-	prompt 'Leave Xorg?' 'killall Xorg'
 shift + Delete
 	systemctl suspend
 
+# Media
 XF86Audio{Prev,Play,Next}
 	music-control {previous,play-pause,next}
 hyper + XF86Audio{Prev,Play}
 	music-control {shuffle ON,loop Track}
 XF86Audio{LowerVolume,RaiseVolume,Mute}
 	pactl set-sink-{volume $SOUND_DEVICE -8%,volume $SOUND_DEVICE +8%,mute $SOUND_DEVICE toggle}
-{_,shift} + Print
-	screenshot {full,select}
+hyper {_, + shift} + Escape
+	flameshot {gui,full -p ~/Pictures/Screenshots}
 
+# Miscs
 button{8,9}
 	xdotool key {'Control_L+w','Control_L+t'}
-control + space; {1,2,3,4,5,6,7,8,9,0,minus,equal}
-	xvkbd -xsendevent -text {"\[!]","\[@]","\[#]","\[$]","\[%]","\[^]","\[&]","\[*]","\[(]","\[)]","\[_]","\[+]"}
 XF86MonBrightnessDown
 	xvkbd -xsendevent -text "\[F1]"
+XF86KbdBrightnessDown
+	xvkbd -xsendevent -text "\[F5]"
 hyper + XF86AudioRaiseVolume
 	xvkbd -xsendevent -text "\[F12]"
 # XF86MonBrightness{Down,Up}

@@ -5,10 +5,11 @@ music() { wid=$(__check_music); [ -n $wid ] && __music_switch $wid || __openmusi
 __check_chromium() { xdotool search --desktop $(xdotool get_desktop) --name 'Chromium' }
 __use_exist() { xdotool search --onlyvisible --name 'Chromium' windowactivate \
   --sync key --clearmodifiers --window 0 ctrl+t }
-__cleanstart() { chromium & sleep 2 && rm -rf ~/.pki }
+__cleanstart() { chromium & __rmpki }
 __check_music() { xdotool search --name 'Youtube Music' }
 __music_switch() { xdotool windowactivate $1 }
 __openmusic() { chromium --profile-directory=Default \
-  --app-id=cinhimbnkkaeohfgghhklpknlkffjgod & sleep 2 && rm -rf ~/.pki }
+  --app-id=cinhimbnkkaeohfgghhklpknlkffjgod & __rmpki }
+__rmpki() { sleep 5 && rm -rf ~/.pki }
 
 "$@"

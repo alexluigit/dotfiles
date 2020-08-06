@@ -34,6 +34,8 @@ apps() {
     do ln -s "$i" "$APPDIR"
   done
   rm $APPDIR/apps
+  ln -sf $PWD/local/applications ~/.local/share/applications
+  ln -sf $PWD/config/mimeapps.list $CFGDIR/mimeapps.list
 }
 
 "$@"

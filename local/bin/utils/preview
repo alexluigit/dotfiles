@@ -1,17 +1,26 @@
 #!/bin/sh
 # Preview script built for use with lf and fzf
+vpre="Documents/Drive/Video"
+cpre="Documents/Drive/Camera"
+dpre="Documents/Drive/Dev"
+mpre="Documents/Drive/Music"
+fpath=$(sed "s|   |$vpre|" <<< "$1")
+fpath=$(sed "s|   |$cpre|" <<< "$fpath")
+fpath=$(sed "s|   |$dpre|" <<< "$fpath")
+fpath=$(sed "s|   |$mpre|" <<< "$fpath")
+
 LINES=30
-case "$1" in
-    *.png|*.jpg|*.jpeg|*.mkv|*.mp4|*.m4v) mediainfo "$1";;
-    # *.md) glow -s dark "$1";;
-    *.pdf) pdftotext "$1" -;;
-    *.zip) zipinfo "$1";;
-    *.tar.gz) tar -ztvf "$1";;
-    *.tar.bz2) tar -jtvf "$1";;
-    *.tar) tar -tvf "$1";;
-    *.rar) unrar l "$1";;
-    *.7z) 7z l "$1";;
-    #*.html|*.xml) w3m -dump "$1";;
-    *.zsh*|*.bash*|*.git*) pistol "$1";;
-    *) bat -p --color=always "$1";;
+case "$fpath" in
+    *.png|*.jpg|*.jpeg|*.mkv|*.mp4|*.m4v) mediainfo "$fpath";;
+    # *.md) glow -s dark "$fpath";;
+    *.pdf) pdftotext "$fpath" -;;
+    *.zip) zipinfo "$fpath";;
+    *.tar.gz) tar -ztvf "$fpath";;
+    *.tar.bz2) tar -jtvf "$fpath";;
+    *.tar) tar -tvf "$fpath";;
+    *.rar) unrar l "$fpath";;
+    *.7z) 7z l "$fpath";;
+    #*.html|*.xml) w3m -dump "$fpath";;
+    *.zsh*|*.bash*|*.git*) pistol "$fpath";;
+    *) bat -p --color=always "$fpath";;
 esac

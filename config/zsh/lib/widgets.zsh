@@ -1,5 +1,5 @@
 kill-and-yank-buffer() { echo -n "$BUFFER" | xclip -selection clipboard; zle kill-whole-line }
-file-or-forwardchar() { [[ -z $BUFFER ]] && { BUFFER="vifmrun ."; zle accept-line } || zle forward-char; clear }
+file-or-forwardchar() { [[ -z $BUFFER ]] && { BUFFER="vifmrun ."; zle accept-line; clear } || zle forward-char; }
 fg-bg() { [[ $#BUFFER -eq 0 ]] && { fg; zle reset-prompt; zle-line-init } || zle push-input }
 updir-onthefly() { [[ -z $BUFFER ]] && { cd ..; zle reset-prompt } \
   || { zle kill-whole-line && cd ..; zle reset-prompt; zle yank }}

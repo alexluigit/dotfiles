@@ -61,6 +61,7 @@ alias fgs="fzf-git-stash"
 
 # pacman
 alias pas="fzf-pac-sync"
+alias yas="fzf-yay-sync"
 alias pal="fzf-pac-local"
 alias pacupg="sudo pacman -Syu"
 alias pacaur="pacman -Qm"

@@ -5,6 +5,7 @@ fzf-note() { __fzf-open ~/Documents/Notes 'fd -tf' nvim }
 fzf-starstar() { BUFFER="$BUFFER**"; zle end-of-line; zle fzf-completion; }
 fzf-dirstack() { dirs -v | awk '{ $1=""; print $0 }' | fzf; zle accept-line }
 fzf-pac-sync() { sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}") }
+fzf-yay-sync() { yay -Syy $(yay -Ssq | fzf -m --preview="yay -Si {}") }
 fzf-pac-local() { sudo pacman -Rns $(pacman -Qeq | fzf -m --preview="pacman -Si {}") }
 fzf-history() {
   local selected num
@@ -35,9 +36,15 @@ fzf-cd() {
   [[ -z "$dest" ]] && return || { cd "$dir$dest" && zle reset-prompt 2>/dev/null }
 }
 __fzf-open() {
-  local dir="$1/" fdCmd="${2:-fd -tf -L}" openCmd="${3:-xdg-open}"
+  local vpre="Documents/Drive/Video"
+  local cpre="Documents/Drive/Camera"
+  local dpre="Documents/Drive/Dev"
+  local mpre="Documents/Drive/Music"
+  local dir="${1:-/home/alex}/" fdCmd="${2:-fd -tf -L}" openCmd="${3:-xdg-open}"
   eval "$fdCmd . '$dir'" | sed "s|^$dir||" \
+  | sed "s|^$vpre|   |" | sed "s|^$cpre|   |" | sed "s|^$dpre|   |" | sed "s|^$mpre|   |" \
   | fzf -m --preview="preview '$dir'{}" \
+  | sed "s|^   |$vpre|" | sed "s|^   |$cpre|" | sed "s|^   |$dpre|" | sed "s|^   |$mpre|" \
   | sed "s|^|$dir|" | xargs -ro -d '\n' $openCmd 2>&1
   zle reset-prompt; zle-line-init
 }

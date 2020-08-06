@@ -1,6 +1,10 @@
 .git
 .cache
 .local
+Alex.files
+Resources
+Backup
+Notes/
 Calibre Library
 node_modules
 VSTPlugins

@@ -4,8 +4,9 @@ bspc rule -r "*"
 launchPolybar &
 xwallpaper --zoom ~/Pictures/Wallpaper/Dany-0.png &
 picom --xrender-sync-fence --experimental-backends &
+xsetroot -cursor_name left_ptr &
 autolock &
-killall redshift && redshift &
+! pidof redshift && redshift &
 pgrep bspsubscribe || bspsubscribe &
 pgrep bspswallow || bspswallow &
 

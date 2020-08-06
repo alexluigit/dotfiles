@@ -41,5 +41,5 @@ augroup Miscellaneous
   " <tab> key fold/unfold patch in fugitive
   au Filetype fugitive nmap <buffer> <Tab> =
   " change layout when nvim window resize
-  au VimResized * execute('wincmd =')
+  au VimResized * if !exists("g:manpager") | execute('wincmd =') | endif
 augroup end

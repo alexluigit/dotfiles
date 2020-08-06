@@ -2,7 +2,7 @@ function! alex#autocmds#vim_enter() abort
   set stl=%#Normal#
   if &ft=="man"
     call man#show_toc()
-    wincmd H | vert res 40 | setl stl= | wincmd l
+    wincmd H | vert res 20 | setl stl= | wincmd l
   return | endif
   if &ft=="fugitive" | wincmd o | return | endif
   if argc() == 0 | call TryGFiles() | return | endif

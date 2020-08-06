@@ -26,11 +26,11 @@ set trashdir="~/.local/share/Trash/files"
 set vifminfo=dhistory,chistory,state,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
 colorscheme gruvbox
 
-mark a /media/HDD/
-mark c ~/.config
-mark d ~/Downloads/
+mark a /media/HDD
+mark c ~/Dev/Alex.files
+mark d ~/Downloads
 mark D ~/Desktop
-mark h ~/
+mark h ~
 mark w ~/Pictures/Wallpaper
 
 nnoremap ; :

@@ -1,8 +1,7 @@
 #!/bin/sh
-# Since almost all cmds in this script need root access, you have to run it as root
 # TODO:
 pacman -S balabala
-PACKAGES=(
+PACMAN=(
   zsh
   networkmanager
   privoxy
@@ -13,14 +12,13 @@ PACKAGES=(
   xinit
 
   rofi
-  dunst
   bspwm
   sxhkd
   polybar
   easystroke
 )
 
-BUILDS=(
+YAY=(
   pixom
   xwallpaper
   xcape
@@ -32,5 +30,7 @@ BUILDS=(
 # See: https://wiki.archlinux.org/index.php/Xorg/Keyboard_configuration
 localectl --no-convert set-x11-keymap us "" "" caps:ctrl_modifier,shift:both_capslock_cancel
 
+# TODO: fnm, rust, golang, etc.
+curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash -s -- --install-dir $HOME/.local/bin --skip-shell
 # Bluetooth setting
 # Privoxy config

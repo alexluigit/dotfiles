@@ -7,4 +7,5 @@ config/vifm/vifmimgpdffile
 config/vifm/vifmimgpdfpage
 config/gtk-3.0/bookmarks
 config/shadowsocks/config.json
+config/aria2/aria2.conf
 *.pyc

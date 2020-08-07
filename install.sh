@@ -34,8 +34,9 @@ apps() {
     do ln -s "$i" "$APPDIR"
   done
   rm $APPDIR/apps
-  ln -sf $PWD/local/applications ~/.local/share/applications
+  ln -sf $PWD/local/share/applications ~/.local/share/applications
   ln -sf $PWD/config/mimeapps.list $CFGDIR/mimeapps.list
+  cd $PWD/local/apps/aria2-trackers && go build -o $GOPATH/bin/aria2-trackers; cd -
 }
 
 "$@"

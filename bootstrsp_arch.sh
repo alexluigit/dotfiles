@@ -16,6 +16,7 @@ PACMAN=(
   sxhkd
   polybar
   easystroke
+  cronie
 )
 
 YAY=(

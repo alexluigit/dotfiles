@@ -9,6 +9,7 @@
     "javascriptreact",
     "typescript.tsx"
   ],
+  "snippets.ultisnips.directories": [ "ultisnips" ],
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",

@@ -33,15 +33,6 @@ function! s:ctrl_k() abort
   if pumvisible() | return "\<C-p>" | else | return "\<Esc>O" | endif
 endfunction
 
-let g:UltiSnipsEditSplit="vertical" " Edit snippets in vert split
-let g:UltiSnipsSnippetDirectories=["ultisnips"] " Default path is uppercase
-let g:UltiSnipsExpandTrigger = '<F4>' " <C-cr>
-let g:UltiSnipsListSnippets = '<nop>'
-let g:UltiSnipsJumpForwardTrigger = '<nop>'
-let g:UltiSnipsJumpBackwardTrigger = '<nop>'
-let g:coc_snippet_next = '<Tab>'
-let g:coc_snippet_prev = '<S-Tab>'
-
 " " extensions
 " let g:coc_global_extensions = [
 "   \ 'coc-tsserver',

@@ -34,15 +34,15 @@ nnoremap <silent>       <leader>g        :Git<CR>
 " miscellaneous
 xmap                    ga               <Plug>(EasyAlign)
 nmap                    ga               <Plug>(EasyAlign)
-nnoremap <silent>       K                :call CocAction('doHover')<cr>
+nnoremap <silent>       K                :call CocAction('doHover')<CR>
 nmap     <silent>       <C-s>            <Plug>(coc-range-select)
 nnoremap <silent>       <leader><space>  <C-^>
-nnoremap                <leader>e        :Rename<space>
+nnoremap                <leader>e        :CocCommand workspace.renameCurrentFile<CR>
 nnoremap <silent>       <leader>n        :nohlsearch<C-r>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 nnoremap <silent>       <leader>o        :tabedit %<cr>
 nnoremap <silent>       <leader>p        :r !xclip -o -sel clip<CR>
 nnoremap <silent>       <leader>q        :q<CR>
-nnoremap <silent>       <leader>s        :UltiSnipsEdit<CR>
+nnoremap <silent>       <leader>s        :CocCommand snippets.openSnippetFiles<CR>
 nnoremap <silent>       <leader>t        :set relativenumber!<CR>
 nnoremap <silent>       <leader>v        :vert sb#<CR>
 nnoremap <silent>       <leader>w        :silent! w<CR>

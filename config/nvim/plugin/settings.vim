@@ -1,30 +1,31 @@
-set hidden nobackup nowritebackup noswapfile
-set smarttab expandtab shiftwidth=2 softtabstop=2
-set smartindent autoindent
-set linebreak nowrap " display long lines in just one line
-set ignorecase smartcase " ignore case when searching but still respect capital input
-set number relativenumber
-set splitright splitbelow diffopt+=vertical " default diff split splits open at the bottom and right
-set noshowmode noshowcmd
-set scrolloff=999 " Always keep cursor in the middle when <C-d> and <C-u>
-set history=10000
-set path+=**
-set wildmenu
-set updatetime=500 " CursorHold event will respect this value
-set shortmess+=ac
-set timeoutlen=200 " By default timeoutlen is 1000 ms
-set signcolumn=yes " Always show signcolumn
-set foldmethod=indent " not as cool as syntax, but faster
-set foldlevelstart=99 " start unfolded
-set foldtext=alex#settings#foldtext()
-set termguicolors
-set lazyredraw " dont redraw screen during macro execution
-set list
-set fillchars=diff:∙               " BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
-set fillchars+=fold:·              " MIDDLE DOT (U+00B7, UTF-8: C2 B7)
-set listchars+=tab:▷·              " WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7)
-set fillchars+=eob:\               " suppress ~ at EndOfBuffer
-set fillchars+=vert:\              " supress sign between vertical splits
+" Prevent tcomment from making a zillion mappings (we just want the operator).
+let g:tcomment_mapleader1=''
+let g:tcomment_mapleader2=''
+let g:tcomment_mapleader_comment_anyway=''
+let g:tcomment_textobject_inlinecomment=''
+" let g:tcomment_mapleader_uncomment_anyway='gu'
+
+" Turn off most of the features of vim-markwon; I really just want the folding.
+let g:vim_markdown_override_foldtext=0
+let g:vim_markdown_no_default_key_mappings=1
+let g:vim_markdown_emphasis_multiline=0
+let g:vim_markdown_conceal=0
+let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_frontmatter=1
+let g:vim_markdown_new_list_item_indent=0
+
+" Sneak settings
+let g:sneak#label = 1
+let g:sneak#use_ic_scs = 1 " case insensitive sneak
+let g:sneak#s_next = 1 " imediately move tot the next instance of search, if you move the cursor sneak is back to default behavior
+let g:sneak#prompt = ' :'
+
+" Replace netrw with vifm
+let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 1
+let g:vifm_replace_netrw = 1
+let g:vifm_exec          = 'vifmrun'
+
 colorscheme gruvbox
 hi! Normal guibg=NONE
 hi! NormalNC guibg=NONE

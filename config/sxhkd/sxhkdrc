@@ -32,7 +32,7 @@ hyper + {y,u,i,o}
 
 # Launch
 super + {w,m}
-	chromium-open {newtab,music}
+	chromium-helper {newtab,music}
 super {_,shift + ctrl + alt} + r
 	rofi-open app {combi,drun}
 super + {e, v}

@@ -61,12 +61,10 @@ hyper {_, + shift} + Escape
 # Miscs
 button{8,9}
 	xdotool key {'Control_L+w','Control_L+t'}
-XF86MonBrightnessDown
-	xvkbd -xsendevent -text "\[F1]"
-XF86KbdBrightnessDown
-	xvkbd -xsendevent -text "\[F5]"
+XF86{Mon,Kbd}BrightnessDown
+	xvkbd -xsendevent -text {"\[F1]","\[F5]"}
 hyper + XF86AudioRaiseVolume
 	xvkbd -xsendevent -text "\[F12]"
-# XF86MonBrightness{Down,Up}
+super + {n,p}
+	xvkbd -xsendevent -text {"\[Down]","\[Up]"}
 # XF86Launch{A,B}
-# XF86KbdBrightness{Down,Up}

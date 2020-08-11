@@ -1,4 +1,4 @@
 #!/bin/sh
 # This script is called on startup to call xcape
 [[ -z $(pidof xcape) ]] && xcape -e \
-'Caps_Lock=Escape;Control_L=Escape;Super_R=Super_L|Control_L|Shift_L|Alt_L|r'
+'Caps_Lock=Escape;Control_L=Escape;Control_R=Return;Super_R=Super_L|Control_L|Shift_L|Alt_L|r'

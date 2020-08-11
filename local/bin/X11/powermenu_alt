@@ -25,8 +25,7 @@ case $chosen in
         betterlockscreen -l
         ;;
     $suspend)
-        mpc -q pause
-        systemctl suspend
+        betterlockscreen -l & systemctl suspend
         ;;
     $logout)
         killall Xorg

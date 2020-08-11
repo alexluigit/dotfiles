@@ -3,13 +3,13 @@ newtab() { local wid=$(__check_chromium); [[ -n $wid ]] && __open_newtab $wid ||
 music() { local wid=$(__check_music); [[ -n $wid ]] && __window_switch $wid || __openmusic }
 refresh() { local wid=$(__check_chromium); [[ -n $wid ]] && __refresh_tab $wid }
 
-__check_chromium() { xdotool search --desktop $(xdotool get_desktop) --name 'Chromium' }
+__check_chromium() { xdotool search --onlyvisible --desktop $(xdotool get_desktop) --name 'Chromium' }
 __open_newtab() { __window_switch $1; sleep 0.1; __send_key ctrl+t }
 __refresh_tab() { __window_switch $1; sleep 0.1; __send_key ctrl+r; __switch_back }
 __send_key() { xdotool key --clearmodifiers $1 }
 __cleanstart() { chromium & __rmpki }
 __check_music() { xdotool search --name 'Youtube Music' }
-__window_switch() { xdotool windowactivate $1 --sync }
+__window_switch() { xdotool windowactivate $1 }
 __openmusic() { chromium --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod & __rmpki }
 __rmpki() { sleep 5 && rm -rf ~/.pki }
 __switch_back() { bspc node focused -f last }

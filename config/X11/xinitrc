@@ -8,7 +8,11 @@ deadd-notification-center &
 privoxy --no-daemon ~/.config/privoxy/config &
 fcitx &
 flameshot &
+autolock &
+redshift &
+xsetroot -cursor_name left_ptr &
+picom --xrender-sync-fence --experimental-backends &
+xwallpaper --zoom ~/Pictures/Wallpaper/Dany-0.png &
+launchPolybar &
 
-# Finally, window manager
 exec bspwm
-# ssh-agent bspwm

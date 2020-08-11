@@ -1,15 +1,11 @@
-" Supporting code -------------------------------------------------------------
 " Initialisation: {{{
-
 hi clear
 if exists("syntax_on") | syntax reset | endif
 let g:colors_name='gruvbox'
 if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256 | finish | endif
-
 " }}}
 
 " Global Settings: {{{
-
 if !exists('g:gruvbox_bold') | let g:gruvbox_bold=1 | endif
 let g:gruvbox_italic=1
 if !exists('g:gruvbox_undercurl') | let g:gruvbox_undercurl=1 | endif
@@ -26,13 +22,10 @@ if exists('g:gruvbox_contrast') | echo 'g:gruvbox_contrast is deprecated; use g:
 if !exists('g:gruvbox_contrast_dark') | let g:gruvbox_contrast_dark='medium' | endif
 if !exists('g:gruvbox_contrast_light') | let g:gruvbox_contrast_light='medium' | endif
 let s:is_dark=(&background == 'dark')
-
 " }}}
-" Palette: {{{
 
-" setup palette dictionary
+" Palette: {{{
 let s:gb = {}
-" fill it with absolute colors
 let s:gb.dark0_hard     = ['#1d2021', 234]     " 29-32-33
 let s:gb.dark0          = ['#282828', 235]     " 40-40-40
 let s:gb.dark0_soft     = ['#32302f', 236]     " 50-48-47
@@ -72,10 +65,9 @@ let s:gb.faded_blue     = ['#076678', 24]      " 7-102-120
 let s:gb.faded_purple   = ['#8f3f71', 96]      " 143-63-113
 let s:gb.faded_aqua     = ['#427b58', 66]      " 66-123-88
 let s:gb.faded_orange   = ['#af3a03', 130]     " 175-58-3
-
 " }}}
-" Setup Emphasis: {{{
 
+" Setup Emphasis: {{{
 let s:bold = 'bold,'
 if g:gruvbox_bold == 0 | let s:bold = '' | endif
 let s:italic = 'italic,'
@@ -87,12 +79,11 @@ if g:gruvbox_undercurl == 0 | let s:undercurl = '' | endif
 let s:inverse = 'inverse,'
 if g:gruvbox_inverse == 0 | let s:inverse = '' | endif
 " }}}
-" Setup Colors: {{{
 
+" Setup Colors: {{{
 let s:vim_bg = ['bg', 'bg']
 let s:vim_fg = ['fg', 'fg']
 let s:none = ['NONE', 'NONE']
-
 " determine relative colors
 if s:is_dark
   let s:bg0  = s:gb.dark0
@@ -145,7 +136,6 @@ else
   let s:aqua   = s:gb.faded_aqua
   let s:orange = s:gb.faded_orange
 endif
-
 " reset to 16 colors fallback
 if g:gruvbox_termcolors == 16
   let s:bg0[1]    = 0
@@ -159,7 +149,6 @@ if g:gruvbox_termcolors == 16
   let s:aqua[1]   = 14
   let s:fg1[1]    = 15
 endif
-
 " save current relative colors back to palette dictionary
 let s:gb.bg0 = s:bg0
 let s:gb.bg1 = s:bg1
@@ -180,10 +169,9 @@ let s:gb.blue   = s:blue
 let s:gb.purple = s:purple
 let s:gb.aqua   = s:aqua
 let s:gb.orange = s:orange
-
 " }}}
-" Setup Terminal Colors For Neovim: {{{
 
+" Setup Terminal Colors For Neovim: {{{
 if has('nvim')
   let g:terminal_color_0 = s:bg0[0]
   let g:terminal_color_8 = s:gray[0]
@@ -202,20 +190,17 @@ if has('nvim')
   let g:terminal_color_7 = s:fg4[0]
   let g:terminal_color_15 = s:fg1[0]
 endif
-
 " }}}
-" Overload Setting: {{{
 
+" Overload Setting: {{{
 let s:hls_cursor = s:orange
 if exists('g:gruvbox_hls_cursor')
   let s:hls_cursor = get(s:gb, g:gruvbox_hls_cursor)
 endif
-
 let s:number_column = s:none
 if exists('g:gruvbox_number_column')
   let s:number_column = get(s:gb, g:gruvbox_number_column)
 endif
-
 let s:sign_column = s:bg1
 if exists('g:gitgutter_override_sign_column_highlight') &&
       \ g:gitgutter_override_sign_column_highlight == 1
@@ -226,55 +211,47 @@ else
     let s:sign_column = get(s:gb, g:gruvbox_sign_column)
   endif
 endif
-
 let s:color_column = s:bg1
 if exists('g:gruvbox_color_column')
   let s:color_column = get(s:gb, g:gruvbox_color_column)
 endif
-
 let s:vert_split = s:bg0
 if exists('g:gruvbox_vert_split')
   let s:vert_split = get(s:gb, g:gruvbox_vert_split)
 endif
-
 let s:invert_signs = ''
 if exists('g:gruvbox_invert_signs')
   if g:gruvbox_invert_signs == 1
     let s:invert_signs = s:inverse
   endif
 endif
-
 let s:invert_selection = s:inverse
 if exists('g:gruvbox_invert_selection')
   if g:gruvbox_invert_selection == 0
     let s:invert_selection = ''
   endif
 endif
-
 let s:invert_tabline = ''
 if exists('g:gruvbox_invert_tabline')
   if g:gruvbox_invert_tabline == 1
     let s:invert_tabline = s:inverse
   endif
 endif
-
 let s:italicize_comments = s:italic
 if exists('g:gruvbox_italicize_comments')
   if g:gruvbox_italicize_comments == 0
     let s:italicize_comments = ''
   endif
 endif
-
 let s:italicize_strings = ''
 if exists('g:gruvbox_italicize_strings')
   if g:gruvbox_italicize_strings == 1
     let s:italicize_strings = s:italic
   endif
 endif
-
 " }}}
-" Highlighting Function: {{{
 
+" Highlighting Function: {{{
 function! s:HL(group, fg, ...)
   " Arguments: group, guifg, guibg, gui, guisp
   " foreground
@@ -297,10 +274,9 @@ function! s:HL(group, fg, ...)
   if a:0 >= 3 | call add(histring, 'guisp=' . a:3[0]) | endif
   execute join(histring, ' ')
 endfunction
-
 " }}}
-" Gruvbox Hi Groups: {{{
 
+" Gruvbox Hi Groups: {{{
 " memoize common hi groups
 call s:HL('GruvboxFg0', s:fg0)
 call s:HL('GruvboxFg1', s:fg1)
@@ -334,12 +310,9 @@ call s:HL('GruvboxBlueSign', s:blue, s:sign_column, s:invert_signs)
 call s:HL('GruvboxPurpleSign', s:purple, s:sign_column, s:invert_signs)
 call s:HL('GruvboxAquaSign', s:aqua, s:sign_column, s:invert_signs)
 call s:HL('GruvboxOrangeSign', s:orange, s:sign_column, s:invert_signs)
-
 " }}}
 
-" Vanilla colorscheme ---------------------------------------------------------
 " General UI: {{{
-
 " Normal text
 call s:HL('Normal', s:fg1, s:bg0)
 " call s:HL('NormalNC', s:gray, s:bg2)
@@ -348,7 +321,6 @@ call s:HL('NormalNC', s:gray)
 " --- Problem with changing between dark and light on 256 color terminal
 " --- https://github.com/morhetz/gruvbox/issues/7
 if s:is_dark | set background=dark | else | set background=light | endif
-
 if version >= 700
   " Screen line that the cursor is
   call s:HL('CursorLine', s:none, s:bg1)
@@ -363,7 +335,6 @@ if version >= 700
   " Match paired bracket under the cursor
   call s:HL('MatchParen', s:none, s:bg3, s:bold)
 endif
-
 if version >= 703
   " Highlighted screen columns
   call s:HL('ColorColumn',  s:none, s:color_column)
@@ -373,7 +344,6 @@ if version >= 703
   " call s:HL('CursorLineNr', s:yellow, s:bg1)
   call s:HL('CursorLineNr', s:yellow)
 endif
-
 hi! link NonText GruvboxBg2
 hi! link SpecialKey GruvboxBg2
 call s:HL('Visual',    s:none,  s:bg3, s:invert_selection)
@@ -401,10 +371,9 @@ hi! link ModeMsg GruvboxYellowBold
 hi! link Question GruvboxOrangeBold
 " Warning messages
 hi! link WarningMsg GruvboxRedBold
-
 " }}}
-" Gutter: {{{
 
+" Gutter: {{{
 " Line number for :number and :# commands
 call s:HL('LineNr', s:bg4, s:number_column)
 " Column where signs are displayed
@@ -414,10 +383,9 @@ call s:HL('SignColumn', s:none)
 call s:HL('Folded', s:gray, s:bg1, s:italic)
 " Column where folds are displayed
 call s:HL('FoldColumn', s:gray, s:bg1)
-
 " }}}
-" Cursor: {{{
 
+" Cursor: {{{
 " Character under cursor
 call s:HL('Cursor', s:none, s:none, s:inverse)
 " Visual mode cursor, selection
@@ -426,16 +394,14 @@ hi! link vCursor Cursor
 hi! link iCursor Cursor
 " Language mapping cursor
 hi! link lCursor Cursor
-
 " }}}
-" Syntax Highlighting: {{{
 
+" Syntax Highlighting: {{{
 if g:gruvbox_improved_strings == 0
   hi! link Special GruvboxOrange
 else
   call s:HL('Special', s:orange, s:bg1, s:italicize_strings)
 endif
-" call s:HL('Comment', s:gray, s:none, s:italicize_comments)
 call s:HL('Comment', s:gray, s:none, s:italic)
 call s:HL('Todo', s:vim_fg, s:vim_bg, s:bold . s:italic)
 call s:HL('Error', s:red, s:vim_bg, s:bold . s:inverse)
@@ -491,10 +457,9 @@ hi! link StorageClass GruvboxOrange
 hi! link Structure GruvboxAqua
 " typedef
 hi! link Typedef GruvboxYellow
-
 " }}}
-" Completion Menu: {{{
 
+" Completion Menu: {{{
 if version >= 700
   " Popup menu: normal item
   call s:HL('Pmenu', s:fg1, s:bg2)
@@ -505,56 +470,31 @@ if version >= 700
   " Popup menu: scrollbar thumb
   call s:HL('PmenuThumb', s:none, s:bg4)
 endif
-
 " }}}
-" Diffs: {{{
 
-" call s:HL('DiffDelete', s:red, s:bg0, s:inverse)
+" Diffs: {{{
 call s:HL('DiffDelete', s:red, s:none, s:bold)
 call s:HL('DiffAdd',    s:green, s:none, s:bold)
-" Alternative setting
-" call s:HL('DiffChange', s:aqua, s:bg1, s:bold)
 call s:HL('DiffChange', s:aqua, s:none, s:bold)
 call s:HL('DiffText',   s:yellow, s:none, s:bold)
-
 " }}}
 
-" Plugin specific -------------------------------------------------------------
 " Sneak: {{{
-
 hi! link Sneak Search
 hi! link SneakLabel Search
-
 " }}}
 
 " GitCommit: "{{{
-
 hi! link gitcommitSelectedFile GruvboxGreen
 hi! link gitcommitDiscardedFile GruvboxRed
-
 " }}}
 
 " Vim Multiple Cursors: {{{
-
 call s:HL('multiple_cursors_cursor', s:none, s:none, s:inverse)
 call s:HL('multiple_cursors_visual', s:none, s:bg2)
-
 " }}}
 
-" Functions -------------------------------------------------------------------
-" Search Highlighting Cursor {{{
-
-function! GruvboxHlsShowCursor()
-  call s:HL('Cursor', s:bg0, s:hls_cursor)
-endfunction
-
-function! GruvboxHlsHideCursor()
-  call s:HL('Cursor', s:none, s:none, s:inverse)
-endfunction
-
-" }}}
-
-" Statusline {{{
+" Statusline: {{{
 call s:HL('NormalColor', s:bg0, s:blue, s:bold)
 call s:HL('InsertColor', s:bg0, s:green, s:bold)
 call s:HL('ReplaceColor', s:bg0, s:yellow, s:bold)
@@ -564,8 +504,8 @@ call s:HL('CommandColor', s:bg0, s:red, s:bold)
 call s:HL('FileHead', s:gb.light3, s:gb.dark2)
 call s:HL('FileUnMod', s:gb.light0, s:gb.dark2, s:bold)
 call s:HL('FileMod', s:green, s:gb.dark2, s:bold)
-hi Func guifg=#d7875f guibg=#30302C gui=italic
-hi StlFiletype guifg=#808070 guibg=#30302C gui=bold
+hi Func guifg=#d7875f guibg=none gui=italic
+hi StlFiletype guifg=#808070 guibg=none gui=bold
 hi StlCol guifg=#a8a897 guibg=#4e4e43
 hi Percent guifg=#30302C guibg=#949484 gui=bold
 call s:HL('ModeNC', s:bg0, s:gb.light4, s:bold)
@@ -576,11 +516,11 @@ call s:HL('FileModNC', s:gb.neutral_green, s:bg2, s:bold)
 call s:HL('FuncNC', s:gb.light4, s:none, s:bold)
 " }}}
 
-" Fugitive {{{
+" Fugitive: {{{
 call s:HL('fugitiveUnstagedSection', s:fg1, s:none, s:bold)
 " }}}
 
-" Tabline {{{
+" Tabline: {{{
 " hi TabLine     ctermfg=White ctermbg=Black cterm=None
 " hi TabLineFill ctermfg=White ctermbg=Black cterm=None
 " hi TabLineSel  ctermfg=Black ctermbg=White cterm=None

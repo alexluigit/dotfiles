@@ -40,11 +40,17 @@ spit() {
 	sed -i "/^$spitterid/d" /tmp/swallowids
 }
 
+quit_monocle() {
+	[[ $(bspc wm -g | awk -F ':' '{print $(NF-2)}') == 'LM' ]] \
+	&& bspc desktop -l next
+}
+
 bspc subscribe node_add node_remove | while read -r event
 do
 	case $(echo "$event" | awk '{ print $1 }') in
 		node_add)
-            		swallow $(echo "$event" | awk '{print $5 " " $3}')
+			quit_monocle
+			swallow $(echo "$event" | awk '{print $5 " " $3}')
 			;;
 		node_remove)
 			spit $(echo "$event" | awk '{print $4 " " $3}')

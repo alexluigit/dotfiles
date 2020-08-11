@@ -1,16 +1,18 @@
 #!/bin/sh
+REPODIR="$HOME/Dev/Alex.files"
 CFGDIR="$HOME/.config"
 SCRIPTDIR="$HOME/.local/bin"
 APPDIR="$HOME/.local/apps"
 
 checkdir() {
-  echo "Current Directory: $PWD"
+  echo "Current    Directory: $PWD"
+  echo "Repository Directory: $REPODIR"
   [[ ! -d $CFGDIR ]] && mkdir $CFGDIR || echo "$HOME/.config exists"
 }
 
 config() {
   find $CFGDIR -maxdepth 1 -type l -delete
-  for i in $(du -d 1 "$PWD/config" | cut -f2)
+  for i in $(du -d 1 "$REPODIR/config" | cut -f2)
     do ln -s "$i" "$CFGDIR"
   done
   rm $CFGDIR/config
@@ -18,25 +20,25 @@ config() {
 
 scripts() {
   find $SCRIPTDIR -maxdepth 1 -type l -delete
-  for i in $(find "$PWD/local/bin" -type f -executable)
+  for i in $(find "$REPODIR/local/bin" -type f -executable)
     do ln -s $i $SCRIPTDIR
   done
 }
 
 zshenv() {
   rm ~/.zshenv
-  ln -s $PWD/config/zsh/zshenv $HOME/.zshenv
+  ln -s $REPODIR/config/zsh/zshenv $HOME/.zshenv
 }
 
 apps() {
   find $APPDIR -maxdepth 1 -type l -delete
-  for i in $(du -d 1 "$PWD/local/apps" | cut -f2)
+  for i in $(du -d 1 "$REPODIR/local/apps" | cut -f2)
     do ln -s "$i" "$APPDIR"
   done
   rm $APPDIR/apps
-  ln -sf $PWD/local/share/applications ~/.local/share/applications
-  ln -sf $PWD/config/mimeapps.list $CFGDIR/mimeapps.list
-  cd $PWD/local/apps/aria2-trackers && go build -o $GOPATH/bin/aria2-trackers; cd -
+  ln -sf $REPODIR/local/share/applications ~/.local/share/applications
+  ln -sf $REPODIR/config/mimeapps.list $CFGDIR/mimeapps.list
+  cd $REPODIR/local/apps/aria2-trackers && go build -o $GOPATH/bin/aria2-trackers; cd -
 }
 
 "$@"

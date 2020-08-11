@@ -1,15 +1,10 @@
 stty -ixon # Disable XON/XOFF flow control
 bindkey -v # vi-mode
-KEYTIMEOUT=0
 
 # Better vi-mode
 for m in visual viopp; do
-  for c in {a,i}{\',\",\`}; do
-    bindkey -M $m $c select-quoted
-  done
-  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
-    bindkey -M $m $c select-bracketed
-  done
+  for c in {a,i}{\',\",\`}; do; bindkey -M $m $c select-quoted; done
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do; bindkey -M $m $c select-bracketed; done
 done
 bindkey -a            cs  change-surround
 bindkey -a            ds  delete-surround

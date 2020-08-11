@@ -10,6 +10,7 @@ neteasemusic = +forward-override{forward 127.0.0.1:10001}
 {socks5}
 /
 {direct}
+localhost/
 .*.cn
 .126.com
 .126.net

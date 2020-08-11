@@ -2,15 +2,9 @@ env:
   TERM: xterm-256color
 
 window:
-  dimensions:
-   columns: 180
-   lines: 53
   padding:
-   x: 15
-   y: 10
-  position:
-   x: 0
-   y: 0
+    x: 12
+    y: 5
   decorations: none
 scrolling:
   history: 10000
@@ -30,9 +24,6 @@ font:
   bold_italic:
     family: VictorMono Nerd Font
     style: SemiBold Italic
-  offset:
-    x: 0
-    y: 0
   glyph_offset:
     x: 0
     y: 2

@@ -4,5 +4,5 @@ function! alex#utils#syntax_group() abort
 endfunction
 
 function! alex#utils#live_reload() abort
-  exec "nnoremap <silent><leader>w :w<cr>:silent! !~/.local/bin/chromium-helper refresh<cr>"
+  exec "nnoremap <silent><leader>w :silent! w<cr>:silent! !~/.local/bin/bravectl refresh<cr>"
 endfunction

@@ -28,17 +28,19 @@ hyper + {e, b}
 hyper + f
 	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
 hyper + {y,u,i,o}
+	bspc node -s {west,south,north,east}
+hyper + {n,m,comma,period}
 	xdo move {-x -20,-y +20,-y -20,-x +20}
 
 # Launch
 super + {w,m}
-	chromium-helper {newtab,music}
+	bravectl {newtab,music}
 super {_,shift + ctrl + alt} + r
 	rofi-open app {combi,drun}
 super + {e, v}
 	alacritty {_,-e vifmrun}
-super + o; {n}
-	nautilus
+super + o; {t,d}
+	{thunar, bravectl dev}
 super + {_,shift} q
 	xdo {close,kill}
 super + Escape

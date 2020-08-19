@@ -40,7 +40,7 @@ augroup Miscellaneous
   au Filetype fzf let g:term_meta = get(b:, 'term_title', '')
   " <tab> key fold/unfold patch in fugitive
   au Filetype fugitive nmap <buffer> <Tab> =
-  au Filetype vue,javastript,typescript,html,css,sass call alex#utils#live_reload()
+  au Filetype vue,javascript,typescript,html,css,sass call alex#utils#live_reload()
   " change layout when nvim window resize
   au VimResized * if !exists("g:manpager") | execute('wincmd =') | endif
 augroup end

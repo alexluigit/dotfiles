@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+rm ~/.config/yay/aurlist.txt
+curl https://aur.archlinux.org/packages.gz -o ~/.config/yay/aurlist.txt.gz
+gunzip ~/.config/yay/aurlist.txt.gz

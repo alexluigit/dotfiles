@@ -5,7 +5,7 @@ fzf-note() { __fzf-open ~/Documents/Notes 'fd -tf' nvim }
 fzf-starstar() { BUFFER="$BUFFER**"; zle end-of-line; zle fzf-completion; }
 fzf-dirstack() { dirs -v | awk '{ $1=""; print $0 }' | fzf; zle accept-line }
 fzf-pac-sync() { sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}") }
-fzf-yay-sync() { yay -Syy $(yay -Ssq | fzf -m --preview="yay -Si {}") }
+fzf-yay-sync() { yay -Syy $(cat ~/.config/yay/aurlist.txt | fzf -m --preview="yay -Si {}") }
 fzf-pac-local() { sudo pacman -Rns $(pacman -Qeq | fzf -m --preview="pacman -Si {}") }
 fzf-history() {
   local selected num

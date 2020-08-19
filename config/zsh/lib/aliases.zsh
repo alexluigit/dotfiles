@@ -9,7 +9,7 @@ alias ka="killall"
 alias md="mkdir -p"
 alias sv="sudoedit"
 alias yd="youtube-dl --write-sub --write-auto-sub -o '~/Desktop/%(title)s-%(id)s.%(ext)s'"
-alias ydl="youtube-dl --yes-playlist --write-sub --write-auto-sub -o '~/Desktop/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
+alias ydl="youtube-dl --yes-playlist --write-sub --write-auto-sub -o '~/Downloads/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
 alias ls="ls --group-directories-first --color=auto"
 alias la="ls -lAFh"   #long list,show almost all,show type,human readable
 alias ssh="ssh -F $XDG_CONFIG_HOME/ssh/config"
@@ -18,15 +18,16 @@ alias lsize='ls -1FSsh'
 alias lart='ls -1aFcrt'
 alias trals="ls $XDG_DATA_HOME/Trash/files"
 alias tracl="rm -rf $XDG_DATA_HOME/Trash/{files,info}/*"
+alias noproxy="unset http_proxy; unset https_proxy"
 alias -g B="| bat"
-alias -g F="| fzf" alias -g G="| rg"
+alias -g F="| fzf"
+alias -g G="| rg"
 alias -g NE="2> /dev/null"
 alias -g NUL="> /dev/null 2>&1"
 alias -g S="| sort -n -r"
 alias -g W="| wc -l"
 
 # git
-alias gap="git add -p"
 alias gab="git abv"
 alias gaa="git commit --amend -v" # amend both msg and commit
 alias gaf="git commit --amend --no-edit" # amend just commit
@@ -37,7 +38,7 @@ alias gcv="git commit -v"
 alias get="git remote update --prune && git merge --ff-only" # updating all remotes and fast-forwarding to a specific one: eg. `git get upstream/master`
 alias gfu="git fixup"
 alias ghd="GIT_NO_PAGER=1 git loghelpers pretty_git_log -1" # just head
-alias gnb="git checkout -b" # new branch
+alias gnb="git checkout -b"
 alias grw="git rewind"
 alias gss="git status -s"
 alias gst="git stash --keep-index" # stsh
@@ -63,7 +64,4 @@ alias fgs="fzf-git-stash"
 alias pas="fzf-pac-sync"
 alias yas="fzf-yay-sync"
 alias pal="fzf-pac-local"
-alias pacupg="sudo pacman -Syu"
-alias pacaur="pacman -Qm"
-alias pacorp="pacman -Qdt"
 alias pacrmo="sudo pacman -Rns $(pacman -Qtdq)" # remove orphan

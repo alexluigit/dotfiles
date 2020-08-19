@@ -1,19 +1,18 @@
 #!/bin/sh
 hideall(){
  for node in $(bspc query -N -n .local.window); do
- bspc node $node --flag hidden=on
+   bspc node $node --flag hidden=on
  done
  bspc node $1 --flag hidden=off
 }
 
 unhideall(){
  for node in $(bspc query -N -n .local.window); do
- bspc node $node --flag hidden=off
+   bspc node $node --flag hidden=off
  done
 }
 
 bspc subscribe desktop_layout | while read _ _ _ layout; do
  current=$(bspc query -N -n focused)
- [[ $layout == "monocle" ]] && hideall $current
- [[ $layout == "tiled" ]] && unhideall
+ [[ $layout == "monocle" ]] && hideall $current || unhideall
 done;

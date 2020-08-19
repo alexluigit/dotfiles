@@ -6,6 +6,9 @@ imap                      <C-x><C-k>      <plug>(fzf-complete-word)
 imap                      <C-x><C-f>      <plug>(fzf-complete-path)
 imap                      <C-x><C-l>      <plug>(fzf-complete-line)
 
+let g:coc_snippet_next = '<Tab>'
+let g:coc_snippet_prev = '<S-Tab>'
+
 function! s:enter() abort
   let symbols = [ '}', ']' ]
   let nextchar = getline('.')[col('.') - 1]

@@ -14,7 +14,7 @@ super + Tab
 super + grave
 	bspc desktop last --focus
 
-# Window size
+# Window size / move
 hyper + {h,j,k,l}
 	bspc node --presel-dir '~{west,south,north,east}'
 hyper + {2-9}
@@ -56,7 +56,7 @@ XF86Audio{Prev,Play,Next}
 hyper + XF86Audio{Prev,Play}
 	music-control {shuffle ON,loop Track}
 XF86Audio{LowerVolume,RaiseVolume,Mute}
-	pactl set-sink-{volume $SOUND_DEVICE -8%,volume $SOUND_DEVICE +8%,mute $SOUND_DEVICE toggle}
+	volumectl {down,up,mute}
 hyper {_, + shift} + Escape
 	flameshot {gui,full -p ~/Pictures/Screenshots}
 

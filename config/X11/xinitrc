@@ -11,7 +11,7 @@ flameshot &
 autolock &
 redshift &
 xsetroot -cursor_name left_ptr &
-picom --xrender-sync-fence --experimental-backends &
+picom --experimental-backends &
 xwallpaper --zoom ~/Pictures/Wallpaper/Dany-0.png &
 launchPolybar &
 

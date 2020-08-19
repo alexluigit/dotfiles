@@ -1,14 +1,14 @@
 #!/usr/bin/env sh
-export PRIMARY_DISPLAY="$(xrandr | awk '/ connected/{print $1}')"
+export DISPLAY_DEVICE="$(xrandr | awk '/ connected/{print $1}')"
 xidlehook \
   --not-when-fullscreen \
   --not-when-audio \
   --timer 180 \
-    'xrandr --output "$PRIMARY_DISPLAY" --brightness .1' \
-    'xrandr --output "$PRIMARY_DISPLAY" --brightness 1' \
+    'xrandr --output "$DISPLAY_DEVICE" --brightness .1' \
+    'xrandr --output "$DISPLAY_DEVICE" --brightness 1' \
   --timer 60 \
-    'xrandr --output "$PRIMARY_DISPLAY" --brightness 1; betterlockscreen -l' \
+    'xrandr --output "$DISPLAY_DEVICE" --brightness 1; betterlockscreen -l' \
     '' \
   --timer 900 \
-    'systemctl suspend' \
+    'killall i3lock && betterlockscreen -s' \
     ''

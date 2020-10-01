@@ -16,13 +16,13 @@ font:
     family: Victor Mono
     style: ExtraLight
   bold:
-    family: VictorMono Nerd Font
+    family: Victor Mono
     style: SemiBold
   italic:
-    family: VictorMono Nerd Font
+    family: Victor Mono
     style: ExtraLight Italic
   bold_italic:
-    family: VictorMono Nerd Font
+    family: Victor Mono
     style: SemiBold Italic
   glyph_offset:
     x: 0
@@ -82,7 +82,7 @@ key_bindings:
   - { key: C,          mods: Super|Control,  action: Copy      }
   # Vi Mode
   - { key: Space,  mods: Shift|Control, mode: Vi, action: ScrollToBottom          }
-  - { key: Space,  mods: Shift|Control,           action: ToggleViMode            }
+  - { key: Space,  mods: Control,                 action: ToggleViMode            }
   - { key: Escape,                      mode: Vi, action: ClearSelection          }
   - { key: I,                           mode: Vi, action: ScrollToBottom          }
   - { key: I,                           mode: Vi, action: ToggleViMode            }

@@ -28,7 +28,7 @@ git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2>/dev/null) || \
   ref=$(git rev-parse --short HEAD 2>/dev/null) || return 0
   parse_git_status
-  echo "$staged$unstaged$untracked %F{222}%B${${ref:u}#REFS/HEADS/}%b%f "
+  echo "$staged$unstaged$untracked %{$reset_color%}%F{222}${${ref:u}#REFS/HEADS/}%f "
 }
 parse_git_status() {
   local STATUS

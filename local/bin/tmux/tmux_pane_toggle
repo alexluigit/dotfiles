@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+if [[ $(tmux display-message -p "#{window_panes}") -eq 1 ]]; then
+  tmux split-window -h -c '#{pane_current_path}'
+elif [[ $(tmux display-message -p "#{pane_index}") -eq 0 ]]; then
+  tmux resize-pane -Z \; select-pane -R
+else
+  tmux select-pane -L \; resize-pane -Z
+fi

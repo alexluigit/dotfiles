@@ -14,6 +14,7 @@ packadd! vim-surround
 packadd! vim-fugitive
 packadd! vim-repeat
 packadd! vim-polyglot
+packadd! vim-slime
 
 set hidden nobackup nowritebackup noswapfile
 set smarttab expandtab shiftwidth=2 softtabstop=2

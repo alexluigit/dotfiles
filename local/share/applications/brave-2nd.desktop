@@ -2,6 +2,7 @@
 Version=1.0
 Terminal=false
 Type=Application
-Name=bravedev
-Exec=bravectl dev
-StartupWMClass=bravedev
+Name=brave2nd
+Exec=bravectl second
+StartupWMClass=brave2nd
+

@@ -36,7 +36,9 @@ xmap                    ga               <Plug>(EasyAlign)
 nmap                    ga               <Plug>(EasyAlign)
 nnoremap <silent>       K                :call CocAction('doHover')<CR>
 nmap     <silent>       <C-s>            <Plug>(coc-range-select)
+xmap     <silent>       <C-s>            <Plug>(coc-range-select)
 nnoremap <silent>       <leader><space>  <C-^>
+nnoremap                <leader>a        :CocAction<CR>
 nnoremap                <leader>e        :CocCommand workspace.renameCurrentFile<CR>
 nnoremap <silent>       <leader>n        :nohlsearch<C-r>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 nnoremap <silent>       <leader>o        :tabedit %<cr>
@@ -47,6 +49,4 @@ nnoremap <silent>       <leader>t        :set relativenumber!<CR>
 nnoremap <silent>       <leader>v        :vert sb#<CR>
 nnoremap <silent>       <leader>w        :silent! w<CR>
 nnoremap <silent>       <leader>x        :silent! x<CR>
-map      <silent>       <F1>             :call alex#monkeyterm#toggle()<CR>
-tmap     <silent>       <F1>             <C-\><C-n>:call alex#monkeyterm#toggle()<CR>
 nmap                    <F5>             :call alex#utils#syntax_group()<CR>

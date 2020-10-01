@@ -26,6 +26,6 @@ export XMODIFIERS=@im=fcitx
 export http_proxy=http://127.0.0.1:1088
 export https_proxy=http://127.0.0.1:1088
 
-# Start graphical interface (check if Xsession exists first)
+# StartX
 [ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx \
 "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1

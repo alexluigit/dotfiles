@@ -1,6 +1,5 @@
 augroup BetterFocus
   au!
-  " Remove Statusline and open fzf on VimEnter (only when arglist is empty)
   au VimEnter * call alex#autocmds#vim_enter()
   " Active | inactive windodw
   au BufEnter,FocusGained,VimEnter,WinEnter * call alex#window#focus()

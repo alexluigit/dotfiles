@@ -59,10 +59,9 @@ alias fgb="fzf-git-branch"
 alias fgl="fzf-git-log"
 alias fgd="fzf-git-diff"
 alias fgs="fzf-git-stash"
-# alias fgi="fzf-ignore"
 
 # pacman
 alias pas="fzf-pac-sync"
 alias yas="fzf-yay-sync"
 alias pal="fzf-pac-local"
-alias pacrmo="sudo pacman -Rns $(pacman -Qtdq)" # remove orphan
+alias pao="pacman -Qtdq" # orphan

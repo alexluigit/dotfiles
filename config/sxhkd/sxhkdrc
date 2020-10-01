@@ -1,18 +1,18 @@
 # Focus
-super + {_,shift + } {1-7}
-	bspc {desktop -f,node -d} ^{1-7}
-super + control + {1-7}
-	bspc node -d ^{1-7} --follow
+super + {_,shift + } {0,1-7}
+	bspc {desktop -f,node -d} ^{1,2-8}
+super + control + {0,1-7}
+	bspc node -d ^{0,2-8} --follow
 super + {h,j,k,l}
 	bspc node -f {west,south,north,east}
 super + s
 	bspc node -s biggest.local || bspc node -s next.local
 super + f
 	bspc desktop -l next
-super + Tab
-        bspc node focused -f next
 super + grave
-	bspc desktop last --focus
+        bspc node -m next --follow
+super + Tab
+	bspc monitor next --focus
 
 # Window size / move
 hyper + {h,j,k,l}
@@ -35,12 +35,12 @@ hyper + {n,m,comma,period}
 # Launch
 super + {w,m}
 	bravectl {newtab,music}
-super {_,shift + ctrl + alt} + r
+super {_, + ctrl } + r
 	rofi-open app {combi,drun}
 super + {e, v}
 	alacritty {_,-e vifmrun}
-super + o; {t,d}
-	{thunar, bravectl dev}
+super + o; {t,d,c}
+	{thunar, bravectl dev, rofi-open calc}
 super + {_,shift} q
 	xdo {close,kill}
 super + Escape
@@ -61,6 +61,8 @@ hyper {_, + shift} + Escape
 	flameshot {gui,full -p ~/Pictures/Screenshots}
 
 # Miscs
+super + c
+	sleep 0.2 && xdotool click 1
 button{8,9}
 	xdotool key {'Control_L+w','Control_L+t'}
 XF86{Mon,Kbd}BrightnessDown

@@ -1,12 +1,15 @@
-#!/bin/sh
-songnotify() {
-  title=$(playerctl -p chrome metadata title)
-  artist=$(playerctl -p chrome metadata artist)
-  artUrl=$(sed 's/=w60-h60/=w150-h150/' <<< $(playerctl -p chrome metadata mpris:artUrl))
-  coverPath="$XDG_CACHE_HOME/covers/youtubemusic.jpg"
-  curl "$artUrl" -o $coverPath \
-  && notify=$(notify-send.py --hint string:image-path:file://$coverPath -i youtube -a youtube --replaces-process youtube "$title" "$artist")
+#!/bin/zsh
+info() {
+  songInfo="$(playerctl metadata --format '{{title}} - {{artist}}')"
+  echo "${songInfo%%(VEVO| - Topic)}"
 }
 
-[[ "$#" == 1 ]] && playerctl -p chrome $1 && songnotify
-[[ "$#" == 2 ]] && playerctl -p chrome $1 $2
+songnotify() {
+  title=$(playerctl metadata title)
+  artist=$(playerctl metadata artist)
+  notify=$(notify-send.py -i youtube -a youtube --replaces-process youtube "$title" "$artist")
+}
+
+[[ "$1" == "info" ]] && info && exit
+[[ "$#" == 1 ]] && playerctl $1 && songnotify
+[[ "$#" == 2 ]] && playerctl $1 $2

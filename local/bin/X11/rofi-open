@@ -1,3 +1,8 @@
 #!/bin/zsh
-applications() { rofi -no-lazy-grab -show $1 -theme ~/.config/rofi/themes/launcher.rasi }
-[[ "$1"=="app" ]] && applications $2
+applications() { rofi -m -1 -no-lazy-grab -show $1 -theme ~/.config/rofi/themes/launcher.rasi }
+calculator() { rofi -m -1 -show calc -modi calc -no-show-match -no-sort -theme ~/.config/rofi/themes/launcher.rasi }
+
+case $1 in
+  app) applications $2;;
+  calc) calculator;;
+esac

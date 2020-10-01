@@ -70,29 +70,33 @@ listview {
 
 mainbox {
     background-color:               @background-color;
-    children:                       [ inputbar, listview ];
     spacing:                        15px;
     padding:                        30px 25px 15px 25px;
+}
+
+#textbox {
+    text-color: @foreground;
 }
 
 element {
     background-color:               @background;
     text-color:                     @foreground;
-    orientation:                    vertical;
+    orientation:                    horizontal;
+    children: [element-icon, element-text];
     border-radius:                  6px;
-    padding:                        10px 0px 10px 0px;
+    padding:                        10px 0px 10px 10px;
 }
 
 element-icon {
-    size:                           45px;
+    size:                           30px;
     border:                         0px;
 }
 
 element-text {
     expand:                         true;
-    horizontal-align:               0.5;
     vertical-align:                 0.5;
     margin:                         5px 10px 0px 10px;
+    position:                       center;
 }
 
 element normal.urgent,

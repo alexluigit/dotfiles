@@ -14,6 +14,7 @@ export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export PATH=$PATH:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$FNM_DIR/current/bin
 # Defaults
 export EDITOR="nvim"
+export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
 export MANPAGER='nvim -c "let g:manpager = 1" +set\ filetype=man -'
 export GDK_SCALE=2
 export GDK_DPI_SCALE=0.6

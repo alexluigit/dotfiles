@@ -1,0 +1,4 @@
+import readline
+from rich import pretty
+pretty.install()
+readline.write_history_file = lambda *args: None

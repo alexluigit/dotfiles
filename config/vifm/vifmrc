@@ -47,10 +47,8 @@ nnoremap yf :!printf %c:p | xclip -selection clipboard<cr>
 nnoremap cc cw<c-u>
 nnoremap <space>. :write | edit $MYVIFMRC | restart<cr>
 nnoremap <space>w :set wrap!<cr>
-nnoremap ` '
 nnoremap <space>e :edit<space>
 nnoremap <space>d :mkdir<space>
-nnoremap <space>c :!chmod  %c<left><left><left>
 nnoremap <space>m :move<cr>
 
 command! df df -h %m 2> /dev/null

@@ -41,5 +41,9 @@ apps() {
   cd $REPODIR/local/apps/aria2-trackers && go build -o $GOPATH/bin/aria2-trackers; cd -
 }
 
+assets() {
+  ln -sf $REPODIR/local/assets ~/.local/assets
+}
+
 "$@"
 # git submodule init && git submodule update && echo "Done."

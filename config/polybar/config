@@ -38,7 +38,7 @@ font-6 = VictorMono Nerd Font:style=Semibold:size=20;2
 wm-restack = bspwm
 override-redirect = false
 modules-left = launcher bspwm xwindow
-modules-center = date
+modules-center = date pomo
 modules-right = music pulseaudio sysmenu
 
 [module/launcher]
@@ -92,6 +92,10 @@ label-background = ${colors.bg}
 label-font = 2
 label-padding = 2
 
+[module/pomo]
+type = custom/script
+exec = "pomo state"
+
 [module/pulseaudio]
 type = internal/pulseaudio
 format-volume-margin = 2
@@ -116,7 +120,7 @@ click-left = powermenu_alt
 type = custom/script
 format-margin = 4
 format =     <label>
-exec = playerctl -p chrome metadata --format '{{title}} - {{artist}}'
+exec = music-control info
 tail = true
 interval = 2
 click-left = "playerctl play-pause"

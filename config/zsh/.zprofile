@@ -23,8 +23,6 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=true
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
-export http_proxy=http://127.0.0.1:1088
-export https_proxy=http://127.0.0.1:1088
 
 # StartX
 [ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx \

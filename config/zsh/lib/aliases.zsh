@@ -19,6 +19,7 @@ alias lart='ls -1aFcrt'
 alias nope='node --experimental-repl-await ~/.config/node/repl.js'
 alias trals="ls $XDG_DATA_HOME/Trash/files"
 alias tracl="rm -rf $XDG_DATA_HOME/Trash/{files,info}/*"
+alias proxyon="export http_proxy=http://127.0.0.1:1088; export https_proxy=http://127.0.0.1:1088"
 alias noproxy="unset http_proxy; unset https_proxy"
 alias -g B="| bat"
 alias -g F="| fzf"

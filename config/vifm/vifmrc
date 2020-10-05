@@ -34,14 +34,10 @@ mark h ~
 mark w ~/Pictures/Wallpaper
 
 nnoremap ; :
-nnoremap <C-h> <C-w>h
-nnoremap <BS> <C-w>h
-nnoremap <C-l> <C-w>l
 nnoremap q :q<cr>
 nnoremap s :sort<cr>
 nnoremap S :shell<cr>
-nnoremap <Tab> :view<cr>
-vnoremap <Tab> :view<cr>gv
+nnoremap w :view<cr>
 nnoremap yd :!printf %d | xclip -selection clipboard<cr>
 nnoremap yf :!printf %c:p | xclip -selection clipboard<cr>
 nnoremap cc cw<c-u>

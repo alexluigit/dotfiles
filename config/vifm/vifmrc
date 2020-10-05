@@ -22,7 +22,7 @@ set dotdirs=rootparent " Dot't show '../' since it is unnecessary
 set statusline="  %A %T %=%d %l/%S "
 set rulerformat=""
 set confirm=permdelete
-set trashdir="~/.local/share/Trash/files"
+set trashdir="~/.local/share/Trash"
 set vifminfo=dhistory,chistory,state,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
 colorscheme gruvbox
 

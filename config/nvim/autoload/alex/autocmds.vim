@@ -5,7 +5,7 @@ function! alex#autocmds#vim_enter() abort
     wincmd H | vert res 20 | setl stl= | wincmd l
   return | endif
   if &ft=="fugitive" | wincmd o | return | endif
-  if argc() == 0 | call TryGFiles() | return | endif
+  if argc() == 0 | execute('Files') | return | endif
 endfunction
 
 function! alex#autocmds#yank_post() abort

@@ -15,8 +15,7 @@ function! s:newtabsplit(...) abort
 endfunction
 
 function! s:fzf_cycle(...)
-  if alex#git#isGitRepo() == 0 | let s:tryGFiles = "GitFiles" | else | let s:tryGFiles = "Files" | endif
-  let s:commands = [s:tryGFiles, "Hist", "All"]
+  let s:commands = ["Files", "Hist", "All"]
   for cmd in s:commands
     if stridx(get(g:, 'term_meta', ''), cmd) > 0
       let s:next = s:commands[(index(s:commands, cmd) + 1) % len(s:commands)]

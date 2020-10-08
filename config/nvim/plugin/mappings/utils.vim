@@ -1,7 +1,7 @@
 " search / replace
 nnoremap <silent>       <C-f>            yiw:BLines<CR>
 xnoremap <silent>       <C-f>            ygv:<C-u>BLines <C-r>0<CR>
-nnoremap <silent>       <C-p>            :call TryGFiles()<CR>
+nnoremap <silent>       <C-p>            :Files<CR>
 nnoremap                <leader>pw       :CocSearch <C-r>=expand("<cword>")<CR>
 xnoremap <silent>       <leader>pw       y:CocSearch <C-r>0<CR>/<C-r>0<CR>
 nnoremap                <leader>r        :%s///gc<left><left><left>

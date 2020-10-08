@@ -15,5 +15,6 @@ xsetroot -cursor_name left_ptr &
 picom --experimental-backends &
 xwallpaper --output DVI-I-0 --zoom ~/Pictures/Wallpaper/z.jpg --output DP-0 --zoom ~/Pictures/Wallpaper/Dany-0.png &
 launchPolybar &
+ss-local -c ~/.config/shadowsocks/config.json &
 
 exec bspwm

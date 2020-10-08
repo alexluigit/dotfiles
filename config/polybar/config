@@ -43,8 +43,8 @@ modules-right = music pulseaudio sysmenu
 
 [module/launcher]
 type=custom/text
-content = "  "
-content-font = 7
+content = "  "
+content-font = 2
 content-margin = 2
 click-left = "rofi-open app drun"
 

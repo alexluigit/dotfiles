@@ -91,3 +91,6 @@
 [submodule "vim-slime"]
 	path = config/nvim/pack/bundle/opt/vim-slime
 	url = https://github.com/jpalardy/vim-slime
+[submodule "vim-buftabline"]
+	path = config/nvim/pack/bundle/opt/vim-buftabline
+	url = https://github.com/ap/vim-buftabline

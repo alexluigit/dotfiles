@@ -94,3 +94,6 @@
 [submodule "vim-buftabline"]
 	path = config/nvim/pack/bundle/opt/vim-buftabline
 	url = https://github.com/ap/vim-buftabline
+[submodule "vim-bujo"]
+	path = config/nvim/pack/bundle/opt/vim-bujo
+	url = https://github.com/vuciv/vim-bujo

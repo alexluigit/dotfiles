@@ -17,3 +17,4 @@ packadd! vim-eunuch
 packadd! vim-slime
 packadd! vim-buftabline
 packadd! vim-bujo
+packadd! nvim-treesitter

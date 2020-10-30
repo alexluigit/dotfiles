@@ -34,3 +34,6 @@ let g:slime_paste_file = tempname()
 
 " Bujo settings
 let g:bujo#window_width = 80
+
+" treesitter
+luafile ~/.config/nvim/lua/config/treesitter.lua

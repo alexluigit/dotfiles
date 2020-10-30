@@ -24,6 +24,7 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=true
 export GTK_IM_MODULE=fcitx5
 export QT_IM_MODULE=fcitx5
 export XMODIFIERS=@im=fcitx5
+export FZF_DEFAULT_OPTS='--bind=ctrl-e:up,f6:beginning-of-line,ctrl-o:end-of-line'
 
 # StartX
 [ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx \

@@ -1,6 +1,6 @@
 let g:fzf_tags_command = 'ctags -R'
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
-let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
+let $FZF_DEFAULT_OPTS = '--bind=ctrl-e:up,f6:beginning-of-line,ctrl-o:end-of-line --inline-info'
 
 " Make this func public because VimEnter calls it
 function! TryGFiles() abort
@@ -26,7 +26,8 @@ endfunction
 
 let g:fzf_action = {
   \ 'ctrl-t': function('s:newtabsplit'),
-  \ 'ctrl-n': function('s:fzf_cycle'),
+  \ 'ctrl-c': function('s:fzf_cycle'),
+  \ 'f4':     'vsplit',
   \ 'ctrl-s': 'split',
   \ 'ctrl-l': 'vsplit',
   \ 'ctrl-z': 'arga' } " ctrl-z in fzf window is a bug?

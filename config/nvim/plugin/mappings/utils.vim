@@ -18,8 +18,8 @@ nnoremap <silent>       <leader>f        :Lines<CR>
 nnoremap <silent>       <leader>h        :Helptags<CR>
 
 " navigation
-nmap     <silent>       <leader>j        <Plug>(coc-diagnostic-next)
-nmap     <silent>       <leader>k        <Plug>(coc-diagnostic-prev)
+nmap     <silent>       <leader>n        <Plug>(coc-diagnostic-next)
+nmap     <silent>       <leader>e        <Plug>(coc-diagnostic-prev)
 nmap     <silent>       gd               <Plug>(coc-definition)
 nmap     <silent>       gy               <Plug>(coc-type-definition)
 nmap     <silent>       gr               <Plug>(coc-references)
@@ -45,6 +45,11 @@ nmap                    <leader>8        <Plug>BufTabLine.Go(8)
 nmap                    <leader>9        <Plug>BufTabLine.Go(9)
 nmap                    <leader>0        <Plug>BufTabLine.Go(10)
 
+" t for toggle [ to: "o"nly | tn: "n"umber | tt: "t"odo ]
+nnoremap <silent>       <leader>to       :tabedit %<cr>
+nnoremap <silent>       <leader>tn       :set relativenumber!<CR>
+nnoremap <silent>       <leader>tt       :call alex#utils#todo_launch()<cr>
+
 " miscellaneous
 nmap     <silent>       <F4>             gcc
 xmap     <silent>       <F4>             gc
@@ -55,15 +60,10 @@ nnoremap <silent>       E                :call CocAction('doHover')<CR>
 nmap     <silent>       <C-s>            <Plug>(coc-range-select)
 xmap     <silent>       <C-s>            <Plug>(coc-range-select)
 nnoremap                <leader>a        :CocAction<CR>
-nnoremap                <leader>e        :Rename<Space>
-nnoremap <silent>       <leader>n        :nohlsearch<C-r>=has('diff')?'<Bar>diffupdate':''<CR><CR>
-" nnoremap <silent>       <leader>o        :tabedit %<cr>
-" nnoremap <silent>       <leader>o        :Todo<cr>
-" nnoremap <silent><expr> <leader>q        argc() == 1 ? ':q<CR>' : ':bd<CR>'
+nnoremap                <leader>j        :Rename<Space>
+nnoremap <silent>       <leader>k        :nohlsearch<C-r>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 nnoremap <silent><expr> <leader>q        len(getbufinfo({'buflisted':1})) > 1 ? ':bd<CR>' : ':q<CR>'
 nnoremap <silent>       <leader>s        :CocCommand snippets.openSnippetFiles<CR>
-nnoremap <silent>       <leader>tn       :set relativenumber!<CR>
-nnoremap <silent>       <leader>tt       :call alex#utils#todo_launch()<cr>
 nnoremap <silent>       <leader>v        :VsplitVifm <bar> setl statusline=%#Normal#<cr>
 nnoremap <silent>       <leader>w        :silent! w<CR>
 nnoremap <silent>       <leader>x        :silent! x<CR>

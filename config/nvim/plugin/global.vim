@@ -3,16 +3,7 @@ let g:tcomment_mapleader1=''
 let g:tcomment_mapleader2=''
 let g:tcomment_mapleader_comment_anyway=''
 let g:tcomment_textobject_inlinecomment=''
-" let g:tcomment_mapleader_uncomment_anyway='gu'
-
-" Turn off most of the features of vim-markwon; I really just want the folding.
-let g:vim_markdown_override_foldtext=0
-let g:vim_markdown_no_default_key_mappings=1
-let g:vim_markdown_emphasis_multiline=0
-let g:vim_markdown_conceal=0
-let g:vim_markdown_conceal_code_blocks = 0
-let g:vim_markdown_frontmatter=1
-let g:vim_markdown_new_list_item_indent=0
+let g:tcomment_mapleader_uncomment_anyway=''
 
 " Sneak settings
 let g:sneak#label = 1
@@ -32,8 +23,12 @@ let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_
 let g:slime_dont_ask_default = 1
 let g:slime_paste_file = tempname()
 
+" markdown settings
+let g:markdown_fenced_languages = ['c', 'html', 'python', 'cpp', 'go', 'rust', 'bash=sh', 'javascript']
+let g:markdown_folding = 1
+
 " Bujo settings
-let g:bujo#window_width = 80
+let g:bujo#window_width = 60
 
 " treesitter
 luafile ~/.config/nvim/lua/config/treesitter.lua

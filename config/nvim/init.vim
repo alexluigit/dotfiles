@@ -9,7 +9,6 @@ packadd! vim-textobj-indent
 packadd! vim-textobj-comment
 packadd! vim-sneak
 packadd! vim-easy-align
-packadd! vim-markdown
 packadd! vim-surround
 packadd! vim-fugitive
 packadd! vim-repeat

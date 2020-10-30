@@ -20,9 +20,6 @@
 [submodule "vim-easy-align"]
 	path = config/nvim/pack/bundle/opt/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
-[submodule "vim-markdown"]
-	path = config/nvim/pack/bundle/opt/vim-markdown
-	url = https://github.com/plasticboy/vim-markdown
 [submodule "vifm.vim"]
 	path = config/nvim/pack/bundle/opt/vifm.vim
 	url = https://github.com/vifm/vifm.vim

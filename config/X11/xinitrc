@@ -6,7 +6,7 @@ sxhkd -m 1 &
 aria2c --input-file=/home/alex/.cache/aria2/aria2.session &
 deadd-notification-center &
 privoxy --no-daemon ~/.config/privoxy/config &
-fcitx &
+fcitx5 &
 flameshot &
 autolock &
 redshift &

@@ -2,6 +2,7 @@
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
+export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
 export _Z_DATA=$XDG_DATA_HOME/z/.z
 export LESSHISTFILE=$XDG_CACHE_HOME/less/lesshst
@@ -20,9 +21,9 @@ export GDK_SCALE=2
 export GDK_DPI_SCALE=0.6
 export QT_SCREEN_SCALE_FACTORS=1
 export QT_AUTO_SCREEN_SCALE_FACTOR=true
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx5
+export QT_IM_MODULE=fcitx5
+export XMODIFIERS=@im=fcitx5
 
 # StartX
 [ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx \

@@ -1,9 +1,8 @@
 #!/bin/sh
 easystroke --config-dir $XDG_CONFIG_HOME/easystroke &
-remaps &
 xrdb -merge $XDG_CONFIG_HOME/X11/xresources
 xrandr --output DP-0 --primary --mode 3840x2160 --output DVI-I-0 --mode 1440x900 --left-of DP-0 --rotate right &
-sxhkd &
+sxhkd -m 1 &
 aria2c --input-file=/home/alex/.cache/aria2/aria2.session &
 deadd-notification-center &
 privoxy --no-daemon ~/.config/privoxy/config &

@@ -106,6 +106,6 @@ YAY=(
 # This approach is much persistent than execute setxkbmap in ~/.xinitrc
 # Settings below will not lost during bluetooth reconnection or plug/unplug keyboard
 # See: https://wiki.archlinux.org/index.php/Xorg/Keyboard_configuration
-localectl --no-convert set-x11-keymap us "" "" caps:ctrl_modifier,shift:both_capslock_cancel
+localectl --no-convert set-x11-keymap us pc105 "" caps:ctrl_modifier,shift:both_capslock_cancel,terminate:ctrl_alt_bksp
 
 curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash -s -- --install-dir $HOME/.local/bin --skip-shell

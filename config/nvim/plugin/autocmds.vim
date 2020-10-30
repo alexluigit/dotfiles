@@ -27,19 +27,15 @@ augroup end
 
 augroup Miscellaneous
   au!
+  " Don't help me to auto comment newline
+  au FileType * setlocal fo-=c fo-=r fo-=o
+  au Filetype vue,javascript,typescript,html,css,scss call alex#utils#live_reload()
   " Remove trailing space on save
   au BufWritePre * %s/\s\+$//e
   " If path doesn't exist, just create it
   au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
   " Highlight yanked content for 500 ms and send OSC52 seqs to tty
   au TextYankPost * call alex#autocmds#yank_post()
-  " Don't help me to auto comment newline
-  au FileType * setlocal fo-=c fo-=r fo-=o
-  " fzf-cycle helper
-  au Filetype fzf let g:term_meta = get(b:, 'term_title', '')
-  " <tab> key fold/unfold patch in fugitive
-  au Filetype fugitive nmap <buffer> <Tab> =
-  au Filetype vue,javascript,typescript,html,css,sass call alex#utils#live_reload()
   " change layout when nvim window resize
   au VimResized * if !exists("g:manpager") | execute('wincmd =') | endif
 augroup end

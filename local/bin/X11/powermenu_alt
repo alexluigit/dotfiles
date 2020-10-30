@@ -22,10 +22,10 @@ case $chosen in
         systemctl reboot
         ;;
     $lock)
-        betterlockscreen -l
+        multilockscreen -l
         ;;
     $suspend)
-        betterlockscreen -l & systemctl suspend
+        multilockscreen -s
         ;;
     $logout)
         pkill X

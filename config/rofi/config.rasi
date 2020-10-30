@@ -14,17 +14,18 @@ configuration {
 	terminal: "alacritty";
 	display-window: "節 ";
 	display-combi: "";
-	display-drun: "";
+	display-drun: "";
 	display-run: " ";
 	kb-accept-entry: "Control+m,Return,KP_Enter";
-	kb-row-down: "Down,Control+j";
-	kb-row-up: "Up,Control+k,ISO_Left_Tab";
+	kb-row-down: "Down,Control+n";
+	kb-row-up: "Up,Control+e,ISO_Left_Tab";
+	kb-move-front: "Control+i";
+	kb-move-end: "Control+o";
 	kb-row-left: "Control+h";
 	kb-row-right: "Control+l";
 	kb-remove-to-eol: "";
 	kb-remove-char-back: "BackSpace,Shift+BackSpace";
-	kb-mode-next: "Shift+Right,Control+o";
-	kb-mode-previous: "Shift+Left,Control+i";
+	kb-mode-next: "Shift+Right,Control+s";
 	/* display-windowcd: ; */
 	/* display-ssh: ; */
 	/* display-keys: ; */
@@ -83,7 +84,6 @@ configuration {
 /*	kb-secondary-paste: "Control+v,Insert";*/
 /*	kb-clear-line: "Control+w";*/
 /*	kb-move-front: "Control+a";*/
-/*	kb-move-end: "Control+e";*/
 /*	kb-move-word-back: "Alt+b,Control+Left";*/
 /*	kb-move-word-forward: "Alt+f,Control+Right";*/
 /*	kb-move-char-back: "Left,Control+b";*/

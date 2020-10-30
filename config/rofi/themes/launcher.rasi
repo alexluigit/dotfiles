@@ -45,10 +45,10 @@ inputbar {
 entry {
     background-color:               @background;
     text-color:                     @foreground;
-    placeholder-color:              @foreground;
+    placeholder-color:              @background-alt;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search";
+    placeholder:                    "search";
     blink:                          true;
 }
 

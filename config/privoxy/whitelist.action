@@ -12,6 +12,7 @@ neteasemusic = +forward-override{forward 127.0.0.1:10001}
 {direct}
 localhost/
 .*.cn
+.10fastfingers.com
 .126.com
 .126.net
 .58.com
@@ -76,6 +77,11 @@ localhost/
 .jianshu.com
 .jianshuapi.com
 .jikipedia.com
+.kuaishou.com
+.yximgs.com
+.gifshow.com
+.vpgame.com
+.ksapisrv.com
 .kugou.com
 # .kuwo.cn
 .lanzous.com

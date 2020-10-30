@@ -1,18 +1,19 @@
 #!/usr/bin/env zsh
+FIX_FLAGS=(--use-cmd-decoder=validating --use-gl=desktop --proxy-server="127.0.0.1:1088")
+MONITOR_2ND_ENV=(GDK_SCALE=1 GDK_DPI_SCALE=0.5)
 newtab() { local wid=$(__check_brave); [[ -n $wid ]] && __open_newtab $wid || __cleanstart }
 music() { local wid=$(__check_music); [[ -n $wid ]] && __window_switch $wid || __openmusic }
-refresh() { local wid=$(__check_brave bravedev); [[ -n $wid ]] && __refresh_tab $wid }
-dev() { brave --proxy-server="127.0.0.1:1088" --user-data-dir=/home/alex/.config/bravedev --class=bravedev & __rmpki }
-second() { export GDK_SCALE=1; export GDK_DPI_SCALE=0.5; brave --proxy-server="127.0.0.1:1088" --user-data-dir=/home/alex/.config/brave2nd --class=brave2nd }
+refresh() { local wid=$(__check_brave brave2nd 0); [[ -n $wid ]] && __refresh_tab $wid }
+second() { env ${MONITOR_2ND_ENV[@]} brave "${FIX_FLAGS[@]}" --user-data-dir=/home/alex/.config/brave2nd --class=brave2nd & __rmpki }
 
-__check_brave() { xdotool search --onlyvisible --desktop $(xdotool get_desktop) --class ${1:-brave} }
-__open_newtab() { __window_switch $1; sleep 0.1; __send_key ctrl+t }
-__refresh_tab() { __window_switch $1; sleep 0.1; __send_key ctrl+r; __switch_back }
-__send_key() { xdotool key --clearmodifiers $1 }
-__cleanstart() { brave --proxy-server="127.0.0.1:1088" & __rmpki }
+__check_brave() { xdotool search --onlyvisible --desktop ${2:-$(xdotool get_desktop)} --class ${1:-brave} }
+__open_newtab() { __window_switch $1; sleep 0.1; __send_key '\Ct' }
+__refresh_tab() { __window_switch $1; sleep 0.1; __send_key '\Cr'; __switch_back } # same as line above
+__send_key() { xvkbd -xsendevent -text $1 }
+__cleanstart() { brave "${FIX_FLAGS[@]}" & __rmpki }
 __check_music() { xdotool search --name 'Youtube Music' }
 __window_switch() { xdotool windowactivate $1 }
-__openmusic() { brave --proxy-server="127.0.0.1:1088" --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod & __rmpki }
+__openmusic() { brave "${FIX_FLAGS[@]}" --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod & __rmpki }
 __rmpki() { sleep 5 && rm -rf ~/.pki }
 __switch_back() { bspc node focused -f last }
 

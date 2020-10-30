@@ -3,29 +3,29 @@ super + {_,shift + } {0,1-7}
 	bspc {desktop -f,node -d} ^{1,2-8}
 super + control + {0,1-7}
 	bspc node -d ^{0,2-8} --follow
-super + {h,j,k,l}
+super + {h,n,e,apostrophe}
 	bspc node -f {west,south,north,east}
-super + s
-	bspc node -s biggest.local || bspc node -s next.local
-super + f
+super + m
 	bspc desktop -l next
 super + grave
-        bspc node -m next --follow
-super + Tab
 	bspc monitor next --focus
+super + Tab
+	bspc node -f last
 
 # Window size / move
-hyper + {h,j,k,l}
+hyper + {h,n,e,apostrophe}
 	bspc node --presel-dir '~{west,south,north,east}'
+hyper + s
+	bspc node -s biggest.local || bspc node -s next.local
 hyper + {2-9}
 	bspc node -o 0.{2-9}
 hyper + space
 	bspc node -p cancel
-hyper + super + {h,j,k,l}
+hyper + super + {h,n,e,apostrophe}
 	bsp_resize {west,south,north,east} 50
 hyper + {e, b}
 	bspc node @/ -{E,B}
-hyper + f
+hyper + t
 	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
 hyper + {y,u,i,o}
 	bspc node -s {west,south,north,east}
@@ -33,28 +33,32 @@ hyper + {n,m,comma,period}
 	xdo move {-x -20,-y +20,-y -20,-x +20}
 
 # Launch
-super + {w,m}
-	bravectl {newtab,music}
-super {_, + ctrl } + r
-	rofi-open app {combi,drun}
-super + {e, v}
-	alacritty {_,-e vifmrun}
-super + o; {t,d,c}
-	{thunar, bravectl dev, rofi-open calc}
+super + a
+	rofi-open drun
+super + r
+	rofi-open run
+super + s
+	rofi-open combi
+super + t
+	alacritty
+super + {Return, v}
+	tdrop -a -m -h 98% -w 40% -x 2292 -y 50 alacritty {_, -e vifmrun }
 super + {_,shift} q
 	xdo {close,kill}
+super + w
+	bravectl newtab
+super + o; {t,d,c,m}
+	{thunar, bravectl second, rofi-open calc, bravectl music}
 super + Escape
 	powermenu_alt
 super + shift + BackSpace
 	pkill -USR1 -x sxhkd
 shift + Delete
-	systemctl suspend
+	multilockscreen -s
 
 # Media
 XF86Audio{Prev,Play,Next}
 	music-control {previous,play-pause,next}
-hyper + XF86Audio{Prev,Play}
-	music-control {shuffle ON,loop Track}
 XF86Audio{LowerVolume,RaiseVolume,Mute}
 	volumectl {down,up,mute}
 hyper {_, + shift} + Escape
@@ -64,11 +68,13 @@ hyper {_, + shift} + Escape
 super + c
 	sleep 0.2 && xdotool click 1
 button{8,9}
-	xdotool key {'Control_L+w','Control_L+t'}
+	xvkbd -xsendevent -text {'\Cw', '\Ct'}
 XF86{Mon,Kbd}BrightnessDown
 	xvkbd -xsendevent -text {"\[F1]","\[F5]"}
 hyper + XF86AudioRaiseVolume
 	xvkbd -xsendevent -text "\[F12]"
-super + {n,p}
+super + {p,l}
 	xvkbd -xsendevent -text {"\[Down]","\[Up]"}
 # XF86Launch{A,B}
+# XF86{Mon,Kbd}BrightnessUp
+# 	xvkbd -xsendevent -text {"\[F2]","\[F6]"}

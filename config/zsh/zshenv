@@ -3,4 +3,4 @@ HISTFILE="/home/alex/.local/share/zsh/history"
 HISTSIZE=10000; SAVEHIST=10000
 
 # Following aliases are available in nvim since in .zshenv
-alias twf="twf --bind='h::tree:close,l::tree:open' --previewCmd='bat -p --color=always {}'"
+alias twf="twf --bind='n::tree:next,e::tree:prev,h::tree:close,i::tree:open,ctrl-n::preview:down,ctrl-e::preview:up' --previewCmd='bat -p --color=always {}'"

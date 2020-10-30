@@ -33,9 +33,9 @@ git_prompt_info() {
 parse_git_status() {
   local STATUS
   STATUS=$(git status --porcelain | colrm 3 | uniq | paste -d: -s -)
-  [[ $STATUS == *[ADMR]\ * ]] && staged="%{$fg_bold[green]%}ﬨ";
-  [[ $STATUS == *\ [ADMR]* ]] && unstaged="%{$fg_bold[red]%}ﬨ";
-  [[ $STATUS == *\?* ]] && untracked="%{$fg_bold[blue]%}ﬨ";
+  [[ $STATUS == *[ADMR]\ * ]] && staged="%{$fg_bold[green]%}";
+  [[ $STATUS == *\ [ADMR]* ]] && unstaged="%{$fg_bold[red]%}";
+  [[ $STATUS == *\?* ]] && untracked="%{$fg_bold[blue]%}";
 }
 
 # preexec() and precmd() are hook functions in zsh. (bash has precmd() but not preexec())
@@ -80,7 +80,7 @@ chpwd_prompt () {
 local bg_jobs="%(1j.%{$fg_bold[red]%} .)"
 local privileges="%(#.%{$fg_bold[red]%}  .)"
 local line_break=$'\n'%{$reset_color%}
-local ret_status="%(?:%{$fg_bold[green]%}  :%{$fg_bold[red]%}  %s)"
+local ret_status="%(?:%{$fg_bold[green]%} :%{$fg_bold[red]%} %s)"
 PROMPT='$bg_jobs$privileges$cwd_head$cwd_tail $(git_prompt_info)$timer$line_break$ret_status'
 # trigger the chpwd hooks once, this line should appear after the prompt definition
 chpwd_functions+=(chpwd_prompt); cd .

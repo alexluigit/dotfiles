@@ -37,12 +37,6 @@ mark t ~/.local/share/Trash
 
 noremap n j
 noremap e k
-" vnoremap n j
-" vnoremap e k
-" nnoremap n j
-" nnoremap e k
-" vnoremap n j
-" vnoremap e k
 nnoremap ; :
 nnoremap <c-n> n
 nnoremap q :q<cr>

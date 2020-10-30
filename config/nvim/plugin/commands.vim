@@ -13,31 +13,3 @@ command! -bang -nargs=* Rg
 command! -bang -nargs=* GGrep
 \ call fzf#vim#grep('git grep --line-number '.shellescape(<q-args>), 0,
 \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
-
-if !exists('s:loaded')
-  let s:loaded = {}
-endif
-function! s:ffn(fn, path) abort
-  let ns = tr(matchstr(a:path, '^\a\a\+:'), ':', '#')
-  let fn = ns . a:fn
-  if len(ns) && !exists('*' . fn) && !has_key(s:loaded, ns) && len(findfile('autoload/' . ns[0:-2] . '.vim', escape(&rtp, ' ')))
-    exe 'runtime! autoload/' . ns[0:-2] . '.vim'
-    let s:loaded[ns] = 1
-  endif
-  if len(ns) && exists('*' . fn)
-    return fn
-  else
-    return a:fn
-  endif
-endfunction
-
-function! s:fcall(fn, path, ...) abort
-  return call(s:ffn(a:fn, a:path), [a:path] + a:000)
-endfunction
-command! -bar -bang Delete
-\ let s:file = fnamemodify(bufname(<q-args>),':p') |
-\ execute 'bdelete<bang>' |
-\ if !bufloaded(s:file) && s:fcall('delete', s:file) |
-\   echoerr 'Failed to delete "'.s:file.'"' |
-\ endif |
-\ unlet s:file

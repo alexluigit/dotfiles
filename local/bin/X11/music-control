@@ -8,6 +8,7 @@ songnotify() {
   title=$(playerctl metadata title)
   artist=$(playerctl metadata artist)
   notify=$(notify-send.py -i youtube -a youtube --replaces-process youtube "$title" "$artist")
+  return
 }
 
 [[ "$1" == "info" ]] && info && exit

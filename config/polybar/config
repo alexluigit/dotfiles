@@ -37,24 +37,18 @@ font-5 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular:size=18;2
 font-6 = VictorMono Nerd Font:style=Semibold:size=20;2
 wm-restack = bspwm
 override-redirect = false
-modules-left = launcher bspwm xwindow
+modules-left = launcher bspwm
 modules-center = date pomo
-modules-right = music pulseaudio sysmenu
+modules-right = music cpu memory pulseaudio sysmenu
 
+; check polybar wiki for internal modules
+; https://github.com/polybar/polybar/wiki
 [module/launcher]
 type=custom/text
 content = "  "
 content-font = 2
 content-margin = 2
-click-left = "rofi-open app drun"
-
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
-label-empty =
-label-empty-font = 2
-label-font = 2
-format-margin = 2
+click-left = "rofi-open drun"
 
 [module/bspwm]
 type = internal/bspwm
@@ -66,20 +60,16 @@ reverse-scroll = false
 enable-scroll = true
 label-focused = %name%
 label-focused-underline = ${colors.white}
-label-focused-padding = 2
-label-focused-font = 1
-label-empty =
-label-urgent =
-label-urgent-padding = 6
-label-occupied = %icon%
-label-occupied-padding = 3
+label-focused-padding = 0
+label-focused-font = 2
+label-empty = %name%
+label-occupied = %name%
+label-occupied-padding = 0
+label-occupied-underline = #555555
+label-separator = " "
+label-separator-padding = 1
 scroll-up = bspwm-wsnext
 scroll-down = bspwm-wsprev
-ws-icon-0 = Dev;
-ws-icon-1 = Web;
-ws-icon-2 = Doc;
-ws-icon-3 = Music;
-ws-icon-default = 
 
 [module/date]
 type = internal/date
@@ -95,6 +85,17 @@ label-padding = 2
 [module/pomo]
 type = custom/script
 exec = "pomo state"
+
+[module/cpu]
+type = internal/cpu
+format = <label>
+label-margin = 4
+label =    %percentage% 
+
+[module/memory]
+type = internal/memory
+format = <label>
+label =    %percentage_used% 
 
 [module/pulseaudio]
 type = internal/pulseaudio

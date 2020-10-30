@@ -82,9 +82,6 @@
 [submodule "vb4c"]
 	path = local/apps/vb4c
 	url = https://github.com/alexluigit/vb4c
-[submodule "vim-polyglot"]
-	path = config/nvim/pack/bundle/opt/vim-polyglot
-	url = https://github.com/sheerun/vim-polyglot
 [submodule "vim-surround"]
 	path = config/nvim/pack/bundle/opt/vim-surround
 	url = https://github.com/alexluigit/vim-surround

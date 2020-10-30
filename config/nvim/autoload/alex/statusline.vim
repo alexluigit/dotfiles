@@ -1,6 +1,8 @@
 let s:statusline_ft_blacklist = [ 'fzf', 'diff', 'fugitiveblame', 'qf' ]
+let s:statusline_fn_blacklist = [ 'todo.md' ]
 function! alex#statusline#allow() abort
   if index(s:statusline_ft_blacklist, &filetype) != -1 | return | endif
+  if index(s:statusline_fn_blacklist, expand("%:t")) != -1 | return | endif
   if !empty(&buftype) | return | endif
   return &buflisted
 endfunction

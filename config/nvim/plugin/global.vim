@@ -33,4 +33,4 @@ let g:slime_dont_ask_default = 1
 let g:slime_paste_file = tempname()
 
 " Bujo settings
-let g:bujo#window_width = 60
+let g:bujo#window_width = 80

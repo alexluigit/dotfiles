@@ -33,3 +33,4 @@ filetype *.pkg xdg-open
 filetype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt open -a LibreOffice.app
 filetype *.mkv,*.mp4,*.mov,*.webm,*.avi,*.mp3 mpv %f
 filetype *.bmp,*.jpg,*.jpeg,*.png,*.xpm sxiv %f
+filetype *.pdf zathura %f

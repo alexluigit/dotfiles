@@ -24,6 +24,7 @@ set rulerformat=""
 set confirm=permdelete
 set trashdir="~/.local/share/Trash"
 set vifminfo=dhistory,chistory,state,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
+set viewcolumns=-{name}..,6{size}
 colorscheme gruvbox
 
 mark a /media/HDD
@@ -32,8 +33,18 @@ mark d ~/Downloads
 mark D ~/Desktop
 mark h ~
 mark w ~/Pictures/Wallpaper
+mark t ~/.local/share/Trash
 
+noremap n j
+noremap e k
+" vnoremap n j
+" vnoremap e k
+" nnoremap n j
+" nnoremap e k
+" vnoremap n j
+" vnoremap e k
 nnoremap ; :
+nnoremap <c-n> n
 nnoremap q :q<cr>
 nnoremap s :sort<cr>
 nnoremap S :shell<cr>
@@ -55,5 +66,5 @@ command! make !!make %a
 command! mkcd :mkdir %a | cd %a
 command! reload :write | restart
 
-source $VIFM/icons
-source $VIFM/filetypes
+source $VIFM/scripts/icons
+source $VIFM/scripts/filetypes

@@ -97,3 +97,6 @@
 [submodule "vim-bujo"]
 	path = config/nvim/pack/bundle/opt/vim-bujo
 	url = https://github.com/vuciv/vim-bujo
+[submodule "nvim-treesitter"]
+	path = config/nvim/pack/bundle/opt/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter

@@ -1,5 +1,7 @@
 config/ssh/*
 !config/ssh/config
+config/emacs/*
+!config/emacs/*.org
 config/git/credentials
 config/vifm/vifminfo
 config/vifm/vifm-help.txt

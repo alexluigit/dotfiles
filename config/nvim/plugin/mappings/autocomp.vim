@@ -1,7 +1,7 @@
 inoremap <expr><silent>   <Tab>           <SID>tab()
 inoremap <expr><silent>   <CR>            <SID>enter()
-inoremap <expr><silent>   <C-j>           <SID>ctrl_j()
-inoremap <expr><silent>   <C-k>           <SID>ctrl_k()
+inoremap <expr><silent>   <C-n>           <SID>pumNext()
+inoremap <expr><silent>   <C-e>           <SID>pumPrev()
 imap                      <C-x><C-k>      <plug>(fzf-complete-word)
 imap                      <C-x><C-f>      <plug>(fzf-complete-path)
 imap                      <C-x><C-l>      <plug>(fzf-complete-line)
@@ -28,11 +28,11 @@ function! s:tab() abort
   return coc#refresh()
 endfunction
 
-function! s:ctrl_j() abort
+function! s:pumNext() abort
   if pumvisible() | return "\<C-n>" | else | return "\<Esc>o" | endif
 endfunction
 
-function! s:ctrl_k() abort
+function! s:pumPrev() abort
   if pumvisible() | return "\<C-p>" | else | return "\<Esc>O" | endif
 endfunction
 
@@ -45,7 +45,6 @@ endfunction
 "   \ 'coc-json',
 "   \ 'coc-yaml',
 "   \ 'coc-tailwindcss',
-"   \ 'coc-ultisnips',
 "   \ 'coc-snippets',
 "   \ 'coc-git',
 "   \ 'coc-prettier',

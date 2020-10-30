@@ -1,18 +1,25 @@
-" Map semicolon to colon, hit twice for semicolon
+" Map semicolon to colon
 map                     ;             :
-noremap                 ;;            ;
 " Do not autojump to next result when searching with *
 nnoremap                *             :keepj norm! mp*`p<cr>
 xnoremap                *             ymp:keepj norm! /\V<C-r>=escape(@",'/\')<cr><C-v><C-m>`p<cr>
 " Better visual indenting
 vnoremap                <             <gv
 vnoremap                >             >gv
-" if {count} > 5, j/k motion should be added to jumplist
-nnoremap <expr>         k             (v:count > 5 ? "m'" . v:count : '') . 'k'
-nnoremap <expr>         j             (v:count > 5 ? "m'" . v:count : '') . 'j'
-" Don't add n/N motion to jumplist
-noremap  <silent>       n             :keepj norm! n<cr>
-noremap  <silent>       N             :keepj norm! N<cr>
+" If {count} > 5, j/k(n/e in colemak) motion should be added to jumplist
+noremap <expr>          e             (v:count > 5 ? "m'" . v:count : '') . 'k'
+noremap <expr>          n             (v:count > 5 ? "m'" . v:count : '') . 'j'
+" Better visual line moving
+vnoremap <silent>       N             :m '>+1<CR>gv=gv
+vnoremap <silent>       E             :m '<-2<CR>gv=gv
+" Colemak fix
+nnoremap                N             J
+noremap                 k             e
+noremap                 '             l
+noremap                 l             '
+" Bring back n key functionality meanwhile disable n/N motion being added to jumplist
+nnoremap <silent>       <C-n>         :keepj norm! n<cr>
+nnoremap <silent>       <C-p>         :keepj norm! N<cr>
 " Undo/Redo/Repeat last {cmd, macro}
 nnoremap <silent>       u             :silent norm! u<cr>
 nnoremap <silent>       <leader>u     <C-r>

@@ -327,9 +327,9 @@ if version >= 700
   " Screen column that the cursor is
   hi! link CursorColumn CursorLine
   " Tab pages line filler
-  call s:HL('TabLineFill', s:bg4, s:bg1, s:invert_tabline)
+  call s:HL('TabLineFill', s:none, s:none)
   " Active tab page label
-  call s:HL('TabLineSel', s:green, s:bg1, s:invert_tabline)
+  call s:HL('TabLineSel', s:aqua, s:bg1, s:invert_tabline)
   " Not active tab page label
   hi! link TabLine TabLineFill
   " Match paired bracket under the cursor
@@ -521,9 +521,9 @@ call s:HL('fugitiveUnstagedSection', s:fg1, s:none, s:bold)
 " }}}
 
 " Tabline: {{{
-" hi TabLine     ctermfg=White ctermbg=Black cterm=None
-" hi TabLineFill ctermfg=White ctermbg=Black cterm=None
-" hi TabLineSel  ctermfg=Black ctermbg=White cterm=None
+call s:HL('BufTabLineCurrent', s:bg0, s:aqua, s:bold)
+hi! link BufTabLineHidden TablineSel
+hi! link BufTabLineActive TablineSel
 " }}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

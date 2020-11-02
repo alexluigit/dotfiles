@@ -21,7 +21,7 @@ bindkey -M menuselect 'n'  vi-down-line-or-history
 # See keylist at https://www.zsh.org/mla/users/2014/msg00266.html
 bindkey '^a'     fzf-dirstack
 bindkey '^b'     backward-char
-bindkey '^k'     edit-command-line
+bindkey '^k'     newnote-or-edit-cmd
 bindkey '^f'     file-or-forwardchar
 bindkey '^[[17~' bol-or-fdot # <C-i> -> F6
 bindkey '^n'     up-line-or-beginning-search

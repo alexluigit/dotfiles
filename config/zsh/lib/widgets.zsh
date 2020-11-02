@@ -4,6 +4,9 @@ fg-bg() { [[ $#BUFFER -eq 0 ]] && { fg; zle reset-prompt; zle-line-init } || zle
 updir-onthefly() { [[ -z $BUFFER ]] && { cd ..; zle reset-prompt } \
   || { zle kill-whole-line && cd ..; zle reset-prompt; zle yank }}
 clear-or-complete() { [[ -z $BUFFER ]] && zle clear-screen || zle autosuggest-accept }
+newnote() { nvim ~/Documents/Notes/notes.md }
+newnote-or-edit-cmd() { [[ -z $BUFFER ]] && newnote; zle-line-init  || zle edit-command-line }
+
 mkcd() { mkdir -p $@ && cd ${@:$#} }
 
 typeset -gA AUTOPAIR_PAIRS
@@ -54,6 +57,7 @@ zle -N fg-bg
 zle -N updir-onthefly
 zle -N clear-or-complete; ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(clear-or-complete)
 zle -N autopair
+zle -N newnote-or-edit-cmd
 autoload -Uz move-line-in-buffer; zle -N up-line-in-buffer move-line-in-buffer
 autoload -Uz select-quoted; zle -N select-quoted
 autoload -Uz select-bracketed; zle -N select-bracketed

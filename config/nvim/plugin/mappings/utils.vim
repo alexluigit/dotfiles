@@ -4,7 +4,7 @@ nnoremap <silent>       <leader>da       :diffget //2<CR>
 nnoremap <silent>       <leader>dg       :diffget //3<CR>
 nnoremap <silent>       <leader>dt       :windo diffthis<CR>
 nnoremap <silent>       <leader>do       :diffoff<CR>
-nnoremap <silent>       <leader>g        :Git<CR>
+nnoremap <silent>       <leader>g        :vertical Gstatus<bar>bd#<CR>
 
 " buftabs
 nnoremap <silent>       <leader><space>  <C-^>

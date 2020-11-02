@@ -3,6 +3,7 @@ packadd! nvim-colorizer.lua
 packadd! fzf | packadd! fzf.vim
 packadd! vifm.vim
 packadd! tcomment_vim
+packadd! nvim-treesitter
 packadd! vim-textobj-user
 packadd! vim-textobj-quotes
 packadd! vim-textobj-indent
@@ -15,4 +16,3 @@ packadd! vim-repeat
 packadd! vim-eunuch
 packadd! vim-slime
 packadd! vim-bujo
-packadd! nvim-treesitter

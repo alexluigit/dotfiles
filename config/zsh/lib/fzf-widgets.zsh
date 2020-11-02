@@ -36,28 +36,26 @@ fzf-cd() {
   | sed "s|^$drivePath|/media/HDD/|" | sed "s|^$dir||" | fzf $FZF_DEFAULT_OPTS --preview="tree -L 1 $dir{}")
   [[ -z "$dest" ]] && return || { cd "$dir$dest" && zle reset-prompt 2>/dev/null }
 }
-
-# Private
 __fzf-navi() {
   [[ -z $1 ]] && local cmd=(_z -l) || local cmd=(dirs -lv)
-  local homepre="/home/alex"
-  local drivepre="/media/HDD"
-  dest=$("${cmd[@]}" 2>&1 | sed '/\/home$\|\/$/d' | awk '{print $2}'\
-  | sed "s|$homepre| |" | sed "s|$drivepre| |" \
-  | fzf +s --tac $FZF_DEFAULT_OPTS | sed "s| |$drivepre|" | sed "s| |$homepre|")
+  local homepre="/home/alex/"
+  local drivepre="/media/HDD/"
+  dest=$("${cmd[@]}" 2>&1 | sed '/\/home\/alex$\|\/$\|\/home$/d' | awk '{print $2}'\
+  | sed "s|$homepre| |" | sed "s|$drivepre| |" | sed "s|^\/| |" \
+  | fzf +s --tac $FZF_DEFAULT_OPTS | sed "s| |\/|" | sed "s| |$drivepre|" | sed "s| |$homepre|")
   [[ -z $dest ]] && return || cd $dest
   zle reset-prompt
 }
 __fzf-open() {
-  local vpre="Documents/Drive/Video"
-  local cpre="Documents/Drive/Camera"
-  local dpre="Documents/Drive/Dev"
-  local mpre="Documents/Drive/Music"
+  local vpre="Documents/Drive/Video/"
+  local cpre="Documents/Drive/Camera/"
+  local dpre="Documents/Drive/Dev/"
+  local mpre="Documents/Drive/Music/"
   local dir="${1:-/home/alex}/" fdCmd="${2:-fd -tf -L}" openCmd="${3:-xdg-open}"
   eval "$fdCmd . '$dir'" | sed "s|^$dir||" \
-  | sed "s|^$vpre|   |" | sed "s|^$cpre|   |" | sed "s|^$dpre|   |" | sed "s|^$mpre|   |" \
+  | sed "s|^$vpre| |" | sed "s|^$cpre| |" | sed "s|^$dpre| |" | sed "s|^$mpre| |" \
   | fzf $FZF_DEFAULT_OPTS -m --preview="preview '$dir'{}" \
-  | sed "s|^   |$vpre|" | sed "s|^   |$cpre|" | sed "s|^   |$dpre|" | sed "s|^   |$mpre|" \
+  | sed "s|^ |$vpre|" | sed "s|^ |$cpre|" | sed "s|^ |$dpre|" | sed "s|^ |$mpre|" \
   | sed "s|^|$dir|" | xargs -ro -d '\n' $openCmd 2>&1
   zle reset-prompt; zle-line-init
 }

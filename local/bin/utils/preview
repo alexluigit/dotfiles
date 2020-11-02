@@ -1,13 +1,13 @@
 #!/bin/sh
 # Preview script built for use with lf and fzf
-vpre="Documents/Drive/Video"
-cpre="Documents/Drive/Camera"
-dpre="Documents/Drive/Dev"
-mpre="Documents/Drive/Music"
-fpath=$(sed "s|   |$vpre|" <<< "$1")
-fpath=$(sed "s|   |$cpre|" <<< "$fpath")
-fpath=$(sed "s|   |$dpre|" <<< "$fpath")
-fpath=$(sed "s|   |$mpre|" <<< "$fpath")
+vpre="Documents/Drive/Video/"
+cpre="Documents/Drive/Camera/"
+dpre="Documents/Drive/Dev/"
+mpre="Documents/Drive/Music/"
+fpath=$(sed "s| |$vpre|" <<< "$1")
+fpath=$(sed "s| |$cpre|" <<< "$fpath")
+fpath=$(sed "s| |$dpre|" <<< "$fpath")
+fpath=$(sed "s| |$mpre|" <<< "$fpath")
 
 LINES=30
 case "$fpath" in

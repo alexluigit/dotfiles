@@ -51,7 +51,7 @@ precmd_timer() {
   || timer_result="%B$time_ms%b $(italicize ms)"
   [[ $time_min -ge 1 ]] \
   && timer_result="%B$time_min%b $(italicize min) %B$time_min_tail%b $(italicize sec)"
-  timer="%F{152}  $timer_result %f" }
+  timer="%F{152} $timer_result %f" }
 }
 preexec_functions+=(preexec_timer); precmd_functions+=(precmd_timer)
 

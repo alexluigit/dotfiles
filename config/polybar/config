@@ -136,8 +136,4 @@ pseudo-transparency = false
 
 ; https://github.com/marioortizmanero/polybar-pulseaudio-control
 ; https://www.reddit.com/r/Polybar/comments/cd6dej/xwindow/
-; label = %output%
-; exec = sed 's/.*, "\(.*\)"/\1/' <<< $(xprop -id $(xdotool getactivewindow) WM_CLASS)
-; include-file = ~/.config/polybar/colors.ini
-
 ; vim:ft=dosini

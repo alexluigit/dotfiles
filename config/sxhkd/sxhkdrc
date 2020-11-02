@@ -47,8 +47,8 @@ super + {_,shift} q
 	xdo {close,kill}
 super + w
 	bravectl newtab
-super + o; {t,d,c,m}
-	{thunar, bravectl second, rofi-open calc, bravectl music}
+super + o; {a-z}
+	launcher -{a-z}
 super + Escape
 	powermenu_alt
 super + shift + BackSpace

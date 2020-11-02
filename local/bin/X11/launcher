@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+main() {
+  local OPTIND
+  while getopts "cdemt" opt; do
+    case $opt in
+      c) rofi-open calc;;
+      d) bravectl second;;
+      e) run-emacs;;
+      m) bravectl music;;
+      t) thunar;;
+      \?) exit 1;;
+    esac
+  done
+  shift $((OPTIND -1))
+}
+
+run-emacs() {
+  local wid=$(xdotool search --class 'emacs')
+  [[ -n $wid ]] && xdotool windowactivate $wid || emacs
+}
+
+main $@

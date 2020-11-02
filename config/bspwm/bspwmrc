@@ -5,7 +5,7 @@ pgrep bspswallow || bspswallow &
 pgrep bspsubscribe || bspsubscribe &
 
 bspc monitor ^1 -d Main
-bspc monitor ^2 -d Dev Web Pdf Msc Vid Doc Art
+bspc monitor ^2 -d Dev Web Doc Msc Vid PDF Art
 
 bspc config border_width         0
 bspc config window_gap          12
@@ -24,11 +24,7 @@ bspc rule -a Brave-browser:crx_cinhimbnkkaeohfgghhklpknlkffjgod desktop='^5' sta
 bspc rule -a brave2nd desktop='^1' state=fullscreen follow=on
 bspc rule -a obs desktop='^1' state=fullscreen follow=on
 bspc rule -a ktouch state=floating
-bspc rule -a Zathura desktop='^4' state=tiled follow=on
-bspc rule -a Emacs desktop='^2' state=tiled follow=on
-# bspc rule -a Gimp desktop='^7' state=floating follow=on
-# bspc rule -a mplayer2 state=floating
-# bspc rule -a Kupfer.py focus=on
+bspc rule -a Zathura desktop='^7' state=tiled follow=on
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a Emacs desktop='^4' state=fullscreen follow=on
 # bspc rule -a Screenkey manage=off
-
-(sleep 3; npx --cache ~/.cache/npm @nondanee/unblockneteasemusic -p 10001:10002 &)

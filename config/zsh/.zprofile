@@ -10,9 +10,9 @@ export GOPATH=$XDG_DATA_HOME/go
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export RBENV_ROOT=$XDG_DATA_HOME/rbenv
-export FNM_DIR=$XDG_DATA_HOME/fnm
+export FNM_DIR=$XDG_DATA_HOME/fnm; eval $(fnm env)
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
-export PATH=$PATH:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$FNM_DIR/current/bin
+export PATH=$PATH:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin
 # Defaults
 export EDITOR="nvim"
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc

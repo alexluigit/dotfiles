@@ -33,7 +33,7 @@ xnoremap <silent>       <leader>pw       y:CocSearch <C-r>0<CR>/<C-r>0<CR>
 " t for toggle [ o: "o"nly | n: "n"umber | t: "t"odo ]
 nnoremap <silent>       <leader>to       :tabedit %<cr>
 nnoremap <silent>       <leader>tn       :set relativenumber!<CR>
-nnoremap <silent>       <leader>tt       :call todo#launch()<cr>
+nnoremap <silent>       <leader>tt       :Todo<cr>
 
 " miscellaneous
 nnoremap <silent>       <leader>;        :Commands<CR>

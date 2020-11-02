@@ -1,13 +1,14 @@
-setl foldlevel=1
-imap     <buffer>         <C-S>      -[]<Space>
-nmap     <buffer><expr>   <C-S>      <SID>SearchCheck() ? ':.s/\[\]/\[x\]<Enter>' : ':.s/\[x\]/\[\]<Enter>'
-nmap     <silent><buffer> <leader>ta gaip*<bar>
-nmap     <silent><buffer> <leader>tm :call todo#marker()<CR>
-nmap     <silent><buffer> <leader>fo :bd#<CR>gF:bd#<CR>
-inoremap <buffer><silent> <Bar>      <C-r>=<SID>align()<CR>
+set foldlevel=2
+set conceallevel=2
+imap     <buffer>               <C-S>      -[ ]<Space>
+nmap     <silent><buffer><expr> <C-S>      <SID>searchCheck() ? ':.s/\[ \]/\[x\]<CR>:silent noh<Bar>echo<CR>' : ':.s/\[x\]/\[ \]<CR>:silent noh<Bar>echo<CR>'
+nmap     <silent><buffer>       <leader>ta gaip*<bar>
+nmap     <silent><buffer>       <leader>tm :call todo#marker()<CR>
+nmap     <silent><buffer>       <leader>fo :bd#<CR>gF:bd#<CR>
+inoremap <buffer><silent>       <Bar>      <C-r>=<SID>align()<CR>
 
-function! s:SearchCheck()
-  return (search('\[\]', 'nc', line('.')) || search('\[\]', 'nbc', line('.')))
+function! s:searchCheck()
+  return (search('\[ \]', 'nc', line('.')) || search('\[ \]', 'nbc', line('.')))
 endfunction
 
 function! s:align()

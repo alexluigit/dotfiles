@@ -2,7 +2,6 @@ let mapleader=" "
 
 nmap                     <C-b>        <C-v>
 nmap     <silent>         go          :silent! !xdg-open <cfile><CR>
-nmap     <silent>         gx          :TODO:openInBrowser
 " Window navigation and resize
 " Note: <C-:>, <C-'>, <C-Cr> map to F2, F3, F4 in terminal emulator
 nnoremap <silent>        <C-h>        :wincmd h<CR>

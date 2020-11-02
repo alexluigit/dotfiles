@@ -63,22 +63,24 @@ chpwd_prompt () {
       cwd_head="%F{white}%B%b%f"; cwd_tail="";;
     "~/"*)
       local head=${HPWD%/*}
-      local headabv=$(sed "s|^~| |" <<< $head)
-      cwd_head="%F{white}$headabv/%f"; cwd_tail="%F{white}%B${HPWD##*/}%b%f";;
+      local headabv=$(sed "s|^~/| |" <<< $head)
+      [[ $headabv == "~" ]] && cwd_head="%F{white} %f" || cwd_head="%F{white}$headabv/%f"
+      cwd_tail="%F{white}%B${HPWD##*/}%b%f";;
     "/home/$USER/"*)
       local head=${HPWD%/*}
       local headabv=$(sed "s|^/home/$USER| |" <<< $head)
       cwd_head="%F{white}$headabv/%f"; cwd_tail="%F{white}%B${HPWD##*/}%b%f";;
     *?/*)
-      cwd_head="%F{223}${HPWD%/*}/%f"; cwd_tail="%F{white}%B${HPWD##*/}%b%f";;
+      local head=$(sed "s|^/| |" <<< $HPWD)
+      cwd_head="%F{white}${head%/*}/%f"; cwd_tail="%F{white}%B${head##*/}%b%f";;
     *)
-      cwd_head="%F{white}%B$HPWD%b%f"; cwd_tail="";;
+      cwd_head="%F{white} %f"; cwd_tail="%F{white}%B${HPWD#/}%b%f";;
   esac
 }
 
 # Check background_job, super_user, exit code (Use ternary operators here)
 local bg_jobs="%(1j.%{$fg_bold[red]%} .)"
-local privileges="%(#.%{$fg_bold[red]%}  .)"
+local privileges="%(#.%{$fg_bold[red]%} .)"
 local line_break=$'\n'%{$reset_color%}
 local ret_status="%(?:%{$fg_bold[green]%} :%{$fg_bold[red]%} %s)"
 PROMPT='$bg_jobs$privileges$cwd_head$cwd_tail $(git_prompt_info)$timer$line_break$ret_status'

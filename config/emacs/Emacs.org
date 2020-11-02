@@ -663,7 +663,8 @@ This is a basic configuration for the TypeScript language so that =.ts= files ac
     :hook (typescript-mode . lsp-deferred)
     :config
     (setq lsp-eslint-server-command 
-    '("node /home/alex/.local/share/lsp/eslint/server/out/eslintServer.js --stdio"))
+    '("node" 
+    "/home/alex/.local/share/lsp/eslint/server/out/eslintServer.js" "--stdio"))
     (setq typescript-indent-level 2))
 
 #+end_src
@@ -681,27 +682,11 @@ This will install the [[https://github.com/theia-ide/typescript-language-server]
 *** Vue
 #+begin_src emacs-lisp
 
-  ;; (use-package prettier-js
-  ;; :delight " Pr")
-
-  (use-package eglot)
-(use-package web-mode)
-(define-derived-mode genehack-vue-mode web-mode "ghVue"
-  "A major mode derived from web-mode, for editing .vue files with LSP support.")
-(add-to-list 'auto-mode-alist '("\\.vue\\'" . genehack-vue-mode))
-(add-hook 'genehack-vue-mode-hook #'eglot-ensure)
-(add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
-
-
-
-
-  ;; (use-package vue-mode
-  ;;   :mode "\\.vue\\'"
-  ;;   ;; :hook (vue-mode . prettier-js-mode)
-  ;;   :config
-  ;;   (add-hook 'vue-mode-hook #'lsp))
-    ;; (setq prettier-js-args '("--parser vue")))
-
+  (use-package vue-mode
+    :mode "\\.vue\\'"
+    ;; :hook (vue-mode . lsp-deferred)
+    :config
+    (add-hook 'vue-mode-hook #'lsp))
 
 #+end_src
 

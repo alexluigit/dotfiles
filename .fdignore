@@ -1,3 +1,4 @@
 .git
 config/zsh/plugins/
 config/nvim/pack/bundle/opt/
+local/apps

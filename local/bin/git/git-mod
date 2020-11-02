@@ -16,12 +16,7 @@ add() {
     *) echo "Invalid option. Exit" && exit 1;;
   esac
   echo "Installing to $iPath$mName"
-  if [[ $(needStash) -eq 1 ]]; then
-    git stash --include-untracked && git submodule add --name $mName $1 $iPath$mName
-    git commit -m "chore($iType): add submodule $mName"; git stash pop
-  else
-    git submodule add --name $mName $1 $iPath$mName && git commit -m "chore($iType): add submodule $mName"
-  fi
+  git submodule add --name $mName $1 $iPath$mName && git commit -m "chore($iType): add submodule $mName"
 }
 
 remove() {
@@ -35,10 +30,6 @@ remove() {
     $appPath) iType="apps";;
     *) echo "Invalid install path. Exit" && exit 1;;
   esac
-  __removeHelper
-}
-
-__removeHelper() {
   git submodule deinit -f "$mPath" && \
   git rm -f "$mPath" && git commit -m "chore($iType): remove submodule $mName" && \
   rm -rf ".git/modules/$mName"

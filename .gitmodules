@@ -87,3 +87,6 @@
 [submodule "nvim-treesitter"]
 	path = config/nvim/pack/bundle/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule "vim-which-key"]
+	path = config/nvim/pack/bundle/opt/vim-which-key
+	url = https://github.com/liuchengxu/vim-which-key

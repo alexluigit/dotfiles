@@ -11,13 +11,6 @@ augroup BetterFocus
   au TermEnter * setlocal nonu norelativenumber
 augroup end
 
-augroup Coc
-  au!
-  au FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
 augroup Idleboot
   au!
   if has('vim_starting')
@@ -29,7 +22,6 @@ augroup Miscellaneous
   au!
   " Don't help me to auto comment newline
   au FileType * setlocal fo-=c fo-=r fo-=o
-  au Filetype vue,javascript,typescript,html,css,scss call alex#utils#live_reload()
   " Remove trailing space on save
   au BufWritePre * %s/\s\+$//e
   " If path doesn't exist, just create it
@@ -38,4 +30,6 @@ augroup Miscellaneous
   au TextYankPost * call alex#autocmds#yank_post()
   " change layout when nvim window resize
   au VimResized * if !exists("g:manpager") | execute('wincmd =') | endif
+  " Update signature help on jump placeholder.
+  au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end

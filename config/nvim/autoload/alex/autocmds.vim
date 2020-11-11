@@ -1,5 +1,6 @@
 function! alex#autocmds#vim_enter() abort
   set stl=%#Normal#
+  exec "WipeReg"
   if &ft=="man"
     call man#show_toc()
     wincmd H | vert res 20 | setl stl= | wincmd l

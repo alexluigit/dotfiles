@@ -18,3 +18,5 @@ command! -bang -nargs=* GGrep
 \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
+
+command! StripWhitespace %s/\s\+$//e

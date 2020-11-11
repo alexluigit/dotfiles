@@ -23,7 +23,7 @@ augroup Miscellaneous
   " Don't help me to auto comment newline
   au FileType * setlocal fo-=c fo-=r fo-=o
   " Remove trailing space on save
-  au BufWritePre * %s/\s\+$//e
+  au BufWritePre * StripWhitespace
   " If path doesn't exist, just create it
   au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
   " Highlight yanked content for 500 ms and send OSC52 seqs to tty

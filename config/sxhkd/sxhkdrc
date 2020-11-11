@@ -5,7 +5,7 @@ super + control + {0,1-7}
 	bspc node -d ^{0,2-8} --follow
 super + {h,n,e,apostrophe}
 	bspc node -f {west,south,north,east}
-super + m
+super + f
 	bspc desktop -l next
 super + grave
 	bspc monitor next --focus
@@ -33,16 +33,12 @@ hyper + {n,m,comma,period}
 	xdo move {-x -20,-y +20,-y -20,-x +20}
 
 # Launch
-super + a
-	rofi-open drun
-super + r
-	rofi-open run
-super + s
-	rofi-open combi
+super + {a,r,s}
+	rofi-open {drun,run,combi}
 super + t
 	alacritty
-super + {Return, v}
-	tdrop -a -m -h 98% -w 40% -x 2292 -y 50 alacritty {_, -e vifmrun }
+super + Return
+	tdrop -a -m -h 98% -w 40% -x 2292 -y 50 alacritty
 super + {_,shift} q
 	xdo {close,kill}
 super + w
@@ -51,10 +47,6 @@ super + o; {a-z}
 	launcher -{a-z}
 super + Escape
 	powermenu_alt
-super + shift + BackSpace
-	pkill -USR1 -x sxhkd
-shift + Delete
-	multilockscreen -s
 
 # Media
 XF86Audio{Prev,Play,Next}
@@ -65,14 +57,18 @@ hyper {_, + shift} + Escape
 	flameshot {gui,full -p ~/Pictures/Screenshots}
 
 # Miscs
+super + shift + BackSpace
+	pkill -USR1 -x sxhkd
+shift + Delete
+	multilockscreen -s
 super + c
 	sleep 0.2 && xdotool click 1
 button{8,9}
 	xvkbd -xsendevent -text {'\Cw', '\Ct'}
 XF86{Mon,Kbd}BrightnessDown
 	xvkbd -xsendevent -text {"\[F1]","\[F5]"}
-hyper + XF86AudioRaiseVolume
-	xvkbd -xsendevent -text "\[F12]"
+hyper + XF86Audio{Lower,Raise}Volume
+	xvkbd -xsendevent -text {"\[F11]","\[F12]"}
 super + {p,l}
 	xvkbd -xsendevent -text {"\[Down]","\[Up]"}
 # XF86Launch{A,B}

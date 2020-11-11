@@ -1,13 +1,14 @@
 #!/usr/bin/env zsh
 main() {
   local OPTIND
-  while getopts "cdemt" opt; do
+  while getopts "cdemtv" opt; do
     case $opt in
       c) rofi-open calc;;
       d) bravectl second;;
       e) run-emacs;;
       m) bravectl music;;
       t) thunar;;
+      v) tdrop -a -m -h 98% -w 40% -x 2292 -y 50 alacritty -e vifmrun;;
       \?) exit 1;;
     esac
   done

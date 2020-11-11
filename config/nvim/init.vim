@@ -15,3 +15,4 @@ packadd! vim-fugitive
 packadd! vim-repeat
 packadd! vim-eunuch
 packadd! vim-slime
+packadd! vim-which-key

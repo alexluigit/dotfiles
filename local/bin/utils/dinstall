@@ -1,8 +1,7 @@
 #!/bin/sh
 REPODIR="$HOME/Dev/Alex.files"
 CFGDIR="$HOME/.config"
-SCRIPTDIR="$HOME/.local/bin"
-APPDIR="$HOME/.local/apps"
+BINDIR="$HOME/.local/bin"
 
 checkdir() {
   echo "Current    Directory: $PWD"
@@ -11,38 +10,35 @@ checkdir() {
 }
 
 config() {
-  find $CFGDIR -maxdepth 1 -type l -delete
   for i in $(du -d 1 "$REPODIR/config" | cut -f2)
-    do ln -s "$i" "$CFGDIR"
+    do ln -sf "$i" "$CFGDIR"
   done
   rm $CFGDIR/config
 }
 
-scripts() {
-  find $SCRIPTDIR -maxdepth 1 -type l -delete
+bin() {
   for i in $(find "$REPODIR/local/bin" -type f -executable)
-    do ln -s $i $SCRIPTDIR
+    do ln -sf $i $BINDIR
   done
+  __apps
 }
 
 zshenv() {
-  rm ~/.zshenv
-  ln -s $REPODIR/config/zsh/zshenv $HOME/.zshenv
-}
-
-apps() {
-  find $APPDIR -maxdepth 1 -type l -delete
-  for i in $(du -d 1 "$REPODIR/local/apps" | cut -f2)
-    do ln -s "$i" "$APPDIR"
-  done
-  rm $APPDIR/apps
-  ln -sf $REPODIR/local/share/applications ~/.local/share/applications
-  ln -sf $REPODIR/config/mimeapps.list $CFGDIR/mimeapps.list
-  cd $REPODIR/local/apps/aria2-trackers && go build -o $GOPATH/bin/aria2-trackers; cd -
+  ln -sf $REPODIR/config/zsh/zshenv $HOME/.zshenv
 }
 
 assets() {
-  ln -sf $REPODIR/local/assets ~/.local/assets
+  ln -sf $REPODIR/local/share/assets ~/.local/share/assets
+}
+
+__apps() {
+  for i in $(du -d 1 "$REPODIR/local/apps" | cut -f2)
+    do ln -sf "$i" "$BINDIR"
+  done
+  rm $BINDIR/apps
+  ln -sf $REPODIR/local/share/applications ~/.local/share/applications
+  ln -sf $REPODIR/config/mimeapps.list $CFGDIR/mimeapps.list
+  # cd $REPODIR/local/apps/aria2-trackers && go build -o $GOPATH/bin/aria2-trackers; cd -
 }
 
 "$@"

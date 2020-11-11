@@ -15,7 +15,7 @@ __is_running() {
 }
 
 __play_notification() {
-  mpv --really-quiet /home/alex/.local/assets/audio/notification.wav
+  mpv --really-quiet /home/alex/.local/share/assets/audio/notification.wav
 }
 
 run() {

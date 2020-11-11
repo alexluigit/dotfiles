@@ -23,12 +23,14 @@ bindkey '^a'     fzf-dirstack
 bindkey '^b'     backward-char
 bindkey '^k'     newnote-or-edit-cmd
 bindkey '^f'     file-or-forwardchar
-bindkey '^[[17~' bol-or-fdot # <C-i> -> F6
+bindkey '^[[17~' bol-or-inside # <C-i> -> F6
 bindkey '^n'     up-line-or-beginning-search
 bindkey '^e'     down-line-or-beginning-search
 bindkey '^l'     clear-or-complete
 bindkey '^j'     fzf-note
-bindkey '^o'     eol-or-open
+bindkey '^o'     eol-or-updir
+bindkey "^[OR'"  fzf-dev-vid
+bindkey '^[ORn'  fzf-note
 bindkey '^[OQ'   del-or-fzfz # <ctrl-;> -> F2
 bindkey '^r'     fzf-history
 bindkey '^s'     autopair
@@ -37,4 +39,3 @@ bindkey '^u'     kill-whole-line
 bindkey '^y'     yank-buffer
 bindkey '^z'     fg-bg
 bindkey '^[[14~' vi-forward-word # This key will trigger partial autocomplete
-bindkey '^\\'    updir-onthefly

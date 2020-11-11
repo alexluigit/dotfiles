@@ -1,10 +1,8 @@
 yank-buffer() { echo -n "$BUFFER" | xclip -selection clipboard; }
 file-or-forwardchar() { [[ -z $BUFFER ]] && { BUFFER="vifmrun ."; zle accept-line } || zle forward-char; }
 fg-bg() { [[ $#BUFFER -eq 0 ]] && { fg; zle reset-prompt; zle-line-init } || zle push-input }
-updir-onthefly() { [[ -z $BUFFER ]] && { cd ..; zle reset-prompt } \
-  || { zle kill-whole-line && cd ..; zle reset-prompt; zle yank }}
 clear-or-complete() { [[ -z $BUFFER ]] && zle clear-screen || zle autosuggest-accept }
-newnote() { nvim ~/Documents/Notes/notes.md }
+newnote() { nvim ~/Documents/notes/notes.md }
 newnote-or-edit-cmd() { [[ -z $BUFFER ]] && newnote; zle-line-init  || zle edit-command-line }
 
 mkcd() { mkdir -p $@ && cd ${@:$#} }
@@ -54,7 +52,6 @@ ex() {
 zle -N yank-buffer
 zle -N file-or-forwardchar
 zle -N fg-bg
-zle -N updir-onthefly
 zle -N clear-or-complete; ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(clear-or-complete)
 zle -N autopair
 zle -N newnote-or-edit-cmd

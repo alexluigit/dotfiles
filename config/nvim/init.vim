@@ -16,3 +16,4 @@ packadd! vim-repeat
 packadd! vim-eunuch
 packadd! vim-slime
 packadd! vim-which-key
+luafile ~/.config/nvim/lua/treesitter.lua

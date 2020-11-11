@@ -17,12 +17,12 @@ function! s:term_open()
   startinsert
 endfunction
 
-function! alex#monkeyterm#toggle()
+function! monkeyterm#toggle()
   if win_gotoid(s:win_id) | hide
   else | call s:term_open() | endif
 endfunction
 
-function! alex#monkeyterm#exec()
+function! monkeyterm#exec()
   normal! yip
   let text=split(@0, "\n")
   if !win_gotoid(s:win_id)

@@ -4,17 +4,17 @@
 socks5 = +forward-override{forward-socks5 127.0.0.1:1087 .}
 # Direct
 direct = +forward-override{forward .}
-# NeteaseMusic
-neteasemusic = +forward-override{forward 127.0.0.1:10001}
 
 {socks5}
 /
+
 {direct}
 localhost/
 .*.cn
 .10fastfingers.com
 .126.com
 .126.net
+.163.com
 .58.com
 .64clouds.com
 .acgvideo.com
@@ -83,7 +83,7 @@ localhost/
 .vpgame.com
 .ksapisrv.com
 .kugou.com
-# .kuwo.cn
+.kuwo.cn
 .lanzous.com
 .le.com
 .linkedin.com
@@ -157,8 +157,3 @@ localhost/
 .zhihu.com
 .zhimg.com
 .zhipin.com
-
-{neteasemusic}
-# .music.126.net
-.music.163.com
-.interface.music.163.com

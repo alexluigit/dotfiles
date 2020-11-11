@@ -1,10 +1,8 @@
 .git
 .cache
 .local
-Alex.files
-Resources
-Backup
-Notes/
-Calibre Library
+.config
 node_modules
-VSTPlugins
+/home/alex/Dev/*
+/home/alex/Downloads/*
+/media/HDD/Backup/*

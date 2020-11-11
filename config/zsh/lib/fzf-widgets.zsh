@@ -1,22 +1,35 @@
 # Public
-bol-or-fdot() { [[ -n $BUFFER ]] && { zle beginning-of-line } || __fzf-dot }
-eol-or-open() { [[ -n $BUFFER ]] && { zle end-of-line; return } || __fzf-open $PWD }
-del-or-fzfz() { [[ -n $BUFFER ]] && { zle delete-char; return } || __fzf-navi }
-fzf-note() { __fzf-open ~/Documents/Notes 'fd -tf' nvim }
+fzf-dev-vid() { __fzf-open '' '' '' " "}
+fzf-note() { __fzf-open '' '' nvim " "}
 fzf-dirstack() { __fzf-navi stack }
-fzf-starstar() { BUFFER="$BUFFER**"; zle end-of-line; zle fzf-completion; }
+fzf-starstar() { BUFFER="$BUFFER **"; zle end-of-line; zle fzf-completion; }
+del-or-fzfz() { [[ -n $BUFFER ]] && { zle delete-char; return } || __fzf-navi z }
+eol-or-updir() { [[ -n $BUFFER ]] && { zle end-of-line; return } || { cd ..; zle reset-prompt } }
+bol-or-inside() {
+  if [[ -n $BUFFER ]]; then
+    zle beginning-of-line
+  elif [[ ${(%)${:-%~}} == '~' ]]; then
+    cd ~/Dev/Alex.files; __fzf-open ~/Dev/Alex.files 'fd -tf -H' nvim; cd -; zle reset-prompt
+  else
+    __fzf-open $PWD 'fd -Htf' nvim
+  fi
+}
+
 fzf-pac-sync() {
   local selected=$(pacman -Ssq | fzf $FZF_DEFAULT_OPTS -m --preview="pacman -Si {}")
   [[ -n $selected ]] && sudo pacman -Syy $selected
 }
+
 fzf-yay-sync() {
   local selected=$(cat ~/.config/yay/aurlist.txt | fzf $FZF_DEFAULT_OPTS -m --preview="yay -Si {}")
   [[ -n $selected ]] && yay -Syy $selected
 }
+
 fzf-pac-local() {
   local selected=$(pacman -Qeq | fzf $FZF_DEFAULT_OPTS -m --preview="pacman -Si {}")
   [[ -n $selected ]] && sudo pacman -Rns $selected
 }
+
 fzf-history() {
   local selected num
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
@@ -28,43 +41,44 @@ fzf-history() {
   zle reset-prompt
   return $ret
 }
-fzf-cd() {
-  local drivePath="$HOME/Documents/Drive/"
-  local dir="$1/"
-  local defaultPath="$HOME/"
-  local dest=$(fd -H -L -t d $2 . ${1:-$defaultPath} \
-  | sed "s|^$drivePath|/media/HDD/|" | sed "s|^$dir||" | fzf $FZF_DEFAULT_OPTS --preview="tree -L 1 $dir{}")
-  [[ -z "$dest" ]] && return || { cd "$dir$dest" && zle reset-prompt 2>/dev/null }
-}
+
 __fzf-navi() {
-  [[ -z $1 ]] && local cmd=(_z -l) || local cmd=(dirs -lv)
+  local cmd colnr=2
+  case $1 in
+    "z") cmd=(_z -l);;
+    "stack") cmd=(dirs -lv);;
+    "home") cmd=(fd -H -L -t d . /home/alex); colnr=1;;
+  esac
   local homepre="/home/alex/"
   local drivepre="/media/HDD/"
-  dest=$("${cmd[@]}" 2>&1 | sed '/\/home\/alex$\|\/$\|\/home$/d' | awk '{print $2}'\
+  dest=$("${cmd[@]}" 2>&1 | sed '/\/home\/alex$\|\/$\|\/home$/d' \
+  | { [[ "$colnr" == 2 ]] && awk '{print $2}' || awk '{print $0}' } \
   | sed "s|$homepre| |" | sed "s|$drivepre| |" | sed "s|^\/| |" \
   | fzf +s --tac $FZF_DEFAULT_OPTS | sed "s| |\/|" | sed "s| |$drivepre|" | sed "s| |$homepre|")
-  [[ -z $dest ]] && return || cd $dest
+  [[ -z $dest ]] && return || cd -P $dest
   zle reset-prompt
 }
+
 __fzf-open() {
-  local vpre="Documents/Drive/Video/"
-  local cpre="Documents/Drive/Camera/"
-  local dpre="Documents/Drive/Dev/"
-  local mpre="Documents/Drive/Music/"
+  local dpre="Videos/dev/"
+  local vpre="Videos/"
+  local cpre="Pictures/"
+  local mpre="Music/"
+  local npre="Documents/notes/"
   local dir="${1:-/home/alex}/" fdCmd="${2:-fd -tf -L}" openCmd="${3:-xdg-open}"
   eval "$fdCmd . '$dir'" | sed "s|^$dir||" \
-  | sed "s|^$vpre| |" | sed "s|^$cpre| |" | sed "s|^$dpre| |" | sed "s|^$mpre| |" \
-  | fzf $FZF_DEFAULT_OPTS -m --preview="preview '$dir'{}" \
-  | sed "s|^ |$vpre|" | sed "s|^ |$cpre|" | sed "s|^ |$dpre|" | sed "s|^ |$mpre|" \
+  | sed "s|^$dpre| |" | sed "s|^$cpre| |" | sed "s|^$vpre| |" | sed "s|^$mpre| |" | sed "s|^$npre| |" \
+  | fzf $FZF_DEFAULT_OPTS -m --preview="preview '$dir'{}" --query=$4 \
+  | sed "s|^ |$vpre|" | sed "s|^ |$cpre|" | sed "s|^ |$dpre|" | sed "s|^ |$mpre|" | sed "s|^ |$npre|" \
   | sed "s|^|$dir|" | xargs -ro -d '\n' $openCmd 2>&1
   zle reset-prompt; zle-line-init
 }
-__fzf-dot() { cd ~/Dev/Alex.files; __fzf-open ~/Dev/Alex.files 'fd -tf -H' nvim; cd -; zle reset-prompt; }
 
-zle -N bol-or-fdot
-zle -N eol-or-open
+zle -N bol-or-inside
+zle -N eol-or-updir
 zle -N del-or-fzfz
 zle -N fzf-note
+zle -N fzf-dev-vid
 zle -N fzf-starstar
 zle -N fzf-dirstack
 zle -N fzf-history

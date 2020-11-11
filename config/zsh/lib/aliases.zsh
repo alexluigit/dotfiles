@@ -1,10 +1,10 @@
 # general
 alias d="gio trash"
-alias f="fzf-cd"
+alias f="__fzf-navi home; clear"
 alias g="inside-worktree && nvim -c Gstatus -c bd# || return 1"
 alias j="z"
 alias t="tmux-automation"
-alias v='nvim -c "let g:tty='\''$(tty)'\''"'
+alias n='nvim -c "let g:tty='\''$(tty)'\''"'
 alias ka="killall"
 alias md="mkdir -p"
 alias sv="sudoedit"

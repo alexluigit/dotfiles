@@ -1,18 +1,19 @@
 #!/bin/sh
 # Preview script built for use with lf and fzf
-vpre="Documents/Drive/Video/"
-cpre="Documents/Drive/Camera/"
-dpre="Documents/Drive/Dev/"
-mpre="Documents/Drive/Music/"
+dpre="Videos/dev/"
+vpre="Videos/"
+cpre="Pictures"
+mpre="Music/"
+npre="Documents/notes/"
 fpath=$(sed "s| |$vpre|" <<< "$1")
 fpath=$(sed "s| |$cpre|" <<< "$fpath")
 fpath=$(sed "s| |$dpre|" <<< "$fpath")
 fpath=$(sed "s| |$mpre|" <<< "$fpath")
+fpath=$(sed "s| |$npre|" <<< "$fpath")
 
 LINES=30
 case "$fpath" in
     *.png|*.jpg|*.jpeg|*.mkv|*.mp4|*.m4v) mediainfo "$fpath";;
-    # *.md) glow -s dark "$fpath";;
     *.pdf) pdftotext "$fpath" -;;
     *.zip) zipinfo "$fpath";;
     *.tar.gz) tar -ztvf "$fpath";;
@@ -20,7 +21,5 @@ case "$fpath" in
     *.tar) tar -tvf "$fpath";;
     *.rar) unrar l "$fpath";;
     *.7z) 7z l "$fpath";;
-    #*.html|*.xml) w3m -dump "$fpath";;
-    *.zsh*|*.bash*|*.git*) pistol "$fpath";;
     *) bat -p --color=always "$fpath";;
 esac

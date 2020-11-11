@@ -23,8 +23,8 @@ let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_
 let g:slime_dont_ask_default = 1
 let g:slime_paste_file = tempname()
 
-" markdown settings
-let g:markdown_fenced_languages = ['c', 'html', 'python', 'cpp', 'go', 'rust', 'bash=sh', 'javascript']
+" markdown
+let g:markdown_fenced_languages = ['c\(\[.*\]\)\?=c', 'html', 'python', 'cpp', 'go', 'rust', 'bash=sh', 'js\(\[.*\]\)\?=javascript']
 let g:markdown_folding = 1
 
 " which-key

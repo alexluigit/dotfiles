@@ -14,16 +14,16 @@ background_opacity: 0.85
 font:
   normal:
     family: Victor Mono
-    style: Regular
+    style: Medium
   bold:
     family: Victor Mono
-    style: SemiBold
+    style: Bold
   italic:
     family: Victor Mono
-    style: Light Italic
+    style: Medium Italic
   bold_italic:
     family: Victor Mono
-    style: SemiBold Italic
+    style: Bold Italic
 
   glyph_offset:
     x: 0

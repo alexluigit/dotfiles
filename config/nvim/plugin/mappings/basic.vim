@@ -1,17 +1,15 @@
-let mapleader=" "
-
 nmap                     <C-b>        <C-v>
 nmap     <silent>         go          :silent! !xdg-open <cfile><CR>
 " Window navigation and resize
 " Note: <C-:>, <C-'>, <C-Cr> map to F2, F3, F4 in terminal emulator
 nnoremap <silent>        <C-h>        :wincmd h<CR>
 nnoremap <silent>        <F3>         :wincmd l<CR>
-nnoremap <silent>        <C-j>        :wincmd j<CR>
-nnoremap <silent>        <C-k>        :wincmd k<CR>
+nnoremap <silent>        <C-n>        :wincmd j<CR>
+nnoremap <silent>        <C-e>        :wincmd k<CR>
 nnoremap <silent>        <M-h>        :vert resize -5<CR>
 nnoremap <silent>        <M-'>        :vert resize +5<CR>
-nnoremap <silent>        <M-j>        :resize -5<CR>
-nnoremap <silent>        <M-k>        :resize +5<CR>
+nnoremap <silent>        <M-n>        :resize -5<CR>
+nnoremap <silent>        <M-e>        :resize +5<CR>
 " Emacs keybinding
 cnoremap                 <C-b>        <Left>
 cnoremap                 <C-f>        <Right>

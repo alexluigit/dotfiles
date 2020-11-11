@@ -1,6 +1,3 @@
-nnoremap                <leader>a        :CocAction<CR>
-nmap     <silent>       <leader>n        <Plug>(coc-diagnostic-next)
-nmap     <silent>       <leader>e        <Plug>(coc-diagnostic-prev)
 nnoremap <silent>       E                :call CocAction('doHover')<CR>
 nmap     <silent>       gd               <Plug>(coc-definition)
 nmap     <silent>       gy               <Plug>(coc-type-definition)
@@ -12,9 +9,6 @@ inoremap <expr><silent> <C-n>            <SID>pumNext()
 inoremap <expr><silent> <C-e>            <SID>pumPrev()
 nmap     <silent>       <C-s>            <Plug>(coc-range-select)
 xmap     <silent>       <C-s>            <Plug>(coc-range-select)
-imap                    <C-x><C-k>       <plug>(fzf-complete-word)
-imap                    <C-x><C-f>       <plug>(fzf-complete-path)
-imap                    <C-x><C-l>       <plug>(fzf-complete-line)
 inoremap <silent><expr> <Down>           coc#util#has_float() ? coc#util#float_scroll_i(1) : "\<Down>"
 inoremap <silent><expr> <Up>             coc#util#has_float() ? coc#util#float_scroll_i(-1) : "\<Up>"
 let g:coc_snippet_next = '<Tab>'

@@ -20,6 +20,7 @@ set foldtext=alex#settings#foldtext()
 set termguicolors
 set lazyredraw                              " dont redraw screen during macro execution
 set list
+set dictionary+=/usr/share/dict/words
 set fillchars=diff:∙                        " BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
 set fillchars+=fold:·                       " MIDDLE DOT (U+00B7, UTF-8: C2 B7)
 set listchars+=tab:▷·                       " WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7)

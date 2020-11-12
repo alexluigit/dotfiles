@@ -46,6 +46,11 @@ omap                    aa            a<
 xmap                    aa            a<
 omap                    ia            i<
 xmap                    ia            i<
+" TextObj: `ic`, `ac` for inside/around curly braces.(save <shift> for `{`)
+omap                    ac            a{
+xmap                    ac            a{
+omap                    ic            i{
+xmap                    ic            i{
 " Textobj: function
 xmap                    af            <Plug>(coc-funcobj-a)
 omap                    af            <Plug>(coc-funcobj-a)

@@ -7,7 +7,6 @@ packadd! nvim-treesitter
 packadd! vim-textobj-user
 packadd! vim-textobj-quotes
 packadd! vim-textobj-indent
-packadd! vim-textobj-comment
 packadd! vim-sneak
 packadd! vim-easy-align
 packadd! vim-surround

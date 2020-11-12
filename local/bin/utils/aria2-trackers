@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+curl -o /tmp/tracker -x 127.0.0.1:1088 ngosang.github.io/trackerslist/trackers_best.txt
+TRACKERLIST=$(sed '/^$/d' /tmp/tracker | tr '\n' ',' | sed 's/,$//')
+FILE="/home/$USER/.config/aria2/aria2.conf"
+
+cat > $FILE << EOF
+bt-tracker=$TRACKERLIST
+dir=/home/$USER/Downloads
+save-session=/home/alex/.cache/aria2/aria2.session
+enable-rpc=true
+rpc-allow-origin-all=true
+rpc-listen-all=true
+enable-dht=true
+bt-enable-lpd=true
+enable-peer-exchange=true
+max-concurrent-downloads=20
+EOF

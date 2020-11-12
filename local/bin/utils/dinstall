@@ -38,7 +38,6 @@ __apps() {
   rm $BINDIR/apps
   ln -sf $REPODIR/local/share/applications ~/.local/share/applications
   ln -sf $REPODIR/config/mimeapps.list $CFGDIR/mimeapps.list
-  # cd $REPODIR/local/apps/aria2-trackers && go build -o $GOPATH/bin/aria2-trackers; cd -
 }
 
 "$@"

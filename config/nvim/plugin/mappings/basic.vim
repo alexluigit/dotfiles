@@ -1,3 +1,4 @@
+let mapleader = ' '
 nmap                     <C-b>        <C-v>
 nmap     <silent>         go          :silent! !xdg-open <cfile><CR>
 " Window navigation and resize

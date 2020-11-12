@@ -1,79 +1,60 @@
-xmap     <silent>       <leader>/   gc
-nnoremap <silent>       <leader>ac  :nohlsearch<C-r>=has('diff')?'<Bar>diffupdate':''<CR><CR>
-nnoremap <silent>       <leader>ap  "Xpqxq
-nnoremap                <leader>ar  :%s///gc<left><left><left>
-xnoremap                <leader>ar  :s///gc<left><left><left>
-nnoremap <silent>       <leader>as  "X
-xnoremap <silent>       <leader>as  "X
-nnoremap                <leader>ef  :Rename<Space>
-xnoremap <silent>       <leader>fn  ygv:<C-u>BLines <C-r>0<CR>
-xnoremap <silent>       <leader>fl  ygv:<C-u>Lines <C-r>0<CR>
-nnoremap                <leader>pw  :CocSearch <C-r>=expand("<cword>")<CR>
-xnoremap <silent>       <leader>pw  y:CocSearch <C-r>0<CR>/<C-r>0<CR>
-nnoremap <silent><expr> <leader>q   len(getbufinfo({'buflisted':1})) > 1 ? ':bd<CR>' : ':q<CR>'
-nnoremap <silent><expr> <leader>tt  tabpagenr() == 1 ? ':tabedit %<CR>' : ':tabclose<CR>'
-
-let g:wkm =  {}
-let g:wkm['q'] =                                                     'close buffer'
-let g:wkm[' '] =  [ '<C-^>',                                         'last buffer' ]
-let g:wkm[';'] =  [ ':Commands',                                     'commands' ]
-let g:wkm['h'] =  [ 'bprevious',                                     'prev-buffer' ]
-let g:wkm["'"] =  [ 'bnext',                                         'next-buffer' ]
-let g:wkm['u'] =  [ '<C-r>',                                         'undo tree' ]
-let g:wkm['v'] =  [ ':vs|EditVifm|setl stl=',                        'vertical' ]
-let g:wkm['w'] =  [ ':silent! w',                                    'save' ]
-let g:wkm['x'] =  [ ':silent! x',                                    'save & close' ]
-let g:wkm['/'] =  [ 'gcc',                                           'comment' ]
-let g:wkm['1'] =  [ '<Plug>BufTabLine.Go(1)',                        'BufTab1' ]
-let g:wkm['2'] =  [ '<Plug>BufTabLine.Go(2)',                        'BufTab2' ]
-let g:wkm['3'] =  [ '<Plug>BufTabLine.Go(3)',                        'BufTab3' ]
-let g:wkm['4'] =  [ '<Plug>BufTabLine.Go(4)',                        'BufTab4' ]
-let g:wkm['5'] =  [ '<Plug>BufTabLine.Go(5)',                        'BufTab5' ]
+let g:wkm = {}
+let g:wkm[' ']   = [ ':Files',                                       'find files' ]
+let g:wkm['/']   = [ ':call whichkey#fix("comment")',                'comment' ]
+let g:wkm[';']   = [ ':Commands',                                    'commands' ]
+let g:wkm["'"]   = [ ':bnext',                                       'next buffer' ]
+let g:wkm['h']   = [ ':bprevious',                                   'prev buffer' ]
+let g:wkm['q']   = [ ':call whichkey#fix("quit")',                   'close buffer']
+let g:wkm['u']   = [ '<C-r>',                                        'undo tree' ]
+let g:wkm['v']   = [ ':vs|EditVifm|setl stl=',                       'vertical' ]
+let g:wkm['w']   = [ ':silent! w',                                   'save' ]
+let g:wkm['x']   = [ ':silent! x',                                   'save & close' ]
+let g:wkm['1']   = [ '<Plug>BufTabLine.Go(1)',                       'BufTab1' ]
+let g:wkm['2']   = [ '<Plug>BufTabLine.Go(2)',                       'BufTab2' ]
+let g:wkm['3']   = [ '<Plug>BufTabLine.Go(3)',                       'BufTab3' ]
+let g:wkm['4']   = [ '<Plug>BufTabLine.Go(4)',                       'BufTab4' ]
+let g:wkm['5']   = [ '<Plug>BufTabLine.Go(5)',                       'BufTab5' ]
 
 let g:wkm.a = {} | let g:wkm.a['name'] = '+actions'
-let g:wkm.a['a'] = ['<Plug>VSurround',                               'around']
-let g:wkm.a['c'] =                                                   'clear highlight'
+let g:wkm.a['a'] = [ '<Plug>VSurround',                              'around']
+let g:wkm.a['c'] = [ ':let @/=""',                                   'clear highlight' ]
 let g:wkm.a['d'] = [ ':windo diffthis',                              'diff' ]
 let g:wkm.a['D'] = [ ':diffoff',                                     'diffoff' ]
-let g:wkm.a['p'] =                                                   'paste from register'
-let g:wkm.a['r'] =                                                   'replace cursor word'
-let g:wkm.a['s'] =                                                   'send to register'
-
-let g:wkm.b = {} | let g:wkm.b['name'] = '+buffer'
-let g:wkm.b['b'] = [ ':Buffers',                                     'fzf-buffer' ]
-let g:wkm.b['f'] = [ 'bfirst',                                       'first-buffer' ]
-let g:wkm.b['l'] = [ 'blast',                                        'last buffer' ]
+let g:wkm.a['p'] = [ ':call whichkey#fix("regpaste")',               'paste from register']
+let g:wkm.a['r'] = [ ':call whichkey#fix("replaceword")',            'replace cursor word' ]
+let g:wkm.a['s'] = [ ':call whichkey#fix("regsend")',                'send to register']
 
 let g:wkm.d = {} | let g:wkm.d['name'] = '+debug'
-let g:wkm.d['b'] = ['<Plug>VimspectorToggleBreakpoint'              , 'breakpoint']
-let g:wkm.d['B'] = ['<Plug>VimspectorToggleConditionalBreakpoint'   , 'conditional breakpoint']
-let g:wkm.d['c'] = ['<Plug>VimspectorRunToCursor'                   , 'run to cursor']
-let g:wkm.d['d'] = ['<Plug>VimspectorContinue'                      , 'continue']
-let g:wkm.d['f'] = ['<Plug>VimspectorAddFunctionBreakpoint'         , 'function breakpoint']
-let g:wkm.d['m'] = [':MaximizerToggle'                              , 'maximize window']
-let g:wkm.d['o'] = ['<Plug>VimspectorStepOver'                      , 'step over']
-let g:wkm.d['O'] = ['<Plug>VimspectorStepOut'                       , 'step out']
-let g:wkm.d['i'] = ['<Plug>VimspectorStepInto'                      , 'step into']
-let g:wkm.d['p'] = ['<Plug>VimspectorPause'                         , 'pause']
-let g:wkm.d['r'] = ['<Plug>VimspectorRestart'                       , 'restart']
-let g:wkm.d['s'] = ['<Plug>VimspectorStop'                          , 'stop']
+let g:wkm.d['b'] = ['<Plug>VimspectorToggleBreakpoint',              'breakpoint']
+let g:wkm.d['B'] = ['<Plug>VimspectorToggleConditionalBreakpoint',   'conditional breakpoint']
+let g:wkm.d['c'] = ['<Plug>VimspectorRunToCursor',                   'run to cursor']
+let g:wkm.d['d'] = ['<Plug>VimspectorContinue',                      'continue']
+let g:wkm.d['f'] = ['<Plug>VimspectorAddFunctionBreakpoint',         'function breakpoint']
+let g:wkm.d['m'] = [':MaximizerToggle',                              'maximize window']
+let g:wkm.d['o'] = ['<Plug>VimspectorStepOver',                      'step over']
+let g:wkm.d['O'] = ['<Plug>VimspectorStepOut',                       'step out']
+let g:wkm.d['i'] = ['<Plug>VimspectorStepInto',                      'step into']
+let g:wkm.d['p'] = ['<Plug>VimspectorPause',                         'pause']
+let g:wkm.d['r'] = ['<Plug>VimspectorRestart',                       'restart']
+let g:wkm.d['s'] = ['<Plug>VimspectorStop',                          'stop']
 
 let g:wkm.e = {} | let g:wkm.e['name'] = '+edit'
 let g:wkm.e['.'] = [ ':e $MYVIMRC',                                  'open init.vim' ]
 let g:wkm.e['c'] = [ ':CocConfig',                                   'coc config' ]
-let g:wkm.e['f'] =                                                   'rename file'
+let g:wkm.e['e'] = [ '<C-^>',                                        'last buffer' ]
+let g:wkm.e['f'] = [ ':CocCommand workspace.renameCurrentFile',      'rename file']
 let g:wkm.e['s'] = [ ':CocList snippets',                            'snippets']
 let g:wkm.e['t'] = [ ':Todo',                                        'todo list']
 
 let g:wkm.f = {} | let g:wkm.f['name'] = '+fzf'
-let g:wkm.f['f'] = [ ':Files',                                       'project files' ]
-let g:wkm.f['g'] = [ ':GFiles',                                      'git files' ]
-let g:wkm.f['G'] = [ ':GFiles?',                                     'modified git files' ]
+let g:wkm.f['f'] = [ ':GFiles',                                      'git files' ]
+let g:wkm.f['g'] = [ ':GFiles?',                                     'modified git files' ]
 let g:wkm.f['h'] = [ ':History',                                     'history files' ]
 let g:wkm.f['H'] = [ ':Helptags',                                    'no search highlight' ]
 let g:wkm.f['l'] = [ ':Lines',                                       'search all lines' ]
 let g:wkm.f['m'] = [ ':Maps',                                        'normal maps' ]
 let g:wkm.f['n'] = [ ':BLines',                                      'navigate lines in file' ]
+let g:wkm.f['o'] = [ ':Buffers',                                     'opened buffers' ]
 let g:wkm.f['r'] = [ ':Rg',                                          'rg search']
 let g:wkm.f['t'] = [ ':Filetypes',                                   'filetypes' ]
 
@@ -135,11 +116,19 @@ let g:wkm.l['Z'] = [ ':CocEnable',                                   'enable CoC
 let g:wkm.p = {} | let g:wkm.p['name'] = '+project'
 let g:wkm.p['/'] = [ ':call Twf()',                                  'project treeview']
 let g:wkm.p['t'] = [ ':Tags',                                        'tags' ]
-let g:wkm.p['w'] =                                                   'project search word'
+let g:wkm.p['w'] = [ ':call whichkey#fix("cocsearch")',              'project search word' ]
 
 let g:wkm.t = {} | let g:wkm.t['name'] = '+toggle'
 let g:wkm.t['C'] = [ ':ColorizerToggle',                             'colorizer']
 let g:wkm.t['n'] = [ ':set nu!',                                     'line numbers']
 let g:wkm.t['N'] = [ ':set relativenumber!',                         'relative line nums']
 let g:wkm.t['q'] = [ ':copen',                                       'quickfix']
-let g:wkm.t['t'] =                                                   'toggle tab'
+let g:wkm.t['t'] = [ ':call whichkey#fix("toggletab")',              'toggle tab']
+
+nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
+call which_key#register('<Space>', "g:wkm")
+
+" this line is just a hotfix for whichkey timeout
+" track https://github.com/liuchengxu/vim-which-key/issues/158
+nnoremap <buffer><silent> <leader>zz :echo ''<cr>

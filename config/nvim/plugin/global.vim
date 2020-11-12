@@ -28,12 +28,8 @@ let g:markdown_fenced_languages = ['c\(\[.*\]\)\?=c', 'html', 'python', 'cpp', '
 let g:markdown_folding = 1
 
 " which-key
-let g:mapleader = ' '
 let g:which_key_timeout = 100
 let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆'}
 let g:which_key_sep = '→'
 let g:which_key_use_floating_win = 0
 let g:which_key_max_size = 0
-call which_key#register('<Space>', "g:wkm")
-nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>

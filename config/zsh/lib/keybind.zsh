@@ -30,7 +30,9 @@ bindkey '^l'     clear-or-complete
 bindkey '^j'     fzf-note
 bindkey '^o'     eol-or-updir
 bindkey "^[OR'"  fzf-dev-vid
+bindkey "^[OR^[OR" fzf-dev-vid
 bindkey '^[ORn'  fzf-note
+bindkey '^[OR^n' fzf-note
 bindkey '^[OQ'   del-or-fzfz # <ctrl-;> -> F2
 bindkey '^r'     fzf-history
 bindkey '^s'     autopair

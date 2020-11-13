@@ -35,6 +35,9 @@ bindkey               "^[OR^[OR" fzf-dev-vid
 bindkey               '^[ORn'    fzf-note
 bindkey               '^[OR^n'   fzf-note
 bindkey               '^[OQ'     del-or-fzfz # <ctrl-;> -> F2
+bindkey               '^[ORa'    fzf-audio
+bindkey               '^[ORv'    fzf-video
+bindkey               '^[ORp'    fzf-pic
 bindkey               '^r'       fzf-history
 bindkey               '^s'       autopair
 bindkey               '^t'       fzf-starstar

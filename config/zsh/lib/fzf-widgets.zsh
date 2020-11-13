@@ -1,6 +1,8 @@
-# Public
-fzf-dev-vid() { __fzf-open '' '' '' " "}
-fzf-note() { __fzf-open '' '' nvim " "}
+fzf-dev-vid() { __fzf-open '' '' '' "$DEV_VID_ICON" }
+fzf-note() { __fzf-open '' '' nvim "$NOTE_ICON" }
+fzf-audio() { __fzf-open '' '' '' "$AUDIO_ICON" }
+fzf-video() { __fzf-open '' '' '' "$VID_ICON" }
+fzf-pic() { __fzf-open '' '' '' "$PIC_ICON" }
 fzf-dirstack() { __fzf-navi stack }
 fzf-starstar() { BUFFER="$BUFFER **"; zle end-of-line; zle fzf-completion; }
 del-or-fzfz() { [[ -n $BUFFER ]] && { zle delete-char; return } || __fzf-navi z }
@@ -60,16 +62,11 @@ __fzf-navi() {
 }
 
 __fzf-open() {
-  local dpre="Videos/dev/"
-  local vpre="Videos/"
-  local cpre="Pictures/"
-  local mpre="Music/"
-  local npre="Documents/notes/"
   local dir="${1:-/home/alex}/" fdCmd="${2:-fd -tf -L}" openCmd="${3:-xdg-open}"
   eval "$fdCmd . '$dir'" | sed "s|^$dir||" \
-  | sed "s|^$dpre| |" | sed "s|^$cpre| |" | sed "s|^$vpre| |" | sed "s|^$mpre| |" | sed "s|^$npre| |" \
+  | sed "s|^$DEV_VID_DIR|$DEV_VID_ICON|" | sed "s|^$PIC_DIR|$PIC_ICON|" | sed "s|^$VID_DIR|$VID_ICON|" | sed "s|^$AUDIO_DIR|$AUDIO_ICON|" | sed "s|^$NOTE_DIR|$NOTE_ICON|" \
   | fzf $FZF_DEFAULT_OPTS -m --preview="preview '$dir'{}" --query=$4 \
-  | sed "s|^ |$vpre|" | sed "s|^ |$cpre|" | sed "s|^ |$dpre|" | sed "s|^ |$mpre|" | sed "s|^ |$npre|" \
+  | sed "s|^$VID_ICON|$VID_DIR|" | sed "s|^$PIC_ICON|$PIC_DIR|" | sed "s|^$DEV_VID_ICON|$DEV_VID_DIR|" | sed "s|^$AUDIO_ICON|$AUDIO_DIR|" | sed "s|^$NOTE_ICON|$NOTE_DIR|" \
   | sed "s|^|$dir|" | xargs -ro -d '\n' $openCmd 2>&1
   zle reset-prompt; zle-line-init
 }
@@ -77,8 +74,11 @@ __fzf-open() {
 zle -N bol-or-inside
 zle -N eol-or-updir
 zle -N del-or-fzfz
-zle -N fzf-note
-zle -N fzf-dev-vid
 zle -N fzf-starstar
 zle -N fzf-dirstack
 zle -N fzf-history
+zle -N fzf-note
+zle -N fzf-dev-vid
+zle -N fzf-audio
+zle -N fzf-video
+zle -N fzf-pic

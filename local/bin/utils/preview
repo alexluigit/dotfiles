@@ -1,15 +1,10 @@
 #!/bin/sh
 # Preview script built for use with lf and fzf
-dpre="Videos/dev/"
-vpre="Videos/"
-cpre="Pictures"
-mpre="Music/"
-npre="Documents/notes/"
-fpath=$(sed "s| |$vpre|" <<< "$1")
-fpath=$(sed "s| |$cpre|" <<< "$fpath")
-fpath=$(sed "s| |$dpre|" <<< "$fpath")
-fpath=$(sed "s| |$mpre|" <<< "$fpath")
-fpath=$(sed "s| |$npre|" <<< "$fpath")
+fpath=$(sed "s|$VID_ICON|$VID_DIR|" <<< "$1")
+fpath=$(sed "s|$PIC_ICON|$PIC_DIR|" <<< "$fpath")
+fpath=$(sed "s|$DEV_VID_ICON|$DEV_VID_DIR|" <<< "$fpath")
+fpath=$(sed "s|$AUDIO_ICON|$AUDIO_DIR|" <<< "$fpath")
+fpath=$(sed "s|$NOTE_ICON|$NOTE_DIR|" <<< "$fpath")
 
 LINES=30
 case "$fpath" in

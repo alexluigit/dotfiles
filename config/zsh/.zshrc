@@ -19,4 +19,4 @@ for file in $(ls $ZDOTDIR/lib); do; . $ZDOTDIR/lib/$file; done
 source $ZDOTDIR/plugins/z/z.sh
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZDOTDIR/plugins/fzf/shell/completion.zsh 2> /dev/null
+source $ZDOTDIR/plugins/fzf/shell/completion.zsh

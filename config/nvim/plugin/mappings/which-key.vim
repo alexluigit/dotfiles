@@ -1,11 +1,12 @@
 let g:wkm = {}
+let g:wkm['<Tab>'] = [ 'za',                                         '"#" buffer' ]
 let g:wkm[' ']   = [ ':Files',                                       'find files' ]
 let g:wkm['/']   = [ ':call whichkey#fix("comment")',                'comment' ]
 let g:wkm[';']   = [ ':Commands',                                    'commands' ]
 let g:wkm["'"]   = [ ':bnext',                                       'next buffer' ]
 let g:wkm['h']   = [ ':bprevious',                                   'prev buffer' ]
 let g:wkm['q']   = [ ':call whichkey#fix("quit")',                   'close buffer']
-let g:wkm['u']   = [ '<C-r>',                                        'undo tree' ]
+let g:wkm['u']   = [ ':redo',                                        'undo tree' ]
 let g:wkm['v']   = [ ':vs|EditVifm|setl stl=',                       'vertical' ]
 let g:wkm['w']   = [ ':silent! w',                                   'save' ]
 let g:wkm['x']   = [ ':silent! x',                                   'save & close' ]
@@ -39,12 +40,12 @@ let g:wkm.d['r'] = ['<Plug>VimspectorRestart',                       'restart']
 let g:wkm.d['s'] = ['<Plug>VimspectorStop',                          'stop']
 
 let g:wkm.e = {} | let g:wkm.e['name'] = '+edit'
-let g:wkm.e['.'] = [ ':e $MYVIMRC',                                  'open init.vim' ]
-let g:wkm.e['c'] = [ ':CocConfig',                                   'coc config' ]
-let g:wkm.e['e'] = [ '<C-^>',                                        'last buffer' ]
+let g:wkm.e['d'] = [ ':Delete',                                      'delete current file' ]
+let g:wkm.e['e'] = [ ':e',                                           'refresh']
+let g:wkm.e['n'] = [ ':call whichkey#fix("newfile")',                'edit newfile' ]
 let g:wkm.e['f'] = [ ':CocCommand workspace.renameCurrentFile',      'rename file']
 let g:wkm.e['s'] = [ ':CocList snippets',                            'snippets']
-let g:wkm.e['t'] = [ ':Todo',                                        'todo list']
+let g:wkm.e['t'] = [ ':keepalt Todo',                                'todo list']
 
 let g:wkm.f = {} | let g:wkm.f['name'] = '+fzf'
 let g:wkm.f['f'] = [ ':GFiles',                                      'git files' ]
@@ -67,7 +68,7 @@ let g:wkm.g['D'] = [ ':Gdiffsplit',                                  'diff split
 let g:wkm.g['o'] = [ ':diffget //3',                                 'get right diff' ]
 let g:wkm.g['b'] = [ ':Git blame',                                   'blame' ]
 let g:wkm.g['B'] = [ ':GBrowse',                                     'browse' ]
-let g:wkm.g['g'] = [ ':vert Gstatus | bd#',                          'status' ]
+let g:wkm.g['g'] = [ ':vert Gstatus',                                'status' ]
 let g:wkm.g['G'] = [ ':GGrep',                                       'git grep' ]
 let g:wkm.g['i'] = [ ':CocCommand git.chunkInfo',                    'preview hunk' ]
 let g:wkm.g['n'] = [ '<Plug>(coc-git-nextchunk)',                    'next hunk' ]
@@ -128,6 +129,9 @@ let g:wkm.t['t'] = [ ':call whichkey#fix("toggletab")',              'toggle tab
 nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
 call which_key#register('<Space>', "g:wkm")
+
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noruler | autocmd BufLeave <buffer> set noruler laststatus=2
 
 " this line is just a hotfix for whichkey timeout
 " track https://github.com/liuchengxu/vim-which-key/issues/158

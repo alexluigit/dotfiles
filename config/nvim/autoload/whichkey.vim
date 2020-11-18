@@ -10,7 +10,16 @@ fun! whichkey#fix(cmd)
       call feedkeys(":%s///gc\<left>\<left>\<left>")
     endif
   elseif a:cmd == 'comment'
-    if mode() ==? 'v' | call feedkeys('gc') | else | call feedkeys('gcc') | endif
+    if mode() ==? 'v'
+      call feedkeys('gc')
+    else
+      if v:count | call feedkeys('gc'.(v:count1-1).'j') | else | call feedkeys('gcc') | endif
+    endif
+  elseif a:cmd == 'newfile'
+    call inputsave()
+      let fname = input('Create file: ')
+      if fname != "" | exec 'e ' . expand('%:h') . '/' . fname | endif
+    call inputrestore()
   elseif a:cmd == 'regsend' | exec "normal! \"Xdd"
   elseif a:cmd == 'regpaste' | exec "normal! \"xpqxq"
   elseif a:cmd == 'cocsearch' | exec "CocSearch " . expand("<cword>")

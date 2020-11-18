@@ -25,13 +25,15 @@ nnoremap <silent>       <C-p>         :keepj norm! N<cr>
 nnoremap <silent>       u             :silent norm! u<cr>
 nnoremap <silent>       <C-r>         @:
 nnoremap <silent><expr> <CR>          empty(&buftype) ? '@@' : '<CR>'
-" Disable EX mode
+" Disable F1 key and EX mode
+map                     <F1>          <Nop>
+imap                    <F1>          <Nop>
 nnoremap                Q             <Nop>
 " Yank to end of line
 noremap                 Y             y$
 " Map <C-i> to <F6> in terminal emulator, it will solove <TAB> and <C-i> hijack
 nnoremap                <F6>          <C-i>
-nnoremap                <Tab>         za
+nnoremap                <Tab>         <C-^>
 " Use arrow key navigating quickfix buffer
 nnoremap <silent>       <Up>          :cprevious<CR>
 nnoremap <silent>       <Down>        :cnext<CR>

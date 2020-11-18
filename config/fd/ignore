@@ -1,8 +1,5 @@
-.git
-.cache
-.local
-.config
-node_modules
-/home/alex/Dev/*
-/home/alex/Downloads/*
-/media/HDD/Backup/*
+.git/
+.cache/
+.local/
+.config/
+node_modules/

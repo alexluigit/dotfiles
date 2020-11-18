@@ -1,15 +1,30 @@
-yank-buffer() { echo -n "$BUFFER" | xclip -selection clipboard; }
-file-or-forwardchar() { [[ -z $BUFFER ]] && { BUFFER="vifmrun ."; zle accept-line } || zle forward-char; }
-fg-bg() { [[ $#BUFFER -eq 0 ]] && { fg; zle reset-prompt; zle-line-init } || zle push-input }
-clear-or-complete() { [[ -z $BUFFER ]] && zle clear-screen || zle autosuggest-accept }
-newnote() { nvim ~/Documents/notes/notes.md }
-newnote-or-edit-cmd() { [[ -z $BUFFER ]] && newnote; zle-line-init  || zle edit-command-line }
+ctrl-f() { __file-manager }
+ctrl-j() { __todolist }
+ctrl-r() { __fzf-hist }
+ctrl-s() { __autopairs }
+ctrl-xx(){ __fzf-kill }
+ctrl-y() { __yank-cmdline }
+ctrl-\;(){ __fzf-navi z }
+ctrl-t() { __fzf-comp-helper }
+ctrl-k() { zle edit-command-line }
+ctrl-tt(){ __fzf-open mpv "$DEV_VID_DIR[3]" }
+ctrl-tn(){ __fzf-open nvim "$NOTE_DIR[3]" }
+ctrl-te(){ __fzf-open mpv "$AUDIO_DIR[3]" }
+ctrl-ti(){ __fzf-open sxiv "$PIC_DIR[3]" }
+ctrl-to(){ __fzf-open mpv "$VID_DIR[3]" }
+ctrl-\'(){ [[ $#LBUFFER -ne $#BUFFER ]] && zle end-of-line || zle autosuggest-accept }
+ctrl-RT(){ [[ -n $BUFFER ]] && zle accept-line || __quick-sudo }
+ctrl-i() { [[ -n $BUFFER ]] && zle backward-char || __fzf-dot }
+ctrl-o() { [[ -n $BUFFER ]] && zle forward-char || __fzf-open }
+ctrl-d() { [[ -n $BUFFER ]] && zle delete-char || __fzf-cd }
+ctrl-h() { [[ -n $BUFFER ]] && zle backward-delete-char || __updir }
+ctrl-l() { [[ -n $BUFFER ]] && zle vi-forward-word || zle clear-screen }
+ctrl-p() { [[ -n $BUFFER ]] && zle vi-backward-word || __fzf-navi home }
+ctrl-z() { [[ -n $BUFFER ]] && zle push-input || __resume-jobs }
+backspace() { zle vi-backward-delete-char }
 
-mkcd() { mkdir -p $@ && cd ${@:$#} }
-
-typeset -gA AUTOPAIR_PAIRS
-AUTOPAIR_PAIRS=('`' '`' "'" "'" '"' '"' '{' '}' '[' ']' '(' ')' '<' '>' ' ' ' ')
-autopair() {
+typeset -gA AUTOPAIR_PAIRS=('`' '`' "'" "'" '"' '"' '{' '}' '[' ']' '(' ')' '<' '>' ' ' ' ')
+__autopairs() {
   read -sk RES
   [ $RES == 'a' ] && RES='<'
   [ $RES == 'c' ] && RES='{'
@@ -18,47 +33,40 @@ autopair() {
   RBUFFER=$RES$AUTOPAIR_PAIRS[$RES]$RBUFFER
   zle forward-char
 }
-
-tmux-automation() {
-  # https://gist.github.com/lann/6771001
-  local SOCK_SYMLINK=~/.ssh/ssh_auth_sock
-  [ -r "$SSH_AUTH_SOCK" -a ! -L "$SSH_AUTH_SOCK" ] && ln -sf "$SSH_AUTH_SOCK" $SOCK_SYMLINK
-  [[ -n "$@" ]] && { env SSH_AUTH_SOCK=$SOCK_SYMLINK tmux "$@"; return }
-  [ -x .tmux ] && { ./.tmux; return }
-  local SESSION_NAME=$(basename "${$(pwd)//[.:]/_}")
-  env SSH_AUTH_SOCK=$SOCK_SYMLINK tmux new -A -s "$SESSION_NAME"
+__fzf-navi() {
+  . $ZDOTDIR/user/dirs.zsh
+  local cmd
+  [[ $1 == 'z' ]] && { cmd=(z -l '|' awk \'{print \$2}\'); BEFORE_FNAVI=$B_FN_PLAIN } \
+  || cmd=(fd -H -td --ignore-file $XDG_CONFIG_HOME/fd/root -c always . /)
+  dest=$(eval "$cmd[@]" | eval "$BEFORE_FNAVI[@]" | fzf +s --tac --ansi | eval "$AFTER_FNAVI[@]")
+  [[ -z $dest ]] && { zle reset-prompt; return } || cd $dest
+  zle reset-prompt
 }
-
-ex() {
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.tar.xz)    tar xJf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else; echo "'$1' is not a valid file"; fi
+__fzf-open() {
+  [[ -z $HOME_DIR ]] && . $ZDOTDIR/user/dirs.zsh
+  local openCmd=${1:-xdg-open}
+  cd ~; fd -tf -H -L -c always --ignore-file $XDG_CONFIG_HOME/fd/${3:-ignore} \
+  | eval "$BEFORE_FOPEN[@]" | fzf -m --ansi --preview="preview {}" --query=$2 \
+  | eval "$AFTER_FOPEN[@]"  | xargs -ro -d '\n' $openCmd 2>&1
+  cd -; zle reset-prompt; zle-line-init
 }
+__fzf-hist() {
+  local selected num
+  selected=($(fc -rl 1 | fzf +m))
+  [[ -n "$selected" ]] && { num=$selected[1]; [[ -n "$num" ]] && zle vi-fetch-history -n $num }
+  zle reset-prompt
+}
+__resume-jobs() { fg; zle reset-prompt; zle-line-init }
+__fzf-cd() { local sel=$(ls -D | fzf); [[ -n $sel ]] && cd $sel; zle reset-prompt }
+__fzf-dot() { __fzf-open nvim "$DOT_DIR[3]" "dot" }
+__fzf-comp-helper() { BUFFER="$BUFFER**"; zle end-of-line; fzf-completion }
+__fzf-kill() { BUFFER="kill -9 "; zle end-of-line; fzf-completion }
+__updir() { cd ..; zle reset-prompt }
+__file-manager() { BUFFER="vifmrun ."; zle accept-line }
+__yank-cmdline() { echo -n "$BUFFER" | xclip -selection clipboard }
+__todolist() { nvim ~/.cache/bujo/todo.md; zle-line-init }
+__quick-sudo() { BUFFER="sudo !!"; zle accept-line }
 
-zle -N yank-buffer
-zle -N file-or-forwardchar
-zle -N fg-bg
-zle -N clear-or-complete; ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(clear-or-complete)
-zle -N autopair
-zle -N newnote-or-edit-cmd
-autoload -Uz move-line-in-buffer; zle -N up-line-in-buffer move-line-in-buffer
-autoload -Uz select-quoted; zle -N select-quoted
-autoload -Uz select-bracketed; zle -N select-bracketed
-autoload -Uz surround; zle -N delete-surround surround; zle -N add-surround surround; zle -N change-surround surround
-autoload -Uz edit-command-line; zle -N edit-command-line
-autoload -Uz up-line-or-beginning-search; zle -N up-line-or-beginning-search
-autoload -Uz down-line-or-beginning-search; zle -N down-line-or-beginning-search
+__make-notes() { nvim ~/Documents/notes/draft/notes.md; zle-line-init }
+__make-scripts() { nvim ~/Dev/alex.files/local/bin/new.sh; zle-line-init }
+__fzf-clip() { }

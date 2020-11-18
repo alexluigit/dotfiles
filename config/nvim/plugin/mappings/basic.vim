@@ -1,26 +1,24 @@
 let mapleader = ' '
-nmap                     <C-b>        <C-v>
+nmap                     <c-b>        <C-v>
 nmap     <silent>         go          :silent! !xdg-open <cfile><CR>
 " Window navigation and resize
 " Note: <C-:>, <C-'>, <C-Cr> map to F2, F3, F4 in terminal emulator
-nnoremap <silent>        <C-h>        :wincmd h<CR>
+nnoremap <silent>        <c-h>        :wincmd h<CR>
 nnoremap <silent>        <F3>         :wincmd l<CR>
-nnoremap <silent>        <C-n>        :wincmd j<CR>
-nnoremap <silent>        <C-e>        :wincmd k<CR>
-nnoremap <silent>        <M-h>        :vert resize -5<CR>
-nnoremap <silent>        <M-'>        :vert resize +5<CR>
-nnoremap <silent>        <M-n>        :resize -5<CR>
-nnoremap <silent>        <M-e>        :resize +5<CR>
+nnoremap <silent>        <c-n>        :wincmd j<CR>
+nnoremap <silent>        <c-e>        :wincmd k<CR>
+nnoremap <silent>        <m-h>        :vert resize -5<CR>
+nnoremap <silent>        <m-'>        :vert resize +5<CR>
+nnoremap <silent>        <m-n>        :resize -5<CR>
+nnoremap <silent>        <m-e>        :resize +5<CR>
 " Emacs keybinding
-cnoremap                 <C-b>        <Left>
-cnoremap                 <C-f>        <Right>
-cnoremap                 <F6>         <Home>
-cnoremap                 <C-o>        <End>
-cnoremap                 <C-n>        <Down>
-cnoremap                 <C-e>        <Up>
-cnoremap                 <F2>         <Del>
-inoremap                 <C-b>        <Left>
-inoremap                 <C-f>        <Right>
-inoremap                 <F6>         <Home>
-inoremap                 <C-o>        <End>
-inoremap                 <F2>         <Del>
+cnoremap                 <c-a>        <Home>
+cnoremap                 <F3>         <End>
+cnoremap                 <F6>         <Left>
+cnoremap                 <c-o>        <Right>
+cnoremap                 <c-d>        <Del>
+inoremap                 <c-a>        <Home>
+inoremap                 <F3>         <End>
+inoremap                 <F6>         <Left>
+inoremap                 <c-o>        <Right>
+inoremap                 <c-d>        <Del>

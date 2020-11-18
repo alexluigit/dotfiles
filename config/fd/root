@@ -1,0 +1,8 @@
+/dev/*
+/proc/*
+/root/*
+/run/*
+/sys/*
+/tmp/*
+/media/HDD/Backup/*
+/media/cloud/*

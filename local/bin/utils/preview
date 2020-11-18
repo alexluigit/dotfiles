@@ -1,11 +1,7 @@
-#!/bin/sh
+#!/bin/zsh
 # Preview script built for use with lf and fzf
-fpath=$(sed "s|$VID_ICON|$VID_DIR|" <<< "$1")
-fpath=$(sed "s|$PIC_ICON|$PIC_DIR|" <<< "$fpath")
-fpath=$(sed "s|$DEV_VID_ICON|$DEV_VID_DIR|" <<< "$fpath")
-fpath=$(sed "s|$AUDIO_ICON|$AUDIO_DIR|" <<< "$fpath")
-fpath=$(sed "s|$NOTE_ICON|$NOTE_DIR|" <<< "$fpath")
-
+. $ZDOTDIR/user/dirs.zsh
+fpath=$(eval "$PREVIEW_FOPEN[@]")
 LINES=30
 case "$fpath" in
     *.png|*.jpg|*.jpeg|*.mkv|*.mp4|*.m4v) mediainfo "$fpath";;

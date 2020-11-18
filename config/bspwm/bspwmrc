@@ -4,8 +4,8 @@ bspc rule -r "*"
 pgrep bspswallow || bspswallow &
 pgrep bspsubscribe || bspsubscribe &
 
-bspc monitor ^1 -d Main
-bspc monitor ^2 -d Dev Web Doc Msc Vid PDF Art
+bspc monitor DVI-I-0 -d Sub
+bspc monitor DP-0 -d Dev Web Doc Msc Vid PDF Art
 
 bspc config border_width         0
 bspc config window_gap          12

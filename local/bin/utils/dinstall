@@ -14,6 +14,7 @@ config() {
     do ln -sf "$i" "$CFGDIR"
   done
   rm $CFGDIR/config
+  ln -sf $CFGDIR/zsh/plugins/fzf $CFGDIR/nvim/pack/bundle/opt/fzf
 }
 
 bin() {
@@ -32,11 +33,8 @@ assets() {
 }
 
 __apps() {
-  for i in $(du -d 1 "$REPODIR/local/apps" | cut -f2)
-    do ln -sf "$i" "$BINDIR"
-  done
-  rm $BINDIR/apps
-  ln -sf $REPODIR/local/share/applications ~/.local/share/applications
+  ln -sf $REPODIR/local/apps/rime ~/.local/share/fcitx5/rime
+  ln -sf $REPODIR/local/share/applications ~/.local/share
   ln -sf $REPODIR/config/mimeapps.list $CFGDIR/mimeapps.list
 }
 

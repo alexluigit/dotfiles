@@ -63,7 +63,18 @@ alias fgd="fzf-git-diff"
 alias fgs="fzf-git-stash"
 
 # pacman
-alias pas="fzf-pac-sync"
-alias yas="fzf-yay-sync"
-alias pal="fzf-pac-local"
-alias pao="pacman -Qtdq" # orphan
+pas() { local res=$(pacman -Ssq | fzf -m --preview="pacman -Si {}"); [[ -n $res ]] && sudo pacman -Syy $res }
+yas() { proxyon; local res=$(cat ~/.config/yay/aurlist.txt | fzf -m --preview="yay -Si {}"); [[ -n $res ]] && yay -Syy $res }
+pal() { local res=$(pacman -Qeq | fzf -m --preview="pacman -Si {}"); [[ -n $res ]] && sudo pacman -Rns $res }
+mc() { mkdir -p $@ && cd ${@:$#} } # make a dir and cd into it
+
+# tmux automation
+t() {
+  # https://gist.github.com/lann/6771001
+  local SOCK_SYMLINK=~/.config/ssh/ssh_auth_sock
+  [ -r "$SSH_AUTH_SOCK" -a ! -L "$SSH_AUTH_SOCK" ] && ln -sf "$SSH_AUTH_SOCK" $SOCK_SYMLINK
+  [[ -n "$@" ]] && { env SSH_AUTH_SOCK=$SOCK_SYMLINK tmux "$@"; return }
+  [ -x .tmux ] && { ./.tmux; return }
+  local SESSION_NAME=$(basename "${$(pwd)//[.:]/_}")
+  env SSH_AUTH_SOCK=$SOCK_SYMLINK tmux new -A -s "$SESSION_NAME"
+}

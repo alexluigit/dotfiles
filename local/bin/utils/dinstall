@@ -1,5 +1,5 @@
 #!/bin/sh
-REPODIR="$HOME/Dev/Alex.files"
+REPODIR="$HOME/Dev/alex.files"
 CFGDIR="$HOME/.config"
 BINDIR="$HOME/.local/bin"
 
@@ -25,7 +25,7 @@ bin() {
 }
 
 zshenv() {
-  ln -sf $REPODIR/config/zsh/zshenv $HOME/.zshenv
+  sudo ln -sf $REPODIR/config/zsh/zshenv /etc/zsh/zshenv
 }
 
 assets() {

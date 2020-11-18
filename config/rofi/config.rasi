@@ -1,5 +1,5 @@
 configuration {
-	modi: "drun,run,combi";
+	modi: "drun,combi,calc";
 	font: "Noto Sans 20";
 	show-icons: true;
 	icon-theme: "Papirus";
@@ -22,7 +22,7 @@ configuration {
 	kb-move-front: "Control+i";
 	kb-move-end: "Control+o";
 	kb-row-left: "Control+h";
-	kb-row-right: "Control+l";
+	kb-row-right: "Control+apostrophe";
 	kb-remove-to-eol: "";
 	kb-remove-char-back: "BackSpace,Shift+BackSpace";
 	kb-mode-next: "Shift+Right,Control+s";

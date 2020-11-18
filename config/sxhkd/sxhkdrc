@@ -1,50 +1,44 @@
 # Focus
-super + {_,shift + } {0,1-7}
-	bspc {desktop -f,node -d} ^{1,2-8}
-super + control + {0,1-7}
-	bspc node -d ^{0,2-8} --follow
 super + {h,n,e,apostrophe}
-	bspc node -f {west,south,north,east}
-super + f
-	bspc desktop -l next
+	bspc node -f {west,south,north,east}.local
+super + {0,1-7}
+	bspc desktop -f ^{1,2-8}
+hyper + {0,1-7}
+	bspc node -d} ^{1,2-8}
 super + grave
 	bspc monitor next --focus
 super + Tab
 	bspc node -f last
 
 # Window size / move
+hyper + Tab
+	bspc node -s biggest.local || bspc node -s next.local || bspc node -s prev.local
+hyper + f
+	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
+hyper + m
+	bspc desktop -l next
 hyper + {h,n,e,apostrophe}
-	bspc node --presel-dir '~{west,south,north,east}'
-hyper + s
-	bspc node -s biggest.local || bspc node -s next.local
-hyper + {2-9}
-	bspc node -o 0.{2-9}
-hyper + space
-	bspc node -p cancel
+	bspc node -s {west,south,north,east}
+super + control + {0,1-7}
+	bspc node -d ^{1,2-8} --follow
 hyper + super + {h,n,e,apostrophe}
 	bsp_resize {west,south,north,east} 50
-hyper + {e, b}
-	bspc node @/ -{E,B}
-hyper + t
-	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
-hyper + {y,u,i,o}
-	bspc node -s {west,south,north,east}
-hyper + {n,m,comma,period}
+hyper + {b, equal}
+	bspc node @/ -{B,E}
+hyper + p; {h,n,e,apostrophe}
+	bspc node --presel-dir '~{west,south,north,east}'
+hyper + p; {2-8}
+	bspc node -o 0.{2-8}
+hyper + w; {h,n,e,apostrophe}
 	xdo move {-x -20,-y +20,-y -20,-x +20}
+hyper + Escape
+	bspc node -p cancel
 
-# Launch
-super + {a,r,s}
-	rofi-open {drun,run,combi}
-super + t
-	alacritty
-super + Return
-	tdrop -a -m -h 98% -w 40% -x 2292 -y 50 alacritty
-super + {_,shift} q
-	xdo {close,kill}
-super + w
-	bravectl newtab
+# Launcher
+super + {_,control} {a-d,f-h,j-m,p-z}
+	launcher {_,-@} -{a-d,f-h,j-m,p-z}
 super + o; {a-z}
-	launcher -{a-z}
+	launcher -{A-Z}
 super + Escape
 	powermenu_alt
 
@@ -53,24 +47,16 @@ XF86Audio{Prev,Play,Next}
 	music-control {previous,play-pause,next}
 XF86Audio{LowerVolume,RaiseVolume,Mute}
 	volumectl {down,up,mute}
-hyper {_, + shift} + Escape
-	flameshot {gui,full -p ~/Pictures/Screenshots}
 
 # Miscs
 super + shift + BackSpace
 	pkill -USR1 -x sxhkd
 shift + Delete
 	multilockscreen -s
-super + c
-	sleep 0.2 && xdotool click 1
 button{8,9}
 	xvkbd -xsendevent -text {'\Cw', '\Ct'}
 XF86{Mon,Kbd}BrightnessDown
 	xvkbd -xsendevent -text {"\[F1]","\[F5]"}
 hyper + XF86Audio{Lower,Raise}Volume
 	xvkbd -xsendevent -text {"\[F11]","\[F12]"}
-super + {p,l}
-	xvkbd -xsendevent -text {"\[Down]","\[Up]"}
-# XF86Launch{A,B}
-# XF86{Mon,Kbd}BrightnessUp
-# 	xvkbd -xsendevent -text {"\[F2]","\[F6]"}
+# XF86Launch{A,B} XF86{Mon,Kbd}BrightnessUp

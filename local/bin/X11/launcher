@@ -1,23 +1,39 @@
 #!/usr/bin/env zsh
 main() {
-  local OPTIND
-  while getopts "cdemtv" opt; do
+  quit_monocle
+  local OPTIND CONTROL_ON=0 OPTSTR='@'
+  for i in {{a..z},{A..Z}}; do OPTSTR+=$i; done
+  echo ${OPTSTR[@]}
+  while getopts $OPTSTR opt; do
     case $opt in
-      c) rofi-open calc;;
-      d) bravectl second;;
-      e) run-emacs;;
-      m) bravectl music;;
-      t) thunar;;
-      v) tdrop -a -m -h 98% -w 40% -x 2292 -y 50 alacritty -e vifmrun;;
+      @) CONTROL_ON=1;;
+      C) fullscrot;;
+      D) bravectl second;;
+      E) run-emacs;;
+      F) thunar;;
+      M) bravectl music;;
+      S) flameshot gui;;
+      a) run-rofi drun;;
+      c) click;;
+      q) quit-current;;
+      r) run-rofi combi;;
+      t) term;;
+      v) term fm;;
+      w) bravectl start $CONTROL_ON;;
       \?) exit 1;;
     esac
   done
   shift $((OPTIND -1))
 }
 
-run-emacs() {
-  local wid=$(xdotool search --class 'emacs')
-  [[ -n $wid ]] && xdotool windowactivate $wid || emacs
-}
+quit_monocle() { [[ $(bspc wm -g | awk -F ':' '{print $(NF-2)}') == 'LM' ]] && bspc desktop -l next }
+click() { sleep 0.2 && xdotool click 1 }
+fullscrot() {	flameshot full -p ~/Pictures/Screenshots }
+quit-current() { [[ $CONTROL_ON == '0' ]] && xdo close || xdo kill }
+run-rofi() { rofi -m 1 -no-lazy-grab -show $1 -theme ~/.config/rofi/themes/launcher.rasi }
+run-emacs() { local wid=$(xdotool search --class 'emacs'); [[ -n $wid ]] && xdotool windowactivate $wid || exec emacs }
+term() { [[ -z $1 ]] && { [[ $CONTROL_ON == '1' ]] && __drop || exec alacritty } || __vifm }
+__drop() { exec tdrop -a -m -n TERM -h 98% -w 35% -x 0 -y 50 alacritty }
+__vifm() { exec tdrop -a -m -n FM -h 98% -w 35% -x 0 -y 50 alacritty -e vifmrun }
 
 main $@

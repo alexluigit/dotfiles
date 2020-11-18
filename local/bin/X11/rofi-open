@@ -1,4 +1,0 @@
-#!/bin/zsh
-run() { rofi -m 1 -no-lazy-grab -show $1 -theme ~/.config/rofi/themes/launcher.rasi }
-
-run $@

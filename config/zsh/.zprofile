@@ -2,6 +2,8 @@
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
+export HISTFILE=$XDG_DATA_HOME/zsh/history
+export HISTSIZE=100000; export SAVEHIST=100000
 export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
 export _Z_DATA=$XDG_DATA_HOME/z/.z

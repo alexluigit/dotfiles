@@ -19,7 +19,7 @@ set incsearch
 set scrolloff=4 " Try to leave some space from cursor to upper/lower border in lists
 set slowfs=curlftpfs " Don't do too many requests to slow file systems
 set dotdirs=rootparent " Dot't show '../' since it is unnecessary
-set statusline="  %A %T %=%d %l/%S "
+set statusline="  %A %T %E%=%d %l/%S "
 set rulerformat=""
 set confirm=permdelete
 set trashdir="~/.local/share/Trash"
@@ -35,17 +35,28 @@ mark h ~
 mark w ~/Pictures/Wallpaper
 mark t ~/.local/share/Trash
 
-noremap n j
-noremap e k
+nnoremap - <C-w>5<
+nnoremap _ <C-w>5>
 nnoremap ; :
-nnoremap <c-n> n
+nnoremap aL :alink<cr>
+noremap  n j
+noremap  e k
+nnoremap <c-p> N
+nnoremap <c-l> n
 nnoremap q :q<cr>
-nnoremap s :sort<cr>
-nnoremap S :shell<cr>
-nnoremap w :view<cr>
+nnoremap ss :shell<cr>
+nnoremap st :sort<cr>
+nnoremap sr :invert o<cr>
+nnoremap sp :!sudo cp %F %d<cr>
+nnoremap sd :!sudo mv %f ~/.local/share/Trash<cr>
+nnoremap <tab> :view<cr>
 nnoremap yd :!printf %d | xclip -selection clipboard<cr>
 nnoremap yf :!printf %c:p | xclip -selection clipboard<cr>
+nnoremap A cw
 nnoremap cc cw<c-u>
+nnoremap cw cW
+nnoremap <space> <nop>
+nnoremap <space><space> <c-w>w
 nnoremap <space>. :write | edit $MYVIFMRC | restart<cr>
 nnoremap <space>w :set wrap!<cr>
 nnoremap <space>e :edit<space>

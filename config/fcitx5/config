@@ -7,6 +7,8 @@ AltTriggerKeys=
 EnumerateForwardKeys=
 # Enumerate Input Method Backward
 EnumerateBackwardKeys=
+# Skip first input method while enumerating
+EnumerateSkipFirst=False
 # Enumerate Input Method Group Forward
 EnumerateGroupForwardKeys=
 # Enumerate Input Method Group Backward

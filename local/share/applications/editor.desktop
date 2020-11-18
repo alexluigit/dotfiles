@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=Editor
-Exec=alacritty -e sh -c "sleep .1 && nvim %F"
+Exec=editorCmd %F

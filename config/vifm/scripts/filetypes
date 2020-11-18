@@ -1,13 +1,13 @@
 " vim: filetype=vifm :
-fileviewer */ tree %c -L 1
-fileviewer \.*/ ls %c
+fileviewer */ exa -aT --color=always --git-ignore -I=.git\|node_modules --group-directories-first -L=1
+fileviewer \.*/ exa -aT --color=always --git-ignore -I=.git --group-directories-first -L=1
 fileviewer *.pdf pdftotext -nopgbrk %c -
 fileviewer *.mp3 mp3info
 fileviewer *.flac soxi
 fileviewer *.html,*.htm w3m -dump -T text/html
 fileviewer *.[1-8] man ./%c | col -b
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm vifmimg draw %px %py %pw %ph %c %pc vifmimg clear
-fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+fileviewer *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
     \*.fl[icv],*.m2v,*.mov,*.webm,*.mts,*.m4v,*.r[am],*.qt,*.divx,
     \ vifmimg videopreview %px %py %pw %ph %c
     \ %pc
@@ -16,7 +16,7 @@ fileviewer *.zip,*.jar,*.war,*.ear zip -sf %c
 fileviewer *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz tar -tf %f
 fileviewer *.doc antiword -
 fileviewer *.docx docx2txt.pl %f -
-fileviewer * env -uCOLORTERM bat --color always --wrap never --pager never %c -p
+fileviewer * env -u COLORTERM bat --color always --wrap never --pager never %c -p
 filetype *.o nm %f | less
 filetype *.[1-8] man ./%c
 filetype *.md5 {Check MD5 hash sum} md5sum -c %f %S,
@@ -31,6 +31,6 @@ filetype *.dmg xdg-open
 filetype *.img xdg-open
 filetype *.pkg xdg-open
 filetype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt open -a LibreOffice.app
-filetype *.mkv,*.mp4,*.mov,*.webm,*.avi,*.mp3 mpv %f
+filetype *.mkv,*.mp4,*.mov,*.webm,*.avi,*.mp3,*.avi,*.mpg,*.mpeg,*.rmvb,*.fl[icv] mpv %f
 filetype *.bmp,*.jpg,*.jpeg,*.png,*.xpm sxiv %f
 filetype *.pdf zathura %f

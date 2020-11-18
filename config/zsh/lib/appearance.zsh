@@ -71,10 +71,10 @@ chpwd_prompt () {
       local headabv=$(sed "s|^/home/$USER| |" <<< $head)
       cwd_head="%F{white}$headabv/%f"; cwd_tail="%F{white}%B${HPWD##*/}%b%f";;
     *?/*)
-      local head=$(sed "s|^/| |" <<< $HPWD)
+      local head=$(sed "s|^/| |" <<< $HPWD)
       cwd_head="%F{white}${head%/*}/%f"; cwd_tail="%F{white}%B${head##*/}%b%f";;
     *)
-      cwd_head="%F{white} %f"; cwd_tail="%F{white}%B${HPWD#/}%b%f";;
+      cwd_head="%F{white} %f"; cwd_tail="%F{white}%B${HPWD#/}%b%f";;
   esac
 }
 

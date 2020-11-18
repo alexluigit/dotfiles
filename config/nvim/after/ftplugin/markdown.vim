@@ -3,7 +3,7 @@ set conceallevel=2
 imap     <buffer><silent>       <C-S>      -[ ]<Space><Esc>:noh<CR>a
 nmap     <silent><buffer><expr> <C-S>      <SID>searchCheck() ? ':.s/\[ \]/\[x\]<CR>:silent noh<Bar>echo<CR>' : ':.s/\[x\]/\[ \]<CR>:silent noh<Bar>echo<CR>'
 nmap     <silent><buffer>       <leader>i  :call todo#marker()<CR>
-nmap     <silent><buffer>       <leader>o  :bd#<CR>gF:bd#<CR>
+nmap     <silent><buffer>       <leader>o  :bd#<CR>$3bgF:bd#<CR>
 inoremap <buffer><silent>       <Bar>      <C-r>=<SID>align()<CR>
 
 function! s:searchCheck()
@@ -20,9 +20,17 @@ endfunction
 
 function! MarkdownFold()
   let line = getline(v:lnum)
+
   " Regular headers
   let depth = match(line, '\(^#\+\)\@<=\( .*$\)\@=')
-  if depth > 0 | return ">" . depth | endif
+  if depth > 0
+    " check syntax, it should be markdownH1-6
+    let syncode = synstack(v:lnum, 1)
+    if len(syncode) > 0 && synIDattr(syncode[0], 'name') =~ 'markdownH[1-6]'
+        return ">" . depth
+    endif
+  endif
+
   " Setext style headings
   let prevline = getline(v:lnum - 1)
   let nextline = getline(v:lnum + 1)
@@ -32,6 +40,7 @@ function! MarkdownFold()
   if (line =~ '^.\+$') && (nextline =~ '^-\+$') && (prevline =~ '^\s*$')
     return ">2"
   endif
+
   " frontmatter
   if v:lnum == 1 && line == '---'
     let b:markdown_frontmatter = 1

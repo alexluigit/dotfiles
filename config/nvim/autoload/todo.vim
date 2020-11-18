@@ -22,6 +22,7 @@ function todo#open(mods, ...)
   let todo_path = s:GetTodoFilePath(general_bool)
 "   mods - allows a user to use <mods> (see :h mods)
   exe a:mods . " " . g:bujo#window_width "vs  " . todo_path
+  setl nonu norelativenumber
 endfunction
 
 function s:GetTodoFilePath(general)

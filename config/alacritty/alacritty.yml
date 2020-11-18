@@ -3,13 +3,13 @@ env:
 
 window:
   padding:
-    x: 12
+    x: 13
     y: 5
   decorations: none
 scrolling:
   history: 10000
   multiplier: 3
-background_opacity: 0.85
+background_opacity: 0.8
 
 font:
   normal:
@@ -110,10 +110,10 @@ key_bindings:
   - { key: V,      mods: Control,       mode: Vi, action: ToggleBlockSelection    }
   - { key: V,      mods: Alt,           mode: Vi, action: ToggleSemanticSelection }
   - { key: Return,                      mode: Vi, action: Open                    }
-  - { key: K,                           mode: Vi, action: Up                      }
-  - { key: J,                           mode: Vi, action: Down                    }
+  - { key: E,                           mode: Vi, action: Up                      }
+  - { key: N,                           mode: Vi, action: Down                    }
   - { key: H,                           mode: Vi, action: Left                    }
-  - { key: L,                           mode: Vi, action: Right                   }
+  - { key: Apostrophe,                  mode: Vi, action: Right                   }
   - { key: Key0,                        mode: Vi, action: First                   }
   - { key: Key4,                        mode: Vi, action: Last                    }
   - { key: Key5,                        mode: Vi, action: Bracket                 }
@@ -123,8 +123,8 @@ key_bindings:
   - { key: L,      mods: Shift,         mode: Vi, action: Low                     }
   - { key: B,                           mode: Vi, action: SemanticLeft            }
   - { key: W,                           mode: Vi, action: SemanticRight           }
-  - { key: E,                           mode: Vi, action: SemanticRightEnd        }
+  - { key: K,                           mode: Vi, action: SemanticRightEnd        }
   - { key: Slash,                       mode: Vi, action: SearchForward           }
   - { key: Slash,  mods: Shift,         mode: Vi, action: SearchBackward          }
-  - { key: N,                           mode: Vi, action: SearchNext              }
-  - { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
+  - { key: L,      mods: Control,       mode: Vi, action: SearchNext              }
+  - { key: P,      mods: Control,       mode: Vi, action: SearchPrevious          }

@@ -12,7 +12,7 @@ set path+=**
 set wildmenu
 set shortmess+=ac
 set updatetime=500                          " CursorHold event will respect this value
-set timeoutlen=200                          " By default timeoutlen is 1000 ms
+set timeoutlen=400                          " By default timeoutlen is 1000 ms
 set signcolumn=yes                          " Always show signcolumn
 set foldmethod=indent                       " not as cool as syntax, but faster
 set foldlevelstart=99                       " start unfolded
@@ -23,6 +23,7 @@ set list
 set dictionary+=/usr/share/dict/words
 set fillchars=diff:∙                        " BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
 set fillchars+=fold:·                       " MIDDLE DOT (U+00B7, UTF-8: C2 B7)
-set listchars+=tab:▷·                       " WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7)
+set listchars+=tab:••                       " BULLET (U+2022, UTF-8: 0xE2 0x80 0xA2)
+set listchars+=trail:•                      " BULLET (U+2022, UTF-8: 0xE2 0x80 0xA2)
 set fillchars+=eob:\                        " suppress ~ at EndOfBuffer
 set fillchars+=vert:\                       " supress sign between vertical splits

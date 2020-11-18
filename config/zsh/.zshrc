@@ -11,6 +11,7 @@ setopt HIST_IGNORE_SPACE # Ignore a record starting with a space
 setopt MENU_COMPLETE # Tab once to get completion directly.
 setopt NONOMATCH # Enable url paste without quote
 setopt PROMPT_SUBST # Enable prompt parameter expansion, command substitution and arithmetic expansion
+setopt IGNORE_EOF # C-d will not exit shell
 
 # Aspects
 for file in $(ls $ZDOTDIR/lib); do; . $ZDOTDIR/lib/$file; done

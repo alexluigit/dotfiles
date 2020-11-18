@@ -1,25 +1,24 @@
 # general
 alias d="gio trash"
-alias f="__fzf-navi home; clear"
 alias g="inside-worktree && nvim -c Gstatus -c bd# || return 1"
-alias j="z"
-alias t="tmux-automation"
 alias n='nvim -c "let g:tty='\''$(tty)'\''"'
+alias sn="sudoedit"
 alias ka="killall"
 alias md="mkdir -p"
-alias sv="sudoedit"
 alias yd="youtube-dl --write-sub --write-auto-sub -o '~/Downloads/%(title)s-%(id)s.%(ext)s'"
 alias ydl="youtube-dl --yes-playlist --write-sub --write-auto-sub -o '~/Downloads/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
-alias ls="ls --group-directories-first --color=auto"
-alias la="ls -lAFh"   #long list,show almost all,show type,human readable
+alias ls='exa -a --color=always --group-directories-first' # all files and dirs
+alias la='exa -al --color=always --group-directories-first' # my preferred listing
+alias ll='exa -lu --color=always --group-directories-first --no-user --no-permissions -@'  # long format
+alias lt='exa -aT --color=always --git-ignore -I=.git --group-directories-first B' # tree listing
 alias ssh="ssh -F $XDG_CONFIG_HOME/ssh/config"
 alias ldot='ls -ld .*'
 alias lsize='ls -1FSsh'
 alias lart='ls -1aFcrt'
 alias ssh-copy-id="ssh-copy-id -i $XDG_CONFIG_HOME/ssh/id_rsa"
 alias nope='node --experimental-repl-await ~/.config/node/repl.js'
-alias trals="ls $XDG_DATA_HOME/Trash/files"
-alias tracl="rm -rf $XDG_DATA_HOME/Trash/{files,info}/*"
+alias tls="exa -la --no-permissions --no-user $XDG_DATA_HOME/Trash"
+alias tcl="rm -rf $XDG_DATA_HOME/Trash/{files,info}/*"
 alias proxyon="export http_proxy=http://127.0.0.1:1088; export https_proxy=http://127.0.0.1:1088"
 alias noproxy="unset http_proxy; unset https_proxy"
 alias -g B="| bat"
@@ -31,7 +30,6 @@ alias -g S="| sort -n -r"
 alias -g W="| wc -l"
 
 # git
-alias gab="git abv"
 alias gaa="git commit --amend -v" # amend both msg and commit
 alias gaf="git commit --amend --no-edit" # amend just commit
 alias gam="git commit --amend --only -v --" #amend just msg

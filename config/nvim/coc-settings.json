@@ -1,6 +1,24 @@
 {
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "disableWorkspaceFolders": true,
+      "filetypes": ["go"]
+    },
+    "rust": {
+      "command": "rust-analyzer",
+      "filetypes": ["rust"],
+      "rootPatterns": ["Cargo.toml"]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh", "zsh"],
+      "ignoredRootPaths": ["~"]
+    }
+  },
   "suggest.echodocSupport": true,
-  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "suggest.maxCompleteItemCount": 20,
   "eslint.filetypes": [
     "javascript",
@@ -10,9 +28,9 @@
     "typescript.tsx"
   ],
   "snippets.ultisnips.directories": [ "ultisnips" ],
-  "diagnostic.errorSign": "•",
-  "diagnostic.warningSign": "•",
-  "diagnostic.infoSign": "•",
+  "diagnostic.errorSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
   "git.changedSign.text": "⏽",
   "git.addedSign.text": "⏽",
   "git.removedSign.text": "⏽",

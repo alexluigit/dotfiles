@@ -16,6 +16,7 @@ alias ssh="ssh -F $XDG_CONFIG_HOME/ssh/config"
 alias ldot='ls -ld .*'
 alias lsize='ls -1FSsh'
 alias lart='ls -1aFcrt'
+alias ssh-copy-id="ssh-copy-id -i $XDG_CONFIG_HOME/ssh/id_rsa"
 alias nope='node --experimental-repl-await ~/.config/node/repl.js'
 alias trals="ls $XDG_DATA_HOME/Trash/files"
 alias tracl="rm -rf $XDG_DATA_HOME/Trash/{files,info}/*"

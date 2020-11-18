@@ -1,6 +1,7 @@
 UserKnownHostsFile ~/.config/ssh/known_hosts
 IdentityFile ~/.config/ssh/id_rsa
 TCPKeepAlive yes
+AddKeysToAgent yes
 
 Host *
 

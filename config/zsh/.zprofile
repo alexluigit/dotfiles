@@ -24,5 +24,5 @@ export QT_SCREEN_SCALE_FACTORS=1 QT_AUTO_SCREEN_SCALE_FACTOR=true
 export GTK_IM_MODULE=fcitx5 QT_IM_MODULE=fcitx5 XMODIFIERS=@im=fcitx5
 export FZF_DEFAULT_OPTS="--ansi --height 50% --layout=reverse --border --bind=ctrl-r:toggle-sort,ctrl-e:up"
 # StartX
-[ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx \
-"$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1
+[ $(tty) = "/dev/tty1" ] && [ -z $(pidof Xorg) ] && exec ssh-agent startx \
+"$XDG_CONFIG_HOME/x11/xinitrc" -- "$XDG_CONFIG_HOME/x11/xserverrc" vt1

@@ -72,9 +72,6 @@
 [submodule "z"]
 	path = config/zsh/plugins/z
 	url = https://github.com/rupa/z
-[submodule "vb4c"]
-	path = local/apps/vb4c
-	url = https://github.com/alexluigit/vb4c
 [submodule "vim-surround"]
 	path = config/nvim/pack/bundle/opt/vim-surround
 	url = https://github.com/alexluigit/vim-surround

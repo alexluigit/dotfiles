@@ -1,16 +1,14 @@
 #!/bin/zsh
 # Preview script built for use with lf and fzf
-. $ZDOTDIR/user/dirs.zsh
-fpath=$(eval "$PREVIEW_FOPEN[@]")
 LINES=30
-case "$fpath" in
-    *.png|*.jpg|*.jpeg|*.mkv|*.mp4|*.m4v) mediainfo "$fpath";;
-    *.pdf) pdftotext "$fpath" -;;
-    *.zip) zipinfo "$fpath";;
-    *.tar.gz) tar -ztvf "$fpath";;
-    *.tar.bz2) tar -jtvf "$fpath";;
-    *.tar) tar -tvf "$fpath";;
-    *.rar) unrar l "$fpath";;
-    *.7z) 7z l "$fpath";;
-    *) bat -p --color=always "$fpath";;
+case "$1" in
+    *.png|*.jpg|*.jpeg|*.mkv|*.mp4|*.m4v) mediainfo "$f1";;
+    *.pdf) pdftotext "$1" -;;
+    *.zip) zipinfo "$1";;
+    *.tar.gz) tar -ztvf "$1";;
+    *.tar.bz2) tar -jtvf "$1";;
+    *.tar) tar -tvf "$1";;
+    *.rar) unrar l "$1";;
+    *.7z) 7z l "$1";;
+    *) bat -p --color=always "$1";;
 esac

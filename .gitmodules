@@ -87,3 +87,6 @@
 [submodule "vim-which-key"]
 	path = config/nvim/pack/bundle/opt/vim-which-key
 	url = https://github.com/liuchengxu/vim-which-key
+[submodule "popup.nvim"]
+	path = config/nvim/pack/bundle/opt/popup.nvim
+	url = https://github.com/nvim-lua/popup.nvim

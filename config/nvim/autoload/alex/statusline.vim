@@ -21,6 +21,21 @@ function! alex#statusline#mode() abort
   return get(s:mode_map, mode(), '')
 endfunction
 
+function! alex#statusline#percent(percentage, string, char, barlen)
+  let chrs = a:barlen * a:percentage / 100
+  let chrx = a:barlen - chrs
+  let bar = a:string
+  while chrs
+    let bar = bar . a:char
+    let chrs = chrs - 1
+  endwhile
+  while chrx
+    let bar = bar . " "
+    let chrx = chrx - 1
+  endwhile
+  return bar
+endfunction
+
 function! alex#statusline#focus()
   if alex#statusline#allow()
     call alex#statusline#init()
@@ -35,8 +50,9 @@ function! alex#statusline#focus()
     setl stl+=%#FileMod#%{&mod?get(b:,'file_title',''):''}%#FileUnMod#%{&mod?'':get(b:,'file_title','')}
     setl stl+=\ %#FileMod#%m
     setl stl+=%#Func#\ %{get(b:,'current_function','')}
-    setl stl+=%=%#StlFiletype#\ %{b:stl_ft}
-    setl stl+=\ \ \ %#StlCol#\ %3l:%-3c\ %#Percent#\ %4L\ \|%5.(%p%%\ %)
+    setl stl+=%=\ \ \ %#TablineSel#\ %{b:stl_ft}
+    setl stl+=\ %#StlCol#%4L:%-3c
+    setl stl+=%#Percent#\ %-11.{alex#statusline#percent(line('.')*100/line('$'),'','',10)}
   endif
 endfunction
 
@@ -46,8 +62,8 @@ function! alex#statusline#blur()
     setl stl+=%<
     setl stl+=%#FileHeadNC#\ %{b:file_head}
     setl stl+=%#FileModNC#%{&mod?get(b:,'file_title',''):''}%#FileUnModNC#%{&mod?'':get(b:,'file_title','')}
-    setl stl+=\ %#FileModNC#%m%#FuncNC#
-    setl stl+=%=%{b:stl_ft}
-    setl stl+=\ \ \ \ %3l:%-3c\ \ %4L\ \|%5.(%p%%\ %)
+    setl stl+=\ %#FileModNC#%m
+    setl stl+=%=\ \ %#StlCol#%{b:stl_ft}
+    setl stl+=\ %4L\ \|%5.(%p%%\ %)
   endif
 endfunction

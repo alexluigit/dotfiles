@@ -10,4 +10,5 @@ config/fcitx5/conf/cached_layouts
 config/gtk-3.0/bookmarks
 config/shadowsocks/config.json
 config/aria2/aria2.conf
+config/zsh/user/*
 *.pyc

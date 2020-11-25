@@ -6,6 +6,7 @@ export HISTFILE=$XDG_DATA_HOME/zsh/history
 export HISTSIZE=100000; export SAVEHIST=100000
 export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
+export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export _Z_DATA=$XDG_DATA_HOME/z/.z
 export LESSHISTFILE=$XDG_CACHE_HOME/less/lesshst
 export LESSKEY=$XDG_CONFIG_HOME/less/lesskey
@@ -23,7 +24,7 @@ export MANPAGER='nvim -c "let g:manpager = 1" +set\ filetype=man -'
 export GDK_SCALE=2 GDK_DPI_SCALE=0.6
 export QT_SCREEN_SCALE_FACTORS=1 QT_AUTO_SCREEN_SCALE_FACTOR=true
 export GTK_IM_MODULE=fcitx5 QT_IM_MODULE=fcitx5 XMODIFIERS=@im=fcitx5
-export FZF_DEFAULT_OPTS="--ansi --height 50% --layout=reverse --border --bind=ctrl-r:toggle-sort,ctrl-e:up"
+source $ZDOTDIR/user/variable.zsh
 # StartX
 [ $(tty) = "/dev/tty1" ] && [ -z $(pidof Xorg) ] && exec ssh-agent startx \
 "$XDG_CONFIG_HOME/x11/xinitrc" -- "$XDG_CONFIG_HOME/x11/xserverrc" vt1

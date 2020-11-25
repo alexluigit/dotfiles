@@ -57,11 +57,12 @@ nnoremap cc cw<c-u>
 nnoremap cw cW
 nnoremap <space> <nop>
 nnoremap <space><space> <c-w>w
-nnoremap <space>. :write | edit $MYVIFMRC | restart<cr>
-nnoremap <space>w :set wrap!<cr>
-nnoremap <space>e :edit<space>
-nnoremap <space>d :mkdir<space>
-nnoremap <space>m :move<cr>
+nnoremap <space>.  :write | edit $MYVIFMRC | restart<cr>
+nnoremap <space>w  :set wrap!<cr>
+nnoremap <space>wa :!wallpaperctl draw %f:p<cr>
+nnoremap <space>e  :edit<space>
+nnoremap <space>d  :mkdir<space>
+nnoremap <space>m  :move<cr>
 
 command! df df -h %m 2> /dev/null
 command! diff nvim -d %f %F

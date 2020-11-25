@@ -12,7 +12,7 @@ function! alex#statusline#init() abort
   let b:file_head        = filereadable(expand("%"))?expand("%:h") . '/':''
   let b:file_title       = expand("%:t")
   let b:current_function = '' " TODO: maybe put autocomplete preview here
-  let b:stl_ft           = WebDevIconsGetFileTypeSymbol()
+  let b:stl_ft           = luaeval('require"nvim-web-devicons".get_icon(vim.fn.expand("%:t"), vim.bo.filetype, { default = true })')
   return
 endfunction
 

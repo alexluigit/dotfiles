@@ -1,5 +1,6 @@
 packadd! coc.nvim
 packadd! nvim-colorizer.lua
+packadd! nvim-web-devicons
 packadd! fzf | packadd! fzf.vim
 packadd! vifm.vim
 packadd! tcomment_vim

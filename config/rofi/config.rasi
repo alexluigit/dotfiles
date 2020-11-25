@@ -1,5 +1,5 @@
 configuration {
-	modi: "drun,combi,calc";
+	modi: "run,drun,combi,calc";
 	font: "Noto Sans 20";
 	show-icons: true;
 	icon-theme: "Papirus";

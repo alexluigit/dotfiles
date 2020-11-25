@@ -16,7 +16,7 @@ main() {
       a) run-rofi drun;;
       c) click;;
       q) quit-current;;
-      r) run-rofi combi;;
+      r) run-rofi run;;
       t) term;;
       v) term fm;;
       w) bravectl start $CONTROL_ON;;

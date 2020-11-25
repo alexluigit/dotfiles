@@ -47,18 +47,6 @@ let g:wkm.e['f'] = [ ':CocCommand workspace.renameCurrentFile',      'rename fil
 let g:wkm.e['s'] = [ ':CocList snippets',                            'snippets']
 let g:wkm.e['t'] = [ ':keepalt Todo',                                'todo list']
 
-let g:wkm.f = {} | let g:wkm.f['name'] = '+fzf'
-let g:wkm.f['f'] = [ ':GFiles',                                      'git files' ]
-let g:wkm.f['g'] = [ ':GFiles?',                                     'modified git files' ]
-let g:wkm.f['h'] = [ ':History',                                     'history files' ]
-let g:wkm.f['H'] = [ ':Helptags',                                    'no search highlight' ]
-let g:wkm.f['l'] = [ ':Lines',                                       'search all lines' ]
-let g:wkm.f['m'] = [ ':Maps',                                        'normal maps' ]
-let g:wkm.f['n'] = [ ':BLines',                                      'navigate lines in file' ]
-let g:wkm.f['o'] = [ ':Buffers',                                     'opened buffers' ]
-let g:wkm.f['r'] = [ ':Rg',                                          'rg search']
-let g:wkm.f['t'] = [ ':Filetypes',                                   'filetypes' ]
-
 let g:wkm.g = {} | let g:wkm.g['name'] = '+git'
 let g:wkm.g['a'] = [ ':diffget //2',                                 'get left diff' ]
 let g:wkm.g['c'] = [ ':BCommits',                                    'buffer commits' ]
@@ -119,12 +107,24 @@ let g:wkm.p['/'] = [ ':call Twf()',                                  'project tr
 let g:wkm.p['t'] = [ ':Tags',                                        'tags' ]
 let g:wkm.p['w'] = [ ':call whichkey#fix("cocsearch")',              'project search word' ]
 
-let g:wkm.t = {} | let g:wkm.t['name'] = '+toggle'
-let g:wkm.t['C'] = [ ':ColorizerToggle',                             'colorizer']
-let g:wkm.t['n'] = [ ':set nu!',                                     'line numbers']
-let g:wkm.t['N'] = [ ':set relativenumber!',                         'relative line nums']
-let g:wkm.t['q'] = [ ':copen',                                       'quickfix']
-let g:wkm.t['t'] = [ ':call whichkey#fix("toggletab")',              'toggle tab']
+let g:wkm.s = {} | let g:wkm.s['name'] = '+toggle'
+let g:wkm.s['C'] = [ ':ColorizerToggle',                             'colorizer']
+let g:wkm.s['n'] = [ ':set nu!',                                     'line numbers']
+let g:wkm.s['N'] = [ ':set relativenumber!',                         'relative line nums']
+let g:wkm.s['q'] = [ ':copen',                                       'quickfix']
+let g:wkm.s['t'] = [ ':call whichkey#fix("toggletab")',              'toggle tab']
+
+let g:wkm.t = {} | let g:wkm.t['name'] = '+telescope'
+let g:wkm.t['f'] = [ ':GFiles',                                      'git files' ]
+let g:wkm.t['g'] = [ ':GFiles?',                                     'modified git files' ]
+let g:wkm.t['o'] = [ ':History',                                     'old files' ]
+let g:wkm.t['h'] = [ ':Helptags',                                    'help tags' ]
+let g:wkm.t['l'] = [ ':Lines',                                       'search all lines' ]
+let g:wkm.t['m'] = [ ':Maps',                                        'normal maps' ]
+let g:wkm.t['n'] = [ ':BLines',                                      'navigate lines in file' ]
+let g:wkm.t['o'] = [ ':Buffers',                                     'opened buffers' ]
+let g:wkm.t['r'] = [ ':Rg',                                          'rg search']
+let g:wkm.t['t'] = [ ':Filetypes',                                   'filetypes' ]
 
 nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
@@ -133,6 +133,5 @@ call which_key#register('<Space>', "g:wkm")
 autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noruler | autocmd BufLeave <buffer> set noruler laststatus=2
 
-" this line is just a hotfix for whichkey timeout
-" track https://github.com/liuchengxu/vim-which-key/issues/158
-nnoremap <buffer><silent> <leader>zz :echo ''<cr>
+" this line is just a hotfix for whichkey timeout; track https://github.com/liuchengxu/vim-which-key/issues/158
+nnoremap <silent> <leader>zz :echo ''<cr>

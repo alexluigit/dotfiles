@@ -6,7 +6,7 @@ set ignorecase smartcase                    " ignore case when searching but sti
 set number relativenumber
 set splitright splitbelow diffopt+=vertical " default diff split splits open at the bottom and right
 set noshowmode noshowcmd
-set scrolloff=999                           " Always keep cursor in the middle when <C-d> and <C-u>
+" set scrolloff=999                           " Always keep cursor in the middle when <C-d> and <C-u>
 set history=10000
 set path+=**
 set wildmenu

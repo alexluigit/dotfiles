@@ -5,8 +5,8 @@ AddKeysToAgent yes
 
 Host *
 
-Host goti
-  HostName gotipedia.space
+Host alex
+  HostName alexlu.space
   User root
   Port 26798
   IdentityFile ~/.config/ssh/id_rsa

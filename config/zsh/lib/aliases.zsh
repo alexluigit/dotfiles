@@ -11,8 +11,6 @@ alias ll='exa -lu --color=always --group-directories-first --no-user --no-permis
 alias lt='exa -aT --color=always --git-ignore -I=.git --group-directories-first B' # tree listing
 alias tls="exa -la --no-permissions --no-user $XDG_DATA_HOME/Trash"
 alias tcl="rm -rf $XDG_DATA_HOME/Trash/{files,info}/*"
-alias ssh="ssh -F $XDG_CONFIG_HOME/ssh/config"
-alias ssh-copy-id="ssh-copy-id -i $XDG_CONFIG_HOME/ssh/id_rsa"
 alias nope='node --experimental-repl-await ~/.config/node/repl.js'
 alias proxyon="export http_proxy=http://127.0.0.1:1088; export https_proxy=http://127.0.0.1:1088"
 alias noproxy="unset http_proxy; unset https_proxy"

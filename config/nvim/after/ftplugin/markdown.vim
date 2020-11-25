@@ -1,6 +1,6 @@
 set foldlevel=2
 set conceallevel=2
-imap     <buffer><silent>       <C-S>      -[ ]<Space><Esc>:noh<CR>a
+imap     <buffer><silent>       <C-S>      - [ ]<Space><Esc>:noh<CR>a
 nmap     <silent><buffer><expr> <C-S>      <SID>searchCheck() ? ':.s/\[ \]/\[x\]<CR>:silent noh<Bar>echo<CR>' : ':.s/\[x\]/\[ \]<CR>:silent noh<Bar>echo<CR>'
 nmap     <silent><buffer>       <leader>i  :call todo#marker()<CR>
 nmap     <silent><buffer>       <leader>o  :bd#<CR>$3bgF:bd#<CR>

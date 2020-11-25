@@ -22,20 +22,15 @@ zle-keymap-select() { # Change cursor shape for different vi modes.
 zle -N zle-keymap-select
 
 # Git
-local staged unstaged untracked
 git_prompt_info() {
-  local ref
+  local ref git_status staged unstaged untracked
   ref=$(git symbolic-ref HEAD 2>/dev/null) || \
   ref=$(git rev-parse --short HEAD 2>/dev/null) || return 0
-  parse_git_status
+  git_status=$(git status --porcelain | colrm 3 | uniq | paste -d: -s -)
+  [[ $git_status == *[ADMR]\ * ]] && staged="%{$fg_bold[green]%}";
+  [[ $git_status == *\ [ADMR]* ]] && unstaged="%{$fg_bold[red]%}";
+  [[ $git_status == *\?* ]] && untracked="%{$fg_bold[blue]%}";
   echo "$staged$unstaged$untracked %{$reset_color%}%F{222}${${ref:u}#REFS/HEADS/}%f "
-}
-parse_git_status() {
-  local STATUS
-  STATUS=$(git status --porcelain | colrm 3 | uniq | paste -d: -s -)
-  [[ $STATUS == *[ADMR]\ * ]] && staged="%{$fg_bold[green]%}";
-  [[ $STATUS == *\ [ADMR]* ]] && unstaged="%{$fg_bold[red]%}";
-  [[ $STATUS == *\?* ]] && untracked="%{$fg_bold[blue]%}";
 }
 
 # preexec() and precmd() are hook functions in zsh. (bash has precmd() but not preexec())
@@ -74,7 +69,7 @@ chpwd_prompt () {
       local head=$(sed "s|^/| |" <<< $HPWD)
       cwd_head="%F{white}${head%/*}/%f"; cwd_tail="%F{white}%B${head##*/}%b%f";;
     *)
-      cwd_head="%F{white} %f"; cwd_tail="%F{white}%B${HPWD#/}%b%f";;
+     cwd_head="%F{white} %f"; cwd_tail="%F{white}%B${HPWD#/}%b%f";;
   esac
 }
 

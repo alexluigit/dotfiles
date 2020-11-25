@@ -31,18 +31,16 @@ hyper + p; {h,n,e,apostrophe}
 	bspc node --presel-dir '~{west,south,north,east}'
 hyper + p; {2-8}
 	bspc node -o 0.{2-8}
-hyper + w; {h,n,e,apostrophe}
+hyper + m; {h,n,e,apostrophe}
 	xdo move {-x -20,-y +20,-y -20,-x +20}
 hyper + Escape
 	bspc node -p cancel
 
 # Launcher
-super + {_,control} {a-d,f-h,j-m,p-z}
-	launcher {_,-@} -{a-d,f-h,j-m,p-z}
+super + {_,control} {a-d,g-k,m,q-z}
+	launcher {_,-@} -{a-d,g-k,m,q-z}
 super + o; {a-z}
 	launcher -{A-Z}
-super + Escape
-	powermenu_alt
 
 # Media
 XF86Audio{Prev,Play,Next}
@@ -51,14 +49,17 @@ XF86Audio{LowerVolume,RaiseVolume,Mute}
 	volumectl {down,up,mute}
 
 # Miscs
+super + Escape
+	powermenu_alt
 super + shift + BackSpace
 	pkill -USR1 -x sxhkd
 shift + Delete
 	multilockscreen -s
+super + {p,l}
+	xvkbd -xsendevent -text {"\[Up]","\[Down]"}
 button{8,9}
 	xvkbd -xsendevent -text {'\Cw', '\Ct'}
 XF86{Mon,Kbd}BrightnessDown
 	xvkbd -xsendevent -text {"\[F1]","\[F5]"}
 hyper + XF86Audio{Lower,Raise}Volume
 	xvkbd -xsendevent -text {"\[F11]","\[F12]"}
-# XF86Launch{A,B} XF86{Mon,Kbd}BrightnessUp

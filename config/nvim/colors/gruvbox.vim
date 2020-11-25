@@ -5,26 +5,8 @@ let g:colors_name='gruvbox'
 if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256 | finish | endif
 " }}}
 
-" Global Settings: {{{
-if !exists('g:gruvbox_bold') | let g:gruvbox_bold=1 | endif
-let g:gruvbox_italic=1
-if !exists('g:gruvbox_undercurl') | let g:gruvbox_undercurl=1 | endif
-if !exists('g:gruvbox_underline') | let g:gruvbox_underline=1 | endif
-if !exists('g:gruvbox_inverse') | let g:gruvbox_inverse=1 | endif
-if !exists('g:gruvbox_guisp_fallback') || index(['fg', 'bg'], g:gruvbox_guisp_fallback) == -1
-  let g:gruvbox_guisp_fallback='NONE'
-endif
-if !exists('g:gruvbox_improved_strings') | let g:gruvbox_improved_strings=0 | endif
-if !exists('g:gruvbox_improved_warnings') | let g:gruvbox_improved_warnings=0 | endif
-if !exists('g:gruvbox_termcolors') | let g:gruvbox_termcolors=256 | endif
-if !exists('g:gruvbox_invert_indent_guides') | let g:gruvbox_invert_indent_guides=0 | endif
-if exists('g:gruvbox_contrast') | echo 'g:gruvbox_contrast is deprecated; use g:gruvbox_contrast_light and g:gruvbox_contrast_dark instead' | endif
-if !exists('g:gruvbox_contrast_dark') | let g:gruvbox_contrast_dark='medium' | endif
-if !exists('g:gruvbox_contrast_light') | let g:gruvbox_contrast_light='medium' | endif
-let s:is_dark=(&background == 'dark')
-" }}}
-
 " Palette: {{{
+let s:is_dark=(&background == 'dark')
 let s:gb = {}
 let s:gb.dark0_hard     = ['#1d2021', 234]     " 29-32-33
 let s:gb.dark0          = ['#282828', 235]     " 40-40-40
@@ -67,17 +49,14 @@ let s:gb.faded_aqua     = ['#427b58', 66]      " 66-123-88
 let s:gb.faded_orange   = ['#af3a03', 130]     " 175-58-3
 " }}}
 
-" Setup Emphasis: {{{
-let s:bold = 'bold,'
-if g:gruvbox_bold == 0 | let s:bold = '' | endif
-let s:italic = 'italic,'
-if g:gruvbox_italic == 0 | let s:italic = '' | endif
-let s:underline = 'underline,'
-if g:gruvbox_underline == 0 | let s:underline = '' | endif
-let s:undercurl = 'undercurl,'
-if g:gruvbox_undercurl == 0 | let s:undercurl = '' | endif
-let s:inverse = 'inverse,'
-if g:gruvbox_inverse == 0 | let s:inverse = '' | endif
+" Global Settings: {{{
+let g:gruvbox_guisp_fallback='NONE'
+let g:gruvbox_improved_strings=0
+let g:gruvbox_improved_warnings=0
+let g:gruvbox_termcolors=256
+let g:gruvbox_invert_indent_guides=0
+let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_contrast_light='medium'
 " }}}
 
 " Setup Colors: {{{
@@ -192,63 +171,22 @@ if has('nvim')
 endif
 " }}}
 
-" Overload Setting: {{{
+" Setup Emphasis: {{{
+let s:bold = 'bold,'
+let s:italic = 'italic,'
+let s:underline = 'underline,'
+let s:undercurl = 'undercurl,'
+let s:inverse = ''
 let s:hls_cursor = s:orange
-if exists('g:gruvbox_hls_cursor')
-  let s:hls_cursor = get(s:gb, g:gruvbox_hls_cursor)
-endif
 let s:number_column = s:none
-if exists('g:gruvbox_number_column')
-  let s:number_column = get(s:gb, g:gruvbox_number_column)
-endif
 let s:sign_column = s:bg1
-if exists('g:gitgutter_override_sign_column_highlight') &&
-      \ g:gitgutter_override_sign_column_highlight == 1
-  let s:sign_column = s:number_column
-else
-  let g:gitgutter_override_sign_column_highlight = 0
-  if exists('g:gruvbox_sign_column')
-    let s:sign_column = get(s:gb, g:gruvbox_sign_column)
-  endif
-endif
 let s:color_column = s:bg1
-if exists('g:gruvbox_color_column')
-  let s:color_column = get(s:gb, g:gruvbox_color_column)
-endif
 let s:vert_split = s:bg0
-if exists('g:gruvbox_vert_split')
-  let s:vert_split = get(s:gb, g:gruvbox_vert_split)
-endif
 let s:invert_signs = ''
-if exists('g:gruvbox_invert_signs')
-  if g:gruvbox_invert_signs == 1
-    let s:invert_signs = s:inverse
-  endif
-endif
 let s:invert_selection = s:inverse
-if exists('g:gruvbox_invert_selection')
-  if g:gruvbox_invert_selection == 0
-    let s:invert_selection = ''
-  endif
-endif
 let s:invert_tabline = ''
-if exists('g:gruvbox_invert_tabline')
-  if g:gruvbox_invert_tabline == 1
-    let s:invert_tabline = s:inverse
-  endif
-endif
 let s:italicize_comments = s:italic
-if exists('g:gruvbox_italicize_comments')
-  if g:gruvbox_italicize_comments == 0
-    let s:italicize_comments = ''
-  endif
-endif
 let s:italicize_strings = ''
-if exists('g:gruvbox_italicize_strings')
-  if g:gruvbox_italicize_strings == 1
-    let s:italicize_strings = s:italic
-  endif
-endif
 " }}}
 
 " Highlighting Function: {{{
@@ -289,7 +227,6 @@ call s:HL('GruvboxBg1', s:bg1)
 call s:HL('GruvboxBg2', s:bg2)
 call s:HL('GruvboxBg3', s:bg3)
 call s:HL('GruvboxBg4', s:bg4)
-" call s:HL('GruvboxRed', s:red)
 call s:HL('GruvboxRed', s:red, s:none, s:italic)
 call s:HL('GruvboxRedBold', s:red, s:none, s:bold)
 call s:HL('GruvboxGreen', s:green)
@@ -322,29 +259,25 @@ call s:HL('NormalNC', s:gray)
 " --- Problem with changing between dark and light on 256 color terminal
 " --- https://github.com/morhetz/gruvbox/issues/7
 if s:is_dark | set background=dark | else | set background=light | endif
-if version >= 700
-  " Screen line that the cursor is
-  call s:HL('CursorLine', s:none, s:bg1)
-  " Screen column that the cursor is
-  hi! link CursorColumn CursorLine
-  " Tab pages line filler
-  call s:HL('TabLineFill', s:none, s:none)
-  " Active tab page label
-  call s:HL('TabLineSel', s:aqua, s:bg1, s:invert_tabline)
-  " Not active tab page label
-  hi! link TabLine TabLineFill
-  " Match paired bracket under the cursor
-  call s:HL('MatchParen', s:none, s:bg3, s:bold)
-endif
-if version >= 703
-  " Highlighted screen columns
-  call s:HL('ColorColumn',  s:none, s:color_column)
-  " Concealed element: \lambda → λ
-  call s:HL('Conceal', s:blue, s:none)
-  " Line number of CursorLine
-  " call s:HL('CursorLineNr', s:yellow, s:bg1)
-  call s:HL('CursorLineNr', s:yellow)
-endif
+" Screen line that the cursor is
+call s:HL('CursorLine', s:none, s:bg1)
+" Screen column that the cursor is
+hi! link CursorColumn CursorLine
+" Tab pages line filler
+call s:HL('TabLineFill', s:none, s:none)
+" Active tab page label
+call s:HL('TabLineSel', s:aqua, s:bg1, s:invert_tabline)
+" Not active tab page label
+hi! link TabLine TabLineFill
+" Match paired bracket under the cursor
+call s:HL('MatchParen', s:none, s:bg3, s:bold)
+" Highlighted screen columns
+call s:HL('ColorColumn',  s:none, s:color_column)
+" Concealed element: \lambda → λ
+call s:HL('Conceal', s:blue, s:none)
+" Line number of CursorLine
+" call s:HL('CursorLineNr', s:yellow, s:bg1)
+call s:HL('CursorLineNr', s:yellow)
 hi! link NonText GruvboxBg2
 hi! link SpecialKey GruvboxBg2
 call s:HL('Visual',    s:none,  s:bg3, s:invert_selection)
@@ -461,16 +394,14 @@ hi! link Typedef GruvboxYellow
 " }}}
 
 " Completion Menu: {{{
-if version >= 700
-  " Popup menu: normal item
-  call s:HL('Pmenu', s:fg1, s:bg2)
-  " Popup menu: selected item
-  call s:HL('PmenuSel', s:bg2, s:blue, s:bold)
-  " Popup menu: scrollbar
-  call s:HL('PmenuSbar', s:none, s:bg2)
-  " Popup menu: scrollbar thumb
-  call s:HL('PmenuThumb', s:none, s:bg4)
-endif
+" Popup menu: normal item
+call s:HL('Pmenu', s:fg1, s:bg2)
+" Popup menu: selected item
+call s:HL('PmenuSel', s:bg2, s:blue, s:bold)
+" Popup menu: scrollbar
+call s:HL('PmenuSbar', s:none, s:bg2)
+" Popup menu: scrollbar thumb
+call s:HL('PmenuThumb', s:none, s:bg4)
 " }}}
 
 " Diffs: {{{
@@ -513,7 +444,6 @@ call s:HL('ModeNC', s:bg0, s:gb.light4, s:bold)
 call s:HL('FileHeadNC', s:gb.light4, s:bg2)
 call s:HL('FileUnModNC', s:gb.light2, s:bg2, s:bold)
 call s:HL('FileModNC', s:gb.neutral_green, s:bg2, s:bold)
-" call s:HL('FuncNC', s:gb.light4, s:bg2)
 call s:HL('FuncNC', s:gb.light4, s:none, s:bold)
 " }}}
 

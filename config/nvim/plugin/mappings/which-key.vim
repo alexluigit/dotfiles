@@ -1,8 +1,8 @@
 let g:wkm = {}
 let g:wkm['<Tab>'] = [ 'za',                                         '"#" buffer' ]
-let g:wkm[' ']   = [ ':Telescope find_files',                        'find files' ]
+let g:wkm[' ']   = [ ':Files',                                       'find files' ]
 let g:wkm['/']   = [ ':call whichkey#fix("comment")',                'comment' ]
-let g:wkm[';']   = [ ':Telescope commands',                          'commands' ]
+let g:wkm[';']   = [ ':Commands',                                    'commands' ]
 let g:wkm["'"]   = [ ':bnext',                                       'next buffer' ]
 let g:wkm['h']   = [ ':bprevious',                                   'prev buffer' ]
 let g:wkm['q']   = [ ':call whichkey#fix("quit")',                   'close buffer']
@@ -49,14 +49,15 @@ let g:wkm.e['t'] = [ ':keepalt Todo',                                'todo list'
 
 let g:wkm.g = {} | let g:wkm.g['name'] = '+git'
 let g:wkm.g['a'] = [ ':diffget //2',                                 'get left diff' ]
-let g:wkm.g['c'] = [ ':Telescope git_bcommits',                                    'buffer commits' ]
-let g:wkm.g['C'] = [ ':Telescope git_commits',                                     'repo commits' ]
+let g:wkm.g['c'] = [ ':BCommits',                                    'buffer commits' ]
+let g:wkm.g['C'] = [ ':Commits',                                     'repo commits' ]
 let g:wkm.g['d'] = [ ':Git diff',                                    'diff' ]
 let g:wkm.g['D'] = [ ':Gdiffsplit',                                  'diff split' ]
 let g:wkm.g['o'] = [ ':diffget //3',                                 'get right diff' ]
 let g:wkm.g['b'] = [ ':Git blame',                                   'blame' ]
 let g:wkm.g['B'] = [ ':GBrowse',                                     'browse' ]
 let g:wkm.g['g'] = [ ':vert Gstatus',                                'status' ]
+let g:wkm.g['G'] = [ ':GGrep',                                       'git grep' ]
 let g:wkm.g['i'] = [ ':CocCommand git.chunkInfo',                    'preview hunk' ]
 let g:wkm.g['n'] = [ '<Plug>(coc-git-nextchunk)',                    'next hunk' ]
 let g:wkm.g['e'] = [ '<Plug>(coc-git-prevchunk)',                    'prev hunk' ]
@@ -103,7 +104,7 @@ let g:wkm.l['Z'] = [ ':CocEnable',                                   'enable CoC
 
 let g:wkm.p = {} | let g:wkm.p['name'] = '+project'
 let g:wkm.p['/'] = [ ':call Twf()',                                  'project treeview']
-let g:wkm.p['t'] = [ ':Telescope tags',                                        'tags' ]
+let g:wkm.p['t'] = [ ':Tags',                                        'tags' ]
 let g:wkm.p['w'] = [ ':call whichkey#fix("cocsearch")',              'project search word' ]
 
 let g:wkm.s = {} | let g:wkm.s['name'] = '+toggle'
@@ -114,15 +115,16 @@ let g:wkm.s['q'] = [ ':copen',                                       'quickfix']
 let g:wkm.s['t'] = [ ':call whichkey#fix("toggletab")',              'toggle tab']
 
 let g:wkm.t = {} | let g:wkm.t['name'] = '+telescope'
-let g:wkm.t['g'] = [ ':Telescope git_files',                                      'git files' ]
-let g:wkm.t['o'] = [ ':Telescope oldfiles',                                     'history files' ]
-let g:wkm.t['h'] = [ ':Telescope help_tags',                                    'helptags' ]
-" let g:wkm.t['l'] = [ ':Telescope TODO all buffer lines',                        'search all lines' ]
-let g:wkm.t['m'] = [ ':Telescope keymaps',                                        'normal maps' ]
-let g:wkm.t['n'] = [ ':Telescope current_buffer_fuzzy_find',                                      'navigate lines in file' ]
-let g:wkm.t['b'] = [ ':Telescope buffers',                                     'opened buffers' ]
-let g:wkm.t['r'] = [ ':Telescope live_grep',                                          'rg search']
-let g:wkm.t['f'] = [ ':Telescope filetypes',                                   'filetypes' ]
+let g:wkm.t['f'] = [ ':GFiles',                                      'git files' ]
+let g:wkm.t['g'] = [ ':GFiles?',                                     'modified git files' ]
+let g:wkm.t['o'] = [ ':History',                                     'old files' ]
+let g:wkm.t['h'] = [ ':Helptags',                                    'help tags' ]
+let g:wkm.t['l'] = [ ':Lines',                                       'search all lines' ]
+let g:wkm.t['m'] = [ ':Maps',                                        'normal maps' ]
+let g:wkm.t['n'] = [ ':BLines',                                      'navigate lines in file' ]
+let g:wkm.t['o'] = [ ':Buffers',                                     'opened buffers' ]
+let g:wkm.t['r'] = [ ':Rg',                                          'rg search']
+let g:wkm.t['t'] = [ ':Filetypes',                                   'filetypes' ]
 
 nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>

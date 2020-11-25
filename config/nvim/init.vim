@@ -17,8 +17,3 @@ packadd! vim-eunuch
 packadd! vim-slime
 packadd! vim-which-key
 luafile ~/.config/nvim/lua/treesitter.lua
-
-packadd! popup.nvim
-packadd! plenary.nvim
-packadd! telescope.nvim
-luafile ~/.config/nvim/lua/telescope-config.lua

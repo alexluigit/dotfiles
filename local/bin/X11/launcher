@@ -10,7 +10,7 @@ main() {
       C) fullscrot;;
       D) bravectl second;;
       E) run-emacs;;
-      F) thunar;;
+      F) nautilus;;
       M) bravectl music;;
       S) flameshot gui;;
       a) run-rofi drun;;

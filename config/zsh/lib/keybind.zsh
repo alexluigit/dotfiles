@@ -1,5 +1,6 @@
 # See keylist at https://www.zsh.org/mla/users/2014/msg00266.html
                      bindkey    '^a'        beginning-of-line
+zle -N ctrl-b;       bindkey    '^b'        ctrl-b
 zle -N ctrl-d;       bindkey    '^d'        ctrl-d
 zle -N ctrl-f;       bindkey    '^f'        ctrl-f
 zle -N ctrl-h;       bindkey    '^h'        ctrl-h
@@ -25,6 +26,5 @@ zle -N ctrl-te;      bindkey    '^t^e'      ctrl-te
 zle -N ctrl-ti;      bindkey    '^t^[[17~'  ctrl-ti
 zle -N ctrl-to;      bindkey    '^t^o'      ctrl-to
 zle -N ctrl-tt;      bindkey    '^t^t'      ctrl-tt
-zle -N zbug;         bindkey    '^b'        zbug   # for zle debug
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(ctrl-\')
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(ctrl-l)

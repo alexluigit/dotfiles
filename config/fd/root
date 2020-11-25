@@ -12,6 +12,6 @@
 /usr/include/*
 /var/cache/*
 /var/log/*
-/media/HDD/*
+/media/HDD/Backup/*
 /media/cloud/*
 /home/alex/*

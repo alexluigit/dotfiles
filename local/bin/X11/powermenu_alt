@@ -1,5 +1,5 @@
 #!/bin/bash
-rofi_command="rofi -m 1 -theme $HOME/.config/rofi/themes/powermenu_alt.rasi"
+rofi_command="rofi -theme $HOME/.config/rofi/themes/powermenu_alt.rasi"
 
 uptime=$(uptime -p | sed -e 's/up //g')
 

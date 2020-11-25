@@ -1,7 +1,6 @@
 #!/bin/sh
 easystroke --config-dir $XDG_CONFIG_HOME/easystroke &
 xrdb -merge $XDG_CONFIG_HOME/x11/xresources
-xrandr --output DP-0 --primary --mode 3840x2160 --output DVI-I-0 --mode 1440x900 --rotate right &
 sxhkd -m 1 &
 aria2c --input-file=/home/alex/.cache/aria2/aria2.session &
 deadd-notification-center &
@@ -12,7 +11,7 @@ autolock &
 redshift &
 xsetroot -cursor_name left_ptr &
 picom --experimental-backends &
-xwallpaper --output DVI-I-0 --zoom ~/Pictures/Wallpaper/z.jpg --output DP-0 --zoom ~/Pictures/Wallpaper/Dany-0.png &
+xwallpaper --output DP-0 --zoom $WALLPAPER &
 launchPolybar &
 ss-local -c ~/.config/shadowsocks/config.json &
 

@@ -1,11 +1,10 @@
 #!/usr/bin/env zsh
 FIX_FLAGS=(--use-cmd-decoder=validating --use-gl=desktop --proxy-server="127.0.0.1:1088")
 INCOG_FLAGS=(--incognito)
-MONITOR_2ND_ENV=(GDK_SCALE=1 GDK_DPI_SCALE=0.5)
 start() { [[ $1 == "1" ]] && FIX_FLAGS+=$INCOG_FLAGS; __cleanstart }
 music() { local wid=$(__check_music); [[ -n $wid ]] && __window_switch $wid || __openmusic }
 refresh() { local wid=$(__check_brave brave2nd 0); [[ -n $wid ]] && __refresh_tab $wid }
-second() { env ${MONITOR_2ND_ENV[@]} brave "${FIX_FLAGS[@]}" --user-data-dir=/home/alex/.config/brave2nd --class=brave2nd & __rmpki }
+second() { brave "${FIX_FLAGS[@]}" --user-data-dir=/home/alex/.config/brave2nd --class=brave2nd & __rmpki }
 
 __check_brave() { xdotool search --onlyvisible --desktop ${2:-$(xdotool get_desktop)} --class ${1:-brave} }
 __refresh_tab() { __window_switch $1; sleep 0.1; __send_key '\Cr'; __switch_back } # same as line above

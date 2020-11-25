@@ -1,12 +1,12 @@
 # Focus
+super + f
+	bspc desktop -l next
 super + {h,n,e,apostrophe}
 	bspc node -f {west,south,north,east}.local
-super + {0,1-7}
-	bspc desktop -f ^{1,2-8}
-hyper + {0,1-7}
-	bspc node -d} ^{1,2-8}
-super + grave
-	bspc monitor next --focus
+super + {1-8}
+	bspc desktop -f ^{1-8}
+hyper + {1-8}
+	bspc node -d ^{1-8}
 super + Tab
 	bspc node -f last
 
@@ -19,8 +19,8 @@ hyper + m
 	bspc desktop -l next
 hyper + {h,n,e,apostrophe}
 	bspc node -s {west,south,north,east}
-super + control + {0,1-7}
-	bspc node -d ^{1,2-8} --follow
+super + control + {1-8}
+	bspc node -d ^{1-8} --follow
 hyper + super + {h,n,e,apostrophe}
 	bsp_resize {west,south,north,east} 50
 hyper + {b, equal}

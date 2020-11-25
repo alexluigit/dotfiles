@@ -24,6 +24,7 @@ export MANPAGER='nvim -c "let g:manpager = 1" +set\ filetype=man -'
 export GDK_SCALE=2 GDK_DPI_SCALE=0.6
 export QT_SCREEN_SCALE_FACTORS=1 QT_AUTO_SCREEN_SCALE_FACTOR=true
 export GTK_IM_MODULE=fcitx5 QT_IM_MODULE=fcitx5 XMODIFIERS=@im=fcitx5
+export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --border --bind=ctrl-s:toggle-sort,ctrl-e:up,f3:end-of-line,alt-n:preview-down,alt-e:preview-up"
 source $ZDOTDIR/user/variable.zsh
 # StartX
 [ $(tty) = "/dev/tty1" ] && [ -z $(pidof Xorg) ] && exec ssh-agent startx \

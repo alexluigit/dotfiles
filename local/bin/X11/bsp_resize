@@ -1,23 +1,33 @@
 #!/bin/bash
-# TODO improve documentation and review
-
-# Extracted and adapted from source:
-# https://github.com/Chrysostomus/bspwm-scripts/blob/master/bin/bspwm_resize.sh
-
-# Resizes (expands or contracts) the selected node in the given
-# direction.  This is assigned to a key binding in $HOME/.config/sxhkd/sxhkdrc
-
-size=${2:-'10'}
 direction=$1
-
-# Switch with window in given direction
-case "$direction" in
-    west) bspc node @west -r -"$size" || bspc node @east -r -"$size"
-    ;;
-    east) bspc node @west -r +"$size" || bspc node @east -r +"$size"
-    ;;
-    north) bspc node @south -r -"$size" || bspc node @north -r -"$size"
-    ;;
-    south) bspc node @south -r +"$size" || bspc node @north -r +"$size"
-    ;;
+size=${2:-'40'}
+wid=$(xdotool getactivewindow)
+wininfo=$(xwininfo -id "$wid")
+width=$(echo "$wininfo" | awk '/Width/ {print $2}')
+height=$(echo "$wininfo" | awk '/Height/ {print $2}')
+case $direction in
+	left)
+		# bspc node @east -r -40 || bspc node @west -r -40
+		bspc node -z left -$size 0
+		win_width=$(xwininfo -id "$wid" | awk '/Width/ {print $2}')
+		[[ $width == $win_width ]] && bspc node -z right -$size 0
+		;;
+	down)
+		# bspc node @south -r +35 || bspc node @north -r +35
+		bspc node -z bottom 0 +$size
+		win_height=$(xwininfo -id "$wid" | awk '/Height/ {print $2}')
+		[[ $height == $win_height ]] && bspc node -z top 0 +$size
+		;;
+	up)
+		# bspc node @north -r -35 || bspc node @south -r -35
+		bspc node -z top 0 -$size
+		win_height=$(xwininfo -id "$wid" | awk '/Height/ {print $2}')
+		[[ $height == $win_height ]] && bspc node -z bottom 0 -$size
+		;;
+	right)
+		# bspc node @west -r +40 || bspc node @east -r +40
+		bspc node -z right +$size 0
+		win_width=$(xwininfo -id "$wid" | awk '/Width/ {print $2}')
+		[[ $width == $win_width ]] && bspc node -z left +$size 0
+		;;
 esac

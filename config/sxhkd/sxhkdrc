@@ -22,7 +22,7 @@ hyper + {h,n,e,apostrophe}
 super + control + {1-8}
 	bspc node -d ^{1-8} --follow
 hyper + super + {h,n,e,apostrophe}
-	bsp_resize {west,south,north,east} 50
+	bsp_resize {left,down,up,right} 50
 hyper + {b, equal}
 	bspc node @/ -{B,E}
 hyper + p; {h,n,e,apostrophe}

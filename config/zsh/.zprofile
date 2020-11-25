@@ -8,6 +8,7 @@ export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
 export _Z_DATA=$XDG_DATA_HOME/z/.z
 export LESSHISTFILE=$XDG_CACHE_HOME/less/lesshst
+export LESSKEY=$XDG_CONFIG_HOME/less/lesskey
 export GOPATH=$XDG_DATA_HOME/go
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup

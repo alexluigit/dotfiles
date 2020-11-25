@@ -12,7 +12,7 @@ redshift &
 xsetroot -cursor_name left_ptr &
 picom --experimental-backends &
 xwallpaper --output DP-0 --zoom $WALLPAPER &
-launchPolybar &
+tint2 &
 ss-local -c ~/.config/shadowsocks/config.json &
 
 exec bspwm

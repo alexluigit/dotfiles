@@ -3,8 +3,8 @@ env:
 
 window:
   padding:
-    x: 13
-    y: 5
+    x: 12
+    y: 12
   decorations: none
 scrolling:
   history: 10000
@@ -56,9 +56,8 @@ colors:
     yellow:  '#fabd2f'
     blue:    '#83a598'
     magenta: '#d3869b'
-    cyan:    '#599caa'
+    cyan:    '#8ec07c'
     white:   '#ebdbb2'
-    # cyan:    '#8ec07c'
 
 bell:
  animation: EaseOutExpo
@@ -115,9 +114,9 @@ key_bindings:
   - { key: H,                           mode: Vi, action: Left                    }
   - { key: Apostrophe,                  mode: Vi, action: Right                   }
   - { key: Key0,                        mode: Vi, action: First                   }
-  - { key: Key4,                        mode: Vi, action: Last                    }
-  - { key: Key5,                        mode: Vi, action: Bracket                 }
-  - { key: Key6,                        mode: Vi, action: FirstOccupied           }
+  - { key: Key4,   mods: Shift,         mode: Vi, action: Last                    }
+  - { key: Key5,   mods: Shift,         mode: Vi, action: Bracket                 }
+  - { key: Key6,   mods: Shift,         mode: Vi, action: FirstOccupied           }
   - { key: H,      mods: Shift,         mode: Vi, action: High                    }
   - { key: M,      mods: Shift,         mode: Vi, action: Middle                  }
   - { key: L,      mods: Shift,         mode: Vi, action: Low                     }

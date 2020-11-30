@@ -34,7 +34,7 @@ assets() {
 }
 
 __apps() {
-  ln -sf $REPODIR/local/apps/rime ~/.local/share/fcitx5/rime
+  ln -sf $REPODIR/local/apps/rime ~/.local/share/fcitx5
   ln -sf $REPODIR/local/share/applications ~/.local/share
   ln -sf $REPODIR/config/mimeapps.list $CFGDIR/mimeapps.list
 }

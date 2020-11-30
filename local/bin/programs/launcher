@@ -33,7 +33,7 @@ quit-current() { [[ $CONTROL_ON == '0' ]] && xdo close || xdo kill }
 run-rofi() { rofi -no-lazy-grab -show $1 -theme ~/.config/rofi/themes/launcher.rasi }
 run-emacs() { local wid=$(xdotool search --class 'emacs'); [[ -n $wid ]] && xdotool windowactivate $wid || exec emacs }
 term() { [[ -z $1 ]] && { [[ $CONTROL_ON == '1' ]] && __drop || exec alacritty } || __vifm }
-__drop() { exec tdrop -a -m -n TERM -h 95% -w 45% -x 15 -y 15 alacritty }
-__vifm() { exec tdrop -a -m -n FM -h 95% -w 45% -x 15 -y 15 alacritty -e vifmrun }
+__drop() { exec tdrop -a -m -n TERM -h 98% -w 42% -x 0 -y 50 alacritty }
+__vifm() { exec tdrop -a -m -n FM -h 98% -w 42% -x 0 -y 50 alacritty -e vifmrun }
 
 main $@

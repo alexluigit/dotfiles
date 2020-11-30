@@ -4,7 +4,7 @@ env:
 window:
   padding:
     x: 12
-    y: 12
+    y: 10
   decorations: none
 scrolling:
   history: 10000
@@ -79,7 +79,6 @@ key_bindings:
   # Ctrl-i      => F6
   # Ctrl-,      => F10
   # Ctrl-.      => F11
-  - { key: Space,      mods: Control,        chars: "\x1b"     }
   - { key: Semicolon,  mods: Control,        chars: "\x1bOQ"   }
   - { key: Apostrophe, mods: Control,        chars: "\x1bOR"   }
   - { key: Return,     mods: Control,        chars: "\x1b[14~" }

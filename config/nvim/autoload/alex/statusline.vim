@@ -21,10 +21,10 @@ function! alex#statusline#mode() abort
   return get(s:mode_map, mode(), '')
 endfunction
 
-function! alex#statusline#percent(percentage, string, char, barlen)
+function! alex#statusline#percent(percentage, char, barlen)
   let chrs = a:barlen * a:percentage / 100
   let chrx = a:barlen - chrs
-  let bar = a:string
+  let bar = ''
   while chrs
     let bar = bar . a:char
     let chrs = chrs - 1
@@ -52,7 +52,7 @@ function! alex#statusline#focus()
     setl stl+=%#Func#\ %{get(b:,'current_function','')}
     setl stl+=%=\ \ \ %#TablineSel#\ %{b:stl_ft}
     setl stl+=\ %#StlCol#%4L:%-3c
-    setl stl+=%#Percent#\ %-11.{alex#statusline#percent(line('.')*100/line('$'),'','',10)}
+    setl stl+=%#Percent#\ %-11.{alex#statusline#percent(line('.')*100/line('$'),'',10)}
   endif
 endfunction
 

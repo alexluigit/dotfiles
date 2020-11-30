@@ -436,10 +436,10 @@ call s:HL('CommandColor', s:bg0, s:red, s:bold)
 call s:HL('FileHead', s:gb.light3, s:gb.dark2)
 call s:HL('FileUnMod', s:gb.light0, s:gb.dark2, s:bold)
 call s:HL('FileMod', s:green, s:gb.dark2, s:bold)
-hi Func guifg=#d7875f guibg=none gui=italic
-hi StlFiletype guifg=#808070 guibg=none gui=bold
-hi StlCol guifg=#a8a897 guibg=#4e4e43
-hi Percent guifg=#83a598 guibg=#7c6f64 gui=bold
+call s:HL('Func', s:orange, s:none, s:bold)
+call s:HL('StlFiletype', s:bg4, s:none, s:bold)
+call s:HL('StlCol', s:fg4, s:bg2)
+call s:HL('Percent', s:gb.light0, s:gb.dark4, s:bold)
 call s:HL('ModeNC', s:bg0, s:gb.light4, s:bold)
 call s:HL('FileHeadNC', s:gb.light4, s:bg2)
 call s:HL('FileUnModNC', s:gb.light2, s:bg2, s:bold)

@@ -40,6 +40,8 @@ nnoremap <silent>       <Down>        :cnext<CR>
 " easy align
 xmap                    ga            <Plug>(EasyAlign)
 nmap                    ga            <Plug>(EasyAlign)
+" gf will always edit a file
+nmap                    gf            :e <c-r>=expand('<cfile>')<cr><cr>
 " fzf complete
 imap                    <C-x><C-x>    <plug>(fzf-complete-word)
 imap                    <C-x><C-l>    <plug>(fzf-complete-line)

@@ -36,7 +36,8 @@ mark w ~/Pictures/Wallpaper
 mark t ~/.local/share/Trash
 
 nnoremap - <C-w>5<
-nnoremap _ <C-w>5>
+nnoremap = <C-w>5>
+nnoremap + =
 nnoremap ; :
 nnoremap aL :alink<cr>
 noremap  n j

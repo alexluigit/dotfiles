@@ -3,14 +3,12 @@
 
 [零声母标识]
 a=AA
-ai=AS
 ang=AH
 e=EE
 eng=EH
 
 [声母]
 # 双拼编码就是它本身的声母不必列出
-j=A
 zh=V
 ch=U
 sh=I

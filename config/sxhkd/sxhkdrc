@@ -50,7 +50,7 @@ hyper + XF86Audio{LowerVolume,RaiseVolume,Mute}
 
 # Miscs
 super + Escape
-	powermenu
+	~/.config/rofi/scripts/powermenu
 shift + Delete
 	multilockscreen -s
 super + {p,l}

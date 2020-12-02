@@ -17,10 +17,11 @@ alias noproxy="unset http_proxy; unset https_proxy"
 alias -g B="| bat"
 alias -g F="| fzf"
 alias -g G="| rg"
-alias -g NE="2> /dev/null"
-alias -g NUL="> /dev/null 2>&1"
+alias -g NE="2>/dev/null"
+alias -g NUL=">/dev/null 2>&1"
 alias -g S="| sort -n -r"
 alias -g W="| wc -l"
+mc() { mkdir -p $@ && cd ${@:$#} } # make a dir and cd into it
 
 # git
 alias g="inside-worktree && nvim -c Gstatus -c bd# || return 1"
@@ -33,7 +34,6 @@ alias fgs="fzf-git-stash"
 pas() { local res=$(pacman -Ssq | fzf -m --preview="pacman -Si {}"); [[ -n $res ]] && sudo pacman -Syy $res }
 yas() { proxyon; local res=$(cat ~/.config/yay/aurlist.txt | fzf -m --preview="yay -Si {}"); [[ -n $res ]] && yay -Syy $res }
 pal() { local res=$(pacman -Qeq | fzf -m --preview="pacman -Si {}"); [[ -n $res ]] && sudo pacman -Rns $res }
-mc() { mkdir -p $@ && cd ${@:$#} } # make a dir and cd into it
 
 # tmux automation
 t() {

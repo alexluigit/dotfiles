@@ -1,5 +1,6 @@
 ; vim:ft=dosini
 ; ARGB color (e.g. #f00, #ff992a, #ddff1023)
+; check polybar wiki for internal modules [https://github.com/polybar/polybar/wiki]
 [color]
 fg = #55f24829
 bg = #55090b11
@@ -11,12 +12,19 @@ shade2 = #efbbbbbb
 shade3 = #aa444444
 shade4 = #aa5063a3
 
+[settings]
+screenchange-reload = false
+compositing-foreground = source
+compositing-background = source
+compositing-border = over
+pseudo-transparency = false
+
 [global/wm]
 margin-top = 0
 margin-bottom = 0
 
 [bar/bar]
-monitor = "DP-0"
+monitor = ${env:MONITOR:DP-0}
 enable-ipc=true
 height = 50
 width = 100%
@@ -25,7 +33,6 @@ fixed-center = true
 bottom = false
 foreground = ${color.fg}
 background = ${color.bg}
-line-size = 2
 font-0 = SF Compact Display:style=Regular:size=20;5
 font-1 = SF Compact Display:style=Semibold:size=25;5
 font-2 = Noto Sans CJK SC:style=Regular:size=25;5
@@ -46,7 +53,6 @@ tray-maxsize = 30
 tray-offset-x = 1510
 tray-background = ${color.systray}
 
-; check polybar wiki for internal modules [https://github.com/polybar/polybar/wiki]
 [module/launcher]
 type=custom/text
 content = ""
@@ -118,7 +124,7 @@ content = "      "
 content-padding = 0
 content-foreground = ${color.black}
 content-background = ${color.shade2}
-click-left = powermenu
+click-left = ~/.config/rofi/scripts/powermenu
 
 [module/music]
 type = custom/script
@@ -130,10 +136,3 @@ exec = music-control info
 tail = true
 interval = 2
 click-left = "playerctl play-pause"
-
-[settings]
-screenchange-reload = false
-compositing-background = screen
-compositing-foreground = source
-compositing-border = over
-pseudo-transparency = false

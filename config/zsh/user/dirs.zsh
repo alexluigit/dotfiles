@@ -1,5 +1,5 @@
 typeset -A USER_DIRS=(
-   AUDIO     "/home/alex/Audio/               mpv   Music"
+   MUSIC     "/home/alex/Music/               mpv   Music"
    NOTE      "/home/alex/Documents/notes/     nvim  Note"
    PIC       "/home/alex/Pictures/            sxiv  Pictures"
    VID       "/home/alex/Videos/              mpv   Videos"

@@ -28,5 +28,5 @@ export GTK_IM_MODULE=fcitx5 QT_IM_MODULE=fcitx5 XMODIFIERS=@im=fcitx5
 export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --border --bind=ctrl-s:toggle-sort,ctrl-e:up,f3:end-of-line,alt-n:preview-down,alt-e:preview-up"
 source $ZDOTDIR/user/variable.zsh
 # StartX
-[ $(tty) = "/dev/tty1" ] && [ -z $(pidof Xorg) ] && exec ssh-agent startx \
-"$XDG_CONFIG_HOME/x11/xinitrc" -- "$XDG_CONFIG_HOME/x11/xserverrc" vt1
+[ $(tty) = "/dev/tty1" ] && ! pgrep X && exec ssh-agent startx \
+$XDG_CONFIG_HOME/x11/xinitrc -- $XDG_CONFIG_HOME/x11/xserverrc vt1

@@ -1,6 +1,6 @@
 const Repl = require("repl");
 const util = require("util");
-const songMatch = require("/home/alex/.local/share/fnm/current/lib/node_modules/@nondanee/unblockneteasemusic")
+const songMatch = require("@nondanee/unblockneteasemusic")
 
 const song = async (id) => songMatch(id, ['qq', 'kuwo', 'migu']).then(console.log)
 

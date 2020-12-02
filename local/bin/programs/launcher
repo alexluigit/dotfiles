@@ -13,6 +13,7 @@ main() {
       F) nautilus;;
       M) bravectl music;;
       S) flameshot gui;;
+      T) ~/.config/rofi/scripts/sessions;;
       a) run-rofi drun;;
       c) click;;
       q) quit-current;;

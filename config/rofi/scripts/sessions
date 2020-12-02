@@ -1,0 +1,6 @@
+#!/bin/bash
+rofi_command="rofi -theme $HOME/.config/rofi/themes/launcher.rasi"
+res=$(tmux list-sessions | awk -F: '{print $1}')
+
+chosen="$(echo -e "$res" | $rofi_command -p "Sessions: " -dmenu -selected-row 0)"
+tmux switch -t $chosen 2>/dev/null || tmux a -t $chosen

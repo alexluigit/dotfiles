@@ -12,3 +12,4 @@ config/shadowsocks/config.json
 config/aria2/aria2.conf
 config/zsh/user/*
 *.pyc
+.tmux

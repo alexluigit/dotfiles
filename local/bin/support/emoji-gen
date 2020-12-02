@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+// Usage: emoji-gen > ~/.local/share/fcitx5/rime/emoji.dict.yaml
+const gemoji = require('gemoji')
+const date = new Date().toISOString().split('T')[0];
+console.log(`---
+name: gemoji
+version: "${date}"
+sort: by_weight
+use_preset_vocabulary: true
+...
+`)
+for (const emoji of gemoji) {
+  for (const name of emoji.names) {
+    console.log(`${emoji.emoji}\t;${name.replace(/_/g, '')}`)
+  }
+}

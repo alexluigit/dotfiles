@@ -3,26 +3,34 @@ super + f
 	bspc desktop -l next
 super + {h,n,e,apostrophe}
 	bspc node -f {west,south,north,east}.local
-super + {1-8}
-	bspc desktop -f ^{1-8}
-hyper + {1-8}
-	bspc node -d ^{1-8}
+super + {_,control} {1-8}
+	bspc {desktop -f,node -d} ^{1-8} --follow
 super + Tab
 	bspc node -f last
+super + grave
+        bsp-layout set {tall,rtall}
+
+# Launcher
+super + {p,l}
+	xvkbd -xsendevent -text {"\[Up]","\[Down]"}
+super + {_,control} {a-d,g-k,m,q-z}
+	launcher {_,-@} -{a-d,g-k,m,q-z}
+super + o; {a-z}
+	launcher -{A-Z}
+super + Escape
+	~/.config/rofi/scripts/powermenu
+shift + Delete
+	multilockscreen -s
 
 # Window size / move
 hyper + Tab
 	bspc node -s biggest.local || bspc node -s next.local || bspc node -s prev.local
 hyper + f
 	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
-super + grave
-        bsp-layout set {tall,rtall}
 hyper + grave
         bsp-layout remove
 hyper + {h,n,e,apostrophe}
 	bspc node -s {west,south,north,east}
-super + control + {1-8}
-	bspc node -d ^{1-8} --follow
 hyper + super + {h,n,e,apostrophe}
 	~/.config/bspwm/scripts/bsp_resize {left,down,up,right} 50
 hyper + {b, equal}
@@ -36,28 +44,14 @@ hyper + m; {h,n,e,apostrophe}
 hyper + Escape
 	bspc node -p cancel
 
-# Launcher
-super + {_,control} {a-d,g-k,m,q-z}
-	launcher {_,-@} -{a-d,g-k,m,q-z}
-super + o; {a-z}
-	launcher -{A-Z}
-
-# Media
-XF86Audio{Prev,Play,Next}
-	music-control {previous,play-pause,next}
-hyper + XF86Audio{LowerVolume,RaiseVolume,Mute}
-	volumectl {down,up,mute}
-
-# Miscs
-super + Escape
-	~/.config/rofi/scripts/powermenu
-shift + Delete
-	multilockscreen -s
-super + {p,l}
-	xvkbd -xsendevent -text {"\[Up]","\[Down]"}
-button{8,9}
-	xvkbd -xsendevent -text {'\Cw', '\Ct'}
+# Function keys
 XF86{Mon,Kbd}BrightnessDown
 	xvkbd -xsendevent -text {"\[F1]","\[F5]"}
 XF86Audio{Lower,Raise}Volume
 	xvkbd -xsendevent -text {"\[F11]","\[F12]"}
+XF86Audio{Prev,Play,Next}
+	music-control {previous,play-pause,next}
+hyper + XF86Audio{LowerVolume,RaiseVolume,Mute}
+	volumectl {down,up,mute}
+button{8,9}
+	xvkbd -xsendevent -text {'\Cw', '\Ct'}

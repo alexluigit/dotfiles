@@ -4,28 +4,28 @@ get_class() {
 }
 
 swallow() {
-	addedtodesktop=$2
-	lasttermdesktop=$(bspc query -D -n last)
-	swallowerid=$1
-	swallowingid=$(bspc query -N -n last)
-	if [ "$addedtodesktop" = "$lasttermdesktop" ]; then
-		cat ~/.config/bspwm/scripts/noswallow ~/.config/bspwm/scripts/terminals | grep "^$(get_class "$swallowerid")$" && return
-		grep "^$(get_class "$swallowingid")$" ~/.config/bspwm/scripts/terminals || return
-		echo "$swallowerid $swallowingid" >> /tmp/swallowids
-		bspc node "$swallowingid" --flag hidden=on
-	fi
+  addedtodesktop=$2
+  lasttermdesktop=$(bspc query -D -n last)
+  swallowerid=$1
+  swallowingid=$(bspc query -N -n last)
+  if [ "$addedtodesktop" = "$lasttermdesktop" ]; then
+    grep "^$(get_class "$swallowerid")$" ~/.config/bspwm/scripts/swallow || return
+    grep "^$(get_class "$swallowingid")$" ~/.config/bspwm/scripts/terminals || return
+    echo "$swallowerid $swallowingid" >> /tmp/swallowids
+    bspc node "$swallowingid" --flag hidden=on
+  fi
 }
 
 spit() {
-	spitterid=$1
-	spitterdesktop=$2
-	grep "^$spitterid" /tmp/swallowids || return
-	spittingid=$(grep "^$spitterid" /tmp/swallowids | head -n1 | awk '{print $2}')
-	bspc node "$spittingid" --flag hidden=off
-	termdesktop=$(bspc query -D -n "$spittingid")
-	[ "$termdesktop" = "$spitterdesktop" ] || bspc node "$spittingid" -d "$spitterdesktop"
-	bspc node "$spittingid" -f
-	sed -i "/^$spitterid/d" /tmp/swallowids
+  spitterid=$1
+  spitterdesktop=$2
+  grep "^$spitterid" /tmp/swallowids || return
+  spittingid=$(grep "^$spitterid" /tmp/swallowids | head -n1 | awk '{print $2}')
+  bspc node "$spittingid" --flag hidden=off
+  termdesktop=$(bspc query -D -n "$spittingid")
+  [ "$termdesktop" = "$spitterdesktop" ] || bspc node "$spittingid" -d "$spitterdesktop"
+  bspc node "$spittingid" -f
+  sed -i "/^$spitterid/d" /tmp/swallowids
 }
 
 hideall(){
@@ -39,6 +39,9 @@ unhideall(){
  for node in $(bspc query -N -n .local.window); do
    bspc node $node --flag hidden=off
  done
+ for node in $(awk '{print $2}' /tmp/swallowids); do
+   bspc node $node --flag hidden=on
+ done
 }
 
 bspc subscribe node_add node_remove | while read event _ parent child_a child_r ; do
@@ -49,6 +52,6 @@ bspc subscribe node_add node_remove | while read event _ parent child_a child_r 
 done &
 
 bspc subscribe desktop_layout | while read _ _ _ layout; do
- current=$(bspc query -N -n focused)
- [[ $layout == "monocle" ]] && hideall $current || unhideall
+  current=$(bspc query -N -n focused)
+  [[ $layout == "monocle" ]] && hideall $current || unhideall
 done &

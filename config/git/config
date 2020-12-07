@@ -48,7 +48,19 @@
         whitespace = red reverse
 [core]
         ignorecase = false
-        pager = diff-so-fancy | less --tabs=4 -RFX
+        pager = delta
+[delta]
+        plus-color = "#012800"
+        minus-color = "#340001"
+        syntax-theme = Monokai Extended
+        features = side-by-side line-numbers decorations
+        whitespace-error-style = 22 reverse
+[delta "decorations"]
+        commit-decoration-style = bold yellow ul
+        file-style = bold blue ul
+        file-decoration-style = none
+[interactive]
+        diffFilter = delta --color-only
 [github]
         username = alexluigit
 [grep]

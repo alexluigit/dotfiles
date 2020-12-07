@@ -31,10 +31,9 @@ __autopairs() {
 }
 
 __fzf-navi() {
-  local CMD BEFORE
-  [[ $1 == 'z' ]] && { CMD=(z -l '|' awk \'{print \$2}\'); BEFORE=$NAVI_BP } \
-  || { CMD=(fd -H -td --ignore-file $XDG_CONFIG_HOME/fd/root -c always . /); BEFORE=$NAVI_B }
-  dest=$(eval "$CMD" | eval "$BEFORE" | fzf +s --tac --ansi | eval "$NAVI_A")
+  [[ $1 == 'z' ]] && { local CMD=(z -l '|' awk \'{print \$2}\') } \
+  || { local CMD=(fd -H -td --ignore-file $XDG_CONFIG_HOME/fd/root . /) }
+  dest=$(eval "$CMD" | eval "$NAVI_B" | fzf +s --tac --ansi | eval "$NAVI_A")
   [[ -z $dest ]] && { zle reset-prompt; return } || cd $dest
   zle reset-prompt
 }

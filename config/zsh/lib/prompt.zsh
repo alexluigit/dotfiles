@@ -29,7 +29,7 @@ git_prompt_info() {
   [[ $git_status == *[ADMR]\ * ]] && staged="%{$fg_bold[green]%}";
   [[ $git_status == *\ [ADMR]* ]] && unstaged="%{$fg_bold[red]%}";
   [[ $git_status == *\?* ]] && untracked="%{$fg_bold[blue]%}";
-  echo "$staged$unstaged$untracked %{$reset_color%}%F{222}${${ref:u}#REFS/HEADS/}%f "
+  echo "$staged$unstaged$untracked %{$reset_color%}%F{222}${${ref:u}#REFS/HEADS/}%f"
 }
 
 # preexec() and precmd() are hook functions in zsh. (bash has precmd() but not preexec())
@@ -45,7 +45,7 @@ precmd_timer() {
   || timer_result="%B$time_ms%b $(_italicize ms)"
   [[ $time_min -ge 1 ]] \
   && timer_result="%B$time_min%b $(_italicize min) %B$time_min_tail%b $(_italicize sec)"
-  timer="%F{152} $timer_result %f" }
+  timer="%F{152}  $timer_result %f" }
 }
 preexec_functions+=(preexec_timer); precmd_functions+=(precmd_timer)
 

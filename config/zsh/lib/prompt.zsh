@@ -1,6 +1,6 @@
 # Syntax highlighting
 autoload -U colors && colors # Enable colors
-italicize() { printf "%b%s%b" '\e[3m' "$@" '\e[23m' }
+_italicize() { printf "%b%s%b" '\e[3m' "$@" '\e[23m' }
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[alias]=fg=yellow,bold
 ZSH_HIGHLIGHT_STYLES[builtin]=fg=blue,bold
@@ -10,7 +10,6 @@ ZSH_HIGHLIGHT_STYLES[command]=fg=blue,bold
 # Cursor shape
 zle-line-init() { echo -ne "\e[5 q" } # zle -K viins, initiate `vi insert` as keymap
 preexec_functions+=(zle-line-init) # Init timer and beam shape cursor before every cmd
-zle -N zle-line-init # Enable cursor shape when entering zsh
 zle-keymap-select() { # Change cursor shape for different vi modes.
   if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
     echo -ne '\e[3 q'
@@ -19,7 +18,7 @@ zle-keymap-select() { # Change cursor shape for different vi modes.
     echo -ne '\e[5 q'
   fi
 }
-zle -N zle-keymap-select
+zle -N zle-line-init; zle -N zle-keymap-select
 
 # Git
 git_prompt_info() {
@@ -42,42 +41,36 @@ precmd_timer() {
   local time_min=$(printf %i $(echo "$time_sec/60" | bc -l))
   local time_min_tail=$(printf %i $(($time_sec-$time_min*60)))
   { [[ $time_sec -ge 1 ]] && [[ $time_min -eq 0 ]] } \
-  && timer_result="%B$time_sec%b $(italicize sec)" \
-  || timer_result="%B$time_ms%b $(italicize ms)"
+  && timer_result="%B$time_sec%b $(_italicize sec)" \
+  || timer_result="%B$time_ms%b $(_italicize ms)"
   [[ $time_min -ge 1 ]] \
-  && timer_result="%B$time_min%b $(italicize min) %B$time_min_tail%b $(italicize sec)"
+  && timer_result="%B$time_min%b $(_italicize min) %B$time_min_tail%b $(_italicize sec)"
   timer="%F{152} $timer_result %f" }
 }
 preexec_functions+=(preexec_timer); precmd_functions+=(precmd_timer)
 
 # Seperate path with head and tail
 chpwd_prompt () {
+  cwd_tail="%{$fg_bold[$pwd_cr]%}$(basename $PWD) "
   local HPWD=${(%)${:-%~}} # $PWD with ~ abbreviations
   case $HPWD in
-    "~" | "/home/$USER")
-      cwd_head="%F{white}%B%b%f"; cwd_tail="";;
+    "~" | "/home/$USER") cwd_head="%{$fg_bold[$pwd_cr]%}"; cwd_tail="";;
     "~/"*)
-      local head=${HPWD%/*}
-      local headabv=$(sed "s|^~/| |" <<< $head)
-      [[ $headabv == "~" ]] && cwd_head="%F{white} %f" || cwd_head="%F{white}$headabv/%f"
-      cwd_tail="%F{white}%B${HPWD##*/}%b%f";;
-    "/home/$USER/"*)
-      local head=${HPWD%/*}
-      local headabv=$(sed "s|^/home/$USER| |" <<< $head)
-      cwd_head="%F{white}$headabv/%f"; cwd_tail="%F{white}%B${HPWD##*/}%b%f";;
+      local head=$(sed "s|^~/| |" <<< ${HPWD%/*})
+      [[ $head == "~" ]] && cwd_head="%{$fg[$pwd_cr]%} " || cwd_head="%{$fg[$pwd_cr]$head/%}";;
     *?/*)
       local head=$(sed "s|^/| |" <<< $HPWD)
-      cwd_head="%F{white}${head%/*}/%f"; cwd_tail="%F{white}%B${head##*/}%b%f";;
-    *)
-     cwd_head="%F{white} %f"; cwd_tail="%F{white}%B${HPWD#/}%b%f";;
+      cwd_head="%{$fg[$pwd_cr]${head%/*}/%}";;
+    /) cwd_head="%{$fg[$pwd_cr]%} "; cwd_tail="";;
+    *) cwd_head="%{$fg[$pwd_cr]%} ";;
   esac
 }
+chpwd_functions+=(chpwd_prompt); cd .
 
-# Check background_job, super_user, exit code (Use ternary operators here)
+# Setup prompt
+local pwd_cr="white"
 local bg_jobs="%(1j.%{$fg_bold[red]%} .)"
 local privileges="%(#.%{$fg_bold[red]%} .)"
 local line_break=$'\n'%{$reset_color%}
 local ret_status="%(?:%{$fg_bold[green]%} :%{$fg_bold[red]%} %s)"
-PROMPT='$bg_jobs$privileges$cwd_head$cwd_tail $(git_prompt_info)$timer$line_break$ret_status'
-# trigger the chpwd hooks once, this line should appear after the prompt definition
-chpwd_functions+=(chpwd_prompt); cd .
+PROMPT='$bg_jobs$privileges$cwd_head$cwd_tail$(git_prompt_info)$timer$line_break$ret_status'

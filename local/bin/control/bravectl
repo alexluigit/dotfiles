@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-FIX_FLAGS=(--use-cmd-decoder=validating --use-gl=desktop --proxy-server="127.0.0.1:1088")
+FIX_FLAGS=(--proxy-server="127.0.0.1:1088")
 INCOG_FLAGS=(--incognito)
 start() { [[ $1 == "1" ]] && FIX_FLAGS+=$INCOG_FLAGS; __cleanstart }
 music() { local wid=$(__check_music); [[ -n $wid ]] && __window_switch $wid || __openmusic }

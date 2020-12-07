@@ -11,7 +11,7 @@ fzf-git-log() {
         $FORGIT_FZF_DEFAULT_OPTS
         +s +m --tiebreak=index
         --bind=\"enter:execute($cmd | LESS='-R' less)\"
-        --bind=\"ctrl-y:execute-silent(echo {} |grep -Eo '[a-f0-9]+' | head -1 | tr -d '\n' |${FORGIT_COPY_CMD:-pbcopy})\"
+        --bind=\"ctrl-y:execute-silent(echo {} |grep -Eo '[a-f0-9]+' | head -1 | tr -d '\n' | xclip -selection clipboard)\"
     "
     eval "git log --graph --color=always --format='%C(auto)%h%d %s %C(black)%C(bold)%cr' $*" |
         FZF_DEFAULT_OPTS="$opts" fzf --preview="$cmd"
@@ -58,8 +58,6 @@ FORGIT_FZF_DEFAULT_OPTS="
 $FZF_DEFAULT_OPTS
 --ansi
 --height='80%'
---bind='alt-k:preview-up,alt-e:preview-down'
---bind='alt-j:preview-down,alt-n:preview-down'
 --bind='ctrl-r:toggle-all'
 --bind='?:toggle-preview'
 --bind='alt-w:toggle-preview-wrap'

@@ -1,4 +1,4 @@
-inside-worktree() { git rev-parse --is-inside-work-tree >/dev/null; }
+inside-worktree() { git rev-parse --is-inside-work-tree >/dev/null 2>&1; }
 gitpager=$(git config core.pager || echo 'cat')
 
 # git commit viewer

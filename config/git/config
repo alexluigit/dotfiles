@@ -1,91 +1,92 @@
 [alias]
-        abv      =  !sh -c 'git rev-parse --short ${1-`echo HEAD`}' -
-        amend    =  commit --amend -v
-        bone     =  loghelpers pretty_git_graph --all --simplify-by-decoration
-        br       =  branch
-        co       =  checkout
-        count    =  !git --no-pager log --oneline | wc -l
-        cp       =  cherry-pick
-        cv       =  commit -v
-        dup      =  !git ls-tree -r HEAD | cut -c 13- | sort | uniq -D -w 40
-        ff       =  merge --ff-only
-        fixup    =  !sh -c 'git commit --fixup=$1 ${@:2}' -
-        get      =  "!f() { git fresh && git ff \"$@\"; }; f"
-        graph    =  loghelpers pretty_git_graph --all
-        head     =  !GIT_NO_PAGER=1 git loghelpers pretty_git_log -1
-        no-edit  =  commit --amend --no-edit
-        recent   =  !GIT_NO_PAGER=1 git loghelpers pretty_git_log --all -30
-        rewind   =  !sh -c 'git reset --merge HEAD~${1-1}' -
-        reword   =  commit --amend --only -v --
-        ss       =  status -s
-        staash   =  stash --include-untracked
-        stsh     =  stash --keep-index
-        topush   =  loghelpers pretty_git_log --all origin/master..master
-        update   =  remote update --prune
-        wc       =  whatchanged
-        # similar to whatchanged, but gives a dir-level overview:
-        # usage: git wd [diff-against=HEAD] [max-depth=4]
-        wd       =  "!f() { git --paginate diff --dirstat=cumulative,files,0 ${1:-HEAD} | awk '{print $2}' | cut -d / -f1-${2:-4} | sort | uniq; }; f"
+	abv	 =  !sh -c 'git rev-parse --short ${1-`echo HEAD`}' -
+	alias	 =  !git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+	amend	 =  commit --amend -v
+	bone	 =  loghelpers pretty_git_graph --all --simplify-by-decoration
+	br	 =  branch
+	co	 =  checkout
+	count	 =  !git --no-pager log --oneline | wc -l
+	cp	 =  cherry-pick
+	cv	 =  commit -v
+	dup	 =  !git ls-tree -r HEAD | cut -c 13- | sort | uniq -D -w 40
+	ff	 =  merge --ff-only
+	fixup	 =  !sh -c 'git commit --fixup=$1 ${@:2}' -
+	get	 =  "!f() { git fresh && git ff \"$@\"; }; f"
+	graph	 =  loghelpers pretty_git_graph --all
+	head	 =  !GIT_NO_PAGER=1 git loghelpers pretty_git_log -1
+	no-edit  =  commit --amend --no-edit
+	recent	 =  !GIT_NO_PAGER=1 git loghelpers pretty_git_log --all -30
+	rewind	 =  !sh -c 'git reset --merge HEAD~${1-1}' -
+	reword	 =  commit --amend --only -v --
+	ss	 =  status -s
+	staash	 =  stash --include-untracked
+	stsh	 =  stash --keep-index
+	topush	 =  loghelpers pretty_git_log --all origin/master..master
+	update	 =  remote update --prune
+	wc	 =  whatchanged
+	# similar to whatchanged, but gives a dir-level overview:
+	# usage: git wd [diff-against=HEAD] [max-depth=4]
+	wd	 =  "!f() { git --paginate diff --dirstat=cumulative,files,0 ${1:-HEAD} | awk '{print $2}' | cut -d / -f1-${2:-4} | sort | uniq; }; f"
 [branch]
-        autosetuprebase = local
+	autosetuprebase = local
 [color]
-        ui = true
+	ui = true
 [color "diff-highlight"]
-        newHighlight = green bold 22
-        oldHighlight = red bold 52
-        oldNormal = red bold
-        newNormal = green bold
+	newHighlight = green bold 22
+	oldHighlight = red bold 52
+	oldNormal = red bold
+	newNormal = green bold
 [color "interactive"]
-        prompt = blue reverse
+	prompt = blue reverse
 [color "status"]
-        untracked = blue
+	untracked = blue
 [color "diff"]
-        meta = 11
-        frag = magenta bold
-        commit = yellow bold
-        old = red bold
-        new = green bold
-        whitespace = red reverse
+	meta = 11
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
 [core]
-        ignorecase = false
-        pager = delta
+	ignorecase = false
+	pager = delta
 [delta]
-        plus-color = "#012800"
-        minus-color = "#340001"
-        syntax-theme = Monokai Extended
-        features = side-by-side line-numbers decorations
-        whitespace-error-style = 22 reverse
+	plus-color = "#012800"
+	minus-color = "#340001"
+	syntax-theme = Monokai Extended
+	features = side-by-side line-numbers decorations
+	whitespace-error-style = 22 reverse
 [delta "decorations"]
-        commit-decoration-style = bold yellow ul
-        file-style = bold blue ul
-        file-decoration-style = none
+	commit-decoration-style = bold yellow ul
+	file-style = bold blue ul
+	file-decoration-style = none
 [interactive]
-        diffFilter = delta --color-only
+	diffFilter = delta --color-only
 [github]
-        username = alexluigit
+	username = alexluigit
 [grep]
-        lineNumber = true
+	lineNumber = true
 [http]
-        proxy = http://127.0.0.1:1088
+	proxy = http://127.0.0.1:1088
 [https]
-        proxy = https://127.0.0.1:1088
+	proxy = https://127.0.0.1:1088
 [log]
-        decorate = short
+	decorate = short
 [mergetool "fugitive"]
-        cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 [merge]
-        tool = fugitive
+	tool = fugitive
 [pager]
-        show-branch = true
-        status = true
+	show-branch = true
+	status = true
 [rebase]
-        autosquash = true
+	autosquash = true
 [rerere]
-        enabled = true
+	enabled = true
 [status]
-        submodulesummary = true
+	submodulesummary = true
 [user]
-        name = Alex
-        email = hellosimon1103@hotmail.com
+	name = Alex
+	email = hellosimon1103@hotmail.com
 [credential]
-        helper = store
+	helper = store

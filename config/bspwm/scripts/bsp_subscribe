@@ -47,9 +47,13 @@ unhideall(){
  done
 }
 
+quit_monocle() {
+  [[ $(bspc wm -g | awk -F ':' '{print $(NF-2)}') == 'LM' ]] && bspc desktop -l next
+}
+
 bspc subscribe node_add node_remove | while read event _ parent child_a child_r ; do
   case $event in
-    node_add) swallow $child_r $parent;;
+    node_add) swallow $child_r $parent; quit_monocle;;
     node_remove) spit $child_a $parent;;
   esac
 done &

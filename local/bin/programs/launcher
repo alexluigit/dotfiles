@@ -1,9 +1,7 @@
 #!/usr/bin/env zsh
 main() {
-  quit_monocle
   local OPTIND CONTROL_ON=0 OPTSTR='@'
   for i in {{a..z},{A..Z}}; do OPTSTR+=$i; done
-  echo ${OPTSTR[@]}
   while getopts $OPTSTR opt; do
     case $opt in
       @) CONTROL_ON=1;;
@@ -16,24 +14,28 @@ main() {
       T) ~/.config/rofi/scripts/sessions;;
       a) run-rofi drun;;
       c) click;;
+      l) send_key "\[Down]";;
+      p) send_key "\[Up]";;
       q) quit-current;;
       r) run-rofi run;;
-      t) term;;
+      s) multilockscreen -s;;
+      t|y) term;;
       v) term fm;;
       w) bravectl start $CONTROL_ON;;
+      z) ~/.config/rofi/scripts/powermenu;;
       \?) exit 1;;
     esac
   done
   shift $((OPTIND -1))
 }
 
-quit_monocle() { [[ $(bspc wm -g | awk -F ':' '{print $(NF-2)}') == 'LM' ]] && bspc desktop -l next }
 click() { sleep 0.2 && xdotool click 1 }
 fullscrot() {	flameshot full -p ~/Pictures/Screenshots }
 quit-current() { [[ $CONTROL_ON == '0' ]] && xdo close || xdo kill }
 run-rofi() { rofi -no-lazy-grab -show $1 -theme ~/.config/rofi/themes/launcher.rasi }
 run-emacs() { local wid=$(xdotool search --class 'emacs'); [[ -n $wid ]] && xdotool windowactivate $wid || exec emacs }
 term() { [[ -z $1 ]] && { [[ $CONTROL_ON == '1' ]] && __drop || exec alacritty } || __vifm }
+send_key() { xvkbd -xsendevent -text $1 }
 __drop() { exec tdrop -a -m -n TERM -h 98% -w 42% -x 0 -y 50 alacritty }
 __vifm() { exec tdrop -a -m -n FM -h 98% -w 42% -x 0 -y 50 alacritty -e vifmrun }
 

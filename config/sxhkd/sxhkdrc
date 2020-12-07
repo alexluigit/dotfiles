@@ -8,19 +8,13 @@ super + {_,control} {1-8}
 super + Tab
 	bspc node -f last
 super + grave
-        bsp-layout set {tall,rtall}
+	bsp-layout set {tall,rtall}
 
 # Launcher
-super + {p,l}
-	xvkbd -xsendevent -text {"\[Up]","\[Down]"}
-super + {_,control} {a-d,g-k,m,q-z}
-	launcher {_,-@} -{a-d,g-k,m,q-z}
+super + {_,control} {a-d,g-m,p-x,Return,Escape}
+	launcher {_,-@} -{a-d,g-m,p-x,y,z}
 super + o; {a-z}
 	launcher -{A-Z}
-super + Escape
-	~/.config/rofi/scripts/powermenu
-shift + Delete
-	multilockscreen -s
 
 # Window size / move
 hyper + Tab

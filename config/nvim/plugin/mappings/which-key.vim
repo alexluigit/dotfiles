@@ -64,8 +64,8 @@ let g:wkm.g['e'] = [ '<Plug>(coc-git-prevchunk)',                    'prev hunk'
 let g:wkm.g['m'] = [ '<Plug>(git-messenger)',                        'message' ]
 let g:wkm.g['p'] = [ ':Git push',                                    'push' ]
 let g:wkm.g['P'] = [ ':Git pull',                                    'pull' ]
-let g:wkm.g['r'] = [ ':GRead',                                       'read head' ]
-let g:wkm.g['R'] = [ ':GRemove',                                     'remove' ]
+let g:wkm.g['r'] = [ ':Gread',                                       'read head' ]
+let g:wkm.g['R'] = [ ':Gremove',                                     'remove' ]
 let g:wkm.g['s'] = [ ':CocCommand git.chunkStage',                   'stage hunk' ]
 let g:wkm.g['u'] = [ ':CocCommand git.chunkUndo',                    'undo hunk' ]
 

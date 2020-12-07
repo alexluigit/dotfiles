@@ -33,6 +33,7 @@ alias fgs="fzf-git-stash"
 # pacman
 pas() { local res=$(pacman -Ssq | fzf -m --preview="pacman -Si {}"); [[ -n $res ]] && sudo pacman -Syy $res }
 yas() { proxyon; local res=$(cat ~/.config/yay/aurlist.txt | fzf -m --preview="yay -Si {}"); [[ -n $res ]] && yay -Syy $res }
+yass() { proxyon; yay -Syu }
 pal() { local res=$(pacman -Qeq | fzf -m --preview="pacman -Si {}"); [[ -n $res ]] && sudo pacman -Rns $res }
 
 # tmux automation

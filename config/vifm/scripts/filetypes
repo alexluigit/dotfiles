@@ -16,7 +16,6 @@ fileviewer *.zip,*.jar,*.war,*.ear zip -sf %c
 fileviewer *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz tar -tf %f
 fileviewer *.doc antiword -
 fileviewer *.docx docx2txt.pl %f -
-fileviewer * env -u COLORTERM bat --color always --wrap never --pager never %c -p
 filetype *.o nm %f | less
 filetype *.[1-8] man ./%c
 filetype *.md5 {Check MD5 hash sum} md5sum -c %f %S,

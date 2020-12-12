@@ -10,6 +10,7 @@ direct = +forward-override{forward .}
 
 {direct}
 localhost/
+192.168.31.1
 .*.cn
 .10fastfingers.com
 .126.com

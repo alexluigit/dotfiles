@@ -1,6 +1,4 @@
 # Focus
-super + f
-	bspc desktop -l next
 super + {h,n,e,apostrophe}
 	bspc node -f {west,south,north,east}.local
 super + {_,control} {1-8}
@@ -11,8 +9,8 @@ super + grave
 	bsp-layout set {tall,rtall}
 
 # Launcher
-super + {_,control} {a-d,g-m,p-x,Return,Escape}
-	launcher {_,-@} -{a-d,g-m,p-x,y,z}
+super + {_,control} {a-d,f-m,p-x,Return,Escape}
+	launcher {_,-@} -{a-d,f-m,p-x,y,z}
 super + o; {a-z}
 	launcher -{A-Z}
 

@@ -11,13 +11,6 @@ augroup BetterFocus
   au TermEnter * setlocal nonu norelativenumber
 augroup end
 
-augroup Idleboot
-  au!
-  if has('vim_starting')
-    au CursorHold,CursorHoldI * call alex#lazy#idleboot() " Lazy load some plugin
-  endif
-augroup end
-
 augroup Miscellaneous
   au!
   " Don't help me to auto comment newline

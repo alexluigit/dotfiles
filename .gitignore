@@ -3,9 +3,6 @@ config/ssh/*
 config/emacs/*
 !config/emacs/*.org
 config/git/credentials
-config/vifm/*
-!config/vifm/*/
-!config/vifm/vifmrc
 config/fcitx5/conf/cached_layouts
 config/gtk-3.0/bookmarks
 config/shadowsocks/config.json

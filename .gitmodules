@@ -20,9 +20,6 @@
 [submodule "vim-easy-align"]
 	path = config/nvim/pack/bundle/opt/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
-[submodule "vifm.vim"]
-	path = config/nvim/pack/bundle/opt/vifm.vim
-	url = https://github.com/vifm/vifm.vim
 [submodule "zsh-autosuggestions"]
 	path = config/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions

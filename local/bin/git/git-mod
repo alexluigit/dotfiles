@@ -1,38 +1,27 @@
 #!/bin/sh
-nvimPath='config/nvim/pack/bundle/opt/'
-zshPath='config/zsh/plugins/'
-appPath='local/apps/'
-
 add() {
+  local nvimPath='config/nvim/pack/bundle/opt'
+  local zshPath='config/zsh/plugins'
   local mName=$(sed 's|.*/||' <<< "$1")
-  echo "1) nvim -> $nvimPath$mName"
-  echo "2) zsh  -> $zshPath$mName"
-  echo "3) apps  -> $appPath$mName"
+  echo "1) nvim -> $nvimPath/$mName"
+  echo "2) zsh  -> $zshPath/$mName"
+  echo "3) Type manually"
   read -p "Please choose target directory : " REPLY
   case $REPLY in
-    1) iPath=$nvimPath; iType="vim";;
-    2) iPath=$zshPath; iType="zsh";;
-    3) iPath=$appPath; iType="apps";;
+    1) iPath=$nvimPath;;
+    2) iPath=$zshPath;;
+    3) read -p "Input directory: " iPath;;
     *) echo "Invalid option. Exit" && exit 1;;
   esac
-  echo "Installing to $iPath$mName"
-  git submodule add --name $mName $1 $iPath$mName && git commit -m "chore($iType): add submodule $mName"
+  echo "Installing to $iPath/$mName"
+  git submodule add --name $mName $1 $iPath/$mName
 }
 
 remove() {
   local mPath=$(git submodule | grep "$1" | awk '{print $2}')
   [[ $(echo "$mPath" | wc -l) -gt 1 ]] && echo "More than 1 match" && echo $mPath && exit 1
   local mName=$(sed 's|.*/||' <<< "$mPath")
-  local iPath=${mPath%"$mName"}
-  case $iPath in
-    $nvimPath) iType="vim";;
-    $zshPath) iType="zsh";;
-    $appPath) iType="apps";;
-    *) echo "Invalid install path. Exit" && exit 1;;
-  esac
-  git submodule deinit -f "$mPath" && \
-  git rm -f "$mPath" && git commit -m "chore($iType): remove submodule $mName" && \
-  rm -rf ".git/modules/$mName"
+  git submodule deinit -f "$mPath" && git rm -f "$mPath" && rm -rf ".git/modules/$mName"
 }
 
 update() {

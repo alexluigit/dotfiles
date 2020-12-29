@@ -22,13 +22,10 @@ alias -g NUL=">/dev/null 2>&1"
 alias -g S="| sort -n -r"
 alias -g W="| wc -l"
 mc() { mkdir -p $@ && cd ${@:$#} } # make a dir and cd into it
-
-# git
-alias fgb="fzf-git-branch"
-alias fgl="fzf-git-log"
-alias fgd="fzf-git-diff"
-alias fgs="fzf-git-stash"
-g() { [ -z $@ ] && { inside-worktree && nvim -c "Gstatus" -c "bd#" || return } || git $@ }
+g() {
+  [[ -z $@ ]] && git rev-parse --is-inside-work-tree >/dev/null 2>&1 && \
+  nvim -c "Gstatus" -c "bd#" || git $@
+}
 
 # pacman
 pas() { local res=($(pacman -Ssq | fzf -m --preview="pacman -Si {}")); [[ -n $res ]] && sudo pacman -Syy $res }

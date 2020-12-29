@@ -1,0 +1,70 @@
+#!/bin/sh
+GITPAGER=$(git config core.pager || echo 'cat')
+FORGIT_OPTS=(
+--ansi
+--height=80%
+--bind=ctrl-r:toggle-all
+--bind=?:toggle-preview
+--bind=alt-w:toggle-preview-wrap
+--preview-window=right:60%
++1
++m
+)
+
+# git commit viewer
+log() {
+  local c_hash preview_cmd files copy_cmd
+  c_hash="echo {} | grep -Eo '[a-f0-9]+' | head -1"
+  files=$(sed -nE 's/.* -- (.*)/\1/p' <<< "$*")
+  preview_cmd="$c_hash | xargs -I% git show --color=always % -- $files | $GITPAGER"
+  copy_cmd="tr -d '\n' | xclip -selection clipboard"
+  log_opts=(+s --tiebreak=index --bind="enter:execute($preview_cmd | LESS='-R' less)" \
+    --bind="ctrl-y:execute-silent($c_hash | $copy_cmd)")
+  FORGIT_OPTS+=("${log_opts[@]}")
+  eval "git log --graph --color=always --format='%C(auto)%h%d %s %C(black)%C(bold)%cr' $*" \
+  | fzf "${FORGIT_OPTS[@]}" --preview="$preview_cmd"
+}
+
+# git diff viewer
+diff() {
+  local cmd files diff_opts commit repo
+  [[ $# -ne 0 ]] && {
+    if git rev-parse "$1" -- &>/dev/null ; then
+      commit="$1" && files=("${@:2}")
+    else
+      files=("$@")
+    fi
+  }
+  repo="$(git rev-parse --show-toplevel)"
+  cmd="echo {} | sed 's/.*]  //' | xargs -I% git diff --color=always $commit -- '$repo/%' |$GITPAGER"
+  diff_opts=(+m -0 --bind="enter:execute($cmd | LESS='-R' less)")
+  FORGIT_OPTS+=("${diff_opts[@]}")
+  eval "git diff --name-status $commit -- ${files[*]} | sed -E 's/^(.)[[:space:]]+(.*)$/[\1]  \2/'" |
+    fzf "${FORGIT_OPTS[@]}" --preview="$cmd"
+}
+
+# git stash viewer
+stash() {
+  local cmd stash_opts
+  cmd="echo {} | cut -d: -f1 |xargs -I% git stash show --color=always --ext-diff % | $GITPAGER"
+  stash_opts=(+s -0 --tiebreak=index --bind="enter:execute($cmd | LESS='-R' less)")
+  FORGIT_OPTS+=("${stash_opts[@]}")
+  git stash list | fzf "${FORGIT_OPTS[@]}" --preview="$cmd"
+}
+
+br() {
+  local tags branches target
+  branches=$(
+    git --no-pager branch --all \
+      --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
+    | sed '/^$/d') || return
+  tags=$(
+    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
+  target=$(
+    (echo "$branches"; echo "$tags") |
+    fzf --ansi --no-hscroll --no-multi -n 2 \
+    --preview="git --no-pager log -150 --pretty=format:%s '..{2}'") || return
+  git checkout $(awk '{print $2}' <<<"$target" )
+}
+
+git rev-parse --is-inside-work-tree >/dev/null 2>&1 && $@ || exit 1

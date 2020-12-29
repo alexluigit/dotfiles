@@ -1,5 +1,5 @@
 configuration {
-    font:                           "Victor Mono Nerd Font Bold 19";
+    font:                           "VictorMono SemiBold 24";
     show-icons:                     false;
     threads:                        0;
     scroll-method:                  0;
@@ -7,85 +7,93 @@ configuration {
     fullscreen:                     false;
     hide-scrollbar:                 true;
     sidebar-mode:                   false;
-    location:                       3;
 }
 
-@import "colors_dark.rasi"
+* {
+    background:                     #ffffffbb;
+    transparent:                    #00000000;
+    foreground:                     #808080ff;
+    foreground-alt:                 #222222ff;
+    border:                         #5895DCff;
+    selected:                       #5895DCff;
+    urgent:                         #EC407Aff;
+    logo:                           #EC407Aff;
+    on:                             #61C766ff;
+    off:                            #EC7875ff;
+}
 
 window {
     transparency:                   "real";
     background-color:               @background;
     text-color:                     @foreground;
     border-radius:                  8px;
-    height:                         472px;
-    width:                          8%;
+    width:                          1000px;
     x-offset:                       0;
-    y-offset:                       50;
+    y-offset:                       0;
 }
 
-prompt {
-    enabled:                        true;
-    padding:                        4px 4px 6px 40px;
-    margin:                         4px 4px 6px 0px;
-    background-color:               @background;
-    text-color:                     @foreground;
-    font:                           "SF Compact Display SemiBold 20";
-}
-
-textbox-prompt-colon {
-    expand:                         false;
-    str:                            "\n\n﬙";
-    background-color:               @background;
-    text-color:                     @logo;
-    padding:                        7px 35px 0px 32px;
-    margin:                         4px 4px 0px 0px;
+mainbox {
+    background-color:               @transparent;
+    children:                       [ inputbar, listview ];
+    spacing:                        20px;
+    margin:                         30px;
 }
 
 inputbar {
     children:                       [ textbox-prompt-colon, prompt ];
     background-color:               @background;
-    text-color:                     @foreground;
     expand:                         false;
-    border:                         0px 0px 1px 0px;
-    border-color:                   @border;
-    margin:                         0px 0px 0px 0px;
-    padding:                        0px 0px 0px 0px;
+    border-radius:                  8px;
+}
+
+prompt {
+    enabled:                        true;
+    padding:                        20px;
+    background-color:               @transparent;
+    text-color:                     @foreground;
+}
+
+textbox-prompt-colon {
+    expand:                         false;
+    str:                            "SYSINFO";
+    background-color:               @off;
+    text-color:                     @background;
+    padding:                        20px;
 }
 
 listview {
-    background-color:               @background;
-    columns:                        1;
-    spacing:                        4px;
+    background-color:               @transparent;
+    columns:                        7;
+    lines:                          1;
+    spacing:                        20px;
     cycle:                          true;
     dynamic:                        true;
     layout:                         vertical;
 }
 
-mainbox {
-    background-color:               @background;
-    children:                       [ inputbar, listview ];
-    spacing:                        10px;
-}
-
 element {
     background-color:               @background;
     text-color:                     @foreground;
-    orientation:                    horizontal;
     border-radius:                  4px;
-    padding:                        6px 6px 6px 6px;
 }
 
 element-text {
+    font:                           "VictorMono SemiBold 40";
     expand:                         true;
-    horizontal-align:               0;
-    vertical-align:                 0;
-    margin:                         0px 0px 0px 30px;
+    horizontal-align:               1;
+    padding:                        20px 44px 40px 40px;
+    position:                       center;
+}
+
+element normal,
+element alternate {
+    background-color:               @foreground;
+    text-color:                     @background;
 }
 
 element selected {
     background-color:               @selected;
     text-color:                     @background;
     border:                         0px;
-    /* border-radius:                  20px; */
     border-color:                   @border;
 }

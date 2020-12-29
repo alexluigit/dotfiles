@@ -4,5 +4,5 @@ Terminal=false
 Type=Application
 Name=BraveDev
 Icon=brave
-Exec=bravectl start-dev
+Exec=bravectl start_dev
 StartupWMClass=BraveDev

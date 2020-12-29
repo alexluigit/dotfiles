@@ -1,45 +1,58 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env sh
 main() {
-  local OPTIND CONTROL_ON=0 OPTSTR='@'
+  local MODIFIER_ON=0 OPTSTR='@%:'
   for i in {{a..z},{A..Z}}; do OPTSTR+=$i; done
   while getopts $OPTSTR opt; do
     case $opt in
-      @) CONTROL_ON=1;;
+      @) MODIFIER_ON=1;;
+      a) rofi -no-lazy-grab -show drun -theme ~/.config/rofi/themes/launcher.rasi;;
+      f) fullscreen;;
+      q) ctrl 'xdo close' 'xdo kill'; quit_monocle;;
+      r) rofi -no-lazy-grab -show run -theme ~/.config/rofi/themes/dmenu.rasi;;
+      t) quit_monocle; term;;
+      v) term fm;;
+      w) quit_monocle; ctrl "bravectl start" "bravectl start_inco";;
+      x) multilockscreen -s;;
+      %) case $OPTARG in
+          F3fix) f3fix;;
+          n) send_key "\[Down]";;
+          e) send_key "\[Up]";;
+          F7) music-control previous;;
+          F8) music-control play-pause;;
+          F9) music-control next;;
+          F10) volumectl mute;;
+          F11) volumectl down;;
+          F12) volumectl up;;
+          Return) term drop;;
+          Escape) ~/.config/rofi/scripts/powermenu;;
+          mouse1) send_key "\Cx";;
+          mouse2) send_key "\Aa";;
+          Delete) send_key "\[F12]";;
+          *) exit;;
+         esac;;
+      A) echo $(__focus) > ~/1.txt;;
       C) click;;
-      D) bravectl second;;
+      D) bravectl start_dev;;
       E) run-emacs;;
       M) bravectl music;;
       N) nautilus;;
-      S) fullscrot;;
+      S) flameshot full -p ~/Pictures/Screenshots;;
       T) ~/.config/rofi/scripts/sessions;;
-      a) run-rofi drun;;
-      f) fullscreen;;
-      l) send_key "\[Down]";;
-      p) send_key "\[Up]";;
-      q) quit-current;;
-      r) run-rofi run;;
-      t) term;;
-      v) term fm;;
-      w) ctrl "bravectl start" "bravectl start-inco";;
-      x) multilockscreen -s;;
-      y) term drop;;
-      z) ~/.config/rofi/scripts/powermenu;;
       \?) exit 1;;
     esac
-  done
+  done;
   shift $((OPTIND -1))
 }
 
-ctrl() { [[ $CONTROL_ON == "0" ]] && eval $1 || eval $2 }
-click() { sleep 0.2 && xdotool click 1 }
-fullscrot() {	flameshot full -p ~/Pictures/Screenshots }
-fullscreen() { [[ $(__focus) = *"- YouTube - Brave" ]] && bravectl fullscreen_yt || bspc desktop -l next }
-quit-current() { [[ $CONTROL_ON == '0' ]] && xdo close || xdo kill }
-run-rofi() { rofi -no-lazy-grab -show $1 -theme ~/.config/rofi/themes/launcher.rasi }
-run-emacs() { local wid=$(xdotool search --class 'emacs'); [[ -n $wid ]] && xdotool windowactivate $wid || exec emacs }
-term() { [[ -z $1 ]] && exec alacritty || { [[ $1 = "drop" ]] && __drop || __vifm } }
-send_key() { xvkbd -xsendevent -text $1 }
-__drop() { exec tdrop -a -m -n TERM -h 98% -w 42% -x 0 -y 50 alacritty }
-__vifm() { exec tdrop -a -m -n FM -h 98% -w 42% -x 0 -y 50 alacritty -e vifmrun }
-__focus() { xdotool getwindowfocus getwindowname }
+f3fix() { [[ $(__focus) = "Alacritty" ]] && send_key "\[F3]" || send_key "\Co"; }
+quit_monocle() { [[ $(bspc wm -g | awk -F ':' '{print $(NF-2)}') == 'LM' ]] && bspc desktop -l next; }
+ctrl() { [[ $MODIFIER_ON == "0" ]] && eval $1 || eval $2; exit; }
+click() { sleep 0.2 && xdotool click 1; }
+fullscreen() { [[ $(__focus) = *"- YouTube - Brave" ]] && bravectl fullscreen_yt || bspc desktop -l next; }
+run_emacs() { local wid=$(xdotool search --class 'emacs'); [[ -n $wid ]] && xdotool windowactivate $wid || exec emacs; }
+term() { [[ -z $1 ]] && exec alacritty || { [[ $1 = "drop" ]] && __drop || __lf; } }
+send_key() { xvkbd -xsendevent -text $1; }
+__drop() { exec tdrop -a -m -n TERM -h 98% -w 42% -x 0 -y 50 alacritty; }
+__lf() { exec tdrop -a -m -n FM -h 98% -w 50% -x 0 -y 50 alacritty -e lfrun; }
+__focus() { xdotool getwindowfocus getwindowname; }
 main $@

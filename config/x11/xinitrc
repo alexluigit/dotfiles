@@ -2,7 +2,7 @@
 easystroke --config-dir ~/.config/easystroke &
 xrdb -merge ~/.config/x11/xresources
 sxhkd -m 1 &
-aria2c --input-file=~/.cache/aria2/aria2.session &
+aria2c -i ~/.cache/aria2/aria2.session &
 deadd-notification-center &
 privoxy --no-daemon ~/.config/privoxy/config &
 fcitx5 &

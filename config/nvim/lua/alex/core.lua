@@ -13,7 +13,6 @@ vim.cmd('packadd! vim-easy-align')
 vim.cmd('packadd! vim-surround')
 vim.cmd('packadd! vim-fugitive')
 vim.cmd('packadd! vim-repeat')
-vim.cmd('packadd! vim-eunuch')
 vim.cmd('packadd! vim-slime')
 vim.cmd('packadd! vim-which-key')
 

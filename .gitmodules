@@ -14,9 +14,6 @@
 [submodule "vim-pathogen"]
 	path = config/nvim/pack/bundle/opt/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen
-[submodule "vim-eunuch"]
-	path = config/nvim/pack/bundle/opt/vim-eunuch
-	url = https://github.com/tpope/vim-eunuch
 [submodule "vim-easy-align"]
 	path = config/nvim/pack/bundle/opt/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align

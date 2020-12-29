@@ -1,49 +1,49 @@
-# Focus
+# WM-Navigation
 super + {h,n,e,apostrophe}
 	bspc node -f {west,south,north,east}.local
+super + shift + {1-8}
+	bspc node -d ^{1-8}
 super + {_,control} {1-8}
 	bspc {desktop -f,node -d} ^{1-8} --follow
 super + Tab
 	bspc node -f last
-super + grave
-	bsp-layout set {tall,rtall}
 
-# Launcher
-super + {_,control} {a-d,f-m,p-x,Return,Escape}
-	launcher {_,-@} -{a-d,f-m,p-x,y,z}
-super + o; {a-z}
-	launcher -{A-Z}
-
-# Window size / move
-hyper + Tab
-	bspc node -s biggest.local || bspc node -s next.local || bspc node -s prev.local
+# WM-Layout
+hyper + space
+	bsp-layout set {tall,rtall,remove}
 hyper + f
 	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
-hyper + grave
-        bsp-layout remove
+hyper + m; {h,n,e,apostrophe}
+	xdo move {-x -20,-y +20,-y -20,-x +20}
+
+# WM-Resize
+hyper + s
+	bspc node -s biggest.local || { bspc node -s next.local || bspc node -s prev.local }
 hyper + {h,n,e,apostrophe}
 	bspc node -s {west,south,north,east}
-hyper + super + {h,n,e,apostrophe}
-	~/.config/bspwm/scripts/bsp_resize {left,down,up,right} 50
 hyper + {b, equal}
 	bspc node @/ -{B,E}
+hyper + super + {h,n,e,apostrophe}
+	~/.config/bspwm/scripts/bsp_resize {left,down,up,right} 50
+
+# WM-NewNode
 hyper + p; {h,n,e,apostrophe}
 	bspc node --presel-dir '~{west,south,north,east}'
 hyper + p; {2-8}
 	bspc node -o 0.{2-8}
-hyper + m; {h,n,e,apostrophe}
-	xdo move {-x -20,-y +20,-y -20,-x +20}
 hyper + Escape
 	bspc node -p cancel
 
-# Function keys
-XF86{Mon,Kbd}BrightnessDown
-	xvkbd -xsendevent -text {"\[F1]","\[F5]"}
-XF86Audio{Lower,Raise}Volume
-	xvkbd -xsendevent -text {"\[F11]","\[F12]"}
-XF86Audio{Prev,Play,Next}
-	music-control {previous,play-pause,next}
-hyper + XF86Audio{LowerVolume,RaiseVolume,Mute}
-	volumectl {down,up,mute}
-button{8,9}
-	xvkbd -xsendevent -text {'\Cw', '\Ct'}
+# Launcher
+super + {_,control} {a-d,f-m,p-z,Return,Escape}
+	launcher {_,-@} -{a-d,f-m,p-z,% Return,% Escape}
+super + o; {a-z}
+	launcher -{A-Z}
+
+# Keys
+control + apostrophe
+	launcher -% F3fix
+{_,hyper +} {F7,F8,F9,F10,F11,F12,button8,button9,Delete}
+	launcher {_,-@} -% {F7,F8,F9,F10,F11,F12,mouse1,mouse2,Delete}
+alt + {n,e}
+	launcher -% {n,e}

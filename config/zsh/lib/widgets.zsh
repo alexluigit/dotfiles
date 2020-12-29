@@ -10,7 +10,7 @@ ctrl-b() { zbug }
 ctrl-k() { zle edit-command-line }
 ctrl-\'(){ [[ $#LBUFFER -ne $#BUFFER ]] && zle end-of-line || zle autosuggest-accept }
 ctrl-RT(){ [[ -n $BUFFER ]] && zle accept-line || __quick-sudo }
-ctrl-i() { [[ -n $BUFFER ]] && zle backward-char || __fzf-open-menu DOT }
+ctrl-i() { [[ -n $BUFFER ]] && zle backward-char || __fzf-open . "Edit: " nvim }
 ctrl-o() { [[ -n $BUFFER ]] && zle forward-char || __fzf-open-menu }
 ctrl-d() { [[ -n $BUFFER ]] && zle delete-char || __fzf-cd }
 ctrl-h() { [[ -n $BUFFER ]] && zle backward-delete-char || __updir }
@@ -55,9 +55,7 @@ __fzf-hist() {
 }
 
 __fzf-open-menu() {
-  local res
-  [[ -n $1 ]] && res=($(echo ${USER_DIRS[$1]})) \
-  || res=($(for i in ${(@v)USER_DIRS}; do echo $i; done | fzf --prompt="Open: " --with-nth 2,4));
+  local res=($(for i in ${(@v)USER_DIRS}; do echo $i; done | fzf --prompt="Open: " --with-nth 2,4));
   [[ -n $res ]] && { res[2]+=" "; __fzf-open $res } || zle reset-prompt
 }
 

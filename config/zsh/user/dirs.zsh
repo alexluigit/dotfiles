@@ -1,10 +1,10 @@
-typeset -A USER_DIRS=(
-   MUSIC     "/home/alex/Music/               mpv   Music"
-   NOTE      "/home/alex/Documents/notes/     nvim  Note"
-   PIC       "/home/alex/Pictures/            sxiv  Pictures"
-   VID       "/home/alex/Videos/              mpv   Videos"
-   DEV_VID   "/media/HDD/Dev/                 mpv   Dev"
-   DOT       "/home/alex/Dev/alex.files/      nvim  Config"
-   HOME      "/home/alex/                     nvim  Home"
-   ROOT      "/                               nvim  Root"
+typeset -a USER_DIRS=(
+   "/home/alex/Dev/alex.files/      nvim  Config"
+   "/media/HDD/Dev/                 mpv   Dev"
+   "/home/alex/Music/               mpv   Music"
+   "/home/alex/Documents/notes/     nvim  Note"
+   "/home/alex/Pictures/            sxiv  Pictures"
+   "/home/alex/Videos/              mpv   Videos"
+   "/home/alex/                     nvim  Home"
+   "/                               nvim  Root"
 )

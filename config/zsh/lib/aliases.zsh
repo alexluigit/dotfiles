@@ -45,7 +45,7 @@ t() {
   # https://gist.github.com/lann/6771001
   local SOCK_SYMLINK=~/.config/ssh/ssh_auth_sock
   [ -r "$SSH_AUTH_SOCK" -a ! -L "$SSH_AUTH_SOCK" ] && ln -sf "$SSH_AUTH_SOCK" $SOCK_SYMLINK
-  _switch() { tmux switch -t $1 2>/dev/null || tmux a -t $1 }
+  _switch() { [[ -n $TMUX ]] && tmux switch -t $1 2>/dev/null || tmux a -t $1 }
   [[ -n $@ ]] && { env SSH_AUTH_SOCK=$SOCK_SYMLINK tmux $@; return }
   HAS_SESSION=$(tmux has-session -t=$S_NAME 2>/dev/null)
   [ $? -eq 0 ] && _switch $S_NAME || { [ -x $S_CONFIG/tmux ] && { tmux new -s $S_NAME -d && $S_CONFIG/tmux $S_NAME && _switch $S_NAME } \

@@ -32,9 +32,6 @@
 [submodule "fzf.vim"]
 	path = config/nvim/pack/bundle/opt/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
-[submodule "rime"]
-	path = local/apps/rime
-	url = https://github.com/alexluigit/rime
 [submodule "ultisnips"]
 	path = config/nvim/pack/bundle/opt/ultisnips
 	url = https://github.com/SirVer/ultisnips
@@ -78,6 +75,9 @@
 [submodule "vim-bujo"]
 	path = config/nvim/pack/bundle/opt/vim-bujo
 	url = https://github.com/vuciv/vim-bujo
+[submodule "nvim-treesitter"]
+	path = config/nvim/pack/bundle/opt/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
 [submodule "vim-which-key"]
 	path = config/nvim/pack/bundle/opt/vim-which-key
 	url = https://github.com/liuchengxu/vim-which-key
@@ -96,3 +96,6 @@
 [submodule "nvim-treesitter"]
 	path = config/nvim/pack/bundle/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule "rime"]
+	path = config/rime
+	url = https://github.com/alexluigit/rime

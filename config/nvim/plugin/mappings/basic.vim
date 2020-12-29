@@ -5,8 +5,6 @@ nmap     <silent>         go          :silent! !xdg-open <cfile><CR>
 " Note: <C-:>, <C-'>, <C-Cr> map to F2, F3, F4 in terminal emulator
 nnoremap <silent>        <c-h>        :wincmd h<CR>
 nnoremap <silent>        <F3>         :wincmd l<CR>
-nnoremap <silent>        <c-n>        :wincmd j<CR>
-nnoremap <silent>        <c-e>        :wincmd k<CR>
 nnoremap <silent>        <m-h>        :vert resize -5<CR>
 nnoremap <silent>        <m-'>        :vert resize +5<CR>
 nnoremap <silent>        <m-n>        :resize -5<CR>

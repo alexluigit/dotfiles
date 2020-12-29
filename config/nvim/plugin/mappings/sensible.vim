@@ -19,8 +19,9 @@ nnoremap                N             J
 noremap                 k             e
 noremap                 '             l
 " Bring back n key functionality meanwhile disable n/N motion being added to jumplist
-nnoremap <silent>       <C-l>         :keepj norm! n<cr>
-nnoremap <silent>       <C-p>         :keepj norm! N<cr>
+nnoremap <silent>       <C-n>         :keepj norm! n<cr>
+nnoremap <silent>       <C-e>         :keepj norm! N<cr>
+nnoremap                <F2>          <C-e>
 " Undo/Redo/Repeat last {cmd, macro}
 nnoremap <silent>       u             :silent norm! u<cr>
 nnoremap <silent>       <C-r>         @:

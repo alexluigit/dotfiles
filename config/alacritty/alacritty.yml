@@ -73,14 +73,12 @@ mouse_bindings:
 key_bindings:
   # Fix broken terminal
   # Ctrl-;      => F2
-  # Ctrl-'      => F3
   # Ctrl-Return => F4
   # Ctrl-/      => F5
   # Ctrl-i      => F6
   # Ctrl-,      => F10
   # Ctrl-.      => F11
   - { key: Semicolon,  mods: Control,        chars: "\x1bOQ"   }
-  - { key: Apostrophe, mods: Control,        chars: "\x1bOR"   }
   - { key: Return,     mods: Control,        chars: "\x1b[14~" }
   - { key: Slash,      mods: Control,        chars: "\x1b[15~" }
   - { key: I,          mods: Control,        chars: "\x1b[17~" }

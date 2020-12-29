@@ -3,3 +3,4 @@
 .local/
 .config/
 node_modules/
+*.vtt

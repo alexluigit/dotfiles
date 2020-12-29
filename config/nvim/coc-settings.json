@@ -27,6 +27,7 @@
     "javascriptreact",
     "typescript.tsx"
   ],
+  "tailwindCSS.headwind.runOnSave": false,
   "coc.preferences.formatOnSaveFiletypes": ["css", "vue", "markdown"],
   "snippets.ultisnips.directories": ["ultisnips"],
   "diagnostic.errorSign": "",

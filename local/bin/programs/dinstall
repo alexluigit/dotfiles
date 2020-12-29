@@ -30,11 +30,12 @@ zshenv() {
 }
 
 assets() {
-  ln -sf $REPODIR/local/share/assets ~/.local/share/assets
+  ln -sf $REPODIR/local/share/assets ~/.local/share
+  ln -sf $REPODIR/local/share/fonts ~/.local/share
 }
 
 __apps() {
-  ln -sf $REPODIR/local/apps/rime ~/.local/share/fcitx5
+  ln -sf $REPODIR/config/rime ~/.local/share/fcitx5
   ln -sf $REPODIR/local/share/applications ~/.local/share
   ln -sf $REPODIR/config/mimeapps.list $CFGDIR/mimeapps.list
 }

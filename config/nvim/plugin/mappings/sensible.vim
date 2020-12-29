@@ -7,7 +7,8 @@ xnoremap                *             ymp:keepj norm! /\V<C-r>=escape(@",'/\')<c
 vnoremap                <             <gv
 vnoremap                >             >gv
 " fast navigation
-nnoremap <silent>       -             :EditVifm <bar> setl statusline=%#Normal#<cr>
+" nnoremap <silent>       -             :EditVifm <bar> setl statusline=%#Normal#<cr>
+nnoremap <silent>       -             :Lf<Cr>
 " If {count} > 5, j/k(n/e in colemak) motion should be added to jumplist
 noremap <expr>          e             (v:count > 5 ? "m'" . v:count : '') . 'k'
 noremap <expr>          n             (v:count > 5 ? "m'" . v:count : '') . 'j'

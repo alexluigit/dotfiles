@@ -1,4 +1,4 @@
-ctrl-f() { __file-manager }
+ctrl-f() { lfrun .; zle-line-init  }
 ctrl-j() { __todolist }
 ctrl-r() { __fzf-hist }
 ctrl-s() { __autopairs }
@@ -66,7 +66,6 @@ __fzf-cd() { local sel=$(ls -D | fzf --ansi); [[ -n $sel ]] && cd $sel; zle rese
 __fzf-comp-helper() { BUFFER="$BUFFER**"; zle end-of-line; fzf-completion }
 __fzf-kill() { BUFFER="kill -9 "; zle end-of-line; fzf-completion }
 __updir() { cd ..; zle reset-prompt }
-__file-manager() { BUFFER="vifmrun ."; zle accept-line }
 __yank-cmdline() { echo -n "$BUFFER" | xclip -selection clipboard }
 __todolist() { nvim ~/.cache/bujo/todo.md; zle-line-init }
 __quick-sudo() { BUFFER="sudo !!"; zle accept-line }

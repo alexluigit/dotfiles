@@ -7,7 +7,7 @@ let g:wkm["'"]   = [ ':bnext',                                       'next buffe
 let g:wkm['h']   = [ ':bprevious',                                   'prev buffer' ]
 let g:wkm['q']   = [ ':call whichkey#fix("quit")',                   'close buffer']
 let g:wkm['u']   = [ ':redo',                                        'undo tree' ]
-let g:wkm['v']   = [ ':vs|EditVifm|setl stl=',                       'vertical' ]
+let g:wkm['v']   = [ ':LfVS',                                        'vertical' ]
 let g:wkm['w']   = [ ':silent! w',                                   'save' ]
 let g:wkm['x']   = [ ':silent! x',                                   'save & close' ]
 let g:wkm['1']   = [ '<Plug>BufTabLine.Go(1)',                       'BufTab1' ]

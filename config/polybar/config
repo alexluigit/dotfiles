@@ -1,16 +1,15 @@
 ; vim:ft=dosini
-; ARGB color (e.g. #f00, #ff992a, #ddff1023)
 ; check polybar wiki for internal modules [https://github.com/polybar/polybar/wiki]
 [color]
 fg = #55f24829
 bg = #55090b11
 white = #80FFFFFF
 black = #aa000000
-systray = #dd333333
 shade1 = #bf000000
 shade2 = #efbbbbbb
 shade3 = #aa444444
 shade4 = #aa5063a3
+shade5 = #ee888888
 
 [settings]
 screenchange-reload = false
@@ -18,10 +17,6 @@ compositing-foreground = source
 compositing-background = source
 compositing-border = over
 pseudo-transparency = false
-
-[global/wm]
-margin-top = 0
-margin-bottom = 0
 
 [bar/bar]
 monitor = ${env:MONITOR:DP-0}
@@ -33,29 +28,25 @@ fixed-center = true
 bottom = false
 foreground = ${color.fg}
 background = ${color.bg}
-font-0 = SF Compact Display:style=Regular:size=20;5
-font-1 = SF Compact Display:style=Semibold:size=25;5
-font-2 = Noto Sans CJK SC:style=Regular:size=25;5
-font-3 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular:size=20;5
-font-4 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid:size=20;5
-font-5 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular:size=20;5
-font-6 = "SFMono Nerd Font Mono:size=25;5"
-font-7 = "SFMono Nerd Font Mono:size=30;7"
-font-8 = Noto Sans CJK SC:style=Regular:size=18;3
+font-0 = Noto Sans CJK SC:style=Bold:size=24;4
+font-1 = Noto Sans CJK SC:style=Regular:size=18;3
+font-2 = Feather:style=Regular:size=24;5
+font-3 = Font Awesome 5 Free:style=Regular:size=20;5
+font-4 = Font Awesome 5 Free:style=Solid:size=20;5
+font-5 = Font Awesome 5 Brands:style=Regular:size=20;5
 wm-restack = bspwm
 override-redirect = false
 modules-left = launcher bspwm music
-modules-right = pomo systray-fix date pulseaudio sysmenu
+modules-right = pomo date pulseaudio sysmenu
 dim-value = 1.0
-tray-position = center
+tray-position = right
 tray-padding = 2
 tray-maxsize = 30
-tray-offset-x = 1510
-tray-background = ${color.systray}
+tray-background = ${color.shade2}
 
 [module/launcher]
 type=custom/text
-content = ""
+content = %{T4}%{T-}
 content-padding = 4
 content-foreground = ${color.black}
 content-background = ${color.shade2}
@@ -70,32 +61,24 @@ index-sort = true
 enable-click = true
 reverse-scroll = false
 enable-scroll = true
-label-focused = ◉
-label-empty = 
+label-focused = %{T4}%{T-}
+label-empty = %{T4}%{T-}
 label-empty-foreground = ${color.shade4}
-label-occupied = 
+label-occupied = %{T4}%{T-}
 label-occupied-foreground = ${color.shade4}
-label-separator = " "
-label-separator-padding = 1
+label-separator = "  "
 scroll-up = bspwm-wsnext
 scroll-down = bspwm-wsprev
 
 [module/date]
 type = internal/date
 interval = 10
-time = "%H:%M"
-date = "%b-%d  "
-label = %time%  %{T1}%date%%{T-}
+time = %H:%M
+date = %b-%d
+label = %{T1}%time%%{T-}  %{T2}%date%%{T-}
 label-padding-left = 4
 label-padding-right = 2
 label-background = ${color.black}
-label-font = 2
-
-[module/systray-fix]
-type = custom/text
-content = " "
-content-padding = 5
-content-background = ${color.systray}
 
 [module/pomo]
 type = custom/script
@@ -103,35 +86,31 @@ exec = "pomo state"
 
 [module/pulseaudio]
 type = internal/pulseaudio
-format-volume-margin = 0
 format-volume = <ramp-volume>
-format-volume-padding = 4
-format-volume-background = ${color.shade2}
-format-volume-foreground = ${color.black}
+format-volume-background = ${color.black}
+format-volume-foreground = ${color.shade5}
 use-ui-max = false
 interval = 5
-ramp-volume-0 = ""
-ramp-volume-1 = ""
-ramp-volume-2 = ""
-label-muted = ""
-label-muted-foreground = ${color.fg}
-label-muted-background = ${color.shade2}
-label-muted-padding = 4
+ramp-volume-0 = %{T3}   %{T-}
+ramp-volume-1 = %{T3}   %{T-}
+ramp-volume-2 = %{T3}   %{T-}
+ramp-volume-3 = %{T4}  %{T-}
+label-muted =   %{T3}   %{T-}
+label-muted-foreground = ${color.shade4}
+label-muted-background = ${color.black}
 
 [module/sysmenu]
 type = custom/text
-content = "      "
-content-padding = 0
-content-foreground = ${color.black}
-content-background = ${color.shade2}
+content = %{T3}      %{T-}
+content-foreground = ${color.shade5}
+content-background = ${color.black}
 click-left = ~/.config/rofi/scripts/powermenu
 
 [module/music]
 type = custom/script
 format-margin = 4
-format =    <label>
+format = %{T4}%{T-}   %{T2}<label>%{T-}
 format-foreground = ${color.white}
-label-font = 9
 exec = music-control info
 tail = true
 interval = 2

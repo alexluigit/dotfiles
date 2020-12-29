@@ -24,7 +24,6 @@ font:
   bold_italic:
     family: Victor Mono
     style: Bold Italic
-
   glyph_offset:
     x: 0
     y: 2
@@ -33,6 +32,7 @@ draw_bold_text_with_bright_colors: true
 
 cursor:
   vi_mode_style: Underline
+  blink_interval: 500
 
 colors:
   primary:

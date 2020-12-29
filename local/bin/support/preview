@@ -1,14 +1,30 @@
-#!/bin/zsh
-# Preview script built for use with lf and fzf
-LINES=30
-case "$1" in
-    *.png|*.jpg|*.jpeg|*.mkv|*.mp4|*.m4v) mediainfo "$f1";;
-    *.pdf) pdftotext "$1" -;;
-    *.zip) zipinfo "$1";;
-    *.tar.gz) tar -ztvf "$1";;
-    *.tar.bz2) tar -jtvf "$1";;
-    *.tar) tar -tvf "$1";;
-    *.rar) unrar l "$1";;
-    *.7z) 7z l "$1";;
+#!/bin/sh
+width=$(printf "%0.f\n" "`echo "$(tput cols) / 2 - 2" | bc`")
+ext=$(tr '[:upper:]' '[:lower:]' <<< ${1##*.})
+
+case "$ext" in
+    zip) zipinfo "$1";;
+    gz) tar -ztvf "$1";;
+    bz2) tar -jtvf "$1";;
+    tar) tar -tvf "$1";;
+    rar) unrar l "$1";;
+    7z) 7z l "$1";;
+    wav|mp3|flac|m4a|wma|ape|ac3|og[agx]|spx|opus|as[fx]|flac) exiftool "$1";;
+    bmp|jpg|jpeg|png|xpm) $HOME/.config/lf/imagedraw $1 $2 $width $4 $5; exit 1;;
+    pdf)
+      CACHE=$(mktemp /tmp/thumbcache.XXXXX)
+      pdftoppm -png -f 1 -singlefile "$1" "$CACHE"
+      $HOME/.config/lf/imagedraw "$CACHE.png" $2 $width $4 $5
+      exit 1;;
+    epub)
+      CACHE=$(mktemp /tmp/thumbcache.XXXXX)
+      epub-thumbnailer "$1" "$CACHE" 1024
+      $HOME/.config/lf/imagedraw "$CACHE" $2 $width $4 $5
+      exit 1;;
+    avi|mp4|wmv|dat|3gp|ogv|mkv|mpg|mpeg|vob|fl[icv]|m2v|mov|webm|ts|mts|m4v|r[am]|qt|divx)
+      CACHE=$(mktemp /tmp/thumbcache.XXXXX)
+      ffmpegthumbnailer -i "$1" -o "$CACHE" -s 0
+      $HOME/.config/lf/imagedraw "$CACHE" $2 $width $4 $5
+      exit 1;;
     *) bat -p --color=always "$1";;
 esac

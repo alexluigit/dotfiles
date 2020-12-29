@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+readonly ID_PREVIEW="preview"
+declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW" \
+[path]="$1" [height]="$2" [width]="$3" [x]="$4" [y]="$5" [scaler]="contain" ) > "$FIFO_UEBERZUG"

@@ -1,0 +1,67 @@
+set hidden true
+set drawbox true
+set ignorecase true
+set previewer ~/.local/bin/preview
+set cleaner ~/.config/lf/cleaner
+set promptfmt " \033[34;1m%w\033[0m\033[1m%f\033[0m"
+map d
+map <space>
+
+map a rename
+map dd trash
+map DD delete
+map e up
+map i open
+map n down
+map r bulk-rename
+map t toggle
+map U unselect
+map x cut
+map . set hidden!
+map ; read
+map <c-n> search-next
+map <c-e> search-prev
+map <enter> $alacritty -e xdg-open "$f" &
+map <space>wp $wallpaperctl draw "$f"
+map <space>c push :chmod<space>
+map <space>d push :mkdir<space>
+map <space>e push :touch<space>
+map <space>f fzf_jump
+map <space>E push :sudoedit<space>
+
+cmd touch $touch "$(echo $*)"
+cmd sudoedit $sudoedit "$(echo $*)"
+cmd mkdir $mkdir -p "$(echo $*)"
+cmd trash ${{ for file in $fx; do gio trash "$file"; done }}
+cmd bulk-rename ${{ [[ -z $fs ]] && lf -remote "send $id push :rename<enter><c-u>" || vimv $fs }}
+cmd chmod ${{
+  for file in "$fx"; do chmod $(echo "$@") "$file"; done
+  lf -remote 'send reload'
+}}
+cmd zip $zip -r $(basename ${f%.*}).zip $f
+cmd tar $tar cvf $(basename ${f%.*}).tar $f
+cmd targz $tar cvzf $(basename ${f%.*}).tar.gz $f
+cmd tarbz2 $tar cjvf $(basename ${f%.*}).tar.bz2 $f
+cmd open ${{
+  ext=$(tr '[:upper:]' '[:lower:]' <<< ${f##*.})
+  case "$ext" in
+    zip) unzip "$f";;
+    tar|tbz2|tgz) tar -xvf "$f";;
+    bz2) tar -xjvf "$f";;
+    gz) tar -xzvf "$f";;
+    odt|doc|docx|xls|xlsx|odp|pptx|ppt) xdg-open "$f";;
+    mkv|mp4|mov|webm|avi|mp3|avi|mpg|mpeg|rmvb|fl[icv]) mpv "$f";;
+    bmp|jpg|jpeg|png|xpm) sxiv "$f";;
+    pdf) zathura "$f";;
+    *) $EDITOR "$f";;
+  esac
+}}
+cmd fzf_jump ${{
+  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}

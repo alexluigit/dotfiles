@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+readonly ID_PREVIEW="preview"
+declare -p -A cmd=([action]=remove [identifier]="$ID_PREVIEW") > "$FIFO_UEBERZUG"

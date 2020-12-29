@@ -4,7 +4,7 @@ ctrl-r() { __fzf-hist }
 ctrl-s() { __autopairs }
 ctrl-xx(){ __fzf-kill }
 ctrl-y() { __yank-cmdline }
-ctrl-\;(){ __fzf-navi z }
+ctrl-p(){ __fzf-navi z }
 ctrl-t() { __fzf-comp-helper }
 ctrl-b() { zbug }
 ctrl-k() { zle edit-command-line }
@@ -14,8 +14,8 @@ ctrl-i() { [[ -n $BUFFER ]] && zle backward-char || __fzf-open-menu DOT }
 ctrl-o() { [[ -n $BUFFER ]] && zle forward-char || __fzf-open-menu }
 ctrl-d() { [[ -n $BUFFER ]] && zle delete-char || __fzf-cd }
 ctrl-h() { [[ -n $BUFFER ]] && zle backward-delete-char || __updir }
-ctrl-l() { [[ -n $BUFFER ]] && zle vi-forward-word || zle clear-screen }
-ctrl-p() { [[ -n $BUFFER ]] && zle vi-backward-word || __fzf-navi home }
+ctrl-l() { [[ -n $BUFFER ]] && zle vi-backward-word || zle clear-screen }
+ctrl-\;(){ [[ -n $BUFFER ]] && zle vi-forward-word || __fzf-navi home }
 ctrl-z() { [[ -n $BUFFER ]] && zle push-input || __resume-jobs }
 backspace() { zle vi-backward-delete-char }
 

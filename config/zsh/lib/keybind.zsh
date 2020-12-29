@@ -27,4 +27,4 @@ zle -N ctrl-ti;      bindkey    '^t^[[17~'  ctrl-ti
 zle -N ctrl-to;      bindkey    '^t^o'      ctrl-to
 zle -N ctrl-tt;      bindkey    '^t^t'      ctrl-tt
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(ctrl-\')
-ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(ctrl-l)
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(ctrl-\;)

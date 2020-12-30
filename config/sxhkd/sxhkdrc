@@ -9,20 +9,16 @@ super + Tab
 	bspc node -f last
 
 # WM-Layout
-hyper + space
-	bsp-layout set {tall,rtall,remove}
-hyper + f
-	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
-hyper + m; {h,n,e,apostrophe}
-	xdo move {-x -20,-y +20,-y -20,-x +20}
-
-# WM-Resize
-hyper + s
-	bspc node -s biggest.local || { bspc node -s next.local || bspc node -s prev.local }
 hyper + {h,n,e,apostrophe}
 	bspc node -s {west,south,north,east}
+hyper + s
+	bspc node -s biggest.local || { bspc node -s next.local || bspc node -s prev.local }
+
+# WM-Resize
 hyper + {b, equal}
 	bspc node @/ -{B,E}
+hyper + space
+	~/.config/bspwm/scripts/bsp_resize {left 800, right 800}
 hyper + super + {h,n,e,apostrophe}
 	~/.config/bspwm/scripts/bsp_resize {left,down,up,right} 50
 
@@ -33,6 +29,12 @@ hyper + p; {2-8}
 	bspc node -o 0.{2-8}
 hyper + Escape
 	bspc node -p cancel
+
+# WM-Floating
+hyper + m; {h,n,e,apostrophe}
+	xdo move {-x -20,-y +20,-y -20,-x +20}
+hyper + f
+	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
 
 # Launcher
 super + {_,control} {a-d,f-m,p-z,Return,Escape}

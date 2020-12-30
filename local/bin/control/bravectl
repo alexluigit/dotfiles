@@ -13,7 +13,7 @@ music() { _try_switch music || _openmusic; }
 refresh() { _try_switch BraveDev && _refresh_tab; }
 fullscreen_yt() { __send_key "f" && alacritty -e "echo"; }
 
-_start() { __rmpki & exec brave $(echo ${START_FLAGS[@]}); }
+_start() { __rmpki & brave ${START_FLAGS[@]}; }
 _openmusic() { START_FLAGS+=("${MUSIC[@]}"); _start && __fullscreen; exit; }
 _refresh_tab() { sleep 0.1; __send_key '\Cr'; bspc node focused -f last; }
 _try_switch() { wid=$(__running_check $1); [[ -n $wid ]] && xdotool windowactivate $wid || return 1; }

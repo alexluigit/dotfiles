@@ -1,4 +1,4 @@
-ctrl-f() { lfrun .; zle-line-init  }
+ctrl-f() { __lf }
 ctrl-j() { __todolist }
 ctrl-r() { __fzf-hist }
 ctrl-s() { __autopairs }
@@ -67,6 +67,15 @@ __updir() { cd ..; zle reset-prompt }
 __yank-cmdline() { echo -n "$BUFFER" | xclip -selection clipboard }
 __todolist() { nvim ~/.cache/bujo/todo.md; zle-line-init }
 __quick-sudo() { BUFFER="sudo !!"; zle accept-line }
+__lf() {
+  tmp="$(mktemp)"
+  lfrun -last-dir-path="$tmp" "$@"
+  [ -f "$tmp" ] && {
+    dir="$(cat "$tmp")"; rm -f "$tmp"
+    [ -d "$dir" ] && { [ "$dir" != "$(pwd)" ] && cd "$dir" }
+  }
+  zle reset-prompt; zle-line-init
+}
 zbug() {}
 
 __make-notes() { nvim ~/Documents/notes/draft/notes.md; zle-line-init }

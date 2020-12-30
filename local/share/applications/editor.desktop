@@ -1,4 +1,5 @@
 [Desktop Entry]
 Type=Application
+NoDisplay=true
 Name=Editor
 Exec=editorCmd %F

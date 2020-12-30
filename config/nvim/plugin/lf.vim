@@ -18,7 +18,7 @@ function! s:Lf(path, split)
   if s:split == 'vs' | wincmd n | wincmd L | else | enew | endif
   setlocal nonumber norelativenumber nocursorline nocursorcolumn signcolumn=no listchars= stl= ft=
   ownsyntax off
-  call termopen(cmd, s:callback) | file lf
+  call termopen(cmd, s:callback) | file lf:open
   startinsert
 endfunction
 

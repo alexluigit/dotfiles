@@ -23,5 +23,6 @@ fun! whichkey#fix(cmd)
   elseif a:cmd == 'regsend' | exec "normal! \"Xdd"
   elseif a:cmd == 'regpaste' | exec "normal! \"xpqxq"
   elseif a:cmd == 'cocsearch' | exec "CocSearch " . expand("<cword>")
+  elseif a:cmd == 'delete' | enew | execute('!rm ' . expand("#")) | bwipe#
   else | return | endif
 endf

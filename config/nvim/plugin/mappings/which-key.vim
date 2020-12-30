@@ -40,7 +40,7 @@ let g:wkm.d['r'] = ['<Plug>VimspectorRestart',                       'restart']
 let g:wkm.d['s'] = ['<Plug>VimspectorStop',                          'stop']
 
 let g:wkm.e = {} | let g:wkm.e['name'] = '+edit'
-let g:wkm.e['d'] = [ ':Delete',                                      'delete current file' ]
+let g:wkm.e['d'] = [ ':call whichkey#fix("delete")',                 'delete current file' ]
 let g:wkm.e['e'] = [ ':e',                                           'refresh']
 let g:wkm.e['n'] = [ ':call whichkey#fix("newfile")',                'edit newfile' ]
 let g:wkm.e['f'] = [ ':CocCommand workspace.renameCurrentFile',      'rename file']

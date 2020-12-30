@@ -9,8 +9,8 @@ inoremap <expr><silent> <C-n>            <SID>pumNext()
 inoremap <expr><silent> <C-e>            <SID>pumPrev()
 nmap     <silent>       <C-s>            <Plug>(coc-range-select)
 xmap     <silent>       <C-s>            <Plug>(coc-range-select)
-inoremap <silent><expr> <Down>           coc#util#has_float() ? coc#util#float_scroll_i(1) : "\<Down>"
-inoremap <silent><expr> <Up>             coc#util#has_float() ? coc#util#float_scroll_i(-1) : "\<Up>"
+snoremap <silent><expr> <Down>           coc#float#has_scroll() ? coc#float#scroll(1) : "\<Down>"
+snoremap <silent><expr> <Up>             coc#float#has_scroll() ? coc#float#scroll(0) : "\<Up>"
 let g:coc_snippet_next = '<Tab>'
 let g:coc_snippet_prev = '<S-Tab>'
 

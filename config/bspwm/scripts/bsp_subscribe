@@ -27,14 +27,15 @@ spit() {
   sed -i "/^$spitterid/d" /tmp/swallowids
 }
 
-hideall() {
+bg_cleaner() { [[ $1 == "monocle" ]] && __hide_all_except $(__current) || __show_all; }
+
+__hide_all_except() {
   for node in $(bspc query -N -n .local.window); do
     bspc node $node --flag hidden=on
   done
   bspc node $1 --flag hidden=off
 }
-
-unhideall() {
+__show_all() {
   [[ $(__focus) = *"- YouTube - Brave" ]] && return
   for node in $(bspc query -N -n .local.window); do
     bspc node $node --flag hidden=off
@@ -43,18 +44,6 @@ unhideall() {
     bspc node $node --flag hidden=on
   done
 }
-
 __focus() { xdotool getwindowfocus getwindowname; }
 __get_class() { [ -n "$1" ] && xprop -id "$1" | sed -n '/WM_CLASS\|WM_COMMAND/s/.*"\(.*\)".*/\1/p'; }
-
-bspc subscribe node_add node_remove | while read event _ parent child_a child_r ; do
-  case $event in
-    node_add) swallow $child_r $parent;;
-    node_remove) spit $child_a $parent;;
-  esac
-done &
-
-bspc subscribe desktop_layout | while read _ _ _ layout; do
-  current=$(bspc query -N -n focused)
-  [[ $layout == "monocle" ]] && hideall $current || unhideall
-done &
+__current() { bspc query -N -n focused; }

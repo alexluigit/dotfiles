@@ -1,25 +1,3 @@
-# Syntax highlighting
-autoload -U colors && colors # Enable colors
-_italicize() { printf "%b%s%b" '\e[3m' "$@" '\e[23m' }
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[alias]=fg=yellow,bold
-ZSH_HIGHLIGHT_STYLES[builtin]=fg=blue,bold
-ZSH_HIGHLIGHT_STYLES[function]=fg=yellow,bold
-ZSH_HIGHLIGHT_STYLES[command]=fg=blue,bold
-
-# Cursor shape
-zle-line-init() { echo -ne "\e[5 q" } # zle -K viins, initiate `vi insert` as keymap
-preexec_functions+=(zle-line-init) # Init timer and beam shape cursor before every cmd
-zle-keymap-select() { # Change cursor shape for different vi modes.
-  if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
-    echo -ne '\e[3 q'
-  elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] \
-       || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-line-init; zle -N zle-keymap-select
-
 # Git
 git_prompt_info() {
   local ref git_status staged unstaged untracked
@@ -33,19 +11,19 @@ git_prompt_info() {
 }
 
 # preexec() and precmd() are hook functions in zsh. (bash has precmd() but not preexec())
-preexec_timer() { cmd_start=$(($(print -P %D{%s%6.})/1000)) }
+preexec_timer() { cmd_start=$(($(print -P %D{%s%6.})/1000)); }
 precmd_timer() {
-  [ $cmd_start ] && { local cmd_end=$(($(print -P %D{%s%6.})/1000)); \
-  local time_ms=$((cmd_end-cmd_start))
-  local time_sec=$(printf %.2f $(echo "$time_ms/1000" | bc -l))
-  local time_min=$(printf %i $(echo "$time_sec/60" | bc -l))
-  local time_min_tail=$(printf %i $(($time_sec-$time_min*60)))
-  { [[ $time_sec -ge 1 ]] && [[ $time_min -eq 0 ]] } \
-  && timer_result="%B$time_sec%b $(_italicize sec)" \
-  || timer_result="%B$time_ms%b $(_italicize ms)"
-  [[ $time_min -ge 1 ]] \
-  && timer_result="%B$time_min%b $(_italicize min) %B$time_min_tail%b $(_italicize sec)"
-  timer="%F{152}  $timer_result %f" }
+  [ $cmd_start ] && {
+    local cmd_end=$(($(print -P %D{%s%6.})/1000))
+    local t_ms=$((cmd_end-cmd_start))
+    local t_sec=$(printf %.2f $(echo "$t_ms/1000" | bc -l))
+    local t_min=$(printf %i $(echo "$t_sec/60" | bc -l))
+    local t_min_tail=$(printf %i $(($t_sec-$t_min*60)))
+    [[ $t_sec -ge 1 ]] && [[ $t_min -eq 0 ]] && t_res="%B$t_sec%b $(_italic sec)" \
+    || t_res="%B$t_ms%b $(_italic ms)"
+    [[ $t_min -ge 1 ]] && t_res="%B$t_min%b $(_italic min) %B$t_min_tail%b $(_italic sec)"
+    timer="%F{152}  $t_res %f"
+  }
 }
 preexec_functions+=(preexec_timer); precmd_functions+=(precmd_timer)
 

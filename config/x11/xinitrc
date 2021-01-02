@@ -1,18 +1,17 @@
 #!/bin/sh
+export DISPLAY_DEVICE=$(xrandr | awk '/ connected/{print $1}')
+xrdb -merge ~/.config/x11/xresources &
+
 easystroke --config-dir ~/.config/easystroke &
-xrdb -merge ~/.config/x11/xresources
 sxhkd -m 1 &
-aria2c -i ~/.cache/aria2/aria2.session &
 deadd-notification-center &
-privoxy --no-daemon ~/.config/privoxy/config &
 fcitx5 &
 flameshot &
 autolock &
 redshift &
-xsetroot -cursor_name left_ptr &
 picom --experimental-backends &
-xwallpaper --output $MONITOR --zoom $WALLPAPER &
+xwallpaper --output $DISPLAY_DEVICE --zoom $WALLPAPER &
 polybar bar &
-ss-local -c ~/.config/shadowsocks/config.json &
+xsetroot -cursor_name left_ptr &
 
 exec bspwm

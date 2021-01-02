@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
-export DISPLAY_DEVICE="$(xrandr | awk '/ connected/{print $1}')"
-xidlehook \
+exec xidlehook \
   --not-when-fullscreen \
   --not-when-audio \
   --timer 180 \

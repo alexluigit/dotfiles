@@ -19,7 +19,7 @@ compositing-border = over
 pseudo-transparency = false
 
 [bar/bar]
-monitor = ${env:MONITOR:DP-0}
+monitor = ${env:DISPLAY_DEVICE:DP-0}
 enable-ipc=true
 height = 50
 width = 100%

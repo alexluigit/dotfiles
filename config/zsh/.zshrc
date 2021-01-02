@@ -1,24 +1,20 @@
-# Options
-setopt AUTO_CD # Change dir without typing cd
-setopt CD_SILENT
-setopt AUTO_PUSHD # Push dir into dir stack
-setopt PUSHD_IGNORE_DUPS
-setopt PUSHD_MINUS
-setopt INC_APPEND_HISTORY # Write to the history file immediately, not when the shell exits.
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_REDUCE_BLANKS # Delete empty lines from history file
-setopt HIST_IGNORE_SPACE # Ignore a record starting with a space
-setopt MENU_COMPLETE # Tab once to get completion directly.
-setopt NONOMATCH # Enable url paste without quote
-setopt PROMPT_SUBST # Enable prompt parameter expansion, command substitution and arithmetic expansion
-setopt IGNORE_EOF # C-d will not exit shell
-
 # Aspects
 for file in $(ls $ZDOTDIR/lib); do; . $ZDOTDIR/lib/$file; done
 for file in $(ls $ZDOTDIR/user); do; . $ZDOTDIR/user/$file; done
 
 # Plugins
 source $ZDOTDIR/plugins/z/z.sh
-source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+_Z_DATA=$XDG_DATA_HOME/z/.z
+
 source $ZDOTDIR/plugins/fzf/shell/completion.zsh
+
+source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(ctrl-\')
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(ctrl-\;)
+
+source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[alias]=fg=yellow,bold
+ZSH_HIGHLIGHT_STYLES[builtin]=fg=blue,bold
+ZSH_HIGHLIGHT_STYLES[function]=fg=yellow,bold
+ZSH_HIGHLIGHT_STYLES[command]=fg=blue,bold

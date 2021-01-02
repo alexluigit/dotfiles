@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
-rm ~/.config/yay/aurlist.txt
-curl https://aur.archlinux.org/packages.gz -o ~/.config/yay/aurlist.txt.gz
-gunzip ~/.config/yay/aurlist.txt.gz
+AURLIST=~/.local/share/yay/aurlist.txt
+PACURL=https://aur.archlinux.org/packages.gz
+rm $AURLIST
+curl $PACURL -o "$AURLIST.gz"
+gunzip "$AURLIST.gz"

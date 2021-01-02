@@ -1,0 +1,17 @@
+#!/bin/sh
+cursor() {
+  url=https://github.com/TheScrawl/xcursor-breeze-neutral.git
+  cursor_theme=Breeze-Neutral
+  git clone $url ~/.local/share/icons/$cursor_theme
+  cd ~/.local/share/icons/$cursor_theme/cursors
+  ln -s right_ptr arrow
+  ln -s right_ptr draft_large
+  ln -s right_ptr draft_small
+  ln -s cross tcross
+  ln -s left_side left_tee
+  ln -s left_ptr ul_angle
+  ln -s left_ptr ur_angle
+  sed -i "s|\(Xcursor.theme: \)\(.*\)|\1$cursor_theme|" $XDG_CONFIG_HOME/x11/xresources
+}
+
+cursor

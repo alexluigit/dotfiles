@@ -1,6 +1,6 @@
 # WM-Navigation
 super + {h,n,e,apostrophe}
-	bspc node -f {west,south,north,east}.local
+	~/.config/bspwm/scripts/bsp_vim {west,south,north,east}
 super + shift + {1-8}
 	bspc node -d ^{1-8}
 super + {_,control} {1-8}

@@ -1,0 +1,13 @@
+#!/bin/sh
+# Call with direction [west, south, north, or east] from sxhkd
+# If in vim window, forward ctrl-[h, j, k, l], otherwise tell bspwm to focus window in given direction
+w_name=$(xdotool getwindowfocus getwindowname)
+[[ $w_name = 'nvim' ]] && {
+  case "$1" in
+    west)  keysym="h";;
+    south) keysym="j";;
+    north) keysym="k";;
+    east)  keysym="l";;
+  esac
+  xvkbd -xsendevent -text "\C$keysym"
+} || bspc node -f $1.local

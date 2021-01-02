@@ -3,8 +3,10 @@ nmap                     <c-b>        <C-v>
 nmap     <silent>         go          :silent! !xdg-open <cfile><CR>
 " Window navigation and resize
 " Note: <C-:>, <C-'>, <C-Cr> map to F2, F3, F4 in terminal emulator
-nnoremap <silent>        <c-h>        :wincmd h<CR>
-nnoremap <silent>        <F3>         :wincmd l<CR>
+noremap  <silent>        <c-h>        :BspwmNavigate h<CR>
+noremap  <silent>        <c-j>        :BspwmNavigate j<CR>
+noremap  <silent>        <c-k>        :BspwmNavigate k<CR>
+noremap  <silent>        <c-l>        :BspwmNavigate l<CR>
 nnoremap <silent>        <m-h>        :vert resize -5<CR>
 nnoremap <silent>        <m-'>        :vert resize +5<CR>
 nnoremap <silent>        <m-n>        :resize -5<CR>

@@ -25,6 +25,11 @@ bin() {
   __apps
 }
 
+pacman() {
+  sudo rm /etc/pacman.conf
+  sudo ln -sf $REPODIR/local/etc/pacman.conf /etc/pacman.conf
+}
+
 zshenv() {
   sudo ln -sf $REPODIR/config/zsh/system/zshenv /etc/zsh/zshenv
 }

@@ -4,6 +4,8 @@ set ignorecase true
 set previewer ~/.local/bin/preview
 set cleaner ~/.config/lf/cleaner
 set ifs "\n"
+set truncatechar ⋯
+set info size
 set promptfmt " \033[34;1m%w\033[0m\033[1m%f\033[0m"
 map d
 map <space>

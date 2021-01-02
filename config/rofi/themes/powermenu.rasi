@@ -15,11 +15,11 @@ configuration {
     foreground:                     #808080ff;
     foreground-alt:                 #222222ff;
     border:                         #5895DCff;
-    selected:                       #5895DCff;
+    selected:                       #EC7875ff;
     urgent:                         #EC407Aff;
     logo:                           #EC407Aff;
     on:                             #61C766ff;
-    off:                            #EC7875ff;
+    off:                            #5895DCff;
 }
 
 window {

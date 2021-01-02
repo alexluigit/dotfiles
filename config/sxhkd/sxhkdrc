@@ -47,5 +47,9 @@ control + apostrophe
 	launcher -% F3fix
 {_,hyper +} {F7,F8,F9,F10,F11,F12,button8,button9,Delete}
 	launcher {_,-@} -% {F7,F8,F9,F10,F11,F12,mouse1,mouse2,Delete}
-alt + {n,e}
-	launcher -% {n,e}
+alt + n
+	xdotool keyup n key --clearmodifiers Down
+alt + e
+	xdotool keyup e key --clearmodifiers Up
+control + alt + BackSpace
+	pkill X

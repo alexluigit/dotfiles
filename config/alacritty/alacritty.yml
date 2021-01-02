@@ -6,9 +6,12 @@ window:
     x: 12
     y: 10
   decorations: none
+  dynamic_title: true
+
 scrolling:
   history: 10000
   multiplier: 3
+
 background_opacity: 0.8
 
 font:

@@ -6,12 +6,11 @@ _colorize() { echo "\x1b\[38;5;$1m$2\x1b\[0m"; }
 _inside_git_repo() { git rev-parse --is-inside-work-tree >/dev/null 2>&1; }
 _fugitive() { nvim -c "Gstatus | bd# | nmap <buffer>q <c-w>q"; }
 
-__resume-jobs() { fg; zle reset-prompt; zle-line-init; }
-__updir() { cd ..; zle reset-prompt; }
-__yank-cmdline() { echo -n "$BUFFER" | xclip -selection clipboard; }
-__todolist() { nvim ~/.cache/bujo/todo.md; zle-line-init; }
-__quick-sudo() { BUFFER="sudo !!"; zle accept-line; }
-__lf() {
+_resume_jobs() { fg; zle reset-prompt; zle-line-init; }
+_updir() { cd ..; zle reset-prompt; }
+_yank_cmdline() { echo -n "$BUFFER" | xclip -selection clipboard; }
+_quick-sudo() { BUFFER="sudo !!"; zle accept-line; }
+_lf() {
   tmp="$(mktemp)"
   lfrun -last-dir-path="$tmp" "$@"
   [ -f "$tmp" ] && {
@@ -22,5 +21,6 @@ __lf() {
 }
 zbug() {}
 
-__make-notes() { nvim ~/Documents/notes/draft/notes.md; zle-line-init; }
-__make-scripts() { nvim ~/Dev/alex.files/local/bin/new.sh; zle-line-init; }
+_make-notes() { n ~/Documents/notes/draft/notes.md; }
+_make-scripts() { n ~/Dev/alex.files/local/bin/new.sh; }
+_todolist() { n ~/.cache/bujo/todo.md; }

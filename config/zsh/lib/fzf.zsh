@@ -8,14 +8,14 @@ done
 NAVI_B=(sed '"'); for i in $SYS_DIRS; do NAVI_B+=("s|^\${"$i"[2]}|\${"$i"[3]}|g;"); done; NAVI_B+=('"');
 NAVI_A=(sed '"'); for i in $SYS_DIRS; do NAVI_A+=("s|^\${"$i"[1]}\$SYM_OFFSET|\${"$i"[2]}|g;"); done; NAVI_A+=('"');
 
-__fzf-navi() {
+_fzf_navi() {
   [[ $1 == 'z' ]] && { local CMD=(z -l '|' awk \'{print \$2}\'); } \
   || { local CMD=(fd -H -td --ignore-file $XDG_CONFIG_HOME/fd/root . /); }
   dest=$(eval "$CMD" | eval "$NAVI_B" | fzf +s --tac --ansi | eval "$NAVI_A")
   [[ -z $dest ]] && { zle reset-prompt; return; } || { cd $dest; zle reset-prompt; }
 }
 
-__fzf-open() {
+_fzf_open() {
   local ignore fd_cmd="fd -tf -H -L -c always"
   [[ $1='/' ]] && ignore=(--ignore-file ~/.config/fd/root); cd $1
   local res=$(eval $fd_cmd $ignore | fzf -m --ansi --preview="preview {}" --prompt=$2)
@@ -23,7 +23,7 @@ __fzf-open() {
   cd -; zle reset-prompt; zle-line-init;
 }
 
-__fzf-hist() {
+_fzf_hist() {
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases
   local selected num
   selected=($(fc -rl 1 | fzf +m))
@@ -31,12 +31,12 @@ __fzf-hist() {
   zle reset-prompt
 }
 
-__fzf-open-menu() {
+_fzf_open_menu() {
   local res=($(for i in ${(@v)USER_DIRS}; do echo $i; done | fzf --prompt="Open: " --with-nth 2,4));
-  [[ -n $res ]] && { res[2]+=" "; __fzf-open $res; } || zle reset-prompt
+  [[ -n $res ]] && { res[2]+=" "; _fzf_open $res; } || zle reset-prompt
 }
 
-__fzf-cd() { local sel=$(ls -D | fzf --ansi); [[ -n $sel ]] && cd $sel; zle reset-prompt; }
-__fzf-comp-helper() { BUFFER="$BUFFER**"; zle end-of-line; fzf-completion; }
-__fzf-kill() { BUFFER="kill -9 "; zle end-of-line; fzf-completion; }
-__fzf-clip() { }
+_fzf_cd() { local sel=$(ls -D | fzf --ansi); [[ -n $sel ]] && cd $sel; zle reset-prompt; }
+_fzf_comp_helper() { BUFFER="$BUFFER**"; zle end-of-line; fzf-completion; }
+_fzf_kill() { BUFFER="kill -9 "; zle end-of-line; fzf-completion; }
+_fzf-clip() { }

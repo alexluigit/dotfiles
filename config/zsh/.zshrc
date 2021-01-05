@@ -1,6 +1,6 @@
 # Aspects
-for file in $(ls $ZDOTDIR/lib); do; . $ZDOTDIR/lib/$file; done
 for file in $(ls $ZDOTDIR/user); do; . $ZDOTDIR/user/$file; done
+for file in $(ls $ZDOTDIR/lib); do; . $ZDOTDIR/lib/$file; done
 
 # Plugins
 source $ZDOTDIR/plugins/z/z.sh

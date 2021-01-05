@@ -1,5 +1,5 @@
-_set_title() { [[ -z $TMUX ]] && echo -ne "\e]2;$1\007"; }
-_reset_title() { echo -ne "\e]2;Alacritty\007"; }
+_set_title() { [[ -z $TMUX ]] && echo -ne "\e]2;$1\007" || tmux select-pane -m; }
+_reset_title() { [[ -z $TMUX ]] && echo -ne "\e]2;Terminal\007" || tmux select-pane -M; }
 
 _italic() { printf "%b%s%b" '\e[3m' "$@" '\e[23m'; }
 _inside_git_repo() { git rev-parse --is-inside-work-tree >/dev/null 2>&1; }

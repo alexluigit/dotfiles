@@ -1,6 +1,5 @@
 # general
 alias d="gio trash"
-# alias n='nvim -c "let g:tty='\''$(tty)'\''"'
 alias sn="sudoedit"
 alias ka="killall"
 alias yd="youtube-dl --write-sub --write-auto-sub -o '~/Downloads/%(title)s-%(id)s.%(ext)s'"

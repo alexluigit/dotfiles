@@ -31,7 +31,7 @@ case "$ext" in
     tar) tar -tvf "$1";;
     rar) unrar l "$1";;
     7z) 7z l "$1";;
-    wav|mp3|flac|m4a|wma|ape|ac3|og[agx]|spx|opus|as[fx]|flac) exiftool "$1";;
+    wav|mp3|flac|m4a|wma|ape|ac3|og[agx]|spx|opus|as[fx]|flac) mediainfo "$1";;
     bmp|jpg|jpeg|png|xpm) __imagedraw $1 $2 $width $4 $5; exit 1;;
     pdf) __thumbcache "$@" pdf; exit 1;;
     epub) __thumbcache "$@" epub; exit 1;;

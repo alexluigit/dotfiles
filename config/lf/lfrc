@@ -55,7 +55,7 @@ cmd open ${{
     bz2) tar -xjvf "$f";;
     gz) tar -xzvf "$f";;
     odt|doc|docx|xls|xlsx|odp|pptx|ppt) xdg-open "$f";;
-    mkv|mp4|mov|webm|avi|mp3|avi|mpg|mpeg|rmvb|fl[icv]) mpv "$f";;
+    ape|mkv|mp4|mov|webm|avi|mp3|mpg|mpeg|rmvb|fl[icv]|flac|wav) mpv "$f";;
     bmp|jpg|jpeg|png|xpm) sxiv "$f";;
     pdf) zathura "$f";;
     *) $EDITOR "$f";;

@@ -14,7 +14,7 @@ refresh() { _try_switch BraveDev && _refresh_tab; }
 fullscreen_yt() { __send_key "f" && alacritty -e "echo"; }
 
 _start() { __rmpki & brave ${START_FLAGS[@]}; }
-_openmusic() { START_FLAGS+=("${MUSIC[@]}"); _start && __fullscreen; exit; }
+_openmusic() { START_FLAGS+=("${MUSIC[@]}"); _start & __fullscreen; }
 _refresh_tab() { sleep 0.1; __send_key '\Cr'; bspc node focused -f last; }
 _try_switch() { wid=$(__running_check $1); [[ -n $wid ]] && xdotool windowactivate $wid || return 1; }
 
@@ -22,7 +22,7 @@ __running_check() {
   [[ $1 == 'music' ]] && echo $(xdotool search --name 'Youtube Music') \
   || echo $(xdotool search --onlyvisible --desktop $(xdotool get_desktop) --class ${1:-brave})
 }
-__fullscreen() { __send_key "\[F11]" && alacritty -e "echo"; }
+__fullscreen() { sleep .3; __send_key "\[F11]"; alacritty -e "echo"; }
 __rmpki() { sleep 5 && rm -rf ~/.pki; }
 __send_key() { xvkbd -xsendevent -text $1; }
 

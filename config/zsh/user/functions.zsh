@@ -1,5 +1,5 @@
 n() { _set_title nvim; nvim $@; _reset_title; }
-g() { _set_title nvim; [[ -z $@ ]] && _inside_git_repo && _fugitive || git $@; _reset_title }
+g() {  [[ -z $@ ]] && _inside_git_repo && _fugitive || git $@; }
 mc() { mkdir -p $@ && cd ${@:$#}; } # make a dir and cd into it
 
 # pacman

@@ -4,7 +4,7 @@ _reset_title() { [[ -z $TMUX ]] && echo -ne "\e]2;Terminal\007" || tmux select-p
 _italic() { printf "%b%s%b" '\e[3m' "$@" '\e[23m'; }
 _colorize() { echo "\x1b\[38;5;$1m$2\x1b\[0m"; }
 _inside_git_repo() { git rev-parse --is-inside-work-tree >/dev/null 2>&1; }
-_fugitive() { nvim -c "Gstatus | bd# | nmap <buffer>q <c-w>q"; }
+_fugitive() { _set_title nvim; nvim -c "Gstatus | bd# | nmap <buffer>q <c-w>q"; _reset_title; }
 
 _resume_jobs() { fg; zle reset-prompt; zle-line-init; }
 _updir() { cd ..; zle reset-prompt; }

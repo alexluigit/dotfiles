@@ -4,7 +4,7 @@
 bspc monitor DP-0 -d Dev Web Doc Msc Vid PDF Art Sub
 
 bspc config border_width                0
-bspc config window_gap                  5
+bspc config window_gap                  10
 bspc config split_ratio                 0.52
 bspc config borderless_monocle          true
 bspc config gapless_monocle             true

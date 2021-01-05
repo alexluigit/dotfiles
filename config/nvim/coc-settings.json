@@ -10,12 +10,6 @@
       "command": "rust-analyzer",
       "filetypes": ["rust"],
       "rootPatterns": ["Cargo.toml"]
-    },
-    "bash": {
-      "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh", "zsh"],
-      "ignoredRootPaths": ["~"]
     }
   },
   "suggest.echodocSupport": true,

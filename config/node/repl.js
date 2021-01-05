@@ -1,8 +1,5 @@
 const Repl = require("repl");
 const util = require("util");
-const songMatch = require("@nondanee/unblockneteasemusic")
-
-const song = async (id) => songMatch(id, ['qq', 'kuwo', 'migu']).then(console.log)
 
 // Color functions
 const colors = { RED: "31", GREEN: "32", YELLOW: "33", BLUE: "34", MAGENTA: "35" };

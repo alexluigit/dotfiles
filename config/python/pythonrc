@@ -2,3 +2,13 @@ import readline
 from rich import pretty
 pretty.install()
 readline.write_history_file = lambda *args: None
+
+from musicdl import musicdl
+config = {'logfilepath': '.cache/musicdl.log', 'savedir': 'Downloads', 'search_size_per_source': 10, 'proxies': {}}
+target_srcs = [
+    'kugou', 'kuwo', 'qq', 'qianqian',
+    'netease', 'migu', 'xiami', 'joox',
+]
+client = musicdl.musicdl(config=config)
+def song():
+  client.run(target_srcs)

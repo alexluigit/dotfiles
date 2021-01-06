@@ -55,9 +55,15 @@ cmd open ${{
     bz2) tar -xjvf "$f";;
     gz) tar -xzvf "$f";;
     odt|doc|docx|xls|xlsx|odp|pptx|ppt) xdg-open "$f";;
-    ape|mkv|mp4|mov|webm|avi|mp3|mpg|mpeg|rmvb|fl[icv]|flac|wav) mpv "$f";;
-    bmp|jpg|jpeg|png|xpm) sxiv "$f";;
-    pdf) zathura "$f";;
+    ape|mkv|mp4|mov|webm|avi|mp3|mpg|mpeg|rmvb|fl[icv]|flac|wav)
+      echo -ne "\e]2;mpv\007"; mpv "$f"
+      echo -ne "\e]2;Terminal\007";;
+    bmp|jpg|jpeg|png|xpm)
+      echo -ne "\e]2;sxiv\007"; sxiv "$f"
+      echo -ne "\e]2;Terminal\007";;
+    pdf)
+      echo -ne "\e]2;zathura\007"; zathura "$f"
+      echo -ne "\e]2;Terminal\007";;
     *) $EDITOR "$f";;
   esac
 }}

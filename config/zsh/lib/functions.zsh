@@ -1,5 +1,5 @@
-_set_title() { [[ -z $TMUX ]] && echo -ne "\e]2;$1\007" || tmux select-pane -m; }
-_reset_title() { [[ -z $TMUX ]] && echo -ne "\e]2;Terminal\007" || tmux select-pane -M; }
+_set_title() { echo -ne "\e]2;$1\007"; }
+_reset_title() { echo -ne "\e]2;Terminal\007"; }
 
 _italic() { printf "%b%s%b" '\e[3m' "$@" '\e[23m'; }
 _colorize() { echo "\x1b\[38;5;$1m$2\x1b\[0m"; }

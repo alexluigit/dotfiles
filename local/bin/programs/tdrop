@@ -451,11 +451,11 @@ is_floating() {
 pre_float() {
 	if [[ $wm == bspwm ]]; then
 		# newest (using "instance" names)
-		if [[ $class =~ [A-Z] ]]; then
+		# if [[ $class =~ [A-Z] ]]; then
 			bspc rule -a "$class" -o state=floating
-		else
-			bspc rule -a \*:"$class" -o state=floating
-		fi
+		# else
+			# bspc rule -a \*:"$class" -o state=floating
+		# fi
 	fi
 }
 

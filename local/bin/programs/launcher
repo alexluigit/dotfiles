@@ -35,7 +35,7 @@ main() {
       E) run-emacs;;
       M) bravectl music;;
       N) nautilus;;
-      S) flameshot full -p ~/Pictures/Screenshots;;
+      S) flameshot full -p ~/pictures/Screenshots;;
       T) ~/.config/rofi/scripts/sessions;;
       \?) exit 1;;
     esac

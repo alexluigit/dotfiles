@@ -1,10 +1,10 @@
 typeset -a USER_DIRS=(
-   "/home/alex/Dev/alex.files/      nvim  Config"
+   "/home/alex/dev/alex.files/      nvim  Config"
    "/media/HDD/Dev/                 mpv   Dev"
-   "/home/alex/Music/               mpv   Music"
-   "/home/alex/Documents/notes/     nvim  Note"
-   "/home/alex/Pictures/            sxiv  Pictures"
-   "/home/alex/Videos/              mpv   Videos"
+   "/home/alex/music/               mpv   Music"
+   "/home/alex/documents/notes/     nvim  Note"
+   "/home/alex/pictures/            sxiv  Pictures"
+   "/home/alex/videos/              mpv   Videos"
    "/home/alex/                     nvim  Home"
    "/                               nvim  Root"
 )

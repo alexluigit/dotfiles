@@ -1,7 +1,6 @@
 vim.cmd('packadd! coc.nvim')
 vim.cmd('packadd! nvim-colorizer.lua')
 vim.cmd('packadd! nvim-web-devicons')
-vim.cmd('packadd! fzf')
 vim.cmd('packadd! fzf.vim')
 vim.cmd('packadd! tcomment_vim')
 vim.cmd('packadd! nvim-treesitter')

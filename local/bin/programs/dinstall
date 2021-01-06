@@ -15,7 +15,6 @@ config() {
   done
   rm $CFGDIR/config
   ln -sf $CFGDIR/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
-  ln -sf $CFGDIR/zsh/plugins/fzf $CFGDIR/nvim/pack/bundle/opt/fzf
 }
 
 bin() {

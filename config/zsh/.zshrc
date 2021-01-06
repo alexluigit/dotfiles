@@ -6,7 +6,7 @@ for file in $(ls $ZDOTDIR/lib); do; . $ZDOTDIR/lib/$file; done
 source $ZDOTDIR/plugins/z/z.sh
 _Z_DATA=$XDG_DATA_HOME/z/.z
 
-source $ZDOTDIR/plugins/fzf/shell/completion.zsh
+source /usr/share/fzf/completion.zsh
 
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(ctrl-\')

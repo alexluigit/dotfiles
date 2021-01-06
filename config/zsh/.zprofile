@@ -33,6 +33,7 @@ test -e $FNM_MULTISHELL_PATH || fnm use default >/dev/null
 pgrep aria2c >/dev/null || aria2c -i ~/.cache/aria2/aria2.session &
 pgrep privoxy >/dev/null || privoxy --no-daemon ~/.config/privoxy/config &
 pgrep ss-local >/dev/null || ss-local -c ~/.config/shadowsocks/config.json &
+pgrep mpd >/dev/null || { mpd &; mpDris2 &; }
 
 # only startx in tty1
 [ $(tty) = "/dev/tty1" ] && ! pgrep X && exec ssh-agent startx \

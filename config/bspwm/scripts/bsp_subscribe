@@ -1,16 +1,16 @@
 #!/bin/sh
 swallow_list=("mpv" "Sxiv" "Zathura")
-# swallow_term=("Alacritty" "kitty")
-swallow_term=("mpv" "sxiv" "zathura" "kitty")
 
 swallow() {
   addedtodesktop=$2
   lasttermdesktop=$(bspc query -D -n last)
   swallowerid=$1
   swallowingid=$(bspc query -N -n last)
+  skip_swallow=$(tr '[:upper:]' '[:lower:]' <<< ${swallow_list[@]})
   if [ "$addedtodesktop" = "$lasttermdesktop" ]; then
     [[ "${swallow_list[@]}" == *"$(__get_class "$swallowerid")"* ]] || return
-    [[ "${swallow_term[@]}" == *"$(__get_title "$swallowingid")"* ]] || return
+    # don't swallow when launching outside terminal
+    [[ "${skip_swallow[@]}" == *"$(__get_title "$swallowingid")"* ]] || return
     echo "$swallowerid $swallowingid" >> /tmp/swallowids
     bspc node "$swallowingid" --flag hidden=on
   fi
@@ -46,6 +46,6 @@ __show_all() {
   done
 }
 __focus() { xdotool getwindowfocus getwindowname; }
-__get_class() { xprop -id $1 WM_CLASS | cut -d '"' -f 2; }
+__get_class() { xprop -id $1 WM_CLASS | cut -d '"' -f 4; }
 __get_title() { xdotool getwindowname $1; }
 __current() { bspc query -N -n focused; }

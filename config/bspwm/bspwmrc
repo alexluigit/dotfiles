@@ -16,7 +16,7 @@ bspc config presel_feedback_color	      "#5e81ac"
 
 bspc rule -r "*"; killall bspc
 bspc rule -a Brave-browser:crx_cinhimbnkkaeohfgghhklpknlkffjgod desktop='^4' state=tiled follow=on
-bspc rule -a BraveDev desktop='^1' state=tiled split_dir=west split_ratio=0.3 follow=on
+bspc rule -a BraveDev desktop='^1' state=tiled split_dir=west split_ratio=0.55 follow=on
 bspc rule -a obs desktop='^5' state=tiled follow=on
 bspc rule -a ktouch state=floating
 bspc rule -a Zathura state=tiled
@@ -24,7 +24,7 @@ bspc rule -a Gimp desktop='^7' state=floating follow=on
 bspc rule -a Emacs desktop='^3' state=fullscreen follow=on
 bspc rule -a Screenkey manage=off
 
-bspc subscribe node_add node_remove desktop_layout | while read event _ parent arg_a arg_b ; do
+bspc subscribe node_add node_remove desktop_layout | while read event _ parent arg_a arg_b; do
   case $event in
     node_add) swallow $arg_b $parent;;
     node_remove) spit $arg_a $parent;;

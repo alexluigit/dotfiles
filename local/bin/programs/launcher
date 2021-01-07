@@ -33,10 +33,10 @@ main() {
       C) click;;
       D) bravectl start_dev;;
       E) run-emacs;;
-      F) mpv_float;;
+      F) mpvctl;;
       M) ncmp_music;;
       N) nautilus;;
-      S) flameshot full -p ~/pictures/Screenshots;;
+      S) flameshot full -p ~/pictures/screenshots;;
       T) ~/.config/rofi/scripts/sessions;;
       \?) exit 1;;
     esac
@@ -52,14 +52,9 @@ fullscreen() { [[ $(__focus_wname) = *"- YouTube - Brave" ]] && bravectl fullscr
 run_emacs() { wid=$(xdotool search --class 'emacs'); [[ -n $wid ]] && xdotool windowactivate $wid || exec emacs; }
 term() { [[ -z $1 ]] && exec alacritty || { [[ $1 = "drop" ]] && __drop || __lf; } }
 send_key() { xvkbd -xsendevent -text $1; }
-mpv_float() {
-  proxy="export http_proxy=http://127.0.0.1:1088; export https_proxy=http://127.0.0.1:1088"
-  url=$(xclip -o)
-  exec tdrop -a -m -n MPV -h 30% -w 30% -x 2680 -y 60 -c "$proxy" mpv $url
-}
 ncmp_music() { exec tdrop -a -m -n MUSIC -h 20% -w 30% -x 5 -y 60 alacritty -e ncmpcpp; }
 __drop() { exec tdrop -a -m -n TERM -h 98% -w 42% -x 0 -y 50 alacritty; }
 __lf() { exec tdrop -a -m -n FM -h 98% -w 50% -x 0 -y 50 alacritty -e lfrun; }
 __focus_wname() { xdotool getwindowfocus getwindowname; }
-__focus_wclass() { xprop -id $(xdotool getwindowfocus) WM_CLASS | cut -d '"' -f 2; }
+__focus_wclass() { xprop -id $(xdotool getwindowfocus) WM_CLASS | cut -d '"' -f 4; }
 main $@

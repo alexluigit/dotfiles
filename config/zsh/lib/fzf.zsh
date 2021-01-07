@@ -9,9 +9,9 @@ NAVI_B=(sed '"'); for i in $SYS_DIRS; do NAVI_B+=("s|^\${"$i"[2]}|\${"$i"[3]}|g;
 NAVI_A=(sed '"'); for i in $SYS_DIRS; do NAVI_A+=("s|^\${"$i"[1]}\$SYM_OFFSET|\${"$i"[2]}|g;"); done; NAVI_A+=('"');
 
 _fzf_navi() {
-  [[ $1 == 'z' ]] && { local CMD=(z -l '|' awk \'{print \$2}\'); } \
+  [[ $1 == 'z' ]] && { local CMD=(z -l '|' awk \'{print \$2}\') REV='--tac'; } \
   || { local CMD=(fd -H -td --ignore-file $XDG_CONFIG_HOME/fd/root . /); }
-  dest=$(eval "$CMD" | eval "$NAVI_B" | fzf --ansi | eval "$NAVI_A")
+  dest=$(eval "$CMD" | eval "$NAVI_B" | fzf --ansi $REV | eval "$NAVI_A")
   [[ -z $dest ]] && { zle reset-prompt; return; } || { cd $dest; zle reset-prompt; }
 }
 

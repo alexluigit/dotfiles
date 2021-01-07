@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 main() {
-  local MODIFIER_ON=0 OPTSTR='@%:'
+  local MODIFIER_ON=0 OPTSTR='@'
   for i in {{a..z},{A..Z}}; do OPTSTR+=$i; done
   while getopts $OPTSTR opt; do
     case $opt in
@@ -13,23 +13,6 @@ main() {
       v) term fm;;
       w) quit_monocle; ctrl "bravectl start" "bravectl start_inco";;
       x) multilockscreen -s;;
-      %) case $OPTARG in
-          F3fix) f3fix;;
-          n) send_key "\[Down]";;
-          e) send_key "\[Up]";;
-          F7) music-control previous;;
-          F8) music-control play-pause;;
-          F9) music-control next;;
-          F10) volumectl mute;;
-          F11) volumectl down;;
-          F12) volumectl up;;
-          Return) term drop;;
-          Escape) ~/.config/rofi/scripts/powermenu;;
-          mouse1) send_key "\Cx";;
-          mouse2) send_key "\Aa";;
-          Delete) send_key "\[F12]";;
-          *) exit;;
-         esac;;
       C) click;;
       D) bravectl start_dev;;
       E) run-emacs;;
@@ -44,17 +27,13 @@ main() {
   shift $((OPTIND -1))
 }
 
-f3fix() { [[ $(__focus_wclass) = "Alacritty" ]] && send_key "\[F3]" || send_key "\Co"; }
 quit_monocle() { [[ $(bspc wm -g | awk -F ':' '{print $(NF-2)}') == 'LM' ]] && bspc desktop -l next; }
 ctrl() { [[ $MODIFIER_ON == "0" ]] && eval $1 || eval $2; }
 click() { sleep 0.2 && xdotool click 1; }
 fullscreen() { [[ $(__focus_wname) = *"- YouTube - Brave" ]] && bravectl fullscreen_yt || bspc desktop -l next; }
 run_emacs() { wid=$(xdotool search --class 'emacs'); [[ -n $wid ]] && xdotool windowactivate $wid || exec emacs; }
-term() { [[ -z $1 ]] && exec alacritty || { [[ $1 = "drop" ]] && __drop || __lf; } }
-send_key() { xvkbd -xsendevent -text $1; }
+term() { [[ -z $1 ]] && exec alacritty || __lf; }
 ncmp_music() { exec tdrop -a -m -n MUSIC -h 20% -w 30% -x 5 -y 60 alacritty -e ncmpcpp; }
-__drop() { exec tdrop -a -m -n TERM -h 98% -w 42% -x 0 -y 50 alacritty; }
 __lf() { exec tdrop -a -m -n FM -h 98% -w 50% -x 0 -y 50 alacritty -e lfrun; }
 __focus_wname() { xdotool getwindowfocus getwindowname; }
-__focus_wclass() { xprop -id $(xdotool getwindowfocus) WM_CLASS | cut -d '"' -f 4; }
 main $@

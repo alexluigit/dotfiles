@@ -37,16 +37,18 @@ hyper + f
 	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
 
 # Launcher
-super + {_,control} {a-d,f-m,p-z,Return,Escape}
-	launcher {_,-@} -{a-d,f-m,p-z,% Return,% Escape}
+super + {_,control} {a-d,f-m,p-z}
+	launcher {_,-@} -{a-d,f-m,p-z}
 super + o; {a-z}
 	launcher -{A-Z}
 
 # Keys
+super + {Return,Escape}
+	keymap -% {Return,Escape}
 control + apostrophe
-	launcher -% F3fix
+	keymap -% F3fix
 {_,hyper +} {F7,F8,F9,F10,F11,F12,button8,button9,Delete}
-	launcher {_,-@} -% {F7,F8,F9,F10,F11,F12,mouse1,mouse2,Delete}
+	keymap {_,-@} -% {F7,F8,F9,F10,F11,F12,mouse1,mouse2,Delete}
 alt + n
 	xdotool keyup n key --clearmodifiers Down
 alt + e

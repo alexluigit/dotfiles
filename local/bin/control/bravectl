@@ -11,7 +11,6 @@ start_inco() { START_FLAGS+=("${INCO[@]}") && _start; exit; }
 start_dev() { START_FLAGS+=("${DEV[@]}") && _start; exit; }
 music() { _try_switch music || _openmusic; }
 refresh() { _try_switch BraveDev && _refresh_tab; }
-fullscreen_yt() { __send_key "f" && alacritty -e "echo"; }
 
 _start() { __rmpki & brave ${START_FLAGS[@]}; }
 _openmusic() { START_FLAGS+=("${MUSIC[@]}"); _start & __fullscreen; }

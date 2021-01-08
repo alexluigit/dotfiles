@@ -37,13 +37,13 @@ __hide_all_except() {
   bspc node $1 --flag hidden=off
 }
 __show_all() {
-  [[ $(__focus) = *"- YouTube - Brave" ]] && return
-  for node in $(bspc query -N -n .local.window); do
+  for node in $(bspc query -N -n .local.window.!floating); do
     bspc node $node --flag hidden=off
   done
   for node in $(awk '{print $2}' /tmp/swallowids); do
     bspc node $node --flag hidden=on
   done
+  bspc node $(xdotool search --class mpv) --flag hidden=off
 }
 __focus() { xdotool getwindowfocus getwindowname; }
 __get_class() { xprop -id $1 WM_CLASS | cut -d '"' -f 4; }

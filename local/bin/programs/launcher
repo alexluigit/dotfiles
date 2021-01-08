@@ -6,7 +6,7 @@ main() {
     case $opt in
       @) MODIFIER_ON=1;;
       a) rofi -no-lazy-grab -show drun -theme ~/.config/rofi/themes/launcher.rasi;;
-      f) fullscreen;;
+      f) bspc desktop -l next;;
       q) ctrl 'xdo close' 'xdo kill'; quit_monocle;;
       r) rofi -no-lazy-grab -show run -theme ~/.config/rofi/themes/dmenu.rasi;;
       t) quit_monocle; exec alacritty;;
@@ -30,7 +30,6 @@ main() {
 quit_monocle() { [[ $(bspc wm -g | awk -F ':' '{print $(NF-2)}') == 'LM' ]] && bspc desktop -l next; }
 ctrl() { [[ $MODIFIER_ON == "0" ]] && eval $1 || eval $2; }
 click() { sleep 0.2 && xdotool click 1; }
-fullscreen() { [[ $(__focus_wname) = *"- YouTube - Brave" ]] && bravectl fullscreen_yt || bspc desktop -l next; }
 run_emacs() { wid=$(xdotool search --class 'emacs'); [[ -n $wid ]] && xdotool windowactivate $wid || exec emacs; }
 
 main $@

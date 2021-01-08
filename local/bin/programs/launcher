@@ -9,15 +9,15 @@ main() {
       f) fullscreen;;
       q) ctrl 'xdo close' 'xdo kill'; quit_monocle;;
       r) rofi -no-lazy-grab -show run -theme ~/.config/rofi/themes/dmenu.rasi;;
-      t) quit_monocle; term;;
-      v) term fm;;
+      t) quit_monocle; exec alacritty;;
+      v) floatwin term lfrun 1920x2160+0+0;;
       w) quit_monocle; ctrl "bravectl start" "bravectl start_inco";;
       x) multilockscreen -s;;
       C) click;;
       D) bravectl start_dev;;
       E) run-emacs;;
-      F) mpvctl;;
-      M) ncmp_music;;
+      F) exec floatwin mpv;;
+      M) floatwin term ncmpcpp 1500x600+10+60;;
       N) nautilus;;
       S) flameshot full -p ~/pictures/screenshots;;
       T) ~/.config/rofi/scripts/sessions;;
@@ -32,8 +32,5 @@ ctrl() { [[ $MODIFIER_ON == "0" ]] && eval $1 || eval $2; }
 click() { sleep 0.2 && xdotool click 1; }
 fullscreen() { [[ $(__focus_wname) = *"- YouTube - Brave" ]] && bravectl fullscreen_yt || bspc desktop -l next; }
 run_emacs() { wid=$(xdotool search --class 'emacs'); [[ -n $wid ]] && xdotool windowactivate $wid || exec emacs; }
-term() { [[ -z $1 ]] && exec alacritty || __lf; }
-ncmp_music() { exec tdrop -a -m -n MUSIC -h 20% -w 30% -x 5 -y 60 alacritty -e ncmpcpp; }
-__lf() { exec tdrop -a -m -n FM -h 98% -w 50% -x 0 -y 50 alacritty -e lfrun; }
-__focus_wname() { xdotool getwindowfocus getwindowname; }
+
 main $@

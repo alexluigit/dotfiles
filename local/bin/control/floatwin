@@ -1,0 +1,56 @@
+#!/bin/sh
+FLOATWIN_STATE="$XDG_CACHE_HOME/floatwin"
+URL_CACHE="$XDG_CACHE_HOME/mpv_url"
+WID=$(cat "$FLOATWIN_STATE/$2")
+
+__win_exist() { xdotool search --class $1; }
+__win_visible() { xdotool search --onlyvisible --desktop $(xdotool get_desktop) --class $1; }
+__reset_rule() { sleep $2; bspc rule -r $1; }
+
+__render_mpv_window() {
+  local url=$1 program=$2
+  export http_proxy=http://127.0.0.1:1088 https_proxy=http://127.0.0.1:1088
+  desc=$(curl -s -H "User-Agent: Chrome/50" -x 127.0.0.1:1088 "$1" | grep -o "<title>[^<]*" | tail -c+8)
+  [ -z $(cat $URL_CACHE | grep $1) ] && { echo $desc >> $URL_CACHE; echo $1 >> $URL_CACHE; }
+  bspc rule -a mpv -o state=floating rectangle=1280x720+2560+50 focus=off
+  [[ $program == "qlp" ]] && qlphelper --fa 0.6 -u $url || mpv $url
+  __reset_rule mpv 10 &
+}
+
+_mpv() {
+  VIDEO_URL=("www.youtube.com")
+  STREAM_URL=("live.bilibili.com" "www.huya.com" "www.douyu.com")
+  URL=$(xclip -sel clipboard -o 2>/dev/null)
+  HOST=$(echo $URL | awk -F[/:] '{print $4}')
+  WID=$(xdotool search --class $1)
+  if [[ -n $(__win_visible $1) ]]; then
+    bspc node $(__win_visible $1) --flag hidden=on
+  elif pgrep qlphelper >/dev/null || [[ -n $WID ]]; then
+    xdotool set_desktop_for_window "$WID" "$(xdotool get_desktop)"
+    bspc node $WID --flag hidden=off; xdotool windowactivate $WID
+  elif [[ -n "$HOST" ]] && [[ "${STREAM_URL[@]}" == *"$HOST"* ]]; then
+    __render_mpv_window "$URL" "qlp"
+  elif [[ -n "$HOST" ]] && [[ "${VIDEO_URL[@]}" == *"$HOST"* ]]; then
+    __render_mpv_window "$URL"
+  else
+    alacritty -e sh -c "sleep .1 && nvim $URL_CACHE"
+  fi
+}
+
+_term() {
+  app=$2 dimension=${3:-1920x1080+0+0}
+  if [[ -n $(__win_visible $app) ]]; then
+    bspc node $WID --flag hidden=on
+  elif [[ -n $(__win_exist $app) ]]; then
+    bspc node $WID --flag hidden=off
+    xdotool windowactivate $WID
+  else
+    bspc rule -a $app -o state=floating rectangle=$dimension
+    alacritty --class "$app,$app" -e $app &
+    sleep .3; echo $(xdotool search --class $app) > $FLOATWIN_STATE/$app
+    __reset_rule $app 1
+  fi
+}
+
+[[ ! -d "$FLOATWIN_STATE" ]] && mkdir -p $FLOATWIN_STATE
+eval "_$1 $@"

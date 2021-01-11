@@ -5,23 +5,22 @@ main() {
   while getopts $OPTSTR opt; do
     case $opt in
       @) MODIFIER_ON=1;;
-      a) rofi -no-lazy-grab -show drun -theme ~/.config/rofi/themes/launcher.rasi;;
-      f) bspc desktop -l next;;
-      q) ctrl 'xdo close' 'xdo kill'; quit_monocle;;
-      r) rofi -no-lazy-grab -show run -theme ~/.config/rofi/themes/dmenu.rasi;;
-      t) quit_monocle; exec alacritty;;
-      v) floatwin term lfrun 1920x2160+0+0;;
-      w) quit_monocle; ctrl "bravectl start" "bravectl start_inco";;
-      x) multilockscreen -s;;
       C) click;;
       D) bravectl start_dev;;
       E) run-emacs;;
-      F) exec floatwin mpv;;
-      M) floatwin term ncmpcpp 1500x600+10+60;;
+      M) exec floatwin -t -d 1500x600+10+60 ncmpcpp;;
       N) nautilus;;
       S) flameshot full -p ~/pictures/screenshots;;
       T) ~/.config/rofi/scripts/sessions;;
-      \?) exit 1;;
+      a) rofi -no-lazy-grab -show drun -theme ~/.config/rofi/themes/launcher.rasi;;
+      f) bspc desktop -l next;;
+      l) exec floatwin -t -d 1920x2160+0+0 lfrun;;
+      q) ctrl 'xdo close' 'xdo kill'; quit_monocle;;
+      r) rofi -no-lazy-grab -show run -theme ~/.config/rofi/themes/dmenu.rasi;;
+      t) quit_monocle; exec alacritty;;
+      v) exec floatwin -c mpv -d 1280x720+2560+50 mpv_url;;
+      w) quit_monocle; ctrl "bravectl start" "bravectl start_inco";;
+      x) multilockscreen -s;;
     esac
   done;
   shift $((OPTIND -1))

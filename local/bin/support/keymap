@@ -5,18 +5,18 @@ main() {
     case $opt in
       @) MODIFIER_ON=1;;
       %) case $OPTARG in
+          Delete) send_key "\[F12]";;
+          Escape) ~/.config/rofi/scripts/powermenu;;
+          F10) volumectl mute;;
+          F11) volumectl down;;
+          F12) volumectl up;;
           F3fix) f3fix;;
           F7) music-control previous;;
           F8) music-control play-pause;;
           F9) music-control next;;
-          F10) volumectl mute;;
-          F11) volumectl down;;
-          F12) volumectl up;;
-          Return) drop_term;;
-          Escape) ~/.config/rofi/scripts/powermenu;;
+          Return) exec floatwin -t -d 1200x2090+10+60;;
           mouse1) send_key "\Cx";;
           mouse2) send_key "\Aa";;
-          Delete) send_key "\[F12]";;
           *) exit;;
          esac;;
       \?) exit 1;;
@@ -25,10 +25,9 @@ main() {
   shift $((OPTIND -1))
 }
 
-f3fix() { [[ $(__focus_wclass) = "Alacritty" ]] && send_key "\[F3]" || send_key "\Co"; }
+f3fix() { [[ $(__focus_wclass) = *"Brave"* ]] && send_key "\Co" || send_key "\[F3]"; }
 ctrl() { [[ $MODIFIER_ON == "0" ]] && eval $1 || eval $2; }
 send_key() { xvkbd -xsendevent -text $1; }
-drop_term() { exec tdrop -a -m -n TERM -h 98% -w 42% -x 0 -y 50 alacritty; }
 __focus_wname() { xdotool getwindowfocus getwindowname; }
 __focus_wclass() { xprop -id $(xdotool getwindowfocus) WM_CLASS | cut -d '"' -f 4; }
 main $@

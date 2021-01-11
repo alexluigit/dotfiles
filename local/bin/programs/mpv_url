@@ -1,0 +1,58 @@
+#!/bin/sh
+URL_TEMP="$XDG_CACHE_HOME/mpv_url/temp_url.json"
+URL_HIST="$XDG_CACHE_HOME/mpv_url/hist_url.json"
+VIDEO_URL=("www.youtube.com" "lbry.tv")
+STREAM_URL=("live.bilibili.com" "www.huya.com" "www.douyu.com")
+CLIPBOARD=$(xclip -sel clipboard -o 2>/dev/null)
+PROXY="export http_proxy=http://127.0.0.1:1088 https_proxy=http://127.0.0.1:1088"
+TEMPLATE_TEMP="[{\"title\":\" Clear\",\"cmd\":\"rm $URL_TEMP\"},{\"title\":\" All\",\"cmd\":\"mpv_url hist\"}]"
+TEMPLATE_HIST="[{\"title\":\" Clear\",\"cmd\":\"rm $URL_TEMP\"},{\"title\":\" Temp\",\"cmd\":\"mpv_url\"}]"
+
+_rofi() { rofi -theme $XDG_CONFIG_HOME/rofi/themes/launcher.rasi -p "$1"  -dmenu -selected-row 0; }
+_host() { echo $@ | awk -F[/:] '{print $4}'; }
+_global_action() {
+   cmd=$(jq --arg t "$chosen" '.[] | select(.title == $t) | .cmd' $LIST | tr -d '"')
+   eval "$cmd"
+}
+_url_action() {
+  chosen_action=$(echo -e "Play\nDelete" | _rofi "Action:")
+  url=$(jq --arg t "$chosen" '.[] | select(.title == $t) | .url' $LIST | tr -d '"')
+  case $chosen_action in
+    Play) __play_url;;
+    Delete) __delete_url;;
+  esac
+}
+__play_url() {
+  host=$(_host $url)
+  [[ "${STREAM_URL[@]}" == *"$host"* ]] && qlphelper --fa 0.6 -u "$url" || mpv "$url";
+}
+__delete_url() {
+  new_list=$(jq --arg u "$url" '.[] | select(.url != $u)' $LIST | jq -s)
+  echo $new_list > $LIST
+}
+
+main() {
+  [[ -z "$@" ]] && LIST=$URL_TEMP || { LIST=$URL_HIST PMT_HIST="(all)"; }
+  [ -d $(dirname $URL_TEMP) ] || mkdir -p $(dirname $URL_TEMP)
+  [ -f $URL_TEMP ] || echo "$TEMPLATE_TEMP" > $URL_TEMP
+  [ -f $URL_HIST ] || echo "$TEMPLATE_HIST" > $URL_HIST
+  eval "$PROXY"
+  all_url=("${VIDEO_URL[@]}" "${STREAM_URL[@]}") host=$(_host $CLIPBOARD)
+  if [[ -n "$host" ]] && [[ "${all_url[@]}" == *"$host"* ]]; then
+    title=$(curl -s -H "User-Agent: Chrome/50" -x 127.0.0.1:1088 "$CLIPBOARD" | grep -o "<title>[^<]*" | tail -c+8)
+    [ -z $(cat $URL_TEMP | grep $CLIPBOARD) ] && {
+      echo $(jq --arg t "$title" --arg u "$CLIPBOARD" '.[length] = {"title": $t, "url": $u}' $URL_TEMP) > $URL_TEMP
+    }
+    [ -z $(cat $URL_HIST | grep $CLIPBOARD) ] && {
+      echo $(jq --arg t "$title" --arg u "$CLIPBOARD" '.[length] = {"title": $t, "url": $u}' $URL_HIST) > $URL_HIST
+    }
+  fi
+  chosen=$(jq '.[] .title' $LIST | tr -d '"' | _rofi "Choose$PMT_HIST:")
+  case $chosen in
+    "") exit 0;;
+    *) _global_action;;
+    *) _url_action;;
+  esac
+}
+
+main "$@"

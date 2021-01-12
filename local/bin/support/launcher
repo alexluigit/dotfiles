@@ -6,7 +6,7 @@ main() {
     case $opt in
       @) MODIFIER_ON=1;;
       C) click;;
-      D) bravectl start_dev;;
+      D) exec bravectl start_dev;;
       E) run-emacs;;
       N) nautilus;;
       S) flameshot full -p ~/pictures/screenshots;;
@@ -19,7 +19,7 @@ main() {
       r) rofi -no-lazy-grab -show run -theme ~/.config/rofi/themes/dmenu.rasi;;
       t) quit_monocle; exec alacritty;;
       v) exec floatwin -b mpv_url -c mpv -d 1280x720+2560+50 mpv_url temp;;
-      w) quit_monocle; ctrl "bravectl start" "bravectl start_inco";;
+      w) quit_monocle; ctrl "exec bravectl start" "exec bravectl start_inco";;
       x) multilockscreen -s;;
     esac
   done;

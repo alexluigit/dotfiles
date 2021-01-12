@@ -8,13 +8,13 @@ main() {
       C) click;;
       D) bravectl start_dev;;
       E) run-emacs;;
-      M) exec floatwin -t -d 1500x600+10+60 ncmpcpp;;
       N) nautilus;;
       S) flameshot full -p ~/pictures/screenshots;;
       T) ~/.config/rofi/scripts/sessions;;
       a) rofi -no-lazy-grab -show drun -theme ~/.config/rofi/themes/launcher.rasi;;
       f) bspc desktop -l next;;
       l) exec floatwin -t -d 1920x2160+0+0 lfrun;;
+      m) exec floatwin -t -d 1500x600+10+60 ncmpcpp;;
       q) ctrl 'xdo close' 'xdo kill'; quit_monocle;;
       r) rofi -no-lazy-grab -show run -theme ~/.config/rofi/themes/dmenu.rasi;;
       t) quit_monocle; exec alacritty;;

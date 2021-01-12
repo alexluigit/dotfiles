@@ -12,7 +12,7 @@ scrolling:
   history: 10000
   multiplier: 3
 
-background_opacity: 0.92
+background_opacity: 0.90
 
 font:
   normal:

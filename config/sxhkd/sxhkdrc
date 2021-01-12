@@ -23,9 +23,9 @@ hyper + super + {h,n,e,apostrophe}
 	~/.config/bspwm/scripts/bsp_resize {left,down,up,right} 50
 
 # WM-NewNode
-hyper + p; {h,n,e,apostrophe}
+hyper + t; {h,n,e,apostrophe}
 	bspc node --presel-dir '~{west,south,north,east}'
-hyper + p; {2-8}
+hyper + t; {2-8}
 	bspc node -o 0.{2-8}
 hyper + Escape
 	bspc node -p cancel

@@ -31,18 +31,22 @@ _toggle_or_create() {
 
 main() {
   [[ -d "$FLOATWIN_STATE" ]] || mkdir -p $FLOATWIN_STATE
-  while getopts "c:d:t" opt; do
+  while getopts "a:b:c:d:t" opt; do
     case $opt in
+      a) AFTER=$OPTARG;;
+      b) BEFORE=$OPTARG;;
+      c) CLASS=$OPTARG;;
       d) DIMENSION=$OPTARG;;
       t) TERMINAL=true;;
-      c) CLASS=$OPTARG;;
     esac
   done
   shift $((OPTIND -1))
   APP=${1:-dropterm}
   CLASS=${CLASS:-$APP}
   WID=$(cat "$FLOATWIN_STATE/$APP" 2>/dev/null)
+  [ -n "$BEFORE" ] && ! pgrep "$BEFORE" >/dev/null && eval "$BEFORE &"
   _toggle_or_create "$@"
+  [ -n "$AFTER" ] && ! pgrep "$AFTER" >/dev/null && eval "$AFTER &"
 }
 
 main "$@"

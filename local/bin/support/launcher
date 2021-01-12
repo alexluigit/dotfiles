@@ -18,7 +18,7 @@ main() {
       q) ctrl 'xdo close' 'xdo kill'; quit_monocle;;
       r) rofi -no-lazy-grab -show run -theme ~/.config/rofi/themes/dmenu.rasi;;
       t) quit_monocle; exec alacritty;;
-      v) exec floatwin -c mpv -d 1280x720+2560+50 mpv_url;;
+      v) exec floatwin -b mpv_url -c mpv -d 1280x720+2560+50 mpv_url temp;;
       w) quit_monocle; ctrl "bravectl start" "bravectl start_inco";;
       x) multilockscreen -s;;
     esac

@@ -11,9 +11,9 @@ main() {
           F11) volumectl down;;
           F12) volumectl up;;
           F3fix) f3fix;;
-          F7) music-control previous;;
-          F8) music-control play-pause;;
-          F9) music-control next;;
+          F7) exec music-control previous;;
+          F8) exec music-control play-pause;;
+          F9) exec music-control next;;
           Return) exec floatwin -t -d 1200x2090+10+60;;
           mouse1) send_key "\Cx";;
           mouse2) send_key "\Aa";;

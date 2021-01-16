@@ -5,11 +5,12 @@ DIMENSION=1920x1080+0+0
 TIMEOUT=100
 
 __get_wid() { xdotool search --onlyvisible --desktop $(xdotool get_desktop) --class $1; }
-__win_visible() { [[ -n "$(__get_wid $CLASS)" ]]; }
 __win_info() { bspc query -T -n $WID | jq "$@" | tr -d '"'; }
+__win_visible() { ! $(__win_info .hidden); }
 __wid_expired() {
   wid_class=$(__win_info .client.className)
-  [[ "$wid_class" != "$CLASS" ]]
+  wid_instance=$(__win_info .client.instanceName)
+  [[ "$wid_class" != "$CLASS" ]] && [[ "$wid_instance" != "$CLASS" ]]
 }
 __hide_window() { bspc node $WID --flag hidden=on; }
 __show_window() {
@@ -19,7 +20,7 @@ __show_window() {
 }
 __create_window() {
   bspc rule -a $CLASS -o state=floating rectangle=$DIMENSION sticky=on
-  t_cmd=(alacritty --class $CLASS,$CLASS)
+  t_cmd=(alacritty --class $CLASS,$APP)
   [[ "$APP" == "dropterm" ]] || t_cmd+=("-e $APP")
   $TERMINAL && eval "${t_cmd[@]} &" || eval "${CMD[@]} &"
   local time_out=0

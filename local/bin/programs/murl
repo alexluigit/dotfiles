@@ -1,5 +1,5 @@
 #!/bin/sh
-CACHE_DIR="$XDG_CACHE_HOME/mpv_url"
+CACHE_DIR="$XDG_CACHE_HOME/murl"
 SUB_DIR="$CACHE_DIR/subs"
 URL_TEMP="$CACHE_DIR/temp_url.json"
 URL_HIST="$CACHE_DIR/hist_url.json"
@@ -11,10 +11,11 @@ TEMPLATE_TEMP="[{\"title\":\" Clear\",\"cmd\":\"rm $URL_TEMP\"},{\"title\":\"
 TEMPLATE_HIST="[{\"title\":\" Clear All\",\"cmd\":\"rm $URL_HIST\"},{\"title\":\" Temp\",\"cmd\":\"mpv_url temp\"}]"
 
 _try_add_url() {
+  URL=$CLIPBOARD
   __notify "Trying to add url from" "$host"
   [[ "$host" == "www.bilibili.com" ]] && __handle_bilivideo
-  [[ "$host" == "live.bilibili.com" ]] && HEADER=(-H "User-Agent: Chrome/50")
-  URL_TITLE=$(__get_title $CLIPBOARD)
+  [[ "$host" == "live.bilibili.com" ]] && __handle_bililive
+  URL_TITLE=$(__get_title $URL)
   [ -z $(grep $CLIPBOARD $URL_TEMP) ] && __add_url $URL_TEMP true
   [ -z $(grep $CLIPBOARD $URL_HIST) ] && __add_url $URL_HIST false
 }
@@ -50,10 +51,14 @@ __handle_bilivideo() {
   rm $SUB_DIR/"$bv_num".xml
   SUB="$SUB_DIR/$bv_num.ass"
 }
-__notify() { notify-send.py -i mpv -a mpv "$1" "$2"; }
+__handle_bililive() {
+  HEADER=(-H "User-Agent:Chrome/50")
+  URL=$(awk -F? '{print $1}' <<< $URL)
+}
+__notify() { notify-send.py -i mpv -a mpv --replaces-process mpv "$1" "$2" & disown; }
 __updated_list() {
-  jq --arg t "$URL_TITLE" --arg u "$CLIPBOARD" --arg s "$SUB" \
-  '.[length] = {"title":$t,"url": $u,"sub":$s}' "$1"
+  jq --arg t "$URL_TITLE" --arg u "$URL" --arg s "$SUB" \
+  '.[length] = {"title":$t,"url": $u,"sub":$s}|unique' "$1"
 }
 __play_url() {
   host=$(_host $url)

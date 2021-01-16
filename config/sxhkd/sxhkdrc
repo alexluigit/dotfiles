@@ -1,6 +1,4 @@
 # WM-Navigation
-super + {h,n,e,apostrophe}
-	~/.config/bspwm/scripts/bsp_vim {west,south,north,east}
 super + shift + {1-8}
 	bspc node -d ^{1-8}
 super + {_,control} {1-8}
@@ -9,49 +7,43 @@ super + Tab
 	bspc node -f last
 
 # WM-Layout
-hyper + {h,n,e,apostrophe}
+hyper + {h,n,e,i}
 	bspc node -s {west,south,north,east}
 hyper + s
-	bspc node -s biggest.local || { bspc node -s next.local || bspc node -s prev.local }
+	bspc node -s biggest.local || bspc node -s next.local
 
 # WM-Resize
 hyper + {b, equal}
 	bspc node @/ -{B,E}
 hyper + space
 	~/.config/bspwm/scripts/bsp_resize {left 800, right 800}
-hyper + super + {h,n,e,apostrophe}
+hyper + super + {h,n,e,i}
 	~/.config/bspwm/scripts/bsp_resize {left,down,up,right} 50
 
 # WM-NewNode
-hyper + t; {h,n,e,apostrophe}
+hyper + p; {h,n,e,i}
 	bspc node --presel-dir '~{west,south,north,east}'
-hyper + t; {2-8}
+hyper + p; {2-8}
 	bspc node -o 0.{2-8}
 hyper + Escape
 	bspc node -p cancel
 
 # WM-Floating
-hyper + m; {h,n,e,apostrophe}
+hyper + m; {h,n,e,i}
 	xdo move {-x -20,-y +20,-y -20,-x +20}
 hyper + f
 	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
 
-# Launcher
-super + {_,control} {a-d,f-m,p-z}
-	launcher {_,-@} -{a-d,f-m,p-z}
+# Keymap
+super + {_,control} {a-n,p-z}
+	keymap {_,-@} -{a-n,p-z}
 super + o; {a-z}
-	launcher -{A-Z}
-
-# Keys
-super + {Return,Escape}
-	keymap -% {Return,Escape}
-control + apostrophe
-	keymap -% F3fix
+	keymap -{A-Z}
+super + {Return,Escape,Delete}
+	keymap -% {Return,Escape,Sleep}
 {_,hyper +} {F7,F8,F9,F10,F11,F12,button8,button9,Delete}
 	keymap {_,-@} -% {F7,F8,F9,F10,F11,F12,mouse1,mouse2,Delete}
-alt + n
-	xdotool keyup n key --clearmodifiers Down
-alt + e
-	xdotool keyup e key --clearmodifiers Up
+alt + {n,e}
+	keymap -% Alt{N,E}
 control + alt + BackSpace
 	pkill X

@@ -75,20 +75,16 @@ mouse_bindings:
 
 key_bindings:
   # Fix broken terminal
-  # Ctrl-;      => F2
-  # Ctrl-Return => F4
-  # Ctrl-/      => F5
+  # Ctrl-;      => F4
+  # Ctrl-Return => F5
   # Ctrl-i      => F6
   # Ctrl-,      => F10
   # Ctrl-.      => F11
-  - { key: Semicolon,  mods: Control,        chars: "\x1bOQ"   }
-  - { key: Return,     mods: Control,        chars: "\x1b[14~" }
-  - { key: Slash,      mods: Control,        chars: "\x1b[15~" }
+  - { key: Semicolon,  mods: Control,        chars: "\x1b[14~" }
+  - { key: Return,     mods: Control,        chars: "\x1b[15~" }
   - { key: I,          mods: Control,        chars: "\x1b[17~" }
   - { key: Comma,      mods: Control,        chars: "\x1b[21~" }
   - { key: Period,     mods: Control,        chars: "\x1b[23~" }
-  - { key: V,          mods: Control,        action: Paste     }
-  - { key: C,          mods: Super|Control,  action: Copy      }
   # Vi Mode
   - { key: Space,  mods: Control,       mode: ~Search,    action: ToggleViMode            }
   - { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }

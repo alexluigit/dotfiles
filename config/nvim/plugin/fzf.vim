@@ -22,7 +22,7 @@ endfunction
 let g:fzf_action = {
   \ 'ctrl-t': function('s:newtabsplit'),
   \ 'ctrl-c': function('s:fzf_cycle'),
-  \ 'f4':     'vsplit',
+  \ 'f5':     'vsplit',
   \ 'ctrl-s': 'split',
   \ 'ctrl-l': 'vsplit',
   \ 'ctrl-z': 'arga' } " ctrl-z in fzf window is a bug?

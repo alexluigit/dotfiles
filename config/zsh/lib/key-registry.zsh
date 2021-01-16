@@ -17,9 +17,8 @@ zle -N ctrl-u;       bindkey    '^u'        ctrl-u
 zle -N ctrl-xx;      bindkey    '^x^x'      ctrl-xx
 zle -N ctrl-y;       bindkey    '^y'        ctrl-y
 zle -N ctrl-z;       bindkey    '^z'        ctrl-z
-zle -N ctrl-\;;      bindkey    '^[OQ'      ctrl-\; # <ctrl-;> -> F2
-zle -N ctrl-\';      bindkey    '^[OR'      ctrl-\' # <ctrl-'> -> F3
-zle -N ctrl-RT;      bindkey    '^[[14~'    ctrl-RT # <ctrl-return> -> F4
+zle -N ctrl-\;;      bindkey    '^[[14~'    ctrl-\; # <ctrl-;> -> F4
+zle -N ctrl-RT;      bindkey    '^[[15~'    ctrl-RT # <ctrl-return> -> F5
 zle -N backspace;    bindkey    '^?'        backspace
 zle -N angle_pair;   bindkey    '<'         angle_pair
 zle -N brace_pair;   bindkey    '('         brace_pair

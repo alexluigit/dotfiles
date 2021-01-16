@@ -9,7 +9,7 @@ _Z_DATA=$XDG_DATA_HOME/z/.z
 source /usr/share/fzf/completion.zsh
 
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(ctrl-\')
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(ctrl-RT)
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(ctrl-\;)
 
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

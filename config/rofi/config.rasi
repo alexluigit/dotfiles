@@ -16,14 +16,18 @@ configuration {
 	display-combi: "";
 	display-drun: "";
 	display-run: " ";
-	kb-accept-entry: "Control+m,Return,KP_Enter";
+	kb-accept-entry: "Return,KP_Enter";
+	kb-accept-custom: "Control+m";
 	kb-row-down: "Down,Control+n";
 	kb-row-up: "Up,Control+e,ISO_Left_Tab";
-	kb-move-front: "Control+i";
-	kb-move-end: "Control+o";
+	kb-move-front: "Control+a";
+	kb-move-end: "Control+Return";
 	kb-row-left: "Control+h";
-	kb-row-right: "Control+apostrophe";
+	kb-row-right: "Control+i";
+	kb-clear-line: "Control+u";
+	kb-remove-to-sol: "";
 	kb-remove-to-eol: "";
+	kb-remove-word-back: "Control+w";
 	kb-remove-char-back: "BackSpace,Shift+BackSpace";
 	kb-mode-next: "Shift+Right,Control+s";
 }

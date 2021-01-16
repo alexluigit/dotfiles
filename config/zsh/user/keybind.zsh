@@ -10,8 +10,7 @@ ctrl-t() { _fzf_comp_helper; }
 ctrl-u() { zle kill-whole-line; }
 ctrl-b() { zbug; }
 ctrl-k() { zle edit-command-line; }
-ctrl-\'(){ [[ $#LBUFFER -ne $#BUFFER ]] && zle end-of-line || zle autosuggest-accept; }
-ctrl-RT(){ [[ -n $BUFFER ]] && zle accept-line || _quick-sudo; }
+ctrl-RT(){ [[ $#LBUFFER -ne $#BUFFER ]] && zle end-of-line || zle autosuggest-accept; }
 ctrl-i() { [[ -n $BUFFER ]] && zle backward-char || _fzf_open . "Edit: " nvim; }
 ctrl-o() { [[ -n $BUFFER ]] && zle forward-char || _fzf_open_menu; }
 ctrl-d() { [[ -n $BUFFER ]] && zle delete-char || _fzf_cd; }

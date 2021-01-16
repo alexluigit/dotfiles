@@ -1,15 +1,10 @@
 #!/bin/sh
 dir_wm=$1
-run_from_vim=$2
+tmux_navi=$2
+wm_navi=$3
 
-wm_navigation() { bspc node -f $dir_wm.local; }
+wm_navigation() { bspc node -f $dir_wm.local || true; }
 tmux_navigation() {
-  case "$1" in
-    west)  dir_tmux="L"; dir_check="left";;
-    south) dir_tmux="D"; dir_check="bottom";;
-    north) dir_tmux="U"; dir_check="top";;
-    east)  dir_tmux="R"; dir_check="right";;
-  esac
   _pane_at_edge() { [ "$(tmux display -p "#{pane_at_$dir_check}")" == 1 ]; }
   _tmux_navigation() { tmux selectp -$dir_tmux; }
   $(_pane_at_edge) && wm_navigation || _tmux_navigation
@@ -24,18 +19,19 @@ window_is_tmux() {
 }
 
 case "$dir_wm" in
-  west)  keysym="h";;
-  south) keysym="j";;
-  north) keysym="k";;
-  east)  keysym="l";;
+  west)  keysym="h"; dir_tmux="L"; dir_check="left";;
+  south) keysym="j"; dir_tmux="D"; dir_check="bottom";;
+  north) keysym="k"; dir_tmux="U"; dir_check="top";;
+  east)  keysym="l"; dir_tmux="R"; dir_check="right";;
 esac
 
-"$run_from_vim" && { tmux_navigation $dir_wm; exit; }
+"$wm_navi" && { wm_navigation; exit; }
+"$tmux_navi" && { tmux_navigation; exit; }
 
 if $(window_is_vim); then
   xvkbd -xsendevent -text "\C$keysym"
 elif $(window_is_tmux); then
-  tmux_navigation $dir_wm
+  tmux_navigation
 else
   wm_navigation
 fi

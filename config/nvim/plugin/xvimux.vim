@@ -16,9 +16,9 @@ function! s:GlobalAwareNavigate(direction)
         let bspc_direction = 'east'
     endif
     if empty($TMUX)
-      let cmd = 'bspc node -f ' . bspc_direction . '.local'
+      let cmd = 'xvimux ' .bspc_direction. ' true true'
     else
-      let cmd = '~/.config/bspwm/scripts/bsp_tmux_vim ' .bspc_direction. ' true'
+      let cmd = 'xvimux ' .bspc_direction. ' true'
     endif
     call system(cmd)
   endif

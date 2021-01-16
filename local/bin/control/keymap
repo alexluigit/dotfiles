@@ -29,13 +29,13 @@ main() {
       T) ~/.config/rofi/scripts/sessions;;
       V) exec floatwin -b murl -c mpv -d 960x540+2870+60 murl temp;;
       a) rofi -show drun -theme ~/.config/rofi/themes/launcher.rasi;;
-      e) ~/.config/bspwm/scripts/bsp_tmux_vim north;;
+      e) xvimux north;;
       f) toggle_monocle;;
-      h) ~/.config/bspwm/scripts/bsp_tmux_vim west;;
-      i) ~/.config/bspwm/scripts/bsp_tmux_vim east;;
+      h) xvimux west;;
+      i) xvimux east;;
       l) exec floatwin -t -d 1920x2160+0+0 lfrun;;
       m) exec floatwin -t -d 1500x600+10+60 ncmpcpp;;
-      n) ~/.config/bspwm/scripts/bsp_tmux_vim south;;
+      n) xvimux south;;
       q) ctrl 'xdo close' 'xdo kill'; quit_monocle;;
       r) rofi -show run -theme ~/.config/rofi/themes/dmenu.rasi;;
       t) quit_monocle; exec alacritty;;

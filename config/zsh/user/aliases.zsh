@@ -1,9 +1,8 @@
 # general
 alias d="gio trash"
 alias sn="sudoedit"
-alias ka="killall"
-alias yd="youtube-dl --write-sub --write-auto-sub -o '~/Downloads/%(title)s-%(id)s.%(ext)s'"
-alias ydl="youtube-dl --yes-playlist --write-sub --write-auto-sub -o '~/Downloads/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
+alias yd="youtube-dl --write-sub --write-auto-sub -o '~/downloads/%(title)s-%(id)s.%(ext)s'"
+alias ydl="youtube-dl --yes-playlist --write-sub --write-auto-sub -o '~/downloads/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
 alias ls='exa -a --color=always --group-directories-first' # all files and dirs
 alias la='exa -al --color=always --group-directories-first' # my preferred listing
 alias ll='exa -lu --color=always --group-directories-first --no-user --no-permissions -@'  # long format

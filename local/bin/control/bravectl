@@ -4,11 +4,11 @@ DARKMODE=(--enable-features=WebContentsForceDark)
 INCO=(--incognito)
 DEV=(--user-data-dir=$XDG_CONFIG_HOME/brave-dev --class=BraveDev)
 MUSIC=(--app-id=cinhimbnkkaeohfgghhklpknlkffjgod)
-[ $@ != *"--no-darkmode"* ] && [ $1 != "start_dev" ] && START_FLAGS+=("$DARKMODE")
+[ $@ != *"--no-darkmode"* ] && [ $1 != "dev" ] && START_FLAGS+=("$DARKMODE")
 
 start() { _start; }
-start_inco() { START_FLAGS+=("${INCO[@]}") && _start; }
-start_dev() { START_FLAGS+=("${DEV[@]}") && _start; }
+inco() { START_FLAGS+=("${INCO[@]}") && _start; }
+dev() { START_FLAGS+=("${DEV[@]}") && _start; }
 music() { _try_switch music || _openmusic; }
 refresh() { _try_switch BraveDev && _refresh_tab; }
 

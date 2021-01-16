@@ -51,6 +51,7 @@ cmd open ${{
   ext=$(tr '[:upper:]' '[:lower:]' <<< ${f##*.})
   case "$ext" in
     zip) unzip "$f";;
+    rar) unrar x "$f";;
     tar|tbz2|tgz) tar -xvf "$f";;
     bz2) tar -xjvf "$f";;
     gz) tar -xzvf "$f";;

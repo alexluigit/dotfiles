@@ -1,3 +1,4 @@
+# vim:ft=sshconfig
 UserKnownHostsFile ~/.config/ssh/known_hosts
 IdentityFile ~/.config/ssh/id_rsa
 TCPKeepAlive yes

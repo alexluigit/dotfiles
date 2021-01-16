@@ -1,7 +1,6 @@
 typeset -a USER_DIRS=(
    "/home/alex/dev/alex.files/      nvim  Config"
    "/media/HDD/Dev/                 mpv   Dev"
-   "/home/alex/music/               mpv   Music"
    "/home/alex/documents/notes/     nvim  Note"
    "/home/alex/pictures/            sxiv  Pictures"
    "/home/alex/videos/              mpv   Videos"

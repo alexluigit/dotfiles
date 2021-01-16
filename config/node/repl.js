@@ -30,7 +30,6 @@ const defineCommands = commands => repl => {
 // Context initializer
 const initializeContext = extendWith({
   timeout: util.promisify(setTimeout),
-  song
 });
 
 // Some useful stuff

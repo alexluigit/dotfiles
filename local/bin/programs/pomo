@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 WORK=25
 REST=5
 MUTE=false
@@ -42,10 +42,10 @@ toggle() {
 
 p() { # pause / "play"
   PID=$(ps aux | grep "[p]omo run" | awk '{print $2}')
-  __is_running && { kill -STOP $PID && echo "  " >> /tmp/pomo } \
-  || { kill -CONT $PID && sed -i s/\ \ // /tmp/pomo}
+  __is_running && { kill -STOP $PID && echo "  " >> /tmp/pomo; } \
+  || { kill -CONT $PID && sed -i s/\ \ // /tmp/pomo; }
 }
 
-state() { __is_exist && cat /tmp/pomo }
+state() { __is_exist && cat /tmp/pomo; }
 
 "$@"

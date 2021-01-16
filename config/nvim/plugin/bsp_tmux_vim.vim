@@ -1,7 +1,7 @@
-if exists("g:loaded_bspwm_navigator") | finish | endif
-let g:loaded_bspwm_navigator = 1
+if exists("g:loaded_global_navigator") | finish | endif
+let g:loaded_global_navigator = 1
 
-function! s:BspwmAwareNavigate(direction)
+function! s:GlobalAwareNavigate(direction)
   let nr = winnr()
   execute 'wincmd ' . a:direction
   let at_tab_page_edge = (nr == winnr())
@@ -15,9 +15,13 @@ function! s:BspwmAwareNavigate(direction)
     elseif a:direction ==? 'l'
         let bspc_direction = 'east'
     endif
-    let cmd = 'bspc node -f ' . bspc_direction . '.local'
+    if empty($TMUX)
+      let cmd = 'bspc node -f ' . bspc_direction . '.local'
+    else
+      let cmd = '~/.config/bspwm/scripts/bsp_tmux_vim ' .bspc_direction. ' true'
+    endif
     call system(cmd)
   endif
 endfunction
 
-command! -nargs=? BspwmNavigate call s:BspwmAwareNavigate(<f-args>)
+command! -nargs=? GlobalNavigate call s:GlobalAwareNavigate(<f-args>)

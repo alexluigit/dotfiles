@@ -4,13 +4,15 @@ TERMINAL=false
 DIMENSION=1920x1080+0+0
 TIMEOUT=100
 
-__get_wid() { xdotool search --onlyvisible --desktop $(xdotool get_desktop) --class $1; }
-__win_info() { bspc query -T -n $WID | jq "$@" | tr -d '"'; }
-__win_visible() { ! $(__win_info .hidden); }
+__get_wid() {
+  xdotool search --onlyvisible --desktop $(xdotool get_desktop) --classname $INSTANCE
+}
+__win_info() { bspc query -T -n $1 | jq "$2" | tr -d '"'; }
+__win_visible() { ! $(__win_info $WID .hidden); }
 __wid_expired() {
-  wid_class=$(__win_info .client.className)
-  wid_instance=$(__win_info .client.instanceName)
-  [[ "$wid_class" != "$CLASS" ]] && [[ "$wid_instance" != "$CLASS" ]]
+  wid_class=$(__win_info $WID .client.className)
+  wid_instance=$(__win_info $WID .client.instanceName)
+  [[ "$wid_instance" != "$INSTANCE" ]] && [[ "$wid_class" != "$CLASS" ]]
 }
 __hide_window() { bspc node $WID --flag hidden=on; }
 __show_window() {
@@ -19,34 +21,36 @@ __show_window() {
   xdotool windowactivate $WID
 }
 __create_window() {
-  bspc rule -a $CLASS -o state=floating rectangle=$DIMENSION sticky=on
-  t_cmd=(alacritty --class $CLASS,$APP)
+  killall $APP 2>/dev/null
+  bspc rule -a $CLASS:$INSTANCE -o state=floating rectangle=$DIMENSION sticky=on
+  t_cmd=(alacritty --class $CLASS,$INSTANCE)
   [[ "$APP" == "dropterm" ]] || t_cmd+=("-e $APP")
   $TERMINAL && eval "${t_cmd[@]} &" || eval "${CMD[@]} &"
   local time_out=0
   while (($time_out <= $TIMEOUT)); do
-    wid=$(__get_wid $CLASS); sleep .3
+    wid=$(__get_wid)
     [[ -n "$wid" ]] && echo "$wid" > $FLOATWIN_STATE/$APP && break
-    time_out=$((time_out + 1))
+    sleep .3; time_out=$((time_out + 1))
   done
-  bspc rule -r $CLASS
+  bspc rule -r $CLASS:$INSTANCE
 }
 
 _toggle_or_create() {
-  if $(__wid_expired); then __create_window
-  elif $(__win_visible); then __hide_window
+  if __wid_expired; then __create_window
+  elif __win_visible; then __hide_window
   else __show_window
   fi
 }
 
 main() {
   [[ -d "$FLOATWIN_STATE" ]] || mkdir -p $FLOATWIN_STATE
-  while getopts "a:b:c:d:t" opt; do
+  while getopts "a:b:c:d:i:t" opt; do
     case $opt in
       a) AFTER=$OPTARG;;
       b) BEFORE=$OPTARG;;
       c) CLASS=$OPTARG;;
       d) DIMENSION=$OPTARG;;
+      i) INSTANCE=$OPTARG;;
       t) TERMINAL=true;;
     esac
   done
@@ -54,6 +58,7 @@ main() {
   CMD="$@"
   APP=${1:-dropterm}
   CLASS=${CLASS:-$APP}
+  INSTANCE=${INSTANCE:-$CLASS}
   WID=$(cat "$FLOATWIN_STATE/$APP" 2>/dev/null)
   [ -n "$BEFORE" ] && ! pgrep "$BEFORE" >/dev/null && eval "$BEFORE &"
   _toggle_or_create

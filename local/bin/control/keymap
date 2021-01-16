@@ -27,7 +27,7 @@ main() {
       N) nautilus;;
       S) flameshot full -p ~/pictures/screenshots;;
       T) ~/.config/rofi/scripts/sessions;;
-      V) exec floatwin -b murl -c mpv -d 960x540+2870+60 murl temp;;
+      V) exec floatwin -b murl -c mpv -i gl -d 960x540+2870+60 murl temp;;
       a) rofi -show drun -theme ~/.config/rofi/themes/launcher.rasi;;
       e) xvimux north;;
       f) toggle_monocle;;

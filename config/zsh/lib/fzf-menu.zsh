@@ -37,8 +37,8 @@ __intercept() {
 
 __parse_opt() {
   OPT[2]+="$SYM_OFFSET"
-  [[ ${OPT[3]} == "mpv" ]] && { FLAG=(--x11-name=$CLASSNAME); }
-  [[ ${OPT[3]} == "sxiv" ]] && { FLAG=(-N $CLASSNAME); }
+  [[ ${OPT[3]} == "mpv" ]] && { FLAG=(--x11-name=$CLASSNAME); return; }
+  [[ ${OPT[3]} == "sxiv" ]] && { FLAG=(-N $CLASSNAME); return; }
 }
 
 _fzf_open_menu() {

@@ -1,0 +1,5 @@
+#!/bin/zsh
+source $ZDOTDIR/user/dirs.zsh
+source $ZDOTDIR/lib/utils.zsh
+source $ZDOTDIR/lib/fzf-menu.zsh
+_fzf_open_menu true

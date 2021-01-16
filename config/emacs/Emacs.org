@@ -106,6 +106,9 @@ This section configures basic UI settings that remove unneeded elements to make 
                   eshell-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
+;; use transparent background 
+ (set-frame-parameter (selected-frame) 'alpha '(85 . 50))
+ (add-to-list 'default-frame-alist '(alpha . (85 . 50)))
 #+end_src
 
 ** Font Configuration
@@ -177,7 +180,7 @@ I am using the [[https://github.com/tonsky/FiraCode][Fira Code]] and [[https://f
   :init (which-key-mode)
   :diminish which-key-mode
   :config
-  (setq which-key-idle-delay 1))
+  (setq which-key-idle-delay 0.5))
 
 #+end_src
 
@@ -217,11 +220,10 @@ I am using the [[https://github.com/tonsky/FiraCode][Fira Code]] and [[https://f
     (defun alex/edit-configuration ()
     "Open the init file."
       (interactive)
-      (find-file "~/Dev/Alex.files/config/emacs/Emacs.org"))
+      (find-file "~/dev/alex.files/config/emacs/Emacs.org"))
 
     (alex/leader-keys
       "f"  '(:ignore t :which-key "find files")
-      ;; "f." '((find-file "~/Dev/Alex.files/config/emacs/Emacs.org") :which-key "emacs config")
       "f." '(alex/edit-configuration :which-key "emacs config")
       "t"  '(:ignore t :which-key "toggles")
       "tt" '(counsel-load-theme :which-key "choose theme")
@@ -243,12 +245,12 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
     (setq evil-want-integration t)
     (setq evil-want-keybinding nil)
     (setq evil-want-C-u-scroll t)
-    (setq evil-want-C-i-jump nil)
+    (setq evil-want-C-i-jump t)
     :config
     (evil-mode 1)
     (define-key evil-normal-state-map (kbd "C-f") 'swiper)
     (define-key evil-normal-state-map (kbd "C-n") 'evil-search-next)
-    (define-key evil-normal-state-map (kbd "C-p") 'evil-search-previous)
+    (define-key evil-normal-state-map (kbd "C-e") 'evil-search-previous)
     (define-key evil-normal-state-map (kbd "k")   'evil-forward-word-end)
     (define-key evil-normal-state-map (kbd "K")   'evil-forward-WORD-end)
     (define-key evil-normal-state-map (kbd "E")   'evil-lookup)
@@ -566,7 +568,7 @@ This snippet adds a hook to =org-mode= buffers so that =alex/org-babel-tangle-co
   ;; Automatically tangle our Emacs.org config file when we save it
   (defun alex/org-babel-tangle-config ()
     (when (string-equal (buffer-file-name)
-                        (expand-file-name "~/Dev/Alex.files/config/emacs/Emacs.org"))
+                        (expand-file-name "~/dev/alex.files/config/emacs/Emacs.org"))
       ;; Dynamic scoping to the rescue
       (let ((org-confirm-babel-evaluate nil))
         (org-babel-tangle))))
@@ -727,8 +729,8 @@ We also use [[https://github.com/sebastiencs/company-box][company-box]] to furth
     :config (projectile-mode)
     :custom ((projectile-completion-system 'ivy))
     :init
-    (when (file-directory-p "~/Dev")
-      (setq projectile-project-search-path '("~/Dev")))
+    (when (file-directory-p "~/dev")
+      (setq projectile-project-search-path '("~/dev")))
     (setq projectile-switch-project-action #'projectile-dired))
 
   (use-package counsel-projectile

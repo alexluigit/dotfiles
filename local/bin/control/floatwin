@@ -2,17 +2,12 @@
 FLOATWIN_STATE="$XDG_CACHE_HOME/floatwin"
 TERMINAL=false
 DIMENSION=1920x1080+0+0
-TIMEOUT=100
 
-__get_wid() {
-  xdotool search --onlyvisible --desktop $(xdotool get_desktop) --classname $INSTANCE
-}
-__win_info() { bspc query -T -n $1 | jq "$2" | tr -d '"'; }
-__win_visible() { ! $(__win_info $WID .hidden); }
+__win_info() { bspc query -T -n $WID | jq "$@" | tr -d '"'; }
+__win_visible() { ! $(__win_info .hidden); }
 __wid_expired() {
-  wid_class=$(__win_info $WID .client.className)
-  wid_instance=$(__win_info $WID .client.instanceName)
-  [[ "$wid_instance" != "$INSTANCE" ]] && [[ "$wid_class" != "$CLASS" ]]
+  wid_instance=$(__win_info .client.instanceName)
+  [[ "$wid_instance" != "$INSTANCE" ]]
 }
 __hide_window() { bspc node $WID --flag hidden=on; }
 __show_window() {
@@ -26,12 +21,7 @@ __create_window() {
   t_cmd=(alacritty --class $CLASS,$INSTANCE)
   [[ "$APP" == "dropterm" ]] || t_cmd+=("-e $APP")
   $TERMINAL && eval "${t_cmd[@]} &" || eval "${CMD[@]} &"
-  local time_out=0
-  while (($time_out <= $TIMEOUT)); do
-    wid=$(__get_wid)
-    [[ -n "$wid" ]] && echo "$wid" > $FLOATWIN_STATE/$APP && break
-    sleep .3; time_out=$((time_out + 1))
-  done
+  xdo id -md -N $CLASS -n $INSTANCE > $FLOATWIN_STATE/$APP
   bspc rule -r $CLASS:$INSTANCE
 }
 
@@ -62,7 +52,7 @@ main() {
   WID=$(cat "$FLOATWIN_STATE/$APP" 2>/dev/null)
   [ -n "$BEFORE" ] && ! pgrep "$BEFORE" >/dev/null && eval "$BEFORE &"
   _toggle_or_create
-  [ -n "$AFTER" ] && ! pgrep "$AFTER" >/dev/null && eval "$AFTER &"
+  [ -n "$AFTER" ] && ! pgrep "$AFTER" >/dev/null && eval "$AFTER &" || true
 }
 
 main "$@"

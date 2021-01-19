@@ -1,0 +1,37 @@
+# BSPWM
+super + shift + {1-8}
+	bspc node -d ^{1-8}
+super + {_,control} {1-8}
+	bspc {desktop -f,node -d} ^{1-8} --follow
+super + f
+	bspc desktop -l next
+super + Tab
+	bspc node -f last
+hyper + space
+	~/.config/bspwm/scripts/bsp_resize {left 800, right 800}
+hyper + equal
+	bspc node @/ -E
+hyper + escape
+	bspc node -p cancel
+hyper + b
+	bspc node @/ -B
+hyper + {h,n,e,i}
+	bspc node -s {west,south,north,east}
+hyper + o; {h,n,e,i}
+	bspc node --presel-dir ~{west,south,north,east}
+hyper + super + {h,n,e,i}
+	~/.config/bspwm/scripts/bsp_resize {left,bottom,top,right}
+
+# General
+super + {_,control} {a-e,g-n,p-z}
+	keymap Super+{_,Control+}{A-E,G-N,P-Z}
+super + o; {a-z}
+	keymap SuperO+{A-Z}
+super + {Return,Escape,Delete}
+	keymap Super+{Return,Escape,Delete}
+{_,hyper +} {F7,F8,F9,F10,F11,F12,button8,button9,Delete}
+	keymap {_,Hyper+}{F7,F8,F9,F10,F11,F12,Mouse1,Mouse2,Delete}
+alt + {n,e}
+	keymap Alt+{N,E}
+control + alt + BackSpace
+	pkill X

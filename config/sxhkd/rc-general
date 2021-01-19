@@ -1,0 +1,13 @@
+# General
+super + {_,control} {a-e,g-n,p-z}
+	keymap Super+{_,Control+}{A-E,G-N,P-Z}
+super + o; {a-z}
+	keymap SuperO+{A-Z}
+super + {Return,Escape,Delete}
+	keymap Super+{Return,Escape,Delete}
+{_,hyper +} {F7,F8,F9,F10,F11,F12,button8,button9,Delete}
+	keymap {_,Hyper+}{F7,F8,F9,F10,F11,F12,Mouse1,Mouse2,Delete}
+alt + {n,e}
+	keymap Alt+{N,E}
+control + alt + BackSpace
+	pkill X

@@ -1,9 +1,10 @@
 #!/bin/sh
 export DISPLAY_DEVICE=$(xrandr | awk '/ connected/{print $1}')
+declare -r sxhkdrc_type=bspwm
 xrdb -merge ~/.config/x11/xresources &
 
 easystroke --config-dir ~/.config/easystroke &
-sxhkd -m 1 &
+sxhkd -m 1 -c ~/.config/sxhkd/rc-$sxhkdrc_type &
 deadd-notification-center &
 fcitx5 &
 flameshot &

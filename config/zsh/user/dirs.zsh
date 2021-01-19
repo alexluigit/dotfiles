@@ -9,9 +9,12 @@ declare -A USER_DIRS=(
    [07-root]="/                               nvim    All files"
 )
 
-# 1.symbol 2.path 3.color
-HOME_DIR=( "" "/home/alex/" "152")
-DRIVE_DIR=("" "/media/HDD/" "220")
-ROOT_DIR=( "" "/"           "167")
-SYS_DIRS=(HOME_DIR DRIVE_DIR ROOT_DIR)
+declare -A SYS_DIRS=(
+   # [{priority}_{name}]="{path} {symbol} {color}"
+   [00_DATA]="/media/HDD/    220"
+   [00_HOME]="/home/alex/    152"
+   [01_ROOT]="/              167"
+)
+
+# spaces after symbol
 SYM_OFFSET=" "

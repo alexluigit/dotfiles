@@ -1,12 +1,17 @@
-_colorize_sym() { echo "\x1b\[38;5;$1m$2\x1b\[0m"; }
-for i in $SYS_DIRS; do
-  local sym=$(eval echo $"$i" | head -c 3)
-  local color=$(eval echo $"$i" | tail -c 4)
-  local str=$(_colorize_sym "$color" "$sym$SYM_OFFSET")
-  eval "${i[@]}[3]="\$str""
-done
-NAVI_B=(sed '"'); for i in $SYS_DIRS; do NAVI_B+=("s|^\${"$i"[2]}|\${"$i"[3]}|g;"); done; NAVI_B+=('"');
-NAVI_A=(sed '"'); for i in $SYS_DIRS; do NAVI_A+=("s|^\${"$i"[1]}\$SYM_OFFSET|\${"$i"[2]}|g;"); done; NAVI_A+=('"');
+__fnavi_init() {
+  colorize_sym() { echo "\x1b\[38;5;$1m$2\x1b\[0m"; }
+  NAVI_B=(sed '"'); NAVI_A=(sed '"')
+  declare -a dir_index=(`echo ${(@k)SYS_DIRS} | tr ' ' '\n' | sort`)
+  for i in $dir_index; do
+    local dir_info=(`echo ${SYS_DIRS[$i]}`)
+    local path_d=${dir_info[1]} sym_d=${dir_info[2]} color_d=${dir_info[3]}
+    local sym_c=$(colorize_sym "$color_d" "$sym_d")
+    NAVI_B+=("s|^$path_d|$sym_c$SYM_OFFSET|g;")
+    NAVI_A+=("s|^$sym_d$SYM_OFFSET|$path_d|g;")
+  done
+  unset -f colorize_sym
+  NAVI_B+=('"'); NAVI_A+=('"');
+}; __fnavi_init
 
 _fzf_navi() {
   [[ $1 == 'z' ]] && { local CMD=(z -l '|' awk \'{print \$2}\') REV='--tac'; } \
@@ -17,9 +22,9 @@ _fzf_navi() {
 
 _fzf_hist() {
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases
-  local selected num
-  selected=($(fc -rl 1 | fzf +m))
-  [[ -n "$selected" ]] && { num=$selected[1]; [[ -n "$num" ]] && zle vi-fetch-history -n $num; }
+  local sel num
+  sel=($(fc -rl 1 | fzf +m))
+  [[ -n "$sel" ]] && { num=$sel[1]; [[ -n "$num" ]] && zle vi-fetch-history -n $num; }
   zle reset-prompt
 }
 

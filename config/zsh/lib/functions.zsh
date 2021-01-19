@@ -12,6 +12,5 @@ _lf() {
   zle reset-prompt; zle-line-init;
 }
 _make-notes() { n ~/Documents/notes/draft/notes.md; }
-_make-scripts() { n ~/Dev/alex.files/local/bin/new.sh; }
 _todolist() { n ~/.cache/bujo/todo.md; }
 zbug() {}

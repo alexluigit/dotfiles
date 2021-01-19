@@ -11,7 +11,7 @@ export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 
 export EDITOR="nvim"
-export MANPAGER='nvim -c "let g:manpager = 1" +set\ filetype=man -'
+export MANPAGER='nvim +set\ filetype=man -'
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
 
 export GOPATH=$XDG_DATA_HOME/go

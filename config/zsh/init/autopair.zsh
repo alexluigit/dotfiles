@@ -11,7 +11,7 @@ __autopairs() {
   zle forward-char
 }
 
-backspace() { zle vi-backward-delete-char }
+backspace() { zle backward-delete-char }
 angle_pair() { __autopairs a; }
 brace_pair() { __autopairs b; }
 brket_pair() { __autopairs r; }

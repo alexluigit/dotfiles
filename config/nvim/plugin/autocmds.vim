@@ -22,7 +22,7 @@ augroup Miscellaneous
   " Highlight yanked content for 500 ms and send OSC52 seqs to tty
   au TextYankPost * call alex#autocmds#yank_post()
   " change layout when nvim window resize
-  au VimResized * if !exists("g:manpager") | execute('wincmd =') | endif
+  au VimResized * if &ft != 'man' | execute('wincmd =') | endif
   " Update signature help on jump placeholder.
   au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end

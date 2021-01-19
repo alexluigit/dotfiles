@@ -25,8 +25,8 @@ case "$dir_wm" in
   east)  keysym="l"; dir_tmux="R"; dir_check="right";;
 esac
 
-"$wm_navi" && { wm_navigation; exit; }
-"$tmux_navi" && { tmux_navigation; exit; }
+"$wm_navi" 2>/dev/null && { wm_navigation; exit; }
+"$tmux_navi" 2>/dev/null && { tmux_navigation; exit; }
 
 if $(window_is_vim); then
   xvkbd -xsendevent -text "\C$keysym"

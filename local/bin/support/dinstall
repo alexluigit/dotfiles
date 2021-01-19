@@ -1,5 +1,5 @@
 #!/bin/sh
-REPODIR="$HOME/dev/alex.files"
+REPODIR="$HOME/Dev/alex.files"
 CFGDIR="$HOME/.config"
 BINDIR="$HOME/.local/bin"
 

@@ -4,7 +4,7 @@ export FIFO_UEBERZUG="/tmp/lf-ueberzug-${PPID}"
 cleanup() {
   sleep .02 # Wait lf run 'cleaner' first
 	rm "$FIFO_UEBERZUG" 2>/dev/null
-	pkill -P $$ 2>/dev/null
+	pkill -KILL -P $$
 }
 
 # cleanup

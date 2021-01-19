@@ -1,11 +1,12 @@
-typeset -a USER_DIRS=(
-   "/home/alex/dev/alex.files/      nvim  Config"
-   "/media/HDD/Dev/                 mpv   Dev"
-   "/home/alex/documents/notes/     nvim  Note"
-   "/home/alex/pictures/            sxiv  Pictures"
-   "/home/alex/videos/              mpv   Videos"
-   "/home/alex/                     nvim  Home"
-   "/                               nvim  Root"
+declare -A USER_DIRS=(
+   # [{order}_{name}]="{path} {symbol} {program} {description}"
+   [01-conf]="/home/alex/Dev/alex.files/      nvim    System config"
+   [02-code]="/media/HDD/Dev/                 mpv     Coding tutorial"
+   [03-note]="/home/alex/Documents/notes/     nvim    Notes"
+   [04-pics]="/home/alex/Pictures/            sxiv    Pictures"
+   [05-vids]="/home/alex/Videos/              mpv     Videos"
+   [06-home]="/home/alex/                     nvim    Home"
+   [07-root]="/                               nvim    All files"
 )
 
 # 1.symbol 2.path 3.color

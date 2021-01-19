@@ -106,7 +106,7 @@ This section configures basic UI settings that remove unneeded elements to make 
                   eshell-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-;; use transparent background 
+;; use transparent background
  (set-frame-parameter (selected-frame) 'alpha '(85 . 50))
  (add-to-list 'default-frame-alist '(alpha . (85 . 50)))
 #+end_src
@@ -220,7 +220,7 @@ I am using the [[https://github.com/tonsky/FiraCode][Fira Code]] and [[https://f
     (defun alex/edit-configuration ()
     "Open the init file."
       (interactive)
-      (find-file "~/dev/alex.files/config/emacs/Emacs.org"))
+      (find-file "~/Dev/alex.files/config/emacs/Emacs.org"))
 
     (alex/leader-keys
       "f"  '(:ignore t :which-key "find files")
@@ -568,7 +568,7 @@ This snippet adds a hook to =org-mode= buffers so that =alex/org-babel-tangle-co
   ;; Automatically tangle our Emacs.org config file when we save it
   (defun alex/org-babel-tangle-config ()
     (when (string-equal (buffer-file-name)
-                        (expand-file-name "~/dev/alex.files/config/emacs/Emacs.org"))
+                        (expand-file-name "~/Dev/alex.files/config/emacs/Emacs.org"))
       ;; Dynamic scoping to the rescue
       (let ((org-confirm-babel-evaluate nil))
         (org-babel-tangle))))
@@ -664,8 +664,8 @@ This is a basic configuration for the TypeScript language so that =.ts= files ac
     :mode "\\.ts\\'"
     :hook (typescript-mode . lsp-deferred)
     :config
-    (setq lsp-eslint-server-command 
-    '("node" 
+    (setq lsp-eslint-server-command
+    '("node"
     "/home/alex/.local/share/lsp/eslint/server/out/eslintServer.js" "--stdio"))
     (setq typescript-indent-level 2))
 

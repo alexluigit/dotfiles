@@ -1,4 +1,7 @@
-__entries() { for i in ${(@v)USER_DIRS}; do echo $i; done; }
+declare -a dir_index=(`echo ${(@k)USER_DIRS[@]} | sort`)
+__wm_set_rule() { bspc rule -a $CLASS:$INSTANCE -o state=floating rectangle=$FMENU_DIMENSION; }
+__wm_unset_rule() { bspc rule -r $CLASS:$INSTANCE; }
+__entries() { for i in ${dir_index[@]}; do echo ${USER_DIRS[$i]}; done; }
 __win_float() {
   local app=$1
   case $app in
@@ -7,10 +10,9 @@ __win_float() {
     mpv)     CLASS=mpv;     GUI=true;;
     *)       CLASS=$app;;
   esac
-  bspc rule -a $CLASS:$INSTANCE -o state=floating rectangle=$FLOAT_DIMENSION
+  __wm_set_rule
 }
 __intercept() {
-  ! $GUI && return
   floatwin_cache="$XDG_CACHE_HOME/floatwin/fmenu"
   xdo id -md -N $CLASS -n $INSTANCE > $floatwin_cache
 }
@@ -23,23 +25,24 @@ __parse_opt() {
 _fzf_open() {
   GUI=false
   local ignore dir="$1" app="$3"
-  local fd_cmd="fd -tf -H -L -c always"
+  local fd_cmd=(fd -tf -H -L -c always)
   local fzf_cmd=(fzf --height=100% -m --ansi --preview=\"preview {}\" --prompt=\"$2\")
   local xargs_cmd=("$app")
   [[ -n $FLAG ]] && xargs_cmd+=("${FLAG[@]}")
   [[ $dir='/' ]] && ignore=(--ignore-file ~/.config/fd/root); cd $dir
-  local res=$(eval $fd_cmd $ignore | eval ${fzf_cmd[@]})
-  [[ -n $EXEC_FROM_X ]] && __win_float $app && __intercept &
+  local res=`eval ${fd_cmd[@]} ${ignore[@]} | eval ${fzf_cmd[@]}`
+  "$EXEC_FROM_X" && __win_float "$app"
+  "$GUI" && __intercept &
   [[ -n $res ]] && {
-    _set_title $app; echo $res | xargs -ro -d '\n' ${xargs_cmd[@]}; _reset_title;
-  }
+    _set_title $app; IFS=''; echo $res | xargs -ro -d '\n' ${xargs_cmd[@]}; _reset_title;
+  }; unset IFS
   cd -; zle reset-prompt 2>/dev/null
   _exec_if_exist zle-line-init
 }
 _fzf_open_menu() {
-  EXEC_FROM_X=$1
+  EXEC_FROM_X=${1:-false}
   INSTANCE="fmenu"
-  OPT=($(__entries | fzf --height=100% --prompt="Open: " --with-nth 2,4..))
-  [[ -n $OPT ]] && { __parse_opt; _fzf_open $OPT; } || zle reset-prompt 2>/dev/null
-  [[ -n $EXEC_FROM_X ]] && bspc rule -r $CLASS 2>/dev/null
+  OPT=(`__entries | fzf --height=100% --prompt="Open: " --with-nth 2,4..`)
+  [[ -n $OPT ]] && { __parse_opt; _fzf_open ${OPT[@]}; } || zle reset-prompt 2>/dev/null
+  "$EXEC_FROM_X" && __wm_unset_rule
 }

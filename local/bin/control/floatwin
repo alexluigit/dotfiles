@@ -4,31 +4,35 @@ TERMINAL=false
 DIMENSION=1920x1080+0+0
 
 __win_info() { bspc query -T -n $WID | jq "$@" | tr -d '"'; }
-__win_visible() { ! $(__win_info .hidden); }
-__wid_expired() {
+__wm_set_rule() { bspc rule -a $CLASS:$INSTANCE -o state=floating rectangle=$DIMENSION sticky=on; }
+__wm_unset_rule() { bspc rule -r $CLASS:$INSTANCE; }
+__wm_hide_window() { bspc node $WID --flag hidden=on; }
+__wm_show_window() { bspc node $WID --flag hidden=off; }
+
+_win_visible() { ! $(__win_info .hidden); }
+_wid_expired() {
   wid_instance=$(__win_info .client.instanceName)
   [[ "$wid_instance" != "$INSTANCE" ]]
 }
-__hide_window() { bspc node $WID --flag hidden=on; }
-__show_window() {
+_hide_window() { __wm_hide_window; }
+_show_window() {
   xdotool set_desktop_for_window "$WID" "$(xdotool get_desktop)"
-  bspc node $WID --flag hidden=off
+  __wm_show_window
   xdotool windowactivate $WID
 }
-__create_window() {
+_create_window() {
   killall $APP 2>/dev/null
-  bspc rule -a $CLASS:$INSTANCE -o state=floating rectangle=$DIMENSION sticky=on
+  __wm_set_rule
   t_cmd=(alacritty --class $CLASS,$INSTANCE)
   [[ "$APP" == "dropterm" ]] || t_cmd+=("-e $APP")
   $TERMINAL && eval "${t_cmd[@]} &" || eval "${CMD[@]} &"
   xdo id -md -N $CLASS -n $INSTANCE > $FLOATWIN_STATE/$APP
-  bspc rule -r $CLASS:$INSTANCE
+  __wm_unset_rule
 }
-
 _toggle_or_create() {
-  if __wid_expired; then __create_window
-  elif __win_visible; then __hide_window
-  else __show_window
+  if _wid_expired; then _create_window
+  elif _win_visible; then _hide_window
+  else _show_window
   fi
 }
 

@@ -99,3 +99,6 @@
 [submodule "xvimux"]
 	path = config/nvim/pack/bundle/opt/xvimux
 	url = https://github.com/alexluigit/xvimux
+[submodule "murl"]
+	path = local/bin/murl
+	url = https://github.com/alexluigit/murl

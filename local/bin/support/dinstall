@@ -21,6 +21,7 @@ bin() {
   for i in $(find "$REPODIR/local/bin" -type f -executable)
     do ln -sf $i $BINDIR
   done
+  ln -sf ~/.config/nvim/pack/bundle/opt/xvimux/xvimux $BINDIR
   __apps
 }
 

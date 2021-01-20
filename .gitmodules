@@ -96,3 +96,6 @@
 [submodule "floatwin"]
 	path = local/bin/floatwin
 	url = https://github.com/alexluigit/floatwin
+[submodule "xvimux"]
+	path = config/nvim/pack/bundle/opt/xvimux
+	url = https://github.com/alexluigit/xvimux

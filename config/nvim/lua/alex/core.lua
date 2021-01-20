@@ -14,6 +14,7 @@ vim.cmd('packadd! vim-fugitive')
 vim.cmd('packadd! vim-repeat')
 vim.cmd('packadd! vim-slime')
 vim.cmd('packadd! vim-which-key')
+vim.cmd('packadd! xvimux')
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages

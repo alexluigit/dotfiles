@@ -93,3 +93,6 @@
 [submodule "rime"]
 	path = config/rime
 	url = https://github.com/alexluigit/rime
+[submodule "floatwin"]
+	path = local/bin/floatwin
+	url = https://github.com/alexluigit/floatwin

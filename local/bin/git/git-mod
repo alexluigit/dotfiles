@@ -2,15 +2,18 @@
 add() {
   local nvimPath='config/nvim/pack/bundle/opt'
   local zshPath='config/zsh/plugins'
+  local binPath='local/bin'
   local mName=$(sed 's|.*/||' <<< "$1")
   echo "1) nvim -> $nvimPath/$mName"
   echo "2) zsh  -> $zshPath/$mName"
-  echo "3) Type manually"
+  echo "3) bin  -> $binPath/$mName"
+  echo "4) Type manually"
   read -p "Please choose target directory : " REPLY
   case $REPLY in
     1) iPath=$nvimPath;;
     2) iPath=$zshPath;;
-    3) read -p "Input directory: " iPath;;
+    3) iPath=$binPath;;
+    4) read -p "Input directory: " iPath;;
     *) echo "Invalid option. Exit" && exit 1;;
   esac
   echo "Installing to $iPath/$mName"

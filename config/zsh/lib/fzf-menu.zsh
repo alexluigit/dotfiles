@@ -1,6 +1,5 @@
 declare -a dir_index=(`echo ${(@k)USER_DIRS[@]} | sort`)
-__wm_set_rule() { bspc rule -a $CLASS:$INSTANCE -o state=floating rectangle=$FMENU_DIMENSION; }
-__wm_unset_rule() { bspc rule -r $CLASS:$INSTANCE; }
+__wm_set_rule() { bspc rule -a $CLASS:$INSTANCE -o state=floating 2>&1 >/dev/null; }
 __entries() { for i in ${dir_index[@]}; do echo ${USER_DIRS[$i]}; done; }
 __win_float() {
   local app=$1
@@ -13,8 +12,12 @@ __win_float() {
   __wm_set_rule
 }
 __intercept() {
-  floatwin_cache="$XDG_CACHE_HOME/floatwin/fmenu"
-  xdo id -md -N $CLASS -n $INSTANCE > $floatwin_cache
+  target=~/.cache/floatwin/fmenu
+  local new_wid=$(xdo id -md -N $CLASS -n $INSTANCE | tee -a $target)
+  wid=$new_wid
+  W=$(sed -n 1p $target) H=$(sed -n 2p $target)
+  X=$(sed -n 3p $target) Y=$(sed -n 4p $target)
+  xdotool windowmap $wid windowmove $wid $X $Y windowsize $wid $W $H
 }
 __parse_opt() {
   OPT[2]+="$SYM_OFFSET"
@@ -44,5 +47,4 @@ _fzf_open_menu() {
   INSTANCE="fmenu"
   OPT=(`__entries | fzf --height=100% --prompt="Open: " --with-nth 2,4..`)
   [[ -n $OPT ]] && { __parse_opt; _fzf_open ${OPT[@]}; } || zle reset-prompt 2>/dev/null
-  "$EXEC_FROM_X" && __wm_unset_rule
 }

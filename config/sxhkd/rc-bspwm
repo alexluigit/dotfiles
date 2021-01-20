@@ -11,7 +11,7 @@ hyper + space
 	~/.config/bspwm/scripts/bsp_resize {left 800, right 800}
 hyper + equal
 	bspc node @/ -E
-hyper + escape
+hyper + Escape
 	bspc node -p cancel
 hyper + b
 	bspc node @/ -B

@@ -5,4 +5,5 @@ config/sxhkd/mappings.example
 !config/sxhkd/mappings
 !config/zsh/user/variable.zsh
 !config/nvim/pack/bundle/opt/xvimux
+!local/etc/pacman.conf
 LICENSE

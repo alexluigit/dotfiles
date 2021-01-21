@@ -5,7 +5,7 @@ xrdb -merge ~/.config/x11/xresources &
 
 easystroke --config-dir ~/.config/easystroke &
 sxhkd -m 1 -c ~/.config/sxhkd/rc-$sxhkdrc_type &
-dunst &
+deadd-notification-center &
 fcitx5 &
 flameshot &
 autolock &

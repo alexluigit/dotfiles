@@ -12,7 +12,7 @@ ctrl-b() { zbug; }
 ctrl-k() { zle edit-command-line; }
 ctrl-RT(){ [[ $#LBUFFER -ne $#BUFFER ]] && zle end-of-line || zle autosuggest-accept; }
 ctrl-i() { [[ -n $BUFFER ]] && zle backward-char || _fzf_open . "Edit: " nvim; }
-ctrl-o() { [[ -n $BUFFER ]] && zle forward-char || _fzf_open_menu; }
+ctrl-o() { [[ -n $BUFFER ]] && zle forward-char || fmenu; }
 ctrl-d() { [[ -n $BUFFER ]] && zle delete-char || _fzf_cd; }
 ctrl-h() { [[ -n $BUFFER ]] && zle backward-delete-char || _updir; }
 ctrl-l() { [[ -n $BUFFER ]] && zle vi-backward-word || zle clear-screen; }

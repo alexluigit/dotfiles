@@ -102,3 +102,6 @@
 [submodule "murl"]
 	path = local/bin/murl
 	url = https://github.com/alexluigit/murl
+[submodule "fmenu"]
+	path = local/bin/fmenu
+	url = https://github.com/alexluigit/fmenu

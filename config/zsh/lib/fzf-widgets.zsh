@@ -1,5 +1,5 @@
 __fnavi_init() {
-  colorize_sym() { echo "\x1b\[38;5;$1m$2\x1b\[0m"; }
+  colorize_sym() { echo -ne "\e[38;5;$1""m""$2""\e[0m"; }
   NAVI_B=(sed '"'); NAVI_A=(sed '"')
   declare -a dir_index=(`echo ${(@k)SYS_DIRS} | tr ' ' '\n' | sort`)
   for i in $dir_index; do
@@ -9,7 +9,6 @@ __fnavi_init() {
     NAVI_B+=("s|^$path_d|$sym_c$SYM_OFFSET|g;")
     NAVI_A+=("s|^$sym_d$SYM_OFFSET|$path_d|g;")
   done
-  unset -f colorize_sym
   NAVI_B+=('"'); NAVI_A+=('"');
 }; __fnavi_init
 

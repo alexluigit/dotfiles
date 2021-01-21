@@ -21,6 +21,8 @@ hyper + o; {h,n,e,i}
 	bspc node --presel-dir ~{west,south,north,east}
 hyper + super + {h,n,e,i}
 	~/.config/bspwm/scripts/bsp_resize {left,bottom,top,right}
+hyper + control + {h,n,e,i}
+	xdo move {-x -20,-y +20,-y -20,-x +20}
 
 # General
 super + {_,control} {a-e,g-n,p-z}

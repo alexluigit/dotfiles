@@ -11,7 +11,7 @@ ctrl-u() { zle kill-whole-line; }
 ctrl-b() { zbug; }
 ctrl-k() { zle edit-command-line; }
 ctrl-RT(){ [[ $#LBUFFER -ne $#BUFFER ]] && zle end-of-line || zle autosuggest-accept; }
-ctrl-i() { [[ -n $BUFFER ]] && zle backward-char || _fzf_open . "Edit: " nvim; }
+ctrl-i() { [[ -n $BUFFER ]] && zle backward-char || fmenu false . "Edit: " nvim; }
 ctrl-o() { [[ -n $BUFFER ]] && zle forward-char || fmenu; }
 ctrl-d() { [[ -n $BUFFER ]] && zle delete-char || _fzf_cd; }
 ctrl-h() { [[ -n $BUFFER ]] && zle backward-delete-char || _updir; }

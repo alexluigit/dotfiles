@@ -1,6 +1,8 @@
 .git
 config/zsh/plugins/
-config/nvim/pack/bundle/opt/
+config/nvim/pack/bundle/opt/*
 config/sxhkd/mappings.example
 !config/sxhkd/mappings
 !config/zsh/user/variable.zsh
+!config/nvim/pack/bundle/opt/xvimux
+LICENSE

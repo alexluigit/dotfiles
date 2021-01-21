@@ -4,7 +4,7 @@ declare -A USER_DIRS=(
    [02-code]="/media/HDD/Dev/                 mpv     Coding tutorial"
    [03-note]="/home/alex/Documents/notes/     nvim    Notes"
    [04-pics]="/home/alex/Pictures/            sxiv    Pictures"
-   [05-vids]="/home/alex/Videos/              mpv     Videos"
+   [05-vids]="/home/alex/Video/               mpv     Video"
    [06-home]="/home/alex/                     nvim    Home"
    [07-root]="/                               nvim    All files"
 )

@@ -17,7 +17,7 @@ xkb_symbols "pc105" {
     key <BKSP> {	[ BackSpace, BackSpace	]	};
 
     key  <TAB> {	[ Tab,	ISO_Left_Tab	]	};
-    key <RTRN> {	[ Control_R		]	};
+    key <RTRN> {	[ Return		]	};
 
     key <CAPS> {	[ Caps_Lock		]	};
     key <NMLK> {	[ Num_Lock 		]	};
@@ -27,7 +27,7 @@ xkb_symbols "pc105" {
     key <LWIN> {	[ Super_L		]	};
 
     key <RTSH> {	[ Shift_R		]	};
-    key <RCTL> {	[ Return		]	};
+    key <RCTL> {	[ Control_R		]	};
     key <RWIN> {	[ Super_R		]	};
     key <MENU> {	[ Menu			]	};
 

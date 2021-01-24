@@ -1,15 +1,18 @@
 #!/usr/bin/env sh
 . ~/.config/sxhkd/mappings
 paste() {
-  _paste() { xdotool keyup v key --clearmodifiers ctrl+"$1"v; }
+  _focus_wclass() { xprop -id `xdotool getwindowfocus` WM_CLASS | cut -d '"' -f 4; }
+  _paste() { xdotool keyup $1 key --clearmodifiers ctrl+"$2"v; }
   classes=("Alacritty" "ncmpcpp" "lfrun" "dropterm")
-  [[ "${classes[@]}" == *"$(_focus_wclass)"* ]] && _paste shift+ || _paste
+  [[ "${classes[@]}" == *"$(_focus_wclass)"* ]] && _paste $1 shift+ || _paste $1
 }
-run_emacs() {
-  wid=$(xdotool search --onlyvisible --class 'Emacs')
-  [[ -n $wid ]] && xdotool windowactivate $wid || exec emacsclient -c
+
+# launch or focus # Todo
+lof() {
+  wid=$(xdotool search --onlyvisible --class "$1")
+  [[ -n $wid ]] && xdotool windowactivate $wid || exec "${@:2}"
 }
+
 send_key() { xvkbd -xsendevent -text $1; }
-_focus_wclass() { xprop -id `xdotool getwindowfocus` WM_CLASS | cut -d '"' -f 4; }
 
 eval "${mappings[$@]}"

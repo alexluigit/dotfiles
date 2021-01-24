@@ -14,7 +14,7 @@ __generate_thumb() {
     vid) ffmpegthumbnailer -i "$filepath" -o "$CACHE" -s 0;;
   esac
   [[ -f $CACHE ]] && mv "$CACHE" "$CACHE.png"
-  printf "$1\n$CACHE.png\n" >> /home/alex/.cache/lf/thumbnail/index
+  printf "$filepath\n$CACHE.png\n" >> /home/alex/.cache/lf/thumbnail/index
   _imagedraw "$CACHE.png"
 }
 

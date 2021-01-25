@@ -27,7 +27,7 @@ _fzf_hist() {
   zle reset-prompt
 }
 
-_fzf_cd() { local sel=$(ls -D | fzf --ansi); [[ -n $sel ]] && cd $sel; zle reset-prompt; }
+_fzf_cd() { local sel=$(fd -c always -td . | fzf --ansi); [[ -n $sel ]] && cd $sel; zle reset-prompt; }
 _fzf_comp_helper() { BUFFER="$BUFFER**"; zle end-of-line; fzf-completion; }
 _fzf_kill() { BUFFER="kill -9 "; zle end-of-line; fzf-completion; }
 _fzf-clip() { }

@@ -1,48 +1,53 @@
 #!/bin/sh
 REPODIR="$HOME/Dev/alex.files"
-CFGDIR="$HOME/.config"
-BINDIR="$HOME/.local/bin"
+CONFIG_DIR="$REPODIR/config"
+DATA_DIR="$REPODIR/local/share"
+CONFIG_TARGET="$HOME/.config"
+DATA_TARGET="$HOME/.local/share"
 
 checkdir() {
   echo "Current    Directory: $PWD"
   echo "Repository Directory: $REPODIR"
-  [[ ! -d $CFGDIR ]] && mkdir $CFGDIR || echo "$HOME/.config exists"
+  [[ ! -d $CONFIG_TARGET ]] && mkdir $CONFIG_TARGET || echo "$HOME/.config exists"
 }
 
 config() {
-  for i in $(du -d 1 "$REPODIR/config" | cut -f2)
-    do ln -sf "$i" "$CFGDIR"
+  for i in $(du -d 1 "$CONFIG_DIR" | cut -f2)
+    do ln -sf "$i" "$CONFIG_TARGET"
   done
-  rm $CFGDIR/config
-  ln -sf $CFGDIR/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
+  rm $CONFIG_TARGET/config
+  ln -sf $CONFIG_TARGET/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
 }
 
 bin() {
   for i in $(find "$REPODIR/local/bin" -type f -executable)
-    do ln -sf $i $BINDIR
+    do ln -sf $i ~/.local/bin
   done
-  ln -sf ~/.config/nvim/pack/bundle/opt/xvimux/xvimux $BINDIR
+  ln -sf ~/.config/nvim/pack/bundle/opt/xvimux/xvimux $BIN_TARGET
   __apps
 }
 
 pacman() {
   sudo rm /etc/pacman.conf
-  sudo ln -sf $REPODIR/local/etc/pacman.conf /etc/pacman.conf
+  sudo ln -sf $CONFIG_DIR/pacman/pacman.conf /etc/pacman.conf
 }
 
 zshenv() {
-  sudo ln -sf $REPODIR/config/zsh/system/zshenv /etc/zsh/zshenv
+  sudo ln -sf $CONFIG_DIR/zsh/system/zshenv /etc/zsh/zshenv
 }
 
 assets() {
-  ln -sf $REPODIR/local/share/assets ~/.local/share
-  ln -sf $REPODIR/local/share/fonts ~/.local/share
+  ln -sf $DATA_DIR/assets $DATA_TARGET
+  ln -sf $DATA_DIR/fonts $DATA_TARGET
+  for file in $(ls $DATA_DIR/icons); do
+    ln -sf $DATA_DIR/icons/$file $DATA_TARGET/icons
+  done
 }
 
 __apps() {
-  ln -sf $REPODIR/config/rime ~/.local/share/fcitx5
-  ln -sf $REPODIR/local/share/applications ~/.local/share
-  ln -sf $REPODIR/config/mimeapps.list $CFGDIR/mimeapps.list
+  ln -sf $CONFIG_DIR/rime $DATA_TARGET/fcitx5
+  ln -sf $DATA_DIR/applications $DATA_TARGET
+  ln -sf $CONFIG_DIR/mimeapps.list $CONFIG_TARGET/mimeapps.list
 }
 
 "$@"

@@ -1,15 +1,6 @@
 #!/usr/bin/env sh
 SOUND_DEVICE=alsa_output.usb-Focusrite_Scarlett_2i4_USB-00.analog-surround-40
-up() {
-	pactl set-sink-volume $SOUND_DEVICE +8%
-}
-
-down() {
-	pactl set-sink-volume $SOUND_DEVICE -8%
-}
-
-mute() {
-	pactl set-sink-mute $SOUND_DEVICE toggle
-}
-
+up() { pactl set-sink-volume $SOUND_DEVICE +8%; }
+down() { pactl set-sink-volume $SOUND_DEVICE -8%; }
+mute() { pactl set-sink-mute $SOUND_DEVICE toggle; }
 "$@"

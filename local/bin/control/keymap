@@ -1,10 +1,8 @@
-#!/usr/bin/env sh
-. ~/.config/sxhkd/mappings
+#!/bin/sh
 paste() {
   _focus_wclass() { xprop -id `xdotool getwindowfocus` WM_CLASS | cut -d '"' -f 4; }
-  _paste() { xdotool keyup $1 key --clearmodifiers ctrl+"$2"v; }
   classes=("Alacritty" "ncmpcpp" "lfrun" "dropterm")
-  [[ "${classes[@]}" == *"$(_focus_wclass)"* ]] && _paste $1 shift+ || _paste $1
+  [[ "${classes[@]}" == *"$(_focus_wclass)"* ]] && key '\CV' 50 || key '\Cv'
 }
 
 # launch or focus # Todo
@@ -13,6 +11,7 @@ lof() {
   [[ -n $wid ]] && xdotool windowactivate $wid || exec "${@:2}"
 }
 
-send_key() { xvkbd -xsendevent -text $1; }
+key() { xvkbd -delay ${2:-0} -xsendevent -text $1; }
 
+. ~/.config/sxhkd/mappings
 eval "${mappings[$@]}"

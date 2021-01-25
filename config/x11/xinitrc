@@ -13,6 +13,6 @@ picom --experimental-backends &
 xwallpaper --output $DISPLAY_DEVICE --zoom $WALLPAPER &
 polybar bar &
 xsetroot -cursor_name left_ptr &
-mpDris2 &
+mpDris2 --music-dir=~/Music &
 
 exec bspwm

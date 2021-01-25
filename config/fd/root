@@ -1,5 +1,4 @@
 /bin/*
-/lib/*
 /lib64/*
 /sbin/*
 /dev/*
@@ -8,7 +7,6 @@
 /run/*
 /sys/*
 /tmp/*
-/usr/lib/*
 /usr/include/*
 /var/cache/*
 /var/log/*

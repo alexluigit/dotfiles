@@ -1,14 +1,16 @@
-#!/bin/bash
+#!/bin/sh
 rofi_command="rofi -theme $HOME/.config/rofi/themes/powermenu.rasi"
-
 uptime=$(uptime -p | sed -e 's/up //g;s/ day, \| days, /d-/g;s/ hour, \| hours, /h-/g;s/ minute\| minutes/m/g')
 mem=$(free -h | grep Mem | awk '{print $3}')
 cpu=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}')
 sysinfo="UP: $uptime | MEM: $mem | CPU: $cpu"
-
 lock=""; bar=""; key=""; suspend=""; logout=""; reboot=""; shutdown="";
 options="$lock\n$bar\n$key\n$suspend\n$logout\n$reboot\n$shutdown"
 
+super_kill() {
+  declare -a kill_list=(udevmon intercept aria2c privoxy ss-local mpd emacs)
+  for p in ${kill_list[@]}; do sudo killall $p; done; pkill X
+}
 chosen="$(echo -e "$options" | $rofi_command -p "$sysinfo" -dmenu -selected-row 0)"
 case $chosen in
     $bar) killall polybar; polybar bar;;
@@ -18,6 +20,6 @@ case $chosen in
     $lock) multilockscreen -l;;
     $lock) multilockscreen -l;;
     $suspend) multilockscreen -s;;
-    $logout) pkill X;;
+    $logout) super_kill;;
     *) exit;;
 esac

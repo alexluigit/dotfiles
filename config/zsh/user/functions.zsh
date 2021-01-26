@@ -3,11 +3,9 @@ g() {  [[ -z $@ ]] && _inside_git_repo && _fugitive || git $@; }
 mc() { mkdir -p $@ && cd ${@:$#}; } # make a dir and cd into it
 
 # pacman
-pas() { local res=($(pacman -Ssq | fzf -m --preview="pacman -Si {}")); [[ -n $res ]] && sudo pacman -Syy $res; }
-pau() { sudo pacman -Syu; }
-yas() { proxyon; local res=($(cat ~/.local/share/yay/aurlist.txt | fzf -m --preview="yay -Si {}")); [[ -n $res ]] && yay -Syy $res; }
-yau() { proxyon; yay -Syu; }
-pal() { local res=($(pacman -Qeq | fzf -m --preview="yay -Si {}")); [[ -n $res ]] && sudo pacman -Rns $res; }
+pas() { proxyon; res=($(fzf -m --preview="paru -Si {}" < ~/.local/share/paru/pkglist)); [[ -n $res ]] && paru $res; }
+pau() { proxyon; paru "$@"; }
+pal() { res=($(pacman -Qeq | fzf -m --preview="paru -Si {}")); [[ -n $res ]] && sudo pacman -Rns $res; }
 
 # tmux automation
 t() {

@@ -1,17 +1,22 @@
 #!/bin/sh
-cursor() {
-  url=https://github.com/TheScrawl/xcursor-breeze-neutral.git
-  cursor_theme=Breeze-Neutral
-  git clone $url ~/.local/share/icons/$cursor_theme
-  cd ~/.local/share/icons/$cursor_theme/cursors
-  ln -s right_ptr arrow
-  ln -s right_ptr draft_large
-  ln -s right_ptr draft_small
-  ln -s cross tcross
-  ln -s left_side left_tee
-  ln -s left_ptr ul_angle
-  ln -s left_ptr ur_angle
-  sed -i "s|\(Xcursor.theme: \)\(.*\)|\1$cursor_theme|" $XDG_CONFIG_HOME/x11/xresources
-}
+url=https://github.com/TheScrawl/xcursor-breeze-neutral.git
+cursor_theme=xcursor-breeze-neutral
+git clone $url ~/.local/share/icons/$cursor_theme
+cd ~/.local/share/icons/$cursor_theme/cursors
+ln -s right_ptr arrow
+ln -s right_ptr draft_large
+ln -s right_ptr draft_small
+ln -s cross tcross
+ln -s left_side left_tee
+ln -s left_ptr ul_angle
+ln -s left_ptr ur_angle
+sed -i "s|\(Xcursor.theme: \)\(.*\)|\1$cursor_theme|" $XDG_CONFIG_HOME/x11/xresources
+sed -i "s|\(gtk-cursor-theme-name=\)\(.*\)|\1$cursor_theme|" $XDG_CONFIG_HOME/gtk-3.0/settings.ini
+mkdir -p ~/.local/share/icons/default
 
-cursor
+cat << EOF > ~/.local/share/icons/default/index.theme
+[Icon Theme]
+Name=Default
+Comment=Default Cursor Theme
+Inherits=$cursor_theme
+EOF

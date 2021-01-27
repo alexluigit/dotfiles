@@ -12,7 +12,7 @@
 	dup	 =  !git ls-tree -r HEAD | cut -c 13- | sort | uniq -D -w 40
 	ff	 =  merge --ff-only
 	fixup	 =  !sh -c 'git commit --fixup=$1 ${@:2}' -
-	get	 =  "!f() { git fresh && git ff \"$@\"; }; f"
+	get	 =  "!f() { git update && git ff \"$@\"; }; f"
 	graph	 =  loghelpers pretty_git_graph --all
 	head	 =  !GIT_NO_PAGER=1 git loghelpers pretty_git_log -1
 	no-edit  =  commit --amend --no-edit

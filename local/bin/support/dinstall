@@ -23,7 +23,7 @@ bin() {
   for i in $(find "$REPODIR/local/bin" -type f -executable)
     do ln -sf $i ~/.local/bin
   done
-  ln -sf ~/.config/nvim/pack/bundle/opt/xvimux/xvimux $BIN_TARGET
+  ln -sf ~/.local/share/nvim/site/pack/packman/start/xvimux/xvimux ~/.local/bin
   __apps
 }
 

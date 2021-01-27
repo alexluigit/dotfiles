@@ -10,4 +10,3 @@ config/aria2/aria2.conf
 config/zsh/user/variable.zsh
 config/sxhkd/mappings
 config/murl/list
-*.pyc

@@ -1,2 +1,3 @@
-DIMENSION=960x540+2880+50
-PROXY="export http_proxy=http://127.0.0.1:1088 https_proxy=http://127.0.0.1:1088"
+enable_floatwindow=true
+float_window_dimension=960x540+2880+50
+proxy="export http_proxy=http://127.0.0.1:1088 https_proxy=http://127.0.0.1:1088"

@@ -30,4 +30,14 @@ _fzf_hist() {
 _fzf_cd() { local sel=$(fd -c always -td . | fzf --ansi); [[ -n $sel ]] && cd $sel; zle reset-prompt; }
 _fzf_comp_helper() { BUFFER="$BUFFER**"; zle end-of-line; fzf-completion; }
 _fzf_kill() { BUFFER="kill -9 "; zle end-of-line; fzf-completion; }
-_fzf-clip() { }
+_fzf_clip() { }
+_fzf_paru_Rns() {
+  local res=($(pacman -Qeq | fzf -m --preview="paru -Si {}"))
+  [[ -n $res ]] && sudo pacman -Rns $res
+}
+_fzf_paru_S() {
+  local pkgs=~/.local/share/paru/pkglist
+  local bind="f5:preview(paru -Gp {} | bat -fpl sh)"
+  local res=(`fzf -m --height=100% --bind="$bind" --preview="paru -Si {}" < $pkgs`)
+  [ -n "$rs" ] && paru $res
+}

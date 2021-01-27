@@ -1,5 +1,5 @@
 # Git
-git_prompt_info() {
+__git_prompt_info() {
   local ref git_status staged unstaged untracked
   ref=$(git symbolic-ref HEAD 2>/dev/null) || \
   ref=$(git rev-parse --short HEAD 2>/dev/null) || return 0
@@ -11,8 +11,8 @@ git_prompt_info() {
 }
 
 # preexec() and precmd() are hook functions in zsh. (bash has precmd() but not preexec())
-preexec_timer() { cmd_start=$(($(print -P %D{%s%6.})/1000)); }
-precmd_timer() {
+__preexec_timer() { cmd_start=$(($(print -P %D{%s%6.})/1000)); }
+__precmd_timer() {
   [ $cmd_start ] && {
     local cmd_end=$(($(print -P %D{%s%6.})/1000))
     local t_ms=$((cmd_end-cmd_start))
@@ -25,10 +25,10 @@ precmd_timer() {
     timer="%F{152}  $t_res %f"
   }
 }
-preexec_functions+=(preexec_timer); precmd_functions+=(precmd_timer)
+preexec_functions+=(__preexec_timer); precmd_functions+=(__precmd_timer)
 
 # Seperate path with head and tail
-chpwd_prompt () {
+__chpwd_prompt () {
   cwd_tail="%{$fg_bold[$pwd_cr]%}$(basename $PWD) "
   local HPWD=${(%)${:-%~}} # $PWD with ~ abbreviations
   case $HPWD in
@@ -43,7 +43,7 @@ chpwd_prompt () {
     *) cwd_head="%{$fg[$pwd_cr]%} ";;
   esac
 }
-chpwd_functions+=(chpwd_prompt); cd .
+chpwd_functions+=(__chpwd_prompt); cd .
 
 # Setup prompt
 local pwd_cr="white"
@@ -51,4 +51,4 @@ local bg_jobs="%(1j.%{$fg_bold[red]%} .)"
 local privileges="%(#.%{$fg_bold[red]%} .)"
 local line_break=$'\n'%{$reset_color%}
 local ret_status="%(?:%{$fg_bold[green]%} :%{$fg_bold[red]%} %s)"
-PROMPT='$bg_jobs$privileges$cwd_head$cwd_tail$(git_prompt_info)$timer$line_break$ret_status'
+PROMPT='$bg_jobs$privileges$cwd_head$cwd_tail$(__git_prompt_info)$timer$line_break$ret_status'

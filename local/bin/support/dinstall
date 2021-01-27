@@ -33,7 +33,7 @@ pacman() {
 }
 
 zshenv() {
-  sudo ln -sf $CONFIG_DIR/zsh/system/zshenv /etc/zsh/zshenv
+  sudo ln -sf $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv
 }
 
 assets() {

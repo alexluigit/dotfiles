@@ -39,5 +39,5 @@ _fzf_paru_S() {
   local pkgs=~/.local/share/paru/pkglist
   local bind="f5:preview(paru -Gp {} | bat -fpl sh)"
   local res=(`fzf -m --height=100% --bind="$bind" --preview="paru -Si {}" < $pkgs`)
-  [ -n "$rs" ] && paru $res
+  [ -n "$res" ] && paru $res
 }

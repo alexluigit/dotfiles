@@ -4,7 +4,7 @@ function! alex#autocmds#vim_enter() abort
   call alex#git#cd(expand("%"))
   if &ft=="man"
     call man#show_toc()
-    wincmd H | vert res 20 | setl stl= | wincmd l
+    wincmd H | vert res 40 | setl stl= | wincmd l
     exec "nnoremap <buffer> <leader>q :qa<cr>"
   return | endif
   if &ft=="fugitive" | wincmd o | return | endif

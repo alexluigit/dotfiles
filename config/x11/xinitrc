@@ -1,5 +1,5 @@
 #!/bin/sh
-export DISPLAY_DEVICE=$(xrandr | awk '/ connected/{print $1}')
+. ~/.config/zsh/system/variable.zsh
 xrdb -merge ~/.config/x11/xresources &
 
 easystroke --config-dir ~/.config/easystroke &

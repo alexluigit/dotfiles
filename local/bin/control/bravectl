@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-START_FLAGS=(--proxy-server="127.0.0.1:1088")
+START_FLAGS=()
 DARKMODE=(--enable-features=WebContentsForceDark)
 INCO=(--incognito)
 DEV=(--user-data-dir=$XDG_CONFIG_HOME/brave-dev --class=BraveDev)

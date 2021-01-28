@@ -28,12 +28,12 @@ bin() {
 }
 
 pacman() {
-  sudo rm /etc/pacman.conf
-  sudo ln -sf $CONFIG_DIR/pacman/pacman.conf /etc/pacman.conf
+  doas rm /etc/pacman.conf
+  doas ln -sf $CONFIG_DIR/pacman/pacman.conf /etc/pacman.conf
 }
 
 zshenv() {
-  sudo ln -sf $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv
+  doas ln -sf $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv
 }
 
 assets() {

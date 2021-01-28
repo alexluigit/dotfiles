@@ -9,7 +9,7 @@ options="$lock\n$bar\n$key\n$suspend\n$logout\n$reboot\n$shutdown"
 
 super_kill() {
   declare -a kill_list=(udevmon intercept aria2c privoxy ss-local mpd emacs)
-  for p in ${kill_list[@]}; do sudo killall $p; done; pkill X
+  for p in ${kill_list[@]}; do doas killall $p; done; pkill X
 }
 chosen="$(echo -e "$options" | $rofi_command -p "$sysinfo" -dmenu -selected-row 0)"
 case $chosen in

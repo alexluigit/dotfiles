@@ -1,0 +1,5 @@
+#!/bin/sh
+tmp_file=`mktemp --dry-run`
+cp "$1" "$tmp_file"
+nvim $tmp_file
+doas mv "$tmp_file" "$1"

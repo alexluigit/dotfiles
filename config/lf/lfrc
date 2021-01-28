@@ -29,12 +29,9 @@ map <space>wp $wallpaperctl draw "$f"
 map <space>c push :chmod<space>
 map <space>d push :mkdir<space>
 map <space>e push :touch<space>
-map <space>E push :sudoedit<space>
-map <space>f fzf_jump
 map <space>s size
 
 cmd touch $touch "$(echo $*)"
-cmd sudoedit $sudoedit "$(echo $*)"
 cmd mkdir $mkdir -p "$(echo $*)"
 cmd trash ${{ for file in $fx; do gio trash "$file"; done }}
 cmd bulk-rename ${{ [[ -z $fs ]] && lf -remote "send $id push :rename<enter><c-u>" || vimv $fs }}
@@ -67,13 +64,4 @@ cmd open ${{
       echo -ne "\e]2;Terminal\007";;
     *) $EDITOR "$f";;
   esac
-}}
-cmd fzf_jump ${{
-  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
-  if [ -f "$res" ]; then
-    cmd="select"
-  elif [ -d "$res" ]; then
-    cmd="cd"
-  fi
-  lf -remote "send $id $cmd \"$res\""
 }}

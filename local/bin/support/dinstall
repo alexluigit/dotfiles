@@ -44,6 +44,19 @@ assets() {
   done
 }
 
+mpv() {
+  cd ~; git clone https://github.com/mochaaP/mpv_thumbnail_script
+  cd mpv_thumbnail_script
+  python3 concat_files.py cat_osc.json; python3 concat_files.py cat_server.json
+  doas cp mpv_thumbnail_script_{client_osc,server}.lua /usr/share/mpv/scripts
+  cd ..; git clone https://github.com/jonniek/mpv-playlistmanager
+  doas cp mpv-playlistmanager/playlistmanager.lua /usr/share/mpv/scripts
+  ln -sf /usr/share/mpv/scripts/mpv_thumbnail_script_{client_osc,server}.lua ~/.config/mpv/scripts
+  ln -sf /usr/share/mpv/scripts/playlistmanager.lua ~/.config/mpv/scripts
+  ln -sf /usr/share/mpv/scripts/autoload.lua ~/.config/mpv/scripts
+  rm -rf ~/mpv{-playlistmanager,_thumbnail_script}
+}
+
 __apps() {
   ln -sf $CONFIG_DIR/rime $DATA_TARGET/fcitx5
   ln -sf $DATA_DIR/applications $DATA_TARGET

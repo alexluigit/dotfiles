@@ -1,7 +1,9 @@
 config/ssh/*
 !config/ssh/config
 config/emacs/*
-!config/emacs/*.org
+!config/emacs/dev
+!config/emacs/org-mode
+!config/emacs/*.el
 config/git/credentials
 config/fcitx5/conf/cached_layouts
 config/gtk-3.0/bookmarks

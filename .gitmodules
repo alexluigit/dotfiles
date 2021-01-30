@@ -1,18 +1,18 @@
 [submodule "rime"]
 	path = config/rime
 	url = https://github.com/alexluigit/rime
-[submodule "floatwin"]
-	path = local/bin/floatwin
-	url = https://github.com/alexluigit/floatwin
-[submodule "murl"]
-	path = local/bin/murl
-	url = https://github.com/alexluigit/murl
-[submodule "fmenu"]
-	path = local/bin/fmenu
-	url = https://github.com/alexluigit/fmenu
 [submodule "nvim"]
 	path = config/nvim
 	url = https://github.com/alexluigit/nvim
 [submodule "zsh"]
 	path = config/zsh
 	url = https://www.github.com/alexluigit/zsh
+[submodule "fmenu"]
+	path = local/bin/programs/fmenu
+	url = https://github.com/alexluigit/fmenu
+[submodule "murl"]
+	path = local/bin/programs/murl
+	url = https://github.com/alexluigit/murl
+[submodule "floatwin"]
+	path = local/bin/programs/floatwin
+	url = https://github.com/alexluigit/floatwin

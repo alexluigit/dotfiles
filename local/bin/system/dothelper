@@ -1,0 +1,104 @@
+#!/bin/sh
+REPODIR="$HOME/Dev/alex.files"
+CONFIG_DIR="$REPODIR/config"
+DATA_DIR="$REPODIR/local/share"
+CONFIG_TARGET="$HOME/.config"
+DATA_TARGET="$HOME/.local/share"
+
+_init() {
+  echo "Repository Directory: $REPODIR"
+  [[ ! -d $CONFIG_TARGET ]] && mkdir $CONFIG_TARGET || echo "Using '$HOME/.config'."
+  [[ -n $(command -v crond) ]] && echo "crontab installed, please check if systemd service enabled." \
+  || echo "Please install cronie for cronjob."
+}
+
+_link_config() {
+  for i in $(du -d 1 "$CONFIG_DIR" | cut -f2)
+    do ln -sf "$i" "$CONFIG_TARGET"
+  done
+  rm $CONFIG_TARGET/config
+  ln -sf $CONFIG_DIR/mimeapps.list $CONFIG_TARGET/mimeapps.list
+  echo "symlinked config/* => ~/.config/*"
+  ln -sf $CONFIG_TARGET/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
+  ln -sf $CONFIG_DIR/rime $DATA_TARGET/fcitx5
+  echo "rime installed to => $DATA_TARGET/fcitx5"
+  doas rm /etc/pacman.conf
+  doas ln -sf $CONFIG_DIR/pacman/pacman.conf /etc/pacman.conf
+  echo "symlinked config/pacman/pacman.conf => /etc/pacman.conf"
+  doas rm /etc/zsh/zshenv
+  doas ln -sf $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv
+  echo "symlinked config/zsh/zshenv => /etc/zsh/zshenv"
+}
+
+_link_bin() {
+  local cronlist=(`/bin/ls $REPODIR/local/bin/cron`)
+  local misclist=(`/bin/ls $REPODIR/local/bin/misc`)
+  local blacklist=("${cronlist[@]}" "${misclist[@]}")
+  for i in $(find "$REPODIR/local/bin" -type f -executable); do
+    [[ ${blacklist[@]} != *"$(basename $i)"* ]] && ln -sf $i ~/.local/bin
+  done
+  ln -sf ~/.local/share/nvim/site/pack/packman/start/xvimux/xvimux ~/.local/bin
+  echo "symlinked executable local/bin/*(exe) => ~/.local/bin"
+}
+
+_link_assets() {
+  ln -sf $DATA_DIR/assets $DATA_TARGET
+  ln -sf $DATA_DIR/fonts $DATA_TARGET
+  for file in $(ls $DATA_DIR/icons); do
+    ln -sf $DATA_DIR/icons/$file $DATA_TARGET/icons
+  done
+  ln -sf $DATA_DIR/applications $DATA_TARGET
+  echo "Icons/fonts/desktop-entries installed in $DATA_TARGET"
+}
+
+_mpv() {
+  cd ~; git clone https://github.com/mochaaP/mpv_thumbnail_script
+  cd mpv_thumbnail_script
+  python3 concat_files.py cat_osc.json; python3 concat_files.py cat_server.json
+  doas cp mpv_thumbnail_script_{client_osc,server}.lua /usr/share/mpv/scripts
+  cd ..; git clone https://github.com/jonniek/mpv-playlistmanager
+  doas cp mpv-playlistmanager/playlistmanager.lua /usr/share/mpv/scripts
+  ln -sf /usr/share/mpv/scripts/mpv_thumbnail_script_{client_osc,server}.lua ~/.config/mpv/scripts
+  ln -sf /usr/share/mpv/scripts/playlistmanager.lua ~/.config/mpv/scripts
+  ln -sf /usr/share/mpv/scripts/autoload.lua ~/.config/mpv/scripts
+  rm -rf ~/mpv{-playlistmanager,_thumbnail_script}
+}
+
+_get_submodule() {
+  cd $REPODIR
+  git submodule init && git submodule update --recursive --remote
+  echo "All submodule updated."; cd -
+}
+
+_cron() {
+  rm /tmp/cron 2>/dev/null
+  local daily_index=00 weekly_index=00 monthly_index=00
+  for i in $(find "$REPODIR/local/bin/cron" -type f -executable); do
+    daily_index=$(printf "%02d" $daily_index)
+    weekly_index=$(printf "%02d" $weekly_index)
+    monthly_index=$(printf "%02d" $monthly_index)
+    periodic=$(awk -F- '{print $1}' <<< $(basename $i))
+    case $periodic in
+      daily) echo "$daily_index 21 * * * $i" >> /tmp/cron; daily_index=$((daily_index + 1));;
+      weekly) echo "$weekly_index 22 * * 0 $i" >> /tmp/cron; weekly_index=$((weekly_index + 1));;
+      monthly) echo "$monthly_index 23 1 * * $i" >> /tmp/cron; monthly_index=$((monthly_index + 1));;
+    esac
+  done
+  echo "Generated crontab: "; cat /tmp/cron
+  crontab /tmp/cron; rm /tmp/cron
+  echo "Cronjob started. Run 'crontab -l' to check it out."
+}
+
+install() {
+  _link_bin; echo
+  _link_config; echo
+  _link_assets; echo
+  _cron; echo
+  [[ -L ~/.config/mpv/scripts/autoload.lua ]] && \
+  echo "mpv script seems installed, to update anyway, run 'dh update'." || _mpv
+}
+
+update() { _get_submodule; echo; _mpv; }
+
+_init
+[[ -z "$@" ]] && install || "$@"

@@ -12,11 +12,10 @@ ln -s left_ptr ul_angle
 ln -s left_ptr ur_angle
 sed -i "s|\(Xcursor.theme: \)\(.*\)|\1$cursor_theme|" $XDG_CONFIG_HOME/x11/xresources
 sed -i "s|\(gtk-cursor-theme-name=\)\(.*\)|\1$cursor_theme|" $XDG_CONFIG_HOME/gtk-3.0/settings.ini
-mkdir -p ~/.local/share/icons/default
 
-cat << EOF > ~/.local/share/icons/default/index.theme
+mkdir -p ~/.local/share/icons/default
+echo "\
 [Icon Theme]
 Name=Default
 Comment=Default Cursor Theme
-Inherits=$cursor_theme
-EOF
+Inherits=$cursor_theme" > ~/.local/share/icons/default/index.theme

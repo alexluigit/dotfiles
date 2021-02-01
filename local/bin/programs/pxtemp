@@ -1,0 +1,6 @@
+#!/bin/sh
+echo "$@" >> ~/.config/privoxy/whitelist.action
+killall privoxy
+privoxy --no-daemon ~/.config/privoxy/config &
+cd ~/Dev/alex.files; git checkout config/privoxy/whitelist.action
+disown

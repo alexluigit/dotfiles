@@ -57,6 +57,7 @@
 	syntax-theme = Monokai Extended
 	features = side-by-side line-numbers decorations
 	whitespace-error-style = 22 reverse
+	width = 200
 [delta "decorations"]
 	commit-decoration-style = bold yellow ul
 	file-style = bold blue ul

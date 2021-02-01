@@ -8,6 +8,7 @@ set truncatechar ⋯
 set info size
 set promptfmt " \033[34;1m%w\033[0m\033[1m %f\033[0m"
 map d
+map y
 map <space>
 
 map a rename
@@ -20,6 +21,8 @@ map r bulk-rename
 map t toggle
 map U unselect
 map x cut
+map yf $echo $f | xclip -sel clipboard
+map yy copy
 map . set hidden!
 map ; read
 map <c-n> search-next

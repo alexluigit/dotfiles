@@ -13,3 +13,6 @@
 [submodule "floatwin"]
 	path = local/bin/programs/floatwin
 	url = https://github.com/alexluigit/floatwin
+[submodule "emacs"]
+	path = config/emacs
+	url = https://www.github.com/alexluigit/emacs

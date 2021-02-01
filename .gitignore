@@ -1,9 +1,5 @@
 config/ssh/*
 !config/ssh/config
-config/emacs/*
-!config/emacs/dev
-!config/emacs/org-mode
-!config/emacs/*.el
 config/git/credentials
 config/fcitx5/conf/cached_layouts
 config/gtk-3.0/bookmarks
@@ -12,3 +8,5 @@ config/aria2/aria2.conf
 config/zsh/user/variable.zsh
 config/sxhkd/mappings
 config/murl/list
+local/share/fonts/*
+!local/share/fonts/Feather.ttf

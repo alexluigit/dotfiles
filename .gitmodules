@@ -4,9 +4,6 @@
 [submodule "nvim"]
 	path = config/nvim
 	url = https://github.com/alexluigit/nvim
-[submodule "zsh"]
-	path = config/zsh
-	url = https://www.github.com/alexluigit/zsh
 [submodule "fmenu"]
 	path = local/bin/programs/fmenu
 	url = https://github.com/alexluigit/fmenu

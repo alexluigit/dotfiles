@@ -4,7 +4,7 @@ ctrl-d()  { [[ -n $BUFFER ]] && zle delete-char || _fzf_cd; }
 ctrl-e()  { zle up-line-or-beginning-search; }
 ctrl-f()  { _lf; }
 ctrl-h()  { [[ -n $BUFFER ]] && zle backward-delete-char || _updir; }
-ctrl-i()  { [[ -n $BUFFER ]] && zle backward-char || fmenu false . "Edit: " nvim; }
+ctrl-i()  { [[ -n $BUFFER ]] && zle backward-char || fmenu 0 . "Edit: " nvim; }
 ctrl-k()  { zle edit-command-line; }
 ctrl-l()  { [[ -n $BUFFER ]] && zle vi-backward-word || zle clear-screen; }
 ctrl-n()  { zle down-line-or-beginning-search; }

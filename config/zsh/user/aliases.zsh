@@ -9,6 +9,7 @@ alias lt='exa -aT --color=always --git-ignore -I=.git --group-directories-first 
 alias tcl="rm -rf {$XDG_DATA_HOME/Trash,/media/HDD/.Trash-1000}/{files,info}/*"
 alias nope='node --experimental-repl-await ~/.config/node/repl.js'
 alias nopx="unset {HTTP_PROXY,HTTPS_PROXY}"
+alias sudo="doas"
 alias -g B="| bat"
 alias -g F="| fzf"
 alias -g G="| rg"

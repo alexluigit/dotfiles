@@ -3,7 +3,7 @@ stty -ixon # Disable XON/XOFF flow control
 autoload -Uz up-line-or-beginning-search; zle -N up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search; zle -N down-line-or-beginning-search
 autoload -Uz edit-command-line; zle -N edit-command-line
-local c_keys=(a b d e f h j k l n o p r s t u y z)
+local c_keys=(a b d e f h k l n o p r s t u y z)
 for key in ${c_keys[@]}; do zle -N ctrl-$key; bindkey ^$key ctrl-$key; done
 zle -N ctrl-i;       bindkey    '^[[17~'    ctrl-i
 zle -N ctrl-xx;      bindkey    '^x^x'      ctrl-xx

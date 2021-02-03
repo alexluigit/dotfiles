@@ -1,7 +1,7 @@
 declare -A USER_DIRS=(
    # [{order}_{name}]="{path} {symbol} {program} {description}"
-   [01-conf]="/home/alex/Dev/alex.files/      nvim    System config"
-   [02-code]="/media/HDD/Dev/                 mpv     Coding tutorial"
+   [01-conf]="/home/alex/Dev/alex.files/      nvim    System"
+   [02-code]="/media/HDD/Dev/                 mpv     Dev"
    [03-note]="/home/alex/Documents/notes/     nvim    Notes"
    [04-pics]="/home/alex/Pictures/            sxiv    Pictures"
    [05-vids]="/home/alex/Video/               mpv     Video"

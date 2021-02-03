@@ -20,6 +20,8 @@ map n down
 map r bulk-rename
 map t toggle
 map U unselect
+map v visual
+map V invert
 map x cut
 map yf $echo $f | xclip -sel clipboard
 map yy copy

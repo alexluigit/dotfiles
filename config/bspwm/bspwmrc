@@ -20,4 +20,4 @@ bspc rule -a obs desktop='^5' state=tiled follow=on
 bspc rule -a Gimp desktop='^7' state=floating follow=on
 bspc rule -a Screenkey manage=off
 
-bspc subscribe node_add node_remove desktop_layout | ev_handler &
+bspc subscribe node_add node_remove | ev_handler &

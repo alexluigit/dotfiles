@@ -1,25 +1,8 @@
 #!/bin/sh
 swallow_list=("mpv" "Sxiv" "Zathura")
 
-__hide_all_except() {
-  for node in $(bspc query -N -n .local.window); do
-    bspc node $node --flag hidden=on
-  done
-  bspc node $1 --flag hidden=off
-}
-__show_all() {
-  for node in $(bspc query -N -n .local.window.!floating); do
-    bspc node $node --flag hidden=off
-  done
-  for node in $(awk '{print $2}' /tmp/swallowids); do
-    bspc node $node --flag hidden=on
-  done
-  bspc node $(xdotool search --class mpv) --flag hidden=off
-}
-__focus() { xdotool getwindowfocus getwindowname; }
 __get_class() { xprop -id $1 WM_CLASS | cut -d '"' -f 4; }
 __get_title() { xdotool getwindowname $1; }
-__current() { bspc query -N -n focused; }
 
 _swallow() {
   addedtodesktop=$2
@@ -46,14 +29,12 @@ _spit() {
   bspc node "$spittingid" -f
   sed -i "/^$spitterid/d" /tmp/swallowids
 }
-_bg_cleaner() { [[ $1 == "monocle" ]] && __hide_all_except $(__current) || __show_all; }
 
 ev_handler() {
   while read event _ parent arg_a arg_b; do
     case $event in
       node_add) _swallow $arg_b $parent;;
       node_remove) _spit $arg_a $parent;;
-      desktop_layout) _bg_cleaner $arg_a;;
     esac
   done
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 draw() {
   xwallpaper --output DP-0 --zoom $1
-  sed -i "s|\(export WALLPAPER=\)\(.*\)|\1$1|" $XDG_CONFIG_HOME/zsh/user/variable.zsh
+  sed -i "s|\(export WALLPAPER=\)\(.*\)|\1$1|" $XDG_CONFIG_HOME/zsh/system/variable.zsh
 }
 
 "$@"

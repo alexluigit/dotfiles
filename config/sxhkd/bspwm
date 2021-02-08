@@ -1,8 +1,8 @@
 # BSPWM
-super + shift + {1-8}
-	bspc node -d ^{1-8}
-super + {_,control} {1-8}
-	bspc {desktop -f,node -d} ^{1-8} --follow
+super + shift + {1-5}
+	bspc node -d ^{1-5}
+super + {_,control} {1-5}
+	bspc {desktop -f,node -d} ^{1-5} --follow
 super + f
 	bspc desktop -l next
 super + {h,n,e,i}
@@ -29,8 +29,8 @@ super + {_,control} {a-d,j-m,p-z}
 	~/.config/sxhkd/keymap Super+{_,Control+}{A-D,J-M,P-Z}
 super + o; {a-z}
 	~/.config/sxhkd/keymap SuperO+{A-Z}
-super + {Return,Escape,Delete}
-	~/.config/sxhkd/keymap Super+{Return,Escape,Delete}
+super + {Return,Escape,Delete,BackSpace}
+	~/.config/sxhkd/keymap Super+{Return,Escape,Delete,BackSpace}
 {_,hyper +} {F7,F8,F9,F10,F11,F12,button8,button9,Delete}
 	~/.config/sxhkd/keymap {_,Hyper+}{F7,F8,F9,F10,F11,F12,Mouse1,Mouse2,Delete}
 alt + {n,e}

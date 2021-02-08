@@ -2,11 +2,11 @@ declare -A USER_DIRS=(
    # [{order}_{name}]="{path} {symbol} {program} {description}"
    [01-conf]="/home/alex/Dev/alex.files/      nvim    System"
    [02-code]="/media/HDD/Dev/                 mpv     Dev"
-   [03-note]="/home/alex/Documents/notes/     nvim    Notes"
-   [04-pics]="/home/alex/Pictures/            sxiv    Pictures"
-   [05-vids]="/home/alex/Video/               mpv     Video"
-   [06-home]="/home/alex/                     nvim    Home"
-   [07-root]="/                               nvim    All files"
+   [03-book]="/media/HDD/Book/                zathura Book"
+   [04-note]="/home/alex/Documents/notes/     nvim    Notes"
+   [05-pics]="/home/alex/Pictures/            sxiv    Pictures"
+   [06-vids]="/home/alex/Video/               mpv     Video"
+   [07-home]="/home/alex/                     nvim    Home"
 )
 
 declare -A SYS_DIRS=(

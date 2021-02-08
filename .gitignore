@@ -5,7 +5,7 @@ config/fcitx5/conf/cached_layouts
 config/gtk-3.0/bookmarks
 config/shadowsocks/config.json
 config/aria2/aria2.conf
-config/zsh/user/variable.zsh
+config/zsh/system/variable.zsh
 config/sxhkd/mappings
 config/murl/list
 local/share/fonts/*

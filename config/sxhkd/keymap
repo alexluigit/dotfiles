@@ -1,17 +1,3 @@
 #!/bin/sh
-paste() {
-  _focus_wclass() { xprop -id `xdotool getwindowfocus` WM_CLASS | cut -d '"' -f 4; }
-  classes=("Alacritty" "ncmpcpp" "lfrun" "dropterm")
-  [[ "${classes[@]}" == *"$(_focus_wclass)"* ]] && key '\CV' 50 || key '\Cv'
-}
-
-# launch or focus # Todo
-lof() {
-  wid=$(xdotool search --onlyvisible --class "$1")
-  [[ -n $wid ]] && xdotool windowactivate $wid || exec "${@:2}"
-}
-
-key() { xvkbd -delay ${2:-0} -xsendevent -text $1; }
-
 . ~/.config/sxhkd/mappings
 eval "${mappings[$@]}"

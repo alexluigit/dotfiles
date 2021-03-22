@@ -1,0 +1,11 @@
+[Trigger]
+Type = Path
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Target = usr/share/X11/xkb/symbols/*
+
+[Action]
+Description = Revert xkbModel(pc105)...
+When = PostTransaction
+Exec = /usr/bin/cp /home/alex/.config/x11/xkb/pc /usr/share/X11/xkb/symbols/pc

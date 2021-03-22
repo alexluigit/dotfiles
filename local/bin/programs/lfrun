@@ -12,4 +12,5 @@ mkfifo "$FIFO_UEBERZUG" 2>/dev/null
 trap cleanup EXIT
 tail --follow "$FIFO_UEBERZUG" | ueberzug layer --silent --parser bash 2>&1 >/dev/null &
 
+# ~/.local/share/go/bin/lf $@
 lf $@

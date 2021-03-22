@@ -1,27 +1,26 @@
-#!/usr/bin/env sh
-START_FLAGS=()
+#!/usr/bin/env bash
+START_FLAGS=(--proxy-server=http://127.0.0.1:1088)
 DARKMODE=(--enable-features=WebContentsForceDark)
 INCO=(--incognito)
 DEV=(--user-data-dir=$XDG_CONFIG_HOME/brave-dev --class=BraveDev)
 MUSIC=(--app-id=cinhimbnkkaeohfgghhklpknlkffjgod)
 [ $@ != *"--no-darkmode"* ] && [ $1 != "dev" ] && START_FLAGS+=("$DARKMODE")
 
-start() { _start; }
+start() { _try_switch || _start; }
 inco() { START_FLAGS+=("${INCO[@]}") && _start; }
 dev() { START_FLAGS+=("${DEV[@]}") && _start; }
 music() { _try_switch music || _openmusic; }
 refresh() { _try_switch BraveDev && _refresh_tab; }
 
 _start() { __rmpki & exec brave ${START_FLAGS[@]}; }
-_openmusic() { START_FLAGS+=("${MUSIC[@]}"); _start & __fullscreen; }
-_refresh_tab() { sleep 0.1; __send_key '\Cr'; bspc node focused -f last; }
+_openmusic() { START_FLAGS+=("${MUSIC[@]}"); _start & }
+_refresh_tab() { sleep 0.1; __send_key '\Cr'; _try_switch emacs; }
 _try_switch() { wid=$(__running_check $1); [ -n $wid ] && xdotool windowactivate $wid; }
 
 __running_check() {
   [[ $1 == 'music' ]] && xdotool search --name 'Youtube Music' \
-  || xdotool search --onlyvisible --desktop $(xdotool get_desktop) --class ${1:-brave}
+  || xdotool search --class --desktop $(xdotool get_desktop) ${1:-Brave-browser}
 }
-__fullscreen() { sleep .5; __send_key "\[F11]"; alacritty -e "echo"; }
 __rmpki() { sleep 5 && rm -rf ~/.pki; }
 __send_key() { xvkbd -xsendevent -text $1; }
 

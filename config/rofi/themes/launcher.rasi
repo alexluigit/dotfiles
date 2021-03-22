@@ -1,128 +1,136 @@
-/* Launcher theme */
-
 * {
-    background:                     #00000000;
-    background-color:               #00000066;
-    background-entry:               #00000033;
-    background-alt:                 #f2f2f215;
-    foreground:                     #f2f2f2EE;
-    foreground-selected:            #ffffffFF;
-    urgent:                         #E91E6366;
-    urgent-selected:                #E91E6377;
+    background:                  #1a2026;
+    foreground:                  #eaeaea;
+    selected-normal-foreground:  #a3b8ef;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @background;
+    selected-urgent-foreground:  #a3b8ef;
+    urgent-foreground:           @foreground;
+    alternate-urgent-background: #29343d;
+    active-foreground:           @foreground;
+    selected-active-foreground:  @foreground;
+    alternate-active-background: @background;
+    alternate-normal-foreground: @foreground;
+    normal-background:           @background;
+    selected-normal-background:  #29343d;
+    border-color:                #29343d;
+    text-color:                  #9ce5c0;
+    separator-color:              #3b4b58;
+    urgent-background:           @background;
+    selected-urgent-background:  #fbdf90;
+    alternate-urgent-foreground: @urgent-foreground;
+    background-color:            @background;
+    alternate-active-foreground: @active-foreground;
+    active-background:           @background;
+    selected-active-background:  @javacafe3;
 }
 
-window {
-    transparency:                   "real";
-    background-color:               @background;
-    text-color:                     @foreground;
-    border-radius:                  20px;
-    height:                         30%;
-    width:                          30%;
-    location:                       center;
-    anchor:                         center;
-    x-offset:                       0;
-    y-offset:                       0;
+#window {
+    background-color: @background;
+    padding: 30;
+    border-color: @border-color;
+    border: 2px 2px 2px;
+    border-radius: 10px;
+    height:       50%;
+    width:        30%;
 }
 
-prompt {
-    enabled: 						true;
-	padding: 						0px 8px 0px 4px;
-	background-color: 				@background;
-	text-color: 					@foreground;
-	/* font:							"FantasqueSansMono Nerd Font 20"; */
+#mainbox {
+    padding: 25;
+    border-radius: 6px;
 }
 
-inputbar {
-    background-color:               @background-alt;
-    text-color:                     @foreground;
-    expand:                         false;
-    border-radius:                  6px;
-    margin:                         0px 0px 0px 0px;
-    padding:                        10px 10px 10px 10px;
-    position:                       center;
-}
-
-entry {
-    background-color:               @background;
-    text-color:                     @foreground;
-    placeholder-color:              @background-alt;
-    expand:                         true;
-    horizontal-align:               0;
-    placeholder:                    "search";
-    blink:                          true;
-}
-
-case-indicator {
-    background-color:               @background;
-    text-color:                     @foreground;
-    spacing:                        0;
-}
-
-
-listview {
-    background-color:               @background;
-    columns:                        2;
-    spacing:                        4px;
-    cycle:                          false;
-    dynamic:                        true;
-    layout:                         vertical;
-}
-
-mainbox {
-    background-color:               @background-color;
-    spacing:                        15px;
-    padding:                        30px 25px 15px 25px;
+#message {
+    border:       4px 4px 4px ;
+    border-color: @separator-color;
+    padding:      20 ;
 }
 
 #textbox {
     text-color: @foreground;
 }
 
-element {
-    background-color:               @background;
-    text-color:                     @foreground;
-    orientation:                    horizontal;
-    children: [element-icon, element-text];
-    border-radius:                  6px;
-    padding:                        10px 0px 10px 10px;
+#listview {
+    fixed-height: 0;
+    padding:      5 5 5 5;
+    spacing:      10px ;
 }
 
-element-icon {
-    size:                           30px;
-    border:                         0px;
+#element {
+    border:  0;
+    padding: 10px ;
 }
 
-element-text {
-    expand:                         true;
-    vertical-align:                 0.5;
-    margin:                         5px 10px 0px 10px;
-    position:                       center;
+#element.normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
 }
 
-element normal.urgent,
-element alternate.urgent {
-    background-color:               @urgent;
-    text-color:                     @foreground;
-    border-radius:                  9px;
+#element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
 }
 
-element normal.active,
-element alternate.active {
-    background-color:               @background-alt;
-    text-color:                     @foreground;
+#element.normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
 }
 
-element selected {
-    background-color:               @background-alt;
-    text-color:                     @foreground-selected;
+#element.selected.normal {
+    border-radius: 6;
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
 }
 
-element selected.urgent {
-    background-color:               @urgent-selected;
-    text-color:                     @foreground;
+#element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
 }
 
-element selected.active {
-    background-color:               @background-alt;
-    color:                          @foreground-selected;
+#element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+
+#element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @alternate-normal-foreground;
+}
+
+#element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+
+#element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+
+#button.selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+#inputbar {
+    spacing:    5;
+    text-color: @normal-foreground;
+    padding:    10px ;
+    border:	0 0 2;
+    border-color: @separator-color;
+}
+
+#case-indicator {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+#entry {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+#prompt {
+    spacing:    3;
+    text-color: @text-color;
 }

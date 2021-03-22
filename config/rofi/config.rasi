@@ -1,5 +1,5 @@
 configuration {
-	modi: "run,drun,combi,calc";
+	modi: "run,drun";
 	font: "Noto Sans 20";
 	show-icons: true;
 	icon-theme: "Papirus";
@@ -14,20 +14,16 @@ configuration {
 	terminal: "alacritty";
 	display-window: "節 ";
 	display-combi: "";
-	display-drun: "";
+	display-drun: "";
 	display-run: " ";
 	kb-accept-entry: "Return,KP_Enter";
-	kb-accept-custom: "Control+m";
-	kb-row-down: "Down,Control+n";
-	kb-row-up: "Up,Control+e,ISO_Left_Tab";
-	kb-move-front: "Control+a";
-	kb-move-end: "Control+Return";
-	kb-row-left: "Control+h";
-	kb-row-right: "Control+i";
-	kb-clear-line: "Control+u";
-	kb-remove-to-sol: "";
-	kb-remove-to-eol: "";
+	kb-accept-custom: "Control+Return";
+	kb-move-char-back: "Control+i";
+	kb-move-char-forward: "Control+o";
+	kb-clear-line: "";
 	kb-remove-word-back: "Control+w";
 	kb-remove-char-back: "BackSpace,Shift+BackSpace";
-	kb-mode-next: "Shift+Right,Control+s";
+	kb-mode-next: "Insert";
+	kb-primary-paste: "Control+v";
+	kb-secondary-paste: "Control+V";
 }

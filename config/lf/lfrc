@@ -4,7 +4,7 @@ set ignorecase true
 set previewer ~/.local/bin/preview
 set cleaner ~/.config/lf/cleaner
 set ifs "\n"
-set truncatechar ⋯
+# set truncatechar ⋯
 set info size
 set promptfmt " \033[34;1m%w\033[0m\033[1m %f\033[0m"
 map d
@@ -14,8 +14,9 @@ map <space>
 map a rename
 map dd trash
 map DD delete
-map e up
-map i open
+map p up
+map k paste
+map e open
 map n down
 map r bulk-rename
 map t toggle
@@ -28,9 +29,9 @@ map yy copy
 map . set hidden!
 map ; read
 map <c-n> search-next
-map <c-e> search-prev
+map <c-p> search-prev
 map <enter> $alacritty -e xdg-open "$f" &
-map <space>wp $wallpaperctl draw "$f"
+map <space>wp $~/.local/bin/x/wallpaperctl draw "$f"
 map <space>c push :chmod<space>
 map <space>d push :mkdir<space>
 map <space>e push :touch<space>

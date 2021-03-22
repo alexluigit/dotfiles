@@ -81,7 +81,7 @@ element-text {
     font:                           "VictorMono SemiBold 40";
     expand:                         true;
     horizontal-align:               1;
-    padding:                        20px 44px 40px 40px;
+    padding:                        20px 54px 40px 40px;
     position:                       center;
 }
 

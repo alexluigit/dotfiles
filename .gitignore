@@ -8,5 +8,6 @@ config/aria2/aria2.conf
 config/zsh/system/variable.zsh
 config/sxhkd/mappings
 config/murl/list
+config/mpv/scripts/*
 local/share/fonts/*
 !local/share/fonts/Feather.ttf

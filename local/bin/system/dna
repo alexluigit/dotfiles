@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# check if processs $1 is the parent of process $2
+declare -a plist
+check_dna() {
+  for _pid in "$1"; do
+    plist+=("$_pid")
+    for i in ${plist[@]}; do
+      [[ $i == $2 ]] && return 0
+    done
+    pgrep -P $_pid &>/dev/null || return 1
+    check_dna `ps --ppid $_pid -o pid h` $2
+  done
+}
+
+check_dna $1 $2

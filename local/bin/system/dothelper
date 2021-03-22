@@ -31,14 +31,12 @@ _link_config() {
 }
 
 _link_bin() {
-  local cronlist=(`/bin/ls $REPODIR/local/bin/cron`)
-  local misclist=(`/bin/ls $REPODIR/local/bin/misc`)
-  local blacklist=("${cronlist[@]}" "${misclist[@]}")
-  for i in $(find "$REPODIR/local/bin" -type f -executable); do
-    [[ ${blacklist[@]} != *"$(basename $i)"* ]] && ln -sf $i ~/.local/bin
+  for i in $(find $REPODIR/local/bin/{programs,system,git} -type f -executable); do
+    ln -sf $i ~/.local/bin
   done
   ln -sf ~/.local/share/nvim/site/pack/packman/start/xvimux/xvimux ~/.local/bin
-  echo "symlinked executable local/bin/*(exe) => ~/.local/bin"
+  ln -sf $REPODIR/local/bin/x ~/.local/bin
+  echo "symlinked executable in local/bin/ => ~/.local/bin"
 }
 
 _link_assets() {

@@ -1,0 +1,5 @@
+#!/bin/sh
+killall emacs
+[[ -n $1 ]] && rm ~/.config/emacs/ace.el
+emacs --daemon
+emacsclient -c --no-wait

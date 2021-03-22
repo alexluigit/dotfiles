@@ -1,14 +1,14 @@
-# See keylist at https://www.zsh.org/mla/users/2014/msg00266.html
+# See keylist at https://github.com/prompt-toolkit/python-prompt-toolkit/blob/master/prompt_toolkit/input/ansi_escape_sequences.py
 stty -ixon # Disable XON/XOFF flow control
 autoload -Uz up-line-or-beginning-search; zle -N up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search; zle -N down-line-or-beginning-search
 autoload -Uz edit-command-line; zle -N edit-command-line
-local c_keys=(a b d e f h k l n o p r s t u y z)
+autoload -Uz select-quoted select-bracketed; zle -N select-quoted; zle -N select-bracketed
+local c_keys=(a b d e f k l n o p r s t u y z)
 for key in ${c_keys[@]}; do zle -N ctrl-$key; bindkey ^$key ctrl-$key; done
-zle -N ctrl-i;       bindkey    '^[[17~'    ctrl-i
-zle -N ctrl-xx;      bindkey    '^x^x'      ctrl-xx
 zle -N ctrl-return;  bindkey    '^[[15~'    ctrl-return # <ctrl-return> -> F5
-zle -N ctrl-semi;    bindkey    '^[[14~'    ctrl-semi # <ctrl-;> -> F4
+zle -N ctrl-i;       bindkey    '^[[17~'    ctrl-i      # <ctrl-i>      -> F6
+zle -N ctrl-bslash;  bindkey    '^\\'       ctrl-bslash
 zle -N backspace;    bindkey    '^?'        backspace
 zle -N open-angle;   bindkey    '<'         open-angle
 zle -N open-brace;   bindkey    '('         open-brace
@@ -18,10 +18,8 @@ zle -N single-quote; bindkey    "'"         single-quote
 zle -N double-quote; bindkey    '"'         double-quote
 
 # Vi-mode
-autoload -Uz move-line-in-buffer
-autoload -Uz select-quoted select-bracketed
 autoload -Uz surround
-zle -N select-quoted; zle -N select-bracketed
+autoload -Uz move-line-in-buffer
 zle -N delete-surround surround; zle -N add-surround surround; zle -N change-surround surround
 zle -N up-line-in-buffer move-line-in-buffer; zle -N down-line-in-buffer move-line-in-buffer
 for m in visual viopp; do

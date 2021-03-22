@@ -1,4 +1,3 @@
-# BSPWM
 super + {Tab,f}
 	{bspc node -f last,bspc desktop -l next}
 super + {h,n,e,i}
@@ -10,10 +9,5 @@ hyper + {h,n,e,i}
 	d1=top;d2=bottom;dx=0;dy=-40,d1=right;d2=left;dx=40;dy=0}; \
 	bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
 
-# General
-super + {a,r,s,t,q}
-	~/.config/sxhkd/keymap Super+{A,R,S,T,Q}
-alt + n; {a-z}
-	~/.config/sxhkd/keymap AltN+{A-Z}
-{_,super + }{F7,F8,F9,F10,F11,F12,Delete,Insert,button8,button9}
-	~/.config/sxhkd/keymap {_,Alt+}{F7,F8,F9,F10,F11,F12,Delete,Insert,Mouse1,Mouse2}
+super + {r,s,t,q}
+	{rofi -show run, bravectl start, alacritty, xdo close}

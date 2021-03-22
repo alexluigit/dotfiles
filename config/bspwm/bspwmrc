@@ -1,4 +1,5 @@
 #!/bin/sh
+polybar bar &
 . ~/.config/bspwm/scripts/bsp_subscribe
 
 bspc monitor DP-0 -d 1 2 3 4 5

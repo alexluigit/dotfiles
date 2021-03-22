@@ -22,8 +22,9 @@ _link_config() {
   ln -sf $CONFIG_TARGET/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
   ln -sf $CONFIG_DIR/rime $DATA_TARGET/fcitx5
   echo "rime installed to => $DATA_TARGET/fcitx5"
-  doas rm /etc/pacman.conf
-  doas ln -sf $CONFIG_DIR/pacman/pacman.conf /etc/pacman.conf
+  doas rm /etc/pacman.conf; doas rm -rf /etc/pacman.d/hooks
+  doas ln -sf $CONFIG_DIR/paru/pacman.conf /etc/pacman.conf
+  doas ln -sf $CONFIG_DIR/paru/hooks /etc/pacman.d
   echo "symlinked config/pacman/pacman.conf => /etc/pacman.conf"
   doas rm /etc/zsh/zshenv
   doas ln -sf $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv

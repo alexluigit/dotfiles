@@ -6,7 +6,7 @@ declare -A USER_DIRS=(
    [04-note]="/home/alex/Documents/notes/     nvim    Notes"
    [05-pics]="/home/alex/Pictures/            sxiv    Pictures"
    [06-vids]="/home/alex/Video/               mpv     Video"
-   [07-home]="/home/alex/                     nvim    Home"
+   [07-down]="/home/alex/Downloads/           mpv     Downloads"
 )
 
 declare -A SYS_DIRS=(

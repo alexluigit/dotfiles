@@ -18,11 +18,9 @@ export GOPATH=$XDG_DATA_HOME/go
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export RBENV_ROOT=$XDG_DATA_HOME/rbenv
-export FNM_DIR=$XDG_DATA_HOME/fnm FNM_MULTISHELL_PATH=/tmp/fnm_node
-export NODE_PATH=$FNM_MULTISHELL_PATH/lib/node_modules
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
-# if using /usr/share/local/{sbin,bin} or use any perl packages, replace /usr/bin with $PATH
-export PATH=/usr/bin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$FNM_MULTISHELL_PATH/bin
+# if encounter cmd not found (eg. perl pkg), try replace /usr/bin with $PATH
+export PATH=/usr/bin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin
 
 export GDK_SCALE=2 GDK_DPI_SCALE=0.6
 export QT_SCREEN_SCALE_FACTORS=1 QT_AUTO_SCREEN_SCALE_FACTOR=true

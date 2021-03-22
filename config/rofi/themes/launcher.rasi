@@ -32,7 +32,7 @@
     border: 2px 2px 2px;
     border-radius: 10px;
     height:       50%;
-    width:        30%;
+    width:        25%;
 }
 
 #mainbox {

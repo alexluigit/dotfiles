@@ -1,5 +1,5 @@
 _set_title() { echo -ne "\e]2;$1\007"; }
-_reset_title() { echo -ne "\e]2;Terminal\007"; }
+_reset_title() { echo -ne "\e]2;Alacritty\007"; }
 _italic() { echo -ne "\e[3m$@\e[23m"; }
 _inside_git_repo() { git rev-parse --is-inside-work-tree >/dev/null 2>&1; }
 _fugitive() { _set_title nvim; nvim -c "Gstatus | bd# | nmap <buffer>q <c-w>q"; _reset_title; }
@@ -36,4 +36,21 @@ _tmux_auto() { # tmux automation
   HAS_SESSION=$(tmux has-session -t=$S_NAME 2>/dev/null)
   [ $? -eq 0 ] && _switch $S_NAME || { [ -x $S_CONFIG/tmux ] && { tmux new -s $S_NAME -d && $S_CONFIG/tmux $S_NAME && _switch $S_NAME; } \
   || tmux new -s $S_NAME -d && _switch $S_NAME; }
+}
+_sudo_edit() {
+  tmp_file=`mktemp --dry-run`
+  cp "$1" "$tmp_file"
+  nvim $tmp_file
+  doas mv "$tmp_file" "$1"
+}
+vterm_printf() { # Emacs Vterm helper
+  # if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
+  #   # Tell tmux to pass the escape sequences through
+  #   printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+  # elif [ "${TERM%%-*}" = "screen" ]; then
+  #   # GNU screen (screen, screen-256color, screen-256color-bce)
+  #   printf "\eP\e]%s\007\e\\" "$1"
+  # else
+    printf "\e]%s\e\\" "$1"
+  # fi
 }

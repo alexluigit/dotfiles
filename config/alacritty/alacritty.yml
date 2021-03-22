@@ -80,7 +80,7 @@ key_bindings:
   # Ctrl-i      => F6
   # Ctrl-,      => F10
   # Ctrl-.      => F11
-  - { key: Semicolon,  mods: Control,        chars: "\x1b[14~" }
+  - { key: Semicolon,  mods: Control,        chars: "\x1bOS" }
   - { key: Return,     mods: Control,        chars: "\x1b[15~" }
   - { key: I,          mods: Control,        chars: "\x1b[17~" }
   - { key: Comma,      mods: Control,        chars: "\x1b[21~" }

@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+export DISPLAY_DEVICE="DP-0"
 exec xidlehook \
   --not-when-fullscreen \
   --not-when-audio \

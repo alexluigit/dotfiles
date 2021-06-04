@@ -1,5 +1,5 @@
 #!/bin/sh
-REPODIR="$HOME/Dev/alex.files"
+REPODIR="$HOME/Code/alex.files"
 CONFIG_DIR="$REPODIR/config"
 DATA_DIR="$REPODIR/local/share"
 CONFIG_TARGET="$HOME/.config"

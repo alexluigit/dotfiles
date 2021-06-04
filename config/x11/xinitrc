@@ -5,9 +5,11 @@ deadd-notification-center &
 fcitx5 &
 flameshot &
 ~/.local/bin/x/autolock &
+~/.local/bin/x/wallpaperctl boot &
 redshift -b 1.0:0.7 -l 30.59:114.27 &
 picom --experimental-backends &
 xsetroot -cursor_name left_ptr &
+mpd &
 mpDris2 --music-dir=~/Music &
 
 exec awesome

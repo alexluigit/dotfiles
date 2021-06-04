@@ -1,8 +1,8 @@
 #!/bin/sh
-key() { xvkbd -delay ${2:-0} -xsendevent -text $1; }
+key() { xvkbd -delay ${2:-0} -xsendevent -text $1; exit; }
 _focus_wclass() { xprop -id `xdotool getwindowfocus` WM_CLASS | cut -d '"' -f 4; }
 classes=("Alacritty" "ncmpcpp" "lfrun" "dropterm")
-[[ "${classes[@]}" == *"$(_focus_wclass)"* ]] && key '\CV' 20 && exit
-[[ $(_focus_wclass) == "Emacs" ]] && emacsclient -e '(progn (vterm) (vterm-yank))' && exit
+[[ "${classes[@]}" == *"$(_focus_wclass)"* ]] && { key '\CV' 20; exit 0; }
+[[ $(_focus_wclass) == "Emacs" ]] && { key '\W\[F6]'; exit 0; }
 key '\Cv'
 

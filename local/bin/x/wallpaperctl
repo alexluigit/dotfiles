@@ -1,7 +1,12 @@
 #!/usr/bin/env sh
-draw() {
-  xwallpaper --output DP-0 --zoom $1
-  sed -i "s|\(export WALLPAPER=\)\(.*\)|\1$1|" $XDG_CONFIG_HOME/zsh/system/variable.zsh
+DEFAULT="$HOME/Pictures/wallpaper/awesome.png"
+
+_draw() { xwallpaper --output DP-0 --zoom $1; }
+_shuf() { fd -tf . ~/Pictures/wallpaper | shuf -n 1; }
+
+boot() { _draw $DEFAULT; }
+change() {
+  [[ -n $1 ]] && _draw $1 || _draw $(_shuf)
 }
 
 "$@"

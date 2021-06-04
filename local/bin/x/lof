@@ -1,22 +1,35 @@
 #!/bin/sh
-while getopts "c:d:r:k:" opt; do
+CURR_DESK=$(xdotool get_desktop)
+RUN_IN_TARGET=false
+
+while getopts "d:D:f:l:k:" opt; do
   case $opt in
-    c) CLASS=${OPTARG};;
-    d) DESKTOP=$OPTARG;;
-    r) RUN=$OPTARG;;
+    f) FOCUS_CLASS=${OPTARG};;
+    d) TARGET_DESKTOP=$OPTARG;;
+    D) TARGET_DESKTOP=$OPTARG; RUN_IN_TARGET=true;;
+    l) RUN=$OPTARG;;
     k) KEY=$OPTARG;;
   esac
 done
 shift $((OPTIND -1))
 
+
 try_sendkey() {
   local focus_class=$(xprop -id $(xdotool getwindowfocus) WM_CLASS | cut -d '"' -f 4)
-  [[ $focus_class == $CLASS ]] && { xvkbd -xsendevent -text $KEY; exit; }
+  [[ $focus_class == $FOCUS_CLASS ]] && { xvkbd -xsendevent -text $KEY; exit; }
 }
 
-CURR_DESK=$(xdotool get_desktop)
+switch_focus() {
+  xdotool search --desktop ${TARGET_DESKTOP:-$CURR_DESK} --class $FOCUS_CLASS windowactivate
+}
+
+launch() { $RUN_IN_TARGET && xdotool set_desktop $TARGET_DESKTOP; exec $RUN; }
+
+
 [[ -n $KEY ]] && try_sendkey
-wid=$(xdotool search --desktop ${DESKTOP:-$CURR_DESK} --class $CLASS | tail -n 1)
-[[ -n $wid ]] && { echo 'require("awful").screen.focused().tags[1]:view_only()' | awesome-client; } \
-&& xdotool search --desktop ${DESKTOP:-$CURR_DESK} --class $CLASS windowactivate || exec $RUN
+WID=$(xdotool search --desktop ${TARGET_DESKTOP:-$CURR_DESK} --class $FOCUS_CLASS | tail -n 1)
+# [[ -n $wid ]] && { awesome-client 'require("awful").screen.focused().tags[1]:view_only()'; } \
+# && xdotool search --desktop ${DESKTOP:-$CURR_DESK} --class $CLASS windowactivate || exec $RUN
+# [[ -n $WID ]] && xdotool search --desktop ${DESKTOP:-$CURR_DESK} --class $CLASS windowactivate || exec $RUN
+[[ -n $WID ]] && switch_focus || launch
 

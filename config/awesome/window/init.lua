@@ -7,6 +7,7 @@ require("window.savefloats")
 require("window.better-resize")
 require("window.swallowing")
 require("window.layout-list")
+require("window.flash_focus")
 
 client.connect_signal("manage", function(c)
   if awesome.startup and not c.size_hints.user_position and
@@ -30,11 +31,11 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- Hide all windows when a splash is shown
-awesome.connect_signal("widgets::splash::visibility", function(vis)
-    local t = screen.primary.selected_tag
-    if vis then
-        for _, c in ipairs(t:clients()) do c.hidden = true end
-    else
-        for _, c in ipairs(t:clients()) do c.hidden = false end
-    end
-end)
+-- awesome.connect_signal("widgets::splash::visibility", function(vis)
+--     local t = screen.primary.selected_tag
+--     if vis then
+--         for _, c in ipairs(t:clients()) do c.hidden = true end
+--     else
+--         for _, c in ipairs(t:clients()) do c.hidden = false end
+--     end
+-- end)

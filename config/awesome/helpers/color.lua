@@ -1,8 +1,4 @@
-
-
 local _color = {}
-
-
 
 --- Try to guess if a color is dark or light.
 --
@@ -16,7 +12,6 @@ function _color.is_dark(color)
     end
     return (numeric_value < 383)
 end
-
 
 --- Lighten a color.
 --

@@ -1,7 +1,5 @@
 local ruled = require("ruled")
 local awful = require("awful")
-local gears = require("gears")
-local beautiful = require("beautiful")
 require("awful.autofocus")
 
 ruled.client.connect_signal("request::rules", function()
@@ -34,10 +32,6 @@ ruled.client.connect_signal("request::rules", function()
     callback = function(c) c:connect_signal("property::fullscreen", function() if not c.fullscreen then c.ontop = true end end) end,
     properties = {ontop = true}
   }
-end)
-
-screen.connect_signal("request::wallpaper", function(s)
-    gears.wallpaper.maximized(beautiful.wallpaper, s, false, nil)
 end)
 
 screen.connect_signal("request::desktop_decoration", function(s)

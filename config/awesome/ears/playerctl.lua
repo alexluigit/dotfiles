@@ -115,18 +115,3 @@ end
 -- Emit info
 emit_player_status()
 emit_player_info()
-
--- local enable = function()
---     emit_player_status()
---     emit_player_info()
--- end
-
--- local disable = function()
---     awful.spawn.with_shell("pkill --full --uid " .. os.getenv("USER") ..
---                                " '^playerctl status -F'")
-
---     awful.spawn.with_shell("pkill --full --uid " .. os.getenv("USER") ..
---                                " '^playerctl metadata --format'")
--- end
-
--- return {enable = enable, disable = disable}

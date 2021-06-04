@@ -4,13 +4,12 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local dpi = require("beautiful.xresources").apply_dpi
 local shapes = require("helpers.shape")
--- local machi = require("layout-machi")
--- beautiful.layout_machi = machi.get_icon()
+local modkey = "Mod4"
 
 -- Set the layouts
 tag.connect_signal("request::default_layouts", function()
   awful.layout.append_default_layouts({
-      awful.layout.suit.tile, awful.layout.suit.max, awful.layout.suit.fair
+      awful.layout.suit.tile, awful.layout.suit.fair
   })
 end)
 
@@ -20,7 +19,7 @@ local ll = awful.widget.layoutlist {
   spacing = dpi(24),
   base_layout = wibox.widget {
       spacing = dpi(24),
-      forced_num_cols = 3,
+      forced_num_cols = 2,
       layout = wibox.layout.grid.vertical
   },
   widget_template = {

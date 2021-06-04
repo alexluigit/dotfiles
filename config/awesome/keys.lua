@@ -1,29 +1,33 @@
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
-local myXBin = os.getenv("HOME") .. "/.local/bin/x/"
-local dmenu = "rofi -show run -theme ~/.config/rofi/themes/dmenu.rasi"
-local powermenu = myXBin .. "powermenu"
-local smartpaste = myXBin .. "smartpaste"
 local screenshots = "flameshot full -p " .. os.getenv("HOME") .. "/Pictures/screenshots"
-local emacs_open = myXBin .. "lof -c Emacs -d 0 -r 'emacsclient -c' -k '\\We'"
-local emacs_maybe = myXBin .. "emacs-x "
+local emacs_main = os.getenv("HOME") .. "/.local/bin/x/lof -f Emacs -D 0 -l 'emacsclient -c' -k '\\We'"
+local emacs_lf = "floatwin -d 75%x96%+24%+1% -n lf-emacs emacsclient -ne '\\(lf-new-frame\\)'"
+local powermenu = os.getenv("HOME") .. "/.local/bin/x/powermenu"
+local smartpaste = os.getenv("HOME") .. "/.local/bin/x/smartpaste"
 local hypkey = "Mod3"
+local modkey = "Mod4"
 local window = require("helpers.window")
+
+local key_or_cmd = function (class, key, cmd, arg)
+   if class == client.focus.class then
+      awful.spawn("xvkbd -xsendevent -text " .. key, false)
+   else
+    if type(cmd) == "function" then cmd(arg)
+    else load("client.focus:" .. cmd)() end
+   end
+end
 
 -- Main Bindings
 awful.keyboard.append_global_keybindings({
-  awful.key({modkey}, "n", function() awful.spawn(emacs_maybe .. "down", false) end,
-            {description = "focus next by index", group = "client"}),
-  awful.key({modkey}, "p", function() awful.spawn(emacs_maybe .. "up", false) end,
-            {description = "focus previous by index", group = "client"}),
-  awful.key({modkey}, "q", function() awful.spawn(emacs_maybe .. "close", false) end,
+  awful.key({modkey}, "n", function() key_or_cmd("Emacs", "'\\Wn'", awful.client.focus.byidx, 1) end,
+            {description = "focus next", group = "client"}),
+  awful.key({modkey}, "p", function() key_or_cmd("Emacs", "'\\Wp'", awful.client.focus.byidx, -1) end,
+            {description = "focus previous", group = "client"}),
+  awful.key({modkey}, "q", function() key_or_cmd("Emacs", "'\\Wq'", "kill()") end,
             {description = "close", group = "client"}),
-  awful.key({modkey}, "e", function() awful.spawn(emacs_open, false) end,
-            {description = "launch emacs", group = "client"}),
-  awful.key({modkey}, "t", function() awful.spawn("alacritty") end,
-            {description = "open a terminal", group = "launcher"}),
-  awful.key({modkey}, "s", function() awful.spawn("bravectl start") end,
-            {description = "open brave", group = "launcher"}),
+  awful.key({modkey}, "e", function() awful.spawn(emacs_main, false) end,
+            {description = "Launch emacs", group = "client"}),
   awful.key({modkey}, "Left", function() awful.tag.viewprev() end,
             {description = "focus the next tag(desktop)", group = "tag"}),
   awful.key({modkey}, "Right", function() awful.tag.viewnext() end,
@@ -35,29 +39,32 @@ awful.keyboard.append_global_keybindings({
   awful.key({modkey}, "Escape", function() awful.client.focus.history.previous()
             if client.focus then client.focus:raise() end end,
             {description = "go back", group = "client"}),
-  awful.key({}, "Delete", function() awful.spawn(powermenu) end,
-            {description = "show exit screen", group = "awesome"}),
-  awful.key({}, "Insert", function() awful.spawn(dmenu) end)
+  awful.key({modkey}, "Return", function() awful.spawn("alacritty", false) end,
+            {description = "Open terminal", group = "client" }),
+  awful.key({}, "Delete", function() awful.spawn(powermenu, false) end,
+            {description = "Power menu", group = "awesome" }),
+  awful.key({}, "Insert", function() awful.spawn("rofi -show run -theme dmenu.rasi", false) end,
+            {description = "Power menu", group = "awesome" }),
 })
 
 -- Launcher
 awful.keyboard.append_global_keybindings({
-  awful.key({hypkey}, "h", function() awful.spawn("floatwin -t -d 1920x2160+0+0 htop", false) end,
+  awful.key({hypkey}, "f", function() awful.spawn(emacs_lf, false) end,
+            {description = "open lf (in emacs)", group = "launcher"}),
+  awful.key({hypkey}, "h", function() awful.spawn("floatwin -t -d 1920x2000+80+80 htop", false) end,
             {description = "open htop", group = "launcher"}),
   awful.key({hypkey}, "m", function() awful.spawn("floatwin -t -d 30%x80%+3%+10% ncmpcpp", false) end,
             {description = "open ncmpcpp", group = "launcher"}),
-  awful.key({hypkey}, "n", function() awful.spawn("nautilus", false) end,
-            {description = "open file browser", group = "launcher"}),
+  awful.key({hypkey}, "w", function() awful.spawn("bravectl start", false) end,
+            {description = "open brave", group = "launcher"}),
   awful.key({hypkey}, "i", function() awful.spawn("bravectl inco", false) end,
             {description = "open brave(inco)", group = "launcher"}),
-  awful.key({hypkey}, "o", function() awful.spawn("floatwin -t -d 50%x50%+50%+50% -n 1 fmenu 1", false) end,
-            {description = "open fmenu", group = "launcher"}),
-  awful.key({hypkey}, "u", function() awful.spawn("murl main", false) end,
-            {description = "open murl", group = "launcher"}),
   awful.key({hypkey}, "t", function() awful.spawn("murl toggle", false) end,
             {description = "toggle murl", group = "launcher"}),
   awful.key({hypkey}, "s", function() awful.spawn(screenshots, false) end,
             {description = "take screenshots", group = "launcher"}),
+  awful.key({hypkey}, "v", function() awful.spawn("floatwin -c mpv:emacs-mpv", false) end,
+            {description = "toggle playing video", group = "launcher"}),
 })
 
 -- Client
@@ -99,7 +106,7 @@ awful.keyboard.append_global_keybindings({
   awful.key({modkey}, "F1", hotkeys_popup.show_help,
             {description = "show help", group = "awesome"}),
   awful.key({modkey}, "F6", function() awful.spawn(smartpaste, false) end,
-            {description = "smartpaste", group = "awesome"}),
+            {description = "show help", group = "awesome"}),
 })
 
 -- Num row keybinds
@@ -143,8 +150,6 @@ awful.keyboard.append_global_keybindings({
 client.connect_signal("request::default_mousebindings", function()
   awful.mouse.append_client_mousebindings({
     awful.button({}, 1, function(c) c:activate{context = "mouse_click"} end),
-    awful.button({}, 8, function() awful.spawn("xvkbd -text '\\Aq'", false) end),
-    awful.button({}, 9, function() awful.spawn("xvkbd -text '\\At'", false) end),
     awful.button({modkey}, 1, function(c) c:activate{context = "mouse_click", action = "mouse_move"} end),
     awful.button({modkey}, 3, function(c) c:activate{context = "mouse_click", action = "mouse_resize"} end)
   })

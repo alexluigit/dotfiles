@@ -1,25 +1,28 @@
 local awful = require("awful")
-local window = require("helpers.window")
-local dont_swallow_classname_list = {"Gimp", "Brave-browser"}
+local dont_swallow_parent_list = {"Gimp", "Brave-browser", "Emacs"}
+local dont_swallow_child_list = {"Alacritty"}
 
 local function swallow(child)
-    local parent = awful.client.focus.history.get(child.screen, 1)
-    if not parent then return end
-    if string.match(child.instance, "fmenu.*") and parent.instance == child.instance then
-       window.turn_off(parent) return
+  local parent = awful.client.focus.history.get(child.screen, 1)
+  if not parent then return end
+  for _, classname in ipairs(dont_swallow_parent_list) do
+    if classname == parent.class then return end
+  end
+  for _, classname in ipairs(dont_swallow_parent_list) do
+    if classname == parent.class then return end
+  end
+  if string.match(child.instance, "fmenu.*") and parent.instance == child.instance then
+    parent.minimized = true
+  end
+  for _, classname in ipairs(dont_swallow_child_list) do
+    if classname ~= child.class then
+    parent.minimized = true
     end
-    for _, classname in ipairs(dont_swallow_classname_list) do
-        if classname == parent.class then return end
-    end
-    local dna = "dna " .. parent.pid .. " " .. child.pid
-    awful.spawn.easy_async_with_shell(dna, function(_, _, _, exitcode)
-        if exitcode == 1 then return end
-        parent.minimized = true
-
-        child:connect_signal("unmanage", function()
-          parent.minimized = false
-        end)
-    end)
+  end
+  child:connect_signal("request::unmanage", function()
+    parent.minimized = false
+  end)
 end
 
-client.connect_signal("manage", swallow)
+client.connect_signal("request::manage", swallow)
+

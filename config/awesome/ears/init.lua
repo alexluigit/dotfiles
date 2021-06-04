@@ -1,4 +1,3 @@
--- require("bling").signal.playerctl.enable()
 require("ears.playerctl")
 require("ears.volume")
 

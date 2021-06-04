@@ -1,8 +1,5 @@
-_set_title() { echo -ne "\e]2;$1\007"; }
-_reset_title() { echo -ne "\e]2;Alacritty\007"; }
-_italic() { echo -ne "\e[3m$@\e[23m"; }
 _inside_git_repo() { git rev-parse --is-inside-work-tree >/dev/null 2>&1; }
-_fugitive() { _set_title nvim; nvim -c "Gstatus | bd# | nmap <buffer>q <c-w>q"; _reset_title; }
+_fugitive() { nvim -c "Gstatus | bd# | nmap <buffer>q <c-w>q"; }
 _resume_jobs() { fg; zle reset-prompt; zle-line-init; }
 _updir() { cd ..; zle reset-prompt; }
 _yank_cmdline() { echo -n "$BUFFER" | xclip -selection clipboard; }
@@ -19,23 +16,8 @@ _autopairs() {
   zle forward-char
 }
 _lf() {
-  tmp="$(mktemp)"
-  lfrun -last-dir-path="$tmp" "$@"
-  [ -f "$tmp" ] && {
-    dir="$(cat "$tmp")"; rm -f "$tmp"
-    [ -d "$dir" ] && { [ "$dir" != "$(pwd)" ] && cd "$dir" }
-  }
-  zle reset-prompt; zle-line-init
-}
-_tmux_auto() { # tmux automation
-  local S_NAME=$(basename "${PWD//[.:]/_}")
-  local S_CONFIG=$XDG_DATA_HOME/tmux$PWD
-  [[ $1 == "edit" ]] && { mkdir -p $S_CONFIG; touch $S_CONFIG/tmux; chmod +x $S_CONFIG/tmux; nvim $S_CONFIG/tmux; return; }
-  _switch() { [[ -n $TMUX ]] && tmux switch -t $1 2>/dev/null || tmux a -t $1; }
-  [[ -n $@ ]] && { tmux $@; return; }
-  HAS_SESSION=$(tmux has-session -t=$S_NAME 2>/dev/null)
-  [ $? -eq 0 ] && _switch $S_NAME || { [ -x $S_CONFIG/tmux ] && { tmux new -s $S_NAME -d && $S_CONFIG/tmux $S_NAME && _switch $S_NAME; } \
-  || tmux new -s $S_NAME -d && _switch $S_NAME; }
+  [[ $INSIDE_EMACS == vterm ]] && emacsclient -e '(lf)' >/dev/null || \
+  emacsclient -nc -F '(list (name . "lf-emacs"))' -e "(lf \"$PWD/\")" >/dev/null
 }
 _sudo_edit() {
   tmp_file=`mktemp --dry-run`
@@ -43,14 +25,30 @@ _sudo_edit() {
   nvim $tmp_file
   doas mv "$tmp_file" "$1"
 }
-vterm_printf() { # Emacs Vterm helper
-  # if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
-  #   # Tell tmux to pass the escape sequences through
-  #   printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-  # elif [ "${TERM%%-*}" = "screen" ]; then
-  #   # GNU screen (screen, screen-256color, screen-256color-bce)
-  #   printf "\eP\e]%s\007\e\\" "$1"
-  # else
-    printf "\e]%s\e\\" "$1"
-  # fi
+vterm_printf() { printf "\e]%s\e\\" "$1"; }
+_fzf_hist() {
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases
+  local sel num
+  sel=($(fc -rl 1 | fzf +m))
+  [[ -n "$sel" ]] && { num=$sel[1]; [[ -n "$num" ]] && zle vi-fetch-history -n $num; }
+  zle reset-prompt
+}
+_fzf_cd() { local sel=$(fd -c always -td . | fzf --ansi); [[ -n $sel ]] && cd $sel; zle reset-prompt; }
+_fzf_comp_helper() { BUFFER="$BUFFER**"; zle end-of-line; fzf-completion; }
+_fzf_kill() { BUFFER="kill -9 "; zle end-of-line; fzf-completion; }
+_fzf_clip() { }
+_fzf_paru_Rns() {
+  local res=($(pacman -Qeq | fzf -m --preview="paru -Si {}"))
+  [[ -n $res ]] && paru -Rns $res
+}
+_fzf_paru_S() {
+  local pkgs=~/.local/share/paru/pkglist
+  local bind="f5:preview(paru -Gp {} | bat -fpl sh)"
+  local res=(`fzf -m --height=100% --bind="$bind" --preview="paru -Si {}" < $pkgs`)
+  [[ -n "$res" ]] && paru $@ $res
+  [[ $res == "emacs-git" ]] && {
+    local emacs_paru="~/.cache/paru/clone/emacs-git"
+    rm -rf $emacs_paru/src
+    eval "git clone -s $emacs_paru/emacs-git $emacs_paru/src/emacs-git"
+  }
 }

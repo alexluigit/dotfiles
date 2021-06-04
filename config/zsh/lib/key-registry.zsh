@@ -30,11 +30,8 @@ bindkey -v
 bindkey -a            'cs'          change-surround
 bindkey -a            'ds'          delete-surround
 bindkey -a            'ys'          add-surround
-bindkey -a            \'            vi-forward-char
-bindkey -M vicmd      'e'           up-line-in-buffer # Do not go search history
 bindkey -M vicmd      'n'           down-line-in-buffer
+bindkey -M vicmd      'p'           up-line-in-buffer # Do not go search history
 bindkey -M visual     'S'           add-surround
-bindkey -M menuselect 'h'           vi-backward-char
-bindkey -M menuselect 'e'           vi-up-line-or-history
-bindkey -M menuselect  \'           vi-forward-char
 bindkey -M menuselect 'n'           vi-down-line-or-history
+bindkey -M menuselect 'p'           vi-up-line-or-history

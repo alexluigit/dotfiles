@@ -1,33 +1,6 @@
 #!/bin/sh
 filepath=$1
-height=$2
-width=$(printf "%0.f\n" "`echo "$(tput cols) / 2 - 2" | bc`")
-x=$4
-y=$5
-ext=$(tr '[:upper:]' '[:lower:]' <<< ${filepath##*.})
-
-__generate_thumb() {
-  CACHE=$(mktemp -u /home/alex/.cache/lf/thumbnail/cache/XXXXXX)
-  case "$1" in
-    pdf) pdftoppm -png -f 1 -singlefile "$filepath" "$CACHE";;
-    epub) epub-thumbnailer "$filepath" "$CACHE" 1024;;
-    vid) ffmpegthumbnailer -i "$filepath" -o "$CACHE" -s 0;;
-  esac
-  [[ -f $CACHE ]] && mv "$CACHE" "$CACHE.png"
-  printf "$filepath\n$CACHE.png\n" >> /home/alex/.cache/lf/thumbnail/index
-  _imagedraw "$CACHE.png"
-}
-
-_imagedraw() {
-  readonly ID_PREVIEW="preview"
-  declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW" \
-  [path]="$1" [height]="$height" [width]="$width" [x]="$x" [y]="$y" [scaler]="contain" ) \
-  > "$FIFO_UEBERZUG"
-}
-_thumbpreview() {
-  thumbindex=$(rg -F -A1 "$filepath" /home/alex/.cache/lf/thumbnail/index | tail -1)
-  [[ -z $thumbindex ]] && __generate_thumb $1 || _imagedraw "$thumbindex"
-}
+ext=$(tr '[:upper:]' '[:lower:]' <<< ${1##*.})
 
 case "$ext" in
     zip) zipinfo "$1";;
@@ -36,11 +9,10 @@ case "$ext" in
     tar) tar -tvf "$1";;
     rar) unrar l "$1";;
     7z) 7z l "$1";;
-    wav|mp3|flac|m4a|wma|ape|ac3|og[agx]|spx|opus|as[fx]|flac) mediainfo "$1";;
-    bmp|jpg|jpeg|png|xpm) _imagedraw $filepath; exit 1;;
-    pdf) _thumbpreview pdf; exit 1;;
-    epub) _thumbpreview epub; exit 1;;
-    avi|mp4|wmv|dat|3gp|ogv|mkv|mpg|mpeg|vob|fl[icv]|m2v|mov|webm|ts|mts|m4v|r[am]|qt|divx)
-      _thumbpreview vid; exit 1;;
+    wav|mp3|flac|m4a|wma|ape|ac3|og[agx]|spx|\
+        opus|as[fx]|flac|avi|mp4|wmv|dat|3gp|\
+        ogv|mkv|mpg|mpeg|vob|fl[icv]|m2v|mov|\
+        webm|ts|mts|m4v|r[am]|qt|divx) mediainfo "$1";;
+    bmp|jpg|jpeg|png|xpm) exiv2 "$1";;
     *) bat -p --color=always "$1";;
 esac

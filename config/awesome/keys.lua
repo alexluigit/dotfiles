@@ -9,17 +9,21 @@ local hypkey = "Mod3"
 local modkey = "Mod4"
 local window = require("helpers.window")
 
-local key_or_cmd = function (class, key, cmd, arg)
-   if class == client.focus.class then
-      awful.spawn("xvkbd -xsendevent -text " .. key, false)
-   else
-    if type(cmd) == "function" then cmd(arg)
-    else load("client.focus:" .. cmd)() end
-   end
+local key_or_cmd = function (class, key, cmd, ...)
+  if class == client.focus.class then
+    awful.spawn("xvkbd -xsendevent -text " .. key, false)
+  else
+  if type(cmd) ~= "string" then cmd(...)
+  else load("client.focus:" .. cmd)() end
+  end
 end
 
 -- Main Bindings
 awful.keyboard.append_global_keybindings({
+  awful.key({"Control"}, "n", function() key_or_cmd("Brave-browser", "'\\[Down]'", awful.spawn, "xvkbd -xsendevent -text '\\Cn'", false) end,
+            {description = "Send down arrow in some app", group = "client"}),
+  awful.key({"Control"}, "p", function() key_or_cmd("Brave-browser", "'\\[Up]'", awful.spawn, "xvkbd -xsendevent -text '\\Cp'", false) end,
+            {description = "Send up arrow in some app", group = "client"}),
   awful.key({modkey}, "n", function() key_or_cmd("Emacs", "'\\Wn'", awful.client.focus.byidx, 1) end,
             {description = "focus next", group = "client"}),
   awful.key({modkey}, "p", function() key_or_cmd("Emacs", "'\\Wp'", awful.client.focus.byidx, -1) end,
@@ -70,6 +74,8 @@ awful.keyboard.append_global_keybindings({
 -- Client
 client.connect_signal("request::default_keybindings", function()
   awful.keyboard.append_client_keybindings({
+    awful.key({}, "F2", function(c) c.maximized = not c.maximized c:raise() end,
+              {description = "(un)maximize", group = "client"}),
     awful.key({hypkey}, "Left", function(c) window.resize_dwim(c, "left") end,
               {description = "increase master width factor", group = "layout"}),
     awful.key({hypkey}, "Right", function(c) window.resize_dwim(c, "right") end,
@@ -78,8 +84,6 @@ client.connect_signal("request::default_keybindings", function()
               {description = "increase master width factor", group = "layout"}),
     awful.key({hypkey}, "Down", function(c) window.resize_dwim(c, "down") end,
               {description = "increase master width factor", group = "layout"}),
-    awful.key({hypkey}, " ", function(c) c.maximized = not c.maximized c:raise() end,
-              {description = "(un)maximize", group = "client"}),
     awful.key({hypkey}, "Return", function(c) c:swap(awful.client.getmaster()) end,
               {description = "become master", group = "client"}),
     awful.key({hypkey}, "Delete", function(c) c.ontop = not c.ontop end,
@@ -91,11 +95,13 @@ end)
 
 -- Function Keys
 awful.keyboard.append_global_keybindings({
-  awful.key({}, "F7", function() awful.spawn("playerctl -p mpd previous", false) end,
+  awful.key({}, "F1", function() awful.spawn("floatwin -d 64%x90%+35%+3% -c BraveDev: bravectl dev", false) end,
+            {description = "toggle browser", group = "awesome"}),
+  awful.key({}, "F7", function() awful.spawn("playerctl previous", false) end,
             {description = "playerctl previous", group = "awesome"}),
-  awful.key({}, "F8", function() awful.spawn("playerctl -p mpd play-pause", false) end,
+  awful.key({}, "F8", function() awful.spawn("playerctl play-pause", false) end,
             {description = "toggle playerctl", group = "awesome"}),
-  awful.key({}, "F9", function() awful.spawn("playerctl -p mpd next", false) end,
+  awful.key({}, "F9", function() awful.spawn("playerctl next", false) end,
             {description = "playerctl next", group = "awesome"}),
   awful.key({}, "F10", function() awful.spawn("pulsemixer --toggle-mute", false) end,
             {description = "mute volume", group = "awesome"}),

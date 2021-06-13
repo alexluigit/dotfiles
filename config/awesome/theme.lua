@@ -2,6 +2,8 @@ local assets = require("beautiful.theme_assets")
 local dpi = require("beautiful.xresources").apply_dpi
 local shapes = require("helpers.shape")
 local theme = dofile(require("gears.filesystem").get_themes_dir().. "default/theme.lua")
+local gears = require("gears")
+local icon_path = gears.filesystem.get_configuration_dir() .. "icons/"
 
 -- Colors
 theme.xbackground = "#1a2026"
@@ -23,9 +25,13 @@ theme.xcolor13 = "#d7c1ed"
 theme.xcolor14 = "#c7e5d6"
 theme.xcolor15 = "#eaeaea"
 
+-- Logo / Icons
+theme.distro_logo = gears.surface.load_uncached(icon_path .. "distro.png")
+
 -- Fonts
-theme.font_name = "Fira Code "
-theme.font = theme.font_name .. "9"
+theme.font_name = "Sarasa Mono SC "
+theme.font = theme.font_name .. "10"
+theme.icon_font_name = "FiraCode Nerd Font Mono "
 theme.icon_font = "FiraCode Nerd Font Mono 18"
 theme.font_taglist = "FiraCode Nerd Font Mono 13"
 theme.max_font = "FiraCode Nerd Font Mono 10"
@@ -75,13 +81,14 @@ theme.taglist_shape_focus = shapes.rrect(theme.border_radius - 3)
 
 -- Tasklist
 theme.tasklist_font = theme.font
+theme.tasklist_font_focus = theme.font
 theme.tasklist_plain_task_name = true
 theme.tasklist_bg_focus = theme.xcolor0
 theme.tasklist_fg_focus = theme.xcolor6
-theme.tasklist_bg_minimize = theme.xcolor0 .. "70"
-theme.tasklist_fg_minimize = theme.xforeground .. "70"
-theme.tasklist_bg_normal = theme.xcolor0
-theme.tasklist_fg_normal = theme.xforeground
+theme.tasklist_bg_minimize = theme.xcolor0 .. 55
+theme.tasklist_fg_minimize = theme.xforeground .. 55
+theme.tasklist_bg_normal = theme.xcolor0 .. 70
+theme.tasklist_fg_normal = theme.xforeground .. 60
 theme.tasklist_disable_task_name = false
 theme.tasklist_disable_icon = true
 theme.tasklist_bg_urgent = theme.xcolor0
@@ -113,7 +120,7 @@ theme = assets.recolor_layout(theme, theme.xforeground)
 theme.useless_gap = dpi(5)
 
 -- Wibar
-theme.wibar_height = dpi(37)
+theme.wibar_height = dpi(40)
 theme.wibar_margin = dpi(15)
 theme.wibar_spacing = dpi(15)
 theme.wibar_bg = theme.xbackground

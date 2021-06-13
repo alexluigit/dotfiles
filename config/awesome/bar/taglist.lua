@@ -16,7 +16,7 @@ local get_taglist = function(s)
     awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
     awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end))
   local tag_icon = function(name, color)
-     local icon_path = gears.surface.load_uncached(cfg .. "icons/ghosts/" .. name .. ".png")
+     local icon_path = gears.surface.load_uncached(cfg .. "icons/" .. name .. ".png")
      return gears.color.recolor_image(icon_path, color)
   end
   local update_tags = function(self, c3)

@@ -8,104 +8,89 @@ local shapes = require("helpers.shape")
 
 local awesome_icon = require("bar.awesome_icon")
 local get_taglist = require("bar.taglist")
-local notif_icon = require("bar.notify_icon")
 local final_systray = require("bar.systray")
 local get_tasklist = require("bar.tasklist")
 local playerctl_bar = require("bar.playerctl")
+local time_pill = require("bar.timedate").time()
+local date_pill = require("bar.timedate").date()
+
+local wrap_widget = function(w)
+  return wibox.widget {
+    w,
+    top = dpi(5),
+    left = dpi(4),
+    bottom = dpi(5),
+    right = dpi(4),
+    widget = wibox.container.margin
+  }
+end
+
+local make_pill = function(w, c)
+  return wibox.widget {
+    w,
+    bg = beautiful.xcolor0,
+    shape = shapes.rrect(10),
+    widget = wibox.container.background
+  }
+end
 
 screen.connect_signal("request::desktop_decoration", function(s)
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mytaglist = get_taglist(s)
     s.mytasklist = get_tasklist(s)
-    awful.wibar({position = "bottom", screen = s}):setup{
-        layout = wibox.layout.fixed.vertical,
+    s.mywibox = awful.wibar({position = "bottom", screen = s})
+    s.mywibox:setup{
+        layout = wibox.layout.align.vertical,
         {
-            layout = wibox.layout.align.horizontal,
-            bg = beautiful.xcolor0,
-            expand = "none",
             {
-                layout = wibox.layout.fixed.horizontal,
+                layout = wibox.layout.align.horizontal,
+                expand = "none",
                 {
-                    {
+                    layout = wibox.layout.fixed.horizontal,
+                    shapes.horizontal_pad(4),
+                    wrap_widget(
+                    make_pill({
+                        awesome_icon,
                         {
-                            awesome_icon,
                             s.mytaglist,
-                            spacing = 20,
-                            spacing_widget = {
-                                color = beautiful.xcolor8,
-                                shape = shapes.pgram(4),
-                                widget = wibox.widget.separator
-                            },
+                            shapes.horizontal_pad(4),
                             layout = wibox.layout.fixed.horizontal
                         },
-                        bg = beautiful.xcolor0,
-                        shape = shapes.rrect(beautiful.border_radius - 3),
-                        widget = wibox.container.background
-                    },
-                    top = dpi(5),
-                    left = dpi(10),
-                    right = dpi(5),
-                    bottom = dpi(5),
-                    widget = wibox.container.margin
+                        spacing = 14,
+                        spacing_widget = {
+                            color = beautiful.xcolor8,
+                            shape = shapes.pgram(5),
+                            widget = wibox.widget.separator
+                        },
+                        layout = wibox.layout.fixed.horizontal
+                    })),
+                    s.mypromptbox,
+                    wrap_widget(make_pill(playerctl_bar, beautiful.xcolor8))
                 },
+                {wrap_widget(s.mytasklist), widget = wibox.container.constraint},
                 {
-                    playerctl_bar,
-                    margins = dpi(5),
-                    widget = wibox.container.margin
+                    wrap_widget(make_pill(time_pill, beautiful.xcolor0 .. 55)),
+                    wrap_widget(make_pill(date_pill, beautiful.xcolor0)),
+                    wrap_widget(make_pill({
+                        s.mylayoutbox,
+                        top = dpi(5),
+                        bottom = dpi(5),
+                        right = dpi(8),
+                        left = dpi(8),
+                        widget = wibox.container.margin
+                    }, beautiful.xcolor8 .. 90)),
+                    wrap_widget(awful.widget.only_on_screen(final_systray, screen[1])),
+                    shapes.horizontal_pad(4),
+                    layout = wibox.layout.fixed.horizontal
                 }
             },
-            {
-                {
-                    {
-                        s.mytasklist,
-                        bg = beautiful.xcolor0 .. "00",
-                        shape = shapes.rrect(6),
-                        widget = wibox.container.background
-                    },
-                    margins = dpi(4),
-                    widget = wibox.container.margin
-                },
-                widget = wibox.container.constraint
-            },
-            {
-                layout = wibox.layout.fixed.horizontal,
-                wibox.widget.textclock,
-                {
-                    awful.widget.only_on_screen(final_systray, screen[1]),
-                    margins = dpi(5),
-                    widget = wibox.container.margin
-                },
-                {
-                    {
-                        {
-                            s.mylayoutbox,
-                            top = dpi(4),
-                            bottom = dpi(4),
-                            right = dpi(7),
-                            left = dpi(7),
-                            widget = wibox.container.margin
-                        },
-                        bg = beautiful.xcolor0,
-                        shape = shapes.rrect(beautiful.border_radius - 3),
-                        widget = wibox.container.background
-                    },
-                    margins = dpi(5),
-                    widget = wibox.container.margin
-                },
-                {
-                    {
-                        notif_icon,
-                        bg = beautiful.xcolor0,
-                        shape = shapes.rrect(beautiful.border_radius - 3),
-                        widget = wibox.container.background
-                    },
-                    top = dpi(5),
-                    right = dpi(10),
-                    left = dpi(5),
-                    bottom = dpi(5),
-                    widget = wibox.container.margin
-                },
-            }
+            widget = wibox.container.background,
+            bg = beautiful.wibar_bg_secondary
+        },
+        { -- This is for a bottom border in the bar
+            widget = wibox.container.background,
+            bg = beautiful.xcolor0,
+            forced_height = beautiful.widget_border_width
         }
     }
 end)
@@ -117,11 +102,13 @@ local function remove_wibar(c)
         c.screen.mywibox.visible = true
     end
 end
+
 local function add_wibar(c)
     if c.fullscreen or c.maximized then
         c.screen.mywibox.visible = true
     end
 end
+
 awesome.connect_signal("widgets::splash::visibility", function(vis)
     screen.primary.mywibox.visible = not vis
 end)

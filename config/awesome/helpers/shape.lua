@@ -1,6 +1,14 @@
 local gears = require("gears")
+local wibox = require("wibox")
 
 shape = {}
+
+function shape.horizontal_pad(width)
+    return wibox.widget {
+        forced_width = width,
+        layout = wibox.layout.fixed.horizontal
+    }
+end
 
 -- Create rounded rectangle shape (in one line)
 function shape.rrect(radius)

@@ -3,6 +3,7 @@ local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
+local shapes = require("helpers.shape")
 local dpi = xresources.apply_dpi
 
 local tasklist = function(s)
@@ -18,22 +19,24 @@ local tasklist = function(s)
     screen = s,
     filter = awful.widget.tasklist.filter.currenttags,
     buttons = tasklist_buttons,
-    bg = beautiful.xcolor0,
-    style = {bg = beautiful.xcolor0},
+    -- bg = beautiful.wibar_bg,
+    style = {bg = beautiful.wibar_bg, shape = shapes.rrect(10)},
     layout = {
-        spacing = dpi(0),
-        spacing_widget = {
-            bg = beautiful.xcolor8,
-            widget = wibox.container.background
-        },
+        spacing = dpi(8),
         layout = wibox.layout.fixed.horizontal
     },
     widget_template = {
         {
             {
-                nil,
-                awful.widget.clienticon,
-                nil,
+                {
+                    awful.widget.clienticon,
+                    top = dpi(1),
+                    bottom = dpi(1),
+                    right = dpi(1),
+                    layout = wibox.container.margin
+                },
+                shapes.horizontal_pad(6),
+                {id = 'text_role', widget = wibox.widget.textbox},
                 layout = wibox.layout.fixed.horizontal
             },
             top = dpi(5),
@@ -42,8 +45,9 @@ local tasklist = function(s)
             right = dpi(10),
             widget = wibox.container.margin
         },
-        id = 'background_role',
+        id = "background_role",
         widget = wibox.container.background
-    }} end
+    }
+} end
 
 return tasklist

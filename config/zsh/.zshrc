@@ -20,12 +20,10 @@ declare -A ZSH_HIGHLIGHT_STYLES=(
   [function]=fg=yellow,bold
   [command]=fg=blue,bold
 )
-_Z_DATA=$XDG_DATA_HOME/z/.z
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(ctrl-return)
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(ctrl-bslash)
 
-for file in aliases keybind options; do . $ZDOTDIR/$file.zsh; done
-for file in $(/bin/ls $ZDOTDIR/lib); do . $ZDOTDIR/lib/$file; done
+for file in aliases options keybind prompt utils; do . $ZDOTDIR/$file.zsh; done
 . ~/.local/bin/fmenu
 . /usr/share/z/z.sh
 . /usr/share/fzf/completion.zsh

@@ -25,7 +25,6 @@ _sudo_edit() {
   nvim $tmp_file
   doas mv "$tmp_file" "$1"
 }
-vterm_printf() { printf "\e]%s\e\\" "$1"; }
 _fzf_hist() {
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases
   local sel num
@@ -36,7 +35,6 @@ _fzf_hist() {
 _fzf_cd() { local sel=$(fd -c always -td . | fzf --ansi); [[ -n $sel ]] && cd $sel; zle reset-prompt; }
 _fzf_comp_helper() { BUFFER="$BUFFER**"; zle end-of-line; fzf-completion; }
 _fzf_kill() { BUFFER="kill -9 "; zle end-of-line; fzf-completion; }
-_fzf_clip() { }
 _fzf_paru_Rns() {
   local res=($(pacman -Qeq | fzf -m --preview="paru -Si {}"))
   [[ -n $res ]] && paru -Rns $res
@@ -45,10 +43,10 @@ _fzf_paru_S() {
   local pkgs=~/.local/share/paru/pkglist
   local bind="f5:preview(paru -Gp {} | bat -fpl sh)"
   local res=(`fzf -m --height=100% --bind="$bind" --preview="paru -Si {}" < $pkgs`)
-  [[ -n "$res" ]] && paru $@ $res
+  local emacs_paru="~/.cache/paru/clone/emacs-git"
   [[ $res == "emacs-git" ]] && {
-    local emacs_paru="~/.cache/paru/clone/emacs-git"
-    rm -rf $emacs_paru/src
+    eval "rm -rf $emacs_paru/src"
+    paru $@ $res
     eval "git clone -s $emacs_paru/emacs-git $emacs_paru/src/emacs-git"
-  }
+  } || { [[ -n "$res" ]] && paru $@ $res; }
 }

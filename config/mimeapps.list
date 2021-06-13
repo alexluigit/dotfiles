@@ -10,7 +10,6 @@ text/x-markdown=typora.desktop
 text/x-c++=typora.desktop
 video/x-matroska=mpv.desktop;
 video/mp4=mpv.desktop;
-image/gif=mpvgif.desktop;
 image/png=sxiv.desktop;
 image/jpeg=sxiv.desktop;
 text/html=brave-browser.desktop;

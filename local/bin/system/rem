@@ -1,6 +1,6 @@
 #!/bin/sh
 xdotool set_desktop 0
-[[ -n $@ ]] && rm ~/.cache/emacs/ace.el 2>/dev/null
+rm ~/.cache/emacs/ace.el* 2>/dev/null
 pgrep emacs && emacsclient -e '(kill-emacs)'
 emacs --daemon
 emacsclient -c --no-wait

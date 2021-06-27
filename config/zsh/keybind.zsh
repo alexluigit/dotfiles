@@ -33,7 +33,7 @@ ctrl-r()  { _fzf_hist; }
 ctrl-s()  { f nav z; }
 ctrl-t()  { _fzf_comp_helper; }
 ctrl-u()  { [[ -n $BUFFER ]] && zle kill-whole-line || _updir; }
-ctrl-y()  { _yank_cmdline; }
+ctrl-y()  { _yank; }
 ctrl-z()  { [[ -n $BUFFER ]] && zle push-input || _resume_jobs; }
 ctrl-bslash()  { [[ -n $BUFFER ]] && zle vi-forward-word || f nav home; }
 ctrl-return()  { zle autosuggest-accept; }

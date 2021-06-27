@@ -24,7 +24,7 @@ ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(ctrl-return)
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(ctrl-bslash)
 
 for file in aliases options keybind prompt utils; do . $ZDOTDIR/$file.zsh; done
-. ~/.local/bin/fmenu
+. $(which fmenu)
 . /usr/share/z/z.sh
 . /usr/share/fzf/completion.zsh
 . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

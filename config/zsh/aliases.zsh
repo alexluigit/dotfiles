@@ -24,5 +24,5 @@ alias -g W="| wc -l"
 g() { [[ -z $@ ]] && _inside_git_repo && _fugitive || git $@; }
 mc() { mkdir -p $@ && cd ${@:$#}; } # make a dir and cd into it
 sn() { _sudo_edit "$1"; }
-pas() { _fzf_paru_S $@; }
-pal() { _fzf_paru_Rns; }
+pai() { _fzf_paru_S $@; }
+pau() { _fzf_paru_Rns; }

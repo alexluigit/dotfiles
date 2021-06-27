@@ -2,7 +2,7 @@ _inside_git_repo() { git rev-parse --is-inside-work-tree >/dev/null 2>&1; }
 _fugitive() { nvim -c "Gstatus | bd# | nmap <buffer>q <c-w>q"; }
 _resume_jobs() { fg; zle reset-prompt; zle-line-init; }
 _updir() { cd ..; zle reset-prompt; }
-_yank_cmdline() { echo -n "$BUFFER" | xclip -selection clipboard; }
+_yank() { RBUFFER=$(xclip -o -selection clipboard); zle end-of-line; }
 declare -gA AUTOPAIR_PAIRS=('`' '`' "'" "'" '"' '"' '{' '}' '[' ']' '(' ')' '<' '>' ' ' ' ')
 _autopairs() {
   local pair
@@ -45,7 +45,6 @@ _fzf_paru_S() {
   local res=(`fzf -m --height=100% --bind="$bind" --preview="paru -Si {}" < $pkgs`)
   local emacs_paru="~/.cache/paru/clone/emacs-git"
   [[ $res == "emacs-git" ]] && {
-    eval "rm -rf $emacs_paru/src"
     paru $@ $res
     eval "git clone -s $emacs_paru/emacs-git $emacs_paru/src/emacs-git"
   } || { [[ -n "$res" ]] && paru $@ $res; }

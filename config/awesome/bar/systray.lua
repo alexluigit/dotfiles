@@ -11,7 +11,7 @@ local systray = function()
         mysystray,
         left = dpi(8),
         right = dpi(8),
-        top = dpi(5),
+        top = dpi(6),
         widget = wibox.container.margin
       },
       layout = wibox.container.margin

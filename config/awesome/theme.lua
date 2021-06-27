@@ -128,7 +128,7 @@ theme.wibar_bg = theme.xbackground
 -- Systray
 theme.systray_icon_spacing = dpi(10)
 theme.bg_systray = theme.xcolor0
-theme.systray_icon_size = dpi(15)
+theme.systray_icon_size = dpi(18)
 
 -- Weather
 theme.weather_city = "wuhan"

@@ -1,5 +1,4 @@
 local awful = require("awful")
-local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
@@ -11,8 +10,7 @@ local get_taglist = require("bar.taglist")
 local final_systray = require("bar.systray")
 local get_tasklist = require("bar.tasklist")
 local playerctl_bar = require("bar.playerctl")
-local time_pill = require("bar.timedate").time()
-local date_pill = require("bar.timedate").date()
+local timedate = require("bar.timedate")
 
 local wrap_widget = function(w)
   return wibox.widget {
@@ -34,83 +32,89 @@ local make_pill = function(w, c)
   }
 end
 
-screen.connect_signal("request::desktop_decoration", function(s)
+screen.connect_signal (
+  "request::desktop_decoration", function(s)
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mytaglist = get_taglist(s)
     s.mytasklist = get_tasklist(s)
     s.mywibox = awful.wibar({position = "bottom", screen = s})
     s.mywibox:setup{
-        layout = wibox.layout.align.vertical,
+      layout = wibox.layout.align.vertical,
+      {
         {
-            {
-                layout = wibox.layout.align.horizontal,
-                expand = "none",
+          layout = wibox.layout.align.horizontal,
+          expand = "none",
+          {
+            layout = wibox.layout.fixed.horizontal,
+            shapes.horizontal_pad(4),
+            wrap_widget(
+              make_pill(
                 {
-                    layout = wibox.layout.fixed.horizontal,
-                    shapes.horizontal_pad(4),
-                    wrap_widget(
-                    make_pill({
-                        awesome_icon,
-                        {
-                            s.mytaglist,
-                            shapes.horizontal_pad(4),
-                            layout = wibox.layout.fixed.horizontal
-                        },
-                        spacing = 14,
-                        spacing_widget = {
-                            color = beautiful.xcolor8,
-                            shape = shapes.pgram(5),
-                            widget = wibox.widget.separator
-                        },
-                        layout = wibox.layout.fixed.horizontal
-                    })),
-                    s.mypromptbox,
-                    wrap_widget(make_pill(playerctl_bar, beautiful.xcolor8))
-                },
-                {wrap_widget(s.mytasklist), widget = wibox.container.constraint},
-                {
-                    wrap_widget(make_pill(time_pill, beautiful.xcolor0 .. 55)),
-                    wrap_widget(make_pill(date_pill, beautiful.xcolor0)),
-                    wrap_widget(make_pill({
-                        s.mylayoutbox,
-                        top = dpi(5),
-                        bottom = dpi(5),
-                        right = dpi(8),
-                        left = dpi(8),
-                        widget = wibox.container.margin
-                    }, beautiful.xcolor8 .. 90)),
-                    wrap_widget(awful.widget.only_on_screen(final_systray, screen[1])),
+                  awesome_icon,
+                  {
+                    s.mytaglist,
                     shapes.horizontal_pad(4),
                     layout = wibox.layout.fixed.horizontal
+                  },
+                  spacing = 14,
+                  spacing_widget = {
+                    color = beautiful.xcolor8,
+                    shape = shapes.pgram(5),
+                    widget = wibox.widget.separator
+                  },
+                  layout = wibox.layout.fixed.horizontal
                 }
-            },
-            widget = wibox.container.background,
-            bg = beautiful.wibar_bg_secondary
+              )
+            ),
+            s.mypromptbox,
+            wrap_widget(make_pill(playerctl_bar, beautiful.xcolor8))
+          },
+          {wrap_widget(s.mytasklist), widget = wibox.container.constraint},
+          {
+            wrap_widget(make_pill(timedate, beautiful.xcolor0 .. 55)),
+            wrap_widget(make_pill(
+                          {
+                            s.mylayoutbox,
+                            top = dpi(5),
+                            bottom = dpi(5),
+                            right = dpi(8),
+                            left = dpi(8),
+                            widget = wibox.container.margin
+                          },
+                          beautiful.xcolor8 .. 90)),
+            wrap_widget(awful.widget.only_on_screen(final_systray, screen[1])),
+            shapes.horizontal_pad(4),
+            layout = wibox.layout.fixed.horizontal
+          }
         },
-        { -- This is for a bottom border in the bar
-            widget = wibox.container.background,
-            bg = beautiful.xcolor0,
-            forced_height = beautiful.widget_border_width
-        }
+        widget = wibox.container.background,
+        bg = beautiful.wibar_bg_secondary
+      },
+      { -- This is for a bottom border in the bar
+        widget = wibox.container.background,
+        bg = beautiful.xcolor0,
+        forced_height = beautiful.widget_border_width
+      }
     }
 end)
 
 local function remove_wibar(c)
-    if c.fullscreen or c.maximized then
-        c.screen.mywibox.visible = false
-    else
-        c.screen.mywibox.visible = true
-    end
+  if c.fullscreen or c.maximized then
+    c.screen.mywibox.visible = false
+  else
+    c.screen.mywibox.visible = true
+  end
 end
 
 local function add_wibar(c)
-    if c.fullscreen or c.maximized then
-        c.screen.mywibox.visible = true
-    end
+  if c.fullscreen or c.maximized then
+    c.screen.mywibox.visible = true
+  end
 end
 
-awesome.connect_signal("widgets::splash::visibility", function(vis)
+awesome.connect_signal(
+  "widgets::splash::visibility", function(vis)
     screen.primary.mywibox.visible = not vis
 end)
-client.connect_signal("property::fullscreen", remove_wibar)
-client.connect_signal("request::unmanage", add_wibar)
+-- client.connect_signal("property::fullscreen", remove_wibar)
+-- client.connect_signal("request::unmanage", add_wibar)

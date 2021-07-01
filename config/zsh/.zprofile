@@ -20,7 +20,6 @@ export GOPATH=$XDG_DATA_HOME/go
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export RBENV_ROOT=$XDG_DATA_HOME/rbenv
-export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 # if encounter cmd not found (eg. perl pkg), try replace /usr/bin with $PATH
 export PATH=$FNM_MULTISHELL_PATH/bin:/usr/bin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin
 

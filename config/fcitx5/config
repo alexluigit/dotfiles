@@ -15,7 +15,7 @@ NextCandidate=
 TogglePreedit=
 
 [Hotkey/TriggerKeys]
-0=Super+space
+0=Shift+space
 
 [Behavior]
 ActiveByDefault=False

@@ -13,7 +13,6 @@ export _Z_DATA=$XDG_DATA_HOME/z/.z
 
 export EDITOR="nvim"
 export MANPAGER='nvim +set\ filetype=man -'
-export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
 
 export FNM_MULTISHELL_PATH="/tmp/fnm_multishells"
 export FNM_DIR="$XDG_DATA_HOME/fnm"; fnm use default

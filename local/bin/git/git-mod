@@ -1,23 +1,14 @@
-#!/bin/sh
+#!/usr/bin/env bash
 add() {
-  local nvimPath='config/nvim/pack/bundle/opt'
-  local zshPath='config/zsh/plugins'
-  local binPath='local/bin'
   local mName=$(sed 's|.*/||' <<< "$1")
-  echo "1) nvim -> $nvimPath/$mName"
-  echo "2) zsh  -> $zshPath/$mName"
-  echo "3) bin  -> $binPath/$mName"
-  echo "4) Type manually"
-  read -p "Please choose target directory : " REPLY
-  case $REPLY in
-    1) iPath=$nvimPath;;
-    2) iPath=$zshPath;;
-    3) iPath=$binPath;;
-    4) read -p "Input directory: " iPath;;
-    *) echo "Invalid option. Exit" && exit 1;;
-  esac
-  echo "Installing to $iPath/$mName"
-  git submodule add --name $mName $1 $iPath/$mName
+  echo "Where do you want install $mName to?"
+  echo "Please input a valid relative path to $PWD."
+  read -p "Install $mName to (eg. foo/bar): " iPath;
+  echo "Use $mName as folder name?"
+  read -p "Press enter to confirm or input new folder name: " newName
+  iPath=${iPath%/}/${newName:-$mName}
+  echo "Installing $mName to $iPath"
+  git submodule add --name $mName $1 $iPath
 }
 
 remove() {

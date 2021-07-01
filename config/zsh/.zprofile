@@ -22,7 +22,7 @@ export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export RBENV_ROOT=$XDG_DATA_HOME/rbenv
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 # if encounter cmd not found (eg. perl pkg), try replace /usr/bin with $PATH
-export PATH=/usr/bin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$FNM_MULTISHELL_PATH/bin
+export PATH=$FNM_MULTISHELL_PATH/bin:/usr/bin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin
 
 export GDK_SCALE=2 GDK_DPI_SCALE=0.6
 export QT_SCREEN_SCALE_FACTORS=1 QT_AUTO_SCREEN_SCALE_FACTOR=true

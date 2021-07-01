@@ -13,3 +13,6 @@
 [submodule "emacs"]
 	path = config/emacs
 	url = https://www.github.com/alexluigit/emacs
+[submodule "awerice"]
+	path = config/awesome
+	url = https://github.com/alexluigit/awerice

@@ -23,8 +23,7 @@ declare -A ZSH_HIGHLIGHT_STYLES=(
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(ctrl-return)
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(ctrl-bslash)
 
-for file in aliases options keybind prompt utils; do . $ZDOTDIR/$file.zsh; done
-. $(which fmenu)
+for file in $(/bin/ls $ZDOTDIR); do . $ZDOTDIR/$file; done
 . /usr/share/z/z.sh
 . /usr/share/fzf/completion.zsh
 . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

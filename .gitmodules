@@ -4,9 +4,6 @@
 [submodule "nvim"]
 	path = config/nvim
 	url = https://github.com/alexluigit/nvim
-[submodule "fmenu"]
-	path = local/bin/programs/fmenu
-	url = https://github.com/alexluigit/fmenu
 [submodule "murl"]
 	path = local/bin/programs/murl
 	url = https://github.com/alexluigit/murl

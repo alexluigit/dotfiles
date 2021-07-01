@@ -14,18 +14,19 @@ _init() {
 
 _link_config() {
   for i in $(du -d 1 "$CONFIG_DIR" | cut -f2)
-    do ln -sf "$i" "$CONFIG_TARGET"
+  do
+    ln -sf "$i" "$CONFIG_TARGET"
+    echo "symlinked $i => ~/.config"
   done
   rm $CONFIG_TARGET/config
   ln -sf $CONFIG_DIR/mimeapps.list $CONFIG_TARGET/mimeapps.list
-  echo "symlinked config/* => ~/.config/*"
   ln -sf $CONFIG_TARGET/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
   ln -sf $CONFIG_DIR/rime $DATA_TARGET/fcitx5
   echo "rime installed to => $DATA_TARGET/fcitx5"
   doas rm /etc/pacman.conf; doas rm -rf /etc/pacman.d/hooks
   doas ln -sf $CONFIG_DIR/paru/pacman.conf /etc/pacman.conf
   doas ln -sf $CONFIG_DIR/paru/hooks /etc/pacman.d
-  echo "symlinked config/pacman/pacman.conf => /etc/pacman.conf"
+  echo "symlinked @/config/pacman/pacman.conf => /etc/pacman.conf"
   doas rm /etc/zsh/zshenv
   doas ln -sf $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv
   echo "symlinked config/zsh/zshenv => /etc/zsh/zshenv"
@@ -35,8 +36,6 @@ _link_bin() {
   for i in $(find $REPODIR/local/bin/{programs,system,git} -type f -executable); do
     ln -sf $i ~/.local/bin
   done
-  ln -sf ~/.local/share/nvim/site/pack/packman/start/xvimux/xvimux ~/.local/bin
-  ln -sf $REPODIR/local/bin/x ~/.local/bin
   echo "symlinked executable in local/bin/ => ~/.local/bin"
 }
 

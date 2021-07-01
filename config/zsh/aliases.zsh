@@ -21,6 +21,29 @@ alias -g NUL=">/dev/null 2>&1"
 alias -g S="| sort -n -r"
 alias -g W="| wc -l"
 
+_inside_git_repo() { git rev-parse --is-inside-work-tree >/dev/null 2>&1; }
+_fugitive() { nvim -c "Gstatus | bd# | nmap <buffer>q <c-w>q"; }
+_sudo_edit() {
+  tmp_file=`mktemp --dry-run`
+  cp "$1" "$tmp_file"
+  nvim $tmp_file
+  doas mv "$tmp_file" "$1"
+}
+_fzf_paru_Rns() {
+  local res=($(pacman -Qeq | fzf -m --preview="paru -Si {}"))
+  [[ -n $res ]] && paru -Rns $res
+}
+_fzf_paru_S() {
+  local pkgs=~/.local/share/paru/pkglist
+  local bind="f5:preview(paru -Gp {} | bat -fpl sh)"
+  local res=(`fzf -m --height=100% --bind="$bind" --preview="paru -Si {}" < $pkgs`)
+  local emacs_paru="~/.cache/paru/clone/emacs-git"
+  [[ $res == "emacs-git" ]] && {
+    paru $@ $res
+    eval "git clone -s $emacs_paru/emacs-git $emacs_paru/src/emacs-git"
+  } || { [[ -n "$res" ]] && paru $@ $res; }
+}
+
 g() { [[ -z $@ ]] && _inside_git_repo && _fugitive || git $@; }
 mc() { mkdir -p $@ && cd ${@:$#}; } # make a dir and cd into it
 sn() { _sudo_edit "$1"; }

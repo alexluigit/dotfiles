@@ -1,6 +1,6 @@
-# Git
 __italic() { echo -ne "\e[3m$@\e[23m"; }
 
+# Git
 _git_prompt_info() {
   local ref git_status staged unstaged untracked
   ref=$(git symbolic-ref HEAD 2>/dev/null) || \

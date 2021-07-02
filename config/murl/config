@@ -1,3 +1,0 @@
-enable_floatwindow=true
-float_window_dimension=25%x25%+2870+10
-proxy="export http_proxy=http://127.0.0.1:1088 https_proxy=http://127.0.0.1:1088"

@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
 START_FLAGS=(--proxy-server=http://127.0.0.1:1088 --force-device-scale-factor=2)
-DARKMODE=(--enable-features=WebContentsForceDark)
-INCO=(--incognito)
-DEV=(--user-data-dir=$XDG_CONFIG_HOME/brave-dev --class=BraveDev)
 MUSIC=(--app-id=cinhimbnkkaeohfgghhklpknlkffjgod)
-[ $@ != *"--no-darkmode"* ] && [ $1 != "dev" ] && START_FLAGS+=("$DARKMODE")
 
 start() { _rmpki & exec brave ${START_FLAGS[@]}; }
-inco() { START_FLAGS+=("${INCO[@]}") && start; }
-dev() { START_FLAGS+=("${DEV[@]}") && start; }
 music() { START_FLAGS+=("${MUSIC[@]}"); start; }
 
 _rmpki() { sleep 5 && rm -rf ~/.pki; }

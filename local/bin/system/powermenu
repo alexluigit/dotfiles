@@ -14,12 +14,12 @@ super_kill() {
 chosen="$(echo -e "$options" | $rofi_command -p "$sysinfo" -dmenu -selected-row 0)"
 case $chosen in
     # $restart_wm) qtile cmd-obj -o cmd -f restart;;
-    $restart_wm) echo 'awesome.restart()' | awesome-client;;
     # $restart_wm) xmonad --recompile; killall polybar; xmonad --restart;;
+    $restart_wm) echo 'awesome.restart()' | awesome-client;;
     $shutdown) systemctl poweroff;;
     $reboot) systemctl reboot;;
-    $lock) multilockscreen -l;;
-    $suspend) multilockscreen -s;;
+    $lock) betterlockscreen -l;;
+    $suspend) betterlockscreen -s;;
     $logout) super_kill;;
     *) exit;;
 esac

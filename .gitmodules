@@ -10,9 +10,9 @@
 [submodule "floatwin"]
 	path = local/bin/programs/floatwin
 	url = https://github.com/alexluigit/floatwin
-[submodule "emacs"]
-	path = config/emacs
-	url = https://www.github.com/alexluigit/emacs
 [submodule "awerice"]
 	path = config/awesome
 	url = https://github.com/alexluigit/awerice
+[submodule "emacs-grandview"]
+	path = config/emacs
+	url = https://www.github.com/alexluigit/emacs-grandview

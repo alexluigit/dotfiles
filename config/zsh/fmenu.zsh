@@ -21,7 +21,8 @@ _fzf_navi() {
 
 _fzf_menu() {
   _entries() { for i in ${dir_index[@]}; do echo ${USER_DIRS[$i]}; done; }
-  _parse_opt() { OPT[2]+="${SYM_OFFSET:- }"; }
+  _get_opts() { _entries | fzf --height=100% --prompt="Open: " --with-nth 2,4..; }
+  _parse_opts() { OPT[2]+="${SYM_OFFSET:- }"; }
   _fzf_open() {
     local ignore dir="$1" app="$3"
     local fd_cmd=(fd -tf -H -L -c always)
@@ -35,13 +36,6 @@ _fzf_menu() {
     }; unset IFS
     cd -; zle reset-prompt 2>/dev/null; zle-line-init 2>/dev/null
   }
-  OPT=(`_entries | fzf --height=100% --prompt="Open: " --with-nth 2,4..`)
-  [[ -n $OPT ]] && { _parse_opt; _fzf_open ${OPT[@]}; } || zle reset-prompt 2>/dev/null
-}
-
-f() {
-  case $1 in
-      "")    _fzf_menu $@;;
-      "nav") _fzf_navi ${@:2};;
-  esac
+  [[ $1 != '.' ]] && { OPT=(`_get_opts`) || true; } || OPT=(.  $2)
+  [[ -n $OPT ]] && { _parse_opts; _fzf_open ${OPT[@]}; } || zle reset-prompt 2>/dev/null
 }

@@ -1,8 +1,8 @@
 # See keylist at https://github.com/prompt-toolkit/python-prompt-toolkit/blob/master/prompt_toolkit/input/ansi_escape_sequences.py
 stty -ixon # Disable XON/XOFF flow control
 autoload -Uz edit-command-line; zle -N edit-command-line
-bindkey -e
 regbind () { zle -N $2; bindkey $1 $2; }
+bindkey -e
 bindkey -M menuselect 'n' vi-down-line-or-history
 bindkey -M menuselect 'p' vi-up-line-or-history
 bindkey '^n'     down-line-or-search
@@ -47,11 +47,11 @@ history-cmds() {
   [[ -n "$sel" ]] && { num=$sel[1]; [[ -n "$num" ]] && zle vi-fetch-history -n $num; }
   zle reset-prompt
 }
-find-all-dir()  { f nav; } 
+find-all-dir()  { _fzf_navi; }
 kill-proc() { BUFFER="kill -9 "; zle end-of-line; fzf-completion; }
-backward-char-or-fd-pwd()  { [[ -n $BUFFER ]] && zle forward-char || f nav . "Edit: " nvim; }
-forward-char-or-fmenu()  { [[ -n $BUFFER ]] && zle backward-char || f; }
-z-goto()  { f nav z; }
+backward-char-or-fd-pwd()  { [[ -n $BUFFER ]] && zle forward-char || _fzf_menu . xdg-open; }
+forward-char-or-fmenu()  { [[ -n $BUFFER ]] && zle backward-char || _fzf_menu; }
+z-goto()  { _fzf_navi z; }
 updir() { cd ..; zle reset-prompt; }
 yank() { RBUFFER=$(xclip -o -selection clipboard); zle end-of-line; }
 fg-bg()  { [[ -n $BUFFER ]] && zle push-input || { fg; zle reset-prompt; zle-line-init; } }

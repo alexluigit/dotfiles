@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+restart () {
+  echo "restarting emacs..."
+  for pid in $(pgrep emacs); do kill -9 $pid; done
+  rm ~/.cache/emacs/ale.el* 2>/dev/null
+  [[ -n $1 ]] && rm -rf ~/.cache/emacs/{straight/build,eln} 2>/dev/null
+  emacs --daemon
+  xdotool set_desktop 0
+  emacsclient -c --no-wait
+}
+
+new () { emacsclient -cn; }
+
+lf () { floatwin -g 2000x2080+10+10 -n lf-emacs emacsclient -e '\(lf-new-frame\)'; }
+
+[[ -z "$@" ]] || ! $(declare -f -F $1 >/dev/null 2>&1) && { restart ${@:1}; exit 0; }
+$1 ${@:1}
+

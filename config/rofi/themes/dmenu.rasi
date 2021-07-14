@@ -9,7 +9,7 @@
     anchor:     south;
     location:   south;
     width:      100%;
-    height:     56px;
+    height:     60px;
     border-color: #29343d;
     border: 1px 0px 1px 0px;
     children:   [ horibox ];
@@ -21,8 +21,9 @@
 }
 
 #prompt {
-    padding: 8px 15px 0px 14px;
+    padding: 2px 25px;
     color: #9ce5c0;
+    font: "Victor Mono 28";
     background-color: #29343d;
 }
 
@@ -42,9 +43,12 @@
 }
 
 #element {
-    height: 35px;
     color: White;
     background-color: #29343d;
+}
+
+#element-icon {
+    size: 24;
 }
 
 #element selected {

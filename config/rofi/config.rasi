@@ -1,6 +1,6 @@
 configuration {
   modi: "run,drun";
-  font: "Noto Sans 20";
+  font: "Sarasa Mono SC 22";
   show-icons: true;
   icon-theme: "Papirus";
   drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
@@ -8,14 +8,17 @@ configuration {
   scroll-method: 0;
   disable-history: false;
   fullscreen: false;
-  window-format: "{c} - {w}";
+  window-format: "{t}";
+  window-match-fields: "title,name,desktop";
+  combi-modi: "window,drun";
+	drun-match-fields: "name";
   hide-scrollbar: true;
   sidebar-mode: false;
   terminal: "alacritty";
-  display-window: "節 ";
-  display-combi: "";
-  display-drun: "";
-  display-run: " ";
+  display-window: " ﬚ ";
+  display-combi: "  ";
+  display-drun: "  ";
+  display-run: "  ";
   kb-accept-entry: "Return,KP_Enter";
   kb-accept-custom: "Control+Return";
   kb-move-char-back: "Control+i";
@@ -23,8 +26,9 @@ configuration {
   kb-clear-line: "";
   kb-remove-word-back: "Control+w";
   kb-remove-char-back: "BackSpace,Shift+BackSpace";
-  kb-mode-next: "Insert";
+  kb-mode-next: "Alt+Return";
   kb-primary-paste: "Control+v";
   kb-secondary-paste: "Control+V";
+  kb-cancel: "Escape,Insert,XF86Tools";
   theme: "launcher";
 }

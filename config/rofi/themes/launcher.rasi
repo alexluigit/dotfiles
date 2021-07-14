@@ -61,8 +61,13 @@
     padding: 10px ;
 }
 
+#element-icon {
+    padding: 4px 10px ;
+    size: 32;
+}
+
 #element.normal.normal {
-    background-color: @normal-background;
+   background-color: @normal-background;
     text-color:       @normal-foreground;
 }
 
@@ -88,8 +93,8 @@
 }
 
 #element.selected.active {
-    background-color: @selected-active-background;
-    text-color:       @selected-active-foreground;
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
 }
 
 #element.alternate.normal {

@@ -11,5 +11,6 @@
 /var/cache/*
 /var/log/*
 /media/HDD/Backup/*
-/media/cloud/*
-/home/alex/*
+/media/Cloud/*
+/home/alex/Video/*
+/home/alex/Music/*

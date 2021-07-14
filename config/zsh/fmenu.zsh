@@ -14,7 +14,7 @@ NAVI_B+=('"'); NAVI_A+=('"');
 
 _fzf_navi() {
   [[ $1 == 'z' ]] && { local CMD=(z -l '|' awk \'{print \$2}\') REV='--tac'; } \
-  || { local CMD=(fd -H -td --ignore-file $XDG_CONFIG_HOME/fd/root . /); }
+  || { local CMD=(fd -H -td . /); }
   dest=$(eval "$CMD" | eval "$NAVI_B" | fzf --ansi $REV | eval "$NAVI_A")
   [[ -z $dest ]] && { zle reset-prompt; return; } || { cd $dest; zle reset-prompt; }
 }

@@ -5,16 +5,14 @@ regbind () { zle -N $2; bindkey $1 $2; }
 bindkey -e
 bindkey -M menuselect 'n' vi-down-line-or-history
 bindkey -M menuselect 'p' vi-up-line-or-history
-bindkey '^n'     down-line-or-search
-bindkey '^p'     up-line-or-search
 regbind '^[[15~' find-all-dir # <ctrl-return> -> F5
 regbind '^f'     fcd
-regbind '^b'     edit-command-line
-regbind '^k'     kill-proc
+regbind '^[e'    edit-command-line
+regbind '^[k'    kill-proc
 regbind '^[[17~' backward-char-or-fd-pwd # <ctrl-i> -> F6
+regbind '^[r'    history-cmds
 regbind '^o'     forward-char-or-fmenu
-regbind '^r'     history-cmds
-regbind '^t'     z-goto
+regbind '^[t'    z-goto
 regbind '^\\'    updir
 regbind '^y'     yank
 regbind '^z'     fg-bg
@@ -53,7 +51,7 @@ backward-char-or-fd-pwd()  { [[ -n $BUFFER ]] && zle forward-char || _fzf_menu .
 forward-char-or-fmenu()  { [[ -n $BUFFER ]] && zle backward-char || _fzf_menu; }
 z-goto()  { _fzf_navi z; }
 updir() { cd ..; zle reset-prompt; }
-yank() { RBUFFER=$(xclip -o -selection clipboard); zle end-of-line; }
+yank() { oldRBUF=$RBUFFER; RBUFFER=$(xclip -o -selection clipboard); zle end-of-line; RBUFFER=$oldRBUF; }
 fg-bg()  { [[ -n $BUFFER ]] && zle push-input || { fg; zle reset-prompt; zle-line-init; } }
 fcd() { local sel=$(fd -c always -td . | fzf --ansi); [[ -n $sel ]] && cd $sel; zle reset-prompt; }
 open-angle()   { _autopairs a; }

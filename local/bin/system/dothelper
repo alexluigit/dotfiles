@@ -5,48 +5,46 @@ DATA_DIR="$REPODIR/local/share"
 CONFIG_TARGET="$HOME/.config"
 DATA_TARGET="$HOME/.local/share"
 
+__link() {
+  local admin="$3"
+  [[ -f $1 ]] || [[ -d $1 ]] && eval "$admin ln -sf $1 $2";
+  [[ $? == 0 ]] && echo "Symlinked $1 => $2"
+}
+
 _init() {
   echo "Repository Directory: $REPODIR"
-  [[ ! -d $CONFIG_TARGET ]] && mkdir $CONFIG_TARGET || echo "Using '$HOME/.config'."
-  [[ -n $(command -v crond) ]] && echo "crontab installed, please check if systemd service enabled." \
+  [[ ! -d $CONFIG_TARGET ]] && mkdir $CONFIG_TARGET || echo "Using '$HOME/.config'"
+  [[ -n $(command -v crond) ]] && echo "Please check if cronie systemd service enabled" \
   || echo "Please install cronie for cronjob."
 }
 
 _link_config() {
-  for i in $(du -d 1 "$CONFIG_DIR" | cut -f2)
-  do
-    ln -sf "$i" "$CONFIG_TARGET"
-    echo "symlinked $i => ~/.config"
-  done
-  rm $CONFIG_TARGET/config
-  ln -sf $CONFIG_DIR/mimeapps.list $CONFIG_TARGET/mimeapps.list
-  ln -sf $CONFIG_TARGET/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
-  ln -sf $CONFIG_DIR/rime $DATA_TARGET/fcitx5
-  echo "rime installed to => $DATA_TARGET/fcitx5"
+  for i in $(du -d 1 "$CONFIG_DIR" | cut -f2); do __link $i $CONFIG_TARGET; done
+  rm $CONFIG_TARGET/config; echo
+  __link $CONFIG_DIR/mimeapps.list $CONFIG_TARGET/mimeapps.list
+  __link $CONFIG_TARGET/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
+  __link $CONFIG_DIR/rime $DATA_TARGET/fcitx5
+  __link $CONFIG_DIR/fd/root /.fdignore doas
   doas rm /etc/pacman.conf; doas rm -rf /etc/pacman.d/hooks
-  doas ln -sf $CONFIG_DIR/paru/pacman.conf /etc/pacman.conf
-  doas ln -sf $CONFIG_DIR/paru/hooks /etc/pacman.d
-  echo "symlinked @/config/pacman/pacman.conf => /etc/pacman.conf"
+  __link $CONFIG_DIR/paru/pacman.conf /etc/pacman.conf doas
+  __link $CONFIG_DIR/paru/hooks /etc/pacman.d doas
   doas rm /etc/zsh/zshenv
-  doas ln -sf $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv
-  echo "symlinked config/zsh/zshenv => /etc/zsh/zshenv"
+  __link $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv doas
 }
 
 _link_bin() {
   for i in $(find $REPODIR/local/bin/{programs,system,git} -type f -executable); do
-    ln -sf $i ~/.local/bin
+    __link $i ~/.local/bin
   done
-  echo "symlinked executable in local/bin/ => ~/.local/bin"
 }
 
 _link_assets() {
-  ln -sf $DATA_DIR/assets $DATA_TARGET
-  ln -sf $DATA_DIR/fonts $DATA_TARGET
-  for file in $(ls $DATA_DIR/icons); do
-    ln -sf $DATA_DIR/icons/$file $DATA_TARGET/icons
+  __link $DATA_DIR/assets $DATA_TARGET
+  __link $DATA_DIR/fonts $DATA_TARGET
+  for file in $(ls $DATA_DIR/icons 2>/dev/null); do
+    __link $DATA_DIR/icons/$file $DATA_TARGET/icons
   done
-  ln -sf $DATA_DIR/applications $DATA_TARGET
-  echo "Icons/fonts/desktop-entries installed in $DATA_TARGET"
+  __link $DATA_DIR/applications $DATA_TARGET
 }
 
 _mpv() {
@@ -84,7 +82,7 @@ _cron() {
   done
   echo "Generated crontab: "; cat /tmp/cron
   crontab /tmp/cron; rm /tmp/cron
-  echo "Cronjob started. Run 'crontab -l' to check it out."
+  echo "Cronjobs started. Run 'crontab -l' to check them out"
 }
 
 install() {
@@ -93,7 +91,7 @@ install() {
   _link_assets; echo
   _cron; echo
   [[ -L ~/.config/mpv/scripts/autoload.lua ]] && \
-  echo "mpv script seems installed, to update anyway, run 'dh update'." || _mpv
+  echo "mpv script seems installed, to reinstall it anyway, run 'dothelper update'." || _mpv
 }
 
 update() { _get_submodule; echo; _mpv; }

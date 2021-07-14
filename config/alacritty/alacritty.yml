@@ -34,39 +34,8 @@ font:
 draw_bold_text_with_bright_colors: true
 
 cursor:
-  vi_mode_style: Underline
   blink_interval: 500
-
-colors:
-  primary:
-    hard contrast: background = '#1d2021'
-    background: '#282828'
-    soft contrast: background = '#32302f'
-    foreground: '#ebdbb2'
-  normal:
-    black:   '#282828'
-    red:     '#cc241d'
-    green:   '#98971a'
-    yellow:  '#d79921'
-    blue:    '#458588'
-    magenta: '#b16286'
-    cyan:    '#689d6a'
-    white:   '#a89984'
-  bright:
-    black:   '#928374'
-    red:     '#fb4934'
-    green:   '#b8bb26'
-    yellow:  '#fabd2f'
-    blue:    '#83a598'
-    magenta: '#d3869b'
-    cyan:    '#8ec07c'
-    white:   '#ebdbb2'
-
-bell:
- animation: EaseOutExpo
- duration: 3
- color: '#ffffff'
-
+  
 live_config_reload: true
 
 mouse_bindings:
@@ -85,48 +54,3 @@ key_bindings:
   - { key: I,          mods: Control,        chars: "\x1b[17~" }
   - { key: Comma,      mods: Control,        chars: "\x1b[21~" }
   - { key: Period,     mods: Control,        chars: "\x1b[23~" }
-  # Vi Mode
-  - { key: Space,  mods: Control,       mode: ~Search,    action: ToggleViMode            }
-  - { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
-  - { key: I,                           mode: Vi|~Search, action: ScrollToBottom          }
-  - { key: I,                           mode: Vi|~Search, action: ToggleViMode            }
-  - { key: Y,      mods: Control,       mode: Vi|~Search, action: ScrollLineUp            }
-  - { key: E,      mods: Control,       mode: Vi|~Search, action: ScrollLineDown          }
-  - { key: G,                           mode: Vi|~Search, action: ScrollToTop             }
-  - { key: G,      mods: Shift,         mode: Vi|~Search, action: ScrollToBottom          }
-  - { key: U,      mods: Control,       mode: Vi|~Search, action: ScrollHalfPageUp        }
-  - { key: D,      mods: Control,       mode: Vi|~Search, action: ScrollHalfPageDown      }
-  - { key: Y,                           mode: Vi|~Search, action: Copy                    }
-  - { key: Y,                           mode: Vi|~Search, action: ClearSelection          }
-  - { key: V,                           mode: Vi|~Search, action: ToggleNormalSelection   }
-  - { key: V,      mods: Shift,         mode: Vi|~Search, action: ToggleLineSelection     }
-  - { key: V,      mods: Control,       mode: Vi|~Search, action: ToggleBlockSelection    }
-  - { key: B,      mods: Control,       mode: Vi|~Search, action: ToggleSemanticSelection }
-  - { key: Return,                      mode: Vi|~Search, action: Open                    }
-  - { key: E,                           mode: Vi|~Search, action: Up                      }
-  - { key: N,                           mode: Vi|~Search, action: Down                    }
-  - { key: H,                           mode: Vi|~Search, action: Left                    }
-  - { key: Apostrophe,                  mode: Vi|~Search, action: Right                   }
-  - { key: Key0,                        mode: Vi|~Search, action: First                   }
-  - { key: Key4,   mods: Shift,         mode: Vi|~Search, action: Last                    }
-  - { key: Key5,   mods: Shift,         mode: Vi|~Search, action: Bracket                 }
-  - { key: Key6,   mods: Shift,         mode: Vi|~Search, action: FirstOccupied           }
-  - { key: H,      mods: Shift,         mode: Vi|~Search, action: High                    }
-  - { key: M,      mods: Shift,         mode: Vi|~Search, action: Middle                  }
-  - { key: L,      mods: Shift,         mode: Vi|~Search, action: Low                     }
-  - { key: B,                           mode: Vi|~Search, action: SemanticLeft            }
-  - { key: W,                           mode: Vi|~Search, action: SemanticRight           }
-  - { key: K,                           mode: Vi|~Search, action: SemanticRightEnd        }
-  - { key: Slash,                       mode: Vi|~Search, action: SearchForward           }
-  - { key: Slash,  mods: Shift,         mode: Vi|~Search, action: SearchBackward          }
-  - { key: N,      mods: Control,       mode: Vi|~Search, action: SearchNext              }
-  - { key: E,      mods: Control,       mode: Vi|~Search, action: SearchPrevious          }
-  # Search Mode
-  - { key: Return,                      mode: Search|Vi,  action: SearchConfirm           }
-  - { key: Escape,                      mode: Search,     action: SearchCancel            }
-  - { key: Escape,                      mode: Search,     action: ToggleViMode            }
-  - { key: U,      mods: Control,       mode: Search,     action: SearchClear             }
-  - { key: W,      mods: Control,       mode: Search,     action: SearchDeleteWord        }
-  - { key: V,      mods: Control,       mode: Search|~Vi, action: Paste                   }
-  - { key: Up,                          mode: Search,     action: SearchHistoryPrevious   }
-  - { key: Down,                        mode: Search,     action: SearchHistoryNext       }

@@ -9,7 +9,7 @@ export LESSKEY=$XDG_CONFIG_HOME/less/lesskey
 export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
-export _Z_DATA=$XDG_DATA_HOME/z/.z
+export _Z_DATA=$XDG_DATA_HOME/z/zdata
 
 export EDITOR="nvim"
 export MANPAGER='nvim +set\ filetype=man -'

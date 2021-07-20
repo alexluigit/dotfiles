@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 restart () {
-  echo "restarting emacs..."
+  notify-send "Restarting emacs..." 2>/dev/null
   for pid in $(pgrep emacs); do kill -9 $pid; done
-  rm ~/.cache/emacs/ale.el* 2>/dev/null
-  [[ -n $1 ]] && rm -rf ~/.cache/emacs/{straight/build,eln} 2>/dev/null
+  [[ $1 == 1 ]] || rm ~/.cache/emacs/ale.el* 2>/dev/null
+  [[ $1 == 2 ]] && rm -rf ~/.cache/emacs/{ale.el,straight/build,eln} 2>/dev/null
   emacs --daemon
   xdotool set_desktop 0
-  emacsclient -c --no-wait
+  new
 }
 
 new () { emacsclient -cn; }

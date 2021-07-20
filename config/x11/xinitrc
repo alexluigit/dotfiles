@@ -4,7 +4,6 @@ easystroke --config-dir ~/.config/easystroke &
 fcitx5 &
 flameshot &
 autolock &
-wallpaperctl random &
 redshift -b 1.0:0.7 -l 30.59:114.27 &
 picom --experimental-backends &
 xsetroot -cursor_name left_ptr &

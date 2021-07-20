@@ -23,12 +23,13 @@ configuration {
   kb-accept-custom: "Control+Return";
   kb-move-char-back: "Control+i";
   kb-move-char-forward: "Control+o";
+  kb-remove-char-forward: "Control+d";
   kb-clear-line: "";
   kb-remove-word-back: "Control+w";
   kb-remove-char-back: "BackSpace,Shift+BackSpace";
   kb-mode-next: "Alt+Return";
   kb-primary-paste: "Control+v";
   kb-secondary-paste: "Control+V";
-  kb-cancel: "Escape,Insert,XF86Tools";
+  kb-cancel: "Escape,Insert,XF86Tools,Delete";
   theme: "launcher";
 }

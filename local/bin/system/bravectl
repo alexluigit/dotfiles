@@ -2,7 +2,7 @@
 START_FLAGS=(--proxy-server=http://127.0.0.1:1088 --force-device-scale-factor=2)
 MUSIC_INSTANCE=crx_cinhimbnkkaeohfgghhklpknlkffjgod
 MUSIC_FLAG=(--app-id=cinhimbnkkaeohfgghhklpknlkffjgod)
-FLOAT_FLAGS=(-g 2460x2060+1360+15 -c Brave-browser:brave-browser)
+FLOAT_FLAGS=(-g 2460x2050+1350+15 -c Brave-browser:brave-browser)
 
 _full_screen () {
   local win=$(xdo id -m -n $MUSIC_INSTANCE)

@@ -1,24 +1,5 @@
-#!/usr/bin/env node
-const fs = require('fs')
-const gemoji = require('gemoji')
-const date = new Date().toISOString().split('T')[0];
-
-tmpl=`---
-name: gemoji
-version: "${date}"
-sort: by_weight
-use_preset_vocabulary: true
-...
-`
-for (const emoji of gemoji) {
-  for (const name of emoji.names) {
-    tmpl+=`\n${emoji.emoji}\t;${name.replace(/_/g, '')}`
-  }
-}
-
-fs.writeFile(`/home/${process.env.USER}/.local/share/fcitx5/rime/emoji.dict.yaml`, tmpl, {flag: 'w+'}, err => {
-  if (err) {
-    console.error(err)
-    return
-  }
-})
+#!/usr/bin/env bash
+cd ~/.config/rime
+yarn install
+node .
+rm -rf node_modules

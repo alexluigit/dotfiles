@@ -39,12 +39,7 @@ _link_bin() {
 }
 
 _link_assets() {
-  __link $DATA_DIR/assets $DATA_TARGET
-  __link $DATA_DIR/fonts $DATA_TARGET
-  for file in $(ls $DATA_DIR/icons 2>/dev/null); do
-    __link $DATA_DIR/icons/$file $DATA_TARGET/icons
-  done
-  __link $DATA_DIR/applications $DATA_TARGET
+  for i in $(du -d 1 "$DATA_DIR" | cut -f2); do __link $i $DATA_TARGET; done
 }
 
 _mpv() {

@@ -10,7 +10,7 @@ alias la='exa -al --color=always --group-directories-first' # my preferred listi
 alias ll='exa -lu --color=always --group-directories-first --no-user --no-permissions -@'  # long format
 alias lt='exa -aT --color=always --git-ignore -I=.git --group-directories-first' # tree listing
 alias s="doas" sudo="doas"
-alias tcl="rm -rf {$XDG_DATA_HOME/Trash,/media/HDD/.Trash}/{files,info}/{*,.*}"
+alias tcl="doas rm -rf {$XDG_DATA_HOME/Trash,/media/HDD/.Trash}/{files,info}/{*,.*}"
 alias px="export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088"
 alias nope='node --experimental-repl-await ~/.config/node/repl.js'
 alias -g B="| bat"

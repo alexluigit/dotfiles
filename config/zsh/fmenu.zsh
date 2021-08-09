@@ -21,13 +21,13 @@ _fzf_navi() {
 
 _fzf_menu() {
   _entries() { for i in ${dir_index[@]}; do echo ${USER_DIRS[$i]}; done; }
-  _get_opts() { _entries | fzf --height=100% --prompt="Open: " --with-nth 2,4..; }
+  _get_opts() { _entries | fzf --height=100% --prompt="Open: " --with-nth 2,3; }
   _parse_opts() { OPT[2]+="${SYM_OFFSET:- }"; }
   _fzf_open() {
-    local ignore dir="$1" app="$3"
+    local ignore dir="$1" app="$4" app_arg="${@:5}"
     local fd_cmd=(fd -tf -H -L -c always)
     local fzf_cmd=(fzf --height=100% -m --ansi --preview=\"preview {}\" --prompt=\"$2\")
-    local xargs_cmd=(xargs -ro -d \'\\n\' "$app")
+    local xargs_cmd=(xargs -ro -d \'\\n\' "$app" "$app_arg")
     [[ $dir='/' ]] && ignore=(--ignore-file ~/.config/fd/root); cd $dir
     local res=`eval ${fd_cmd[@]} ${ignore[@]} | eval ${fzf_cmd[@]}`
     local detach=$([[ $app =~ ".*vim|emacs(client)?" ]] || echo " & disown")

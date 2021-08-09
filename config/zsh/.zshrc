@@ -25,13 +25,13 @@ _comp_options+=(globdots)		# Include hidden files.
 
 declare -A USER_DIRS=(
   # [{order}_{name}]="{path} {symbol} {program} {description}"
-  [01-conf]="/home/alex/Code/alex.files/     nvim    System"
-  [02-code]="/media/HDD/Dev/                 mpv     Dev"
-  [03-book]="/media/HDD/Book/                zathura Book"
-  [04-note]="/home/alex/Documents/notes/     nvim    Notes"
-  [05-pics]="/home/alex/Pictures/            sxiv    Pictures"
-  [06-vids]="/home/alex/Video/               mpv     Video"
-  [07-down]="/home/alex/Downloads/           mpv     Downloads"
+  [01-conf]="/home/alex/Code/alex.files/     System    emacs -nw"
+  [02-code]="/media/HDD/Dev/                 Dev       mpv"
+  [03-book]="/media/HDD/Book/                Book      zathura"
+  [04-note]="/home/alex/Documents/notes/     Notes     emacs -nw"
+  [05-pics]="/home/alex/Pictures/            Pictures  sxiv"
+  [06-vids]="/home/alex/Video/               Video     mpv"
+  [07-down]="/home/alex/Downloads/           Downloads mpv"
 )
 declare -A SYS_DIRS=(
   # [{priority}_{name}]="{path} {symbol} {color}"

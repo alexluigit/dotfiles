@@ -36,6 +36,6 @@ _fzf_menu() {
     }; unset IFS
     cd -; zle reset-prompt 2>/dev/null; zle-line-init 2>/dev/null
   }
-  [[ $1 != '.' ]] && { OPT=(`_get_opts`) || true; } || OPT=(.  $2)
+  [[ $1 != '.' ]] && { OPT=(`_get_opts`) || true; } || OPT=(.  pied_piper $2)
   [[ -n $OPT ]] && { _parse_opts; _fzf_open ${OPT[@]}; } || zle reset-prompt 2>/dev/null
 }

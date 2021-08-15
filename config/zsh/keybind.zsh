@@ -1,18 +1,19 @@
 # See keylist at https://github.com/prompt-toolkit/python-prompt-toolkit/blob/master/prompt_toolkit/input/ansi_escape_sequences.py
+# Or you can use 'cat' to capture a key sequence. See: https://superuser.com/questions/997593/why-does-zsh-insert-a-when-i-press-the-delete-key
 stty -ixon # Disable XON/XOFF flow control
 autoload -Uz edit-command-line; zle -N edit-command-line
 regbind () { zle -N $2; bindkey $1 $2; }
 bindkey -e
 bindkey -M menuselect 'n' vi-down-line-or-history
 bindkey -M menuselect 'p' vi-up-line-or-history
-regbind '^[[15~' find-all-dir # <ctrl-return> -> F5
+regbind '^[[3~'  find-all-dir # <delete>
+regbind '^[[15~' z-goto # <ctrl-return> -> F5
 regbind '^f'     fcd
 regbind '^[e'    edit-command-line
 regbind '^[k'    kill-proc
 regbind '^[[17~' backward-char-or-fd-pwd # <ctrl-i> -> F6
 regbind '^[r'    history-cmds
 regbind '^o'     forward-char-or-fmenu
-regbind '^[t'    z-goto
 regbind '^\\'    updir
 regbind '^y'     yank
 regbind '^z'     fg-bg

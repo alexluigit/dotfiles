@@ -30,7 +30,7 @@ _sudo_edit() {
   doas mv "$tmp_file" "$1"
 }
 _fzf_paru_Rns() {
-  local res=($(pacman -Qeq | fzf -m --preview="paru -Si {}"))
+  local res=($(pacman -Qeq | fzf -m --preview="paru -Qi {}"))
   [[ -n $res ]] && paru -Rns $res
 }
 _fzf_paru_S() {

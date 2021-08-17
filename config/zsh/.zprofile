@@ -10,6 +10,7 @@ export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export _Z_DATA=$XDG_DATA_HOME/z/zdata
+export PASSWORD_STORE_DIR=$XDG_DATA_HOME/pass
 
 export EDITOR="nvim"
 export MANPAGER='nvim +set\ filetype=man -'
@@ -40,4 +41,3 @@ _running udevmon  || doas nice -n -20 udevmon -c ~/.config/interception/udevmon.
 _running aria2c   || aria2c -i ~/.cache/aria2/aria2.session >/dev/null &
 _running X        && return
 [[ $(tty) = '/dev/tty1' ]] && _startx || exec zsh
-

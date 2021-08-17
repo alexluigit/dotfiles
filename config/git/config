@@ -90,5 +90,3 @@
 [user]
 	name = Alex
 	email = hellosimon1103@hotmail.com
-[credential]
-	helper = store

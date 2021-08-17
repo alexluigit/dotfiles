@@ -1,6 +1,5 @@
 config/ssh/*
 !config/ssh/config
-config/git/credentials
 config/fcitx5/conf/cached_layouts
 config/gtk-3.0/bookmarks
 config/shadowsocks/config.json

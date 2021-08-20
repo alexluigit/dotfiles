@@ -6,10 +6,10 @@ setopt PUSHD_MINUS
 setopt INC_APPEND_HISTORY # Write to the history file immediately, not when the shell exits.
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_REDUCE_BLANKS # Delete empty lines from history file
-setopt HIST_IGNORE_SPACE # Ignore a record starting with a space
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
+setopt HIST_REDUCE_BLANKS # Delete empty lines from history file
+setopt HIST_IGNORE_SPACE # Ignore a record starting with a space
 setopt MENU_COMPLETE # Tab once to get completion directly.
 setopt NONOMATCH # Enable url paste without quote
 setopt PROMPT_SUBST # Enable prompt parameter expansion, command substitution and arithmetic expansion
@@ -25,10 +25,10 @@ _comp_options+=(globdots)		# Include hidden files.
 
 declare -A USER_DIRS=(
   # [{order}_{name}]="{path} {symbol} {program} {description}"
-  [01-conf]="/home/alex/Code/alex.files/     System    emacs -nw"
+  [01-conf]="/home/alex/Code/alex.files/     System    em open"
   [02-code]="/media/HDD/Dev/                 Dev       mpv"
   [03-book]="/media/HDD/Book/                Book      zathura"
-  [04-note]="/home/alex/Documents/notes/     Notes     emacs -nw"
+  [04-note]="/home/alex/Documents/notes/     Notes     em open"
   [05-pics]="/home/alex/Pictures/            Pictures  sxiv"
   [06-vids]="/home/alex/Video/               Video     mpv"
   [07-down]="/home/alex/Downloads/           Downloads mpv"
@@ -46,6 +46,8 @@ declare -A ZSH_HIGHLIGHT_STYLES=(
   [command]=fg=blue,bold
 )
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-word)
+
+vterm_printf(){ printf "\e]%s\e\\" "$1"; } # vterm (emacs) helper
 
 for file in $(/bin/ls $ZDOTDIR); do . $ZDOTDIR/$file; done
 . /usr/share/z/z.sh

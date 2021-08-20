@@ -24,17 +24,17 @@ _fzf_menu() {
   _get_opts() { _entries | fzf --height=100% --prompt="Open: " --with-nth 2,3; }
   _parse_opts() { OPT[2]+="${SYM_OFFSET:- }"; }
   _fzf_open() {
-    local ignore dir="$1" app="$4" app_arg="${@:5}"
+    local dir="$1" app="$4" app_arg="${@:5}"
     local fd_cmd=(fd -tf -H -L -c always)
     local fzf_cmd=(fzf --height=100% -m --ansi --preview=\"preview {}\" --prompt=\"$2\")
     local xargs_cmd=(xargs -ro -d \'\\n\' "$app" "$app_arg")
-    [[ $dir='/' ]] && ignore=(--ignore-file ~/.config/fd/root); cd $dir
-    local res=`eval ${fd_cmd[@]} ${ignore[@]} | eval ${fzf_cmd[@]}`
-    local detach=$([[ $app =~ ".*vim|emacs(client)?" ]] || echo " & disown")
+    cd $dir
+    local res=`eval ${fd_cmd[@]} | eval ${fzf_cmd[@]}`
     [[ -n $res ]] && IFS='' && {
-      echo $res | eval "${xargs_cmd[@]} $detach"
+      echo $res | eval "${xargs_cmd[@]}"
     }; unset IFS
-    cd -; zle reset-prompt 2>/dev/null; zle-line-init 2>/dev/null
+    cd -
+    zle reset-prompt 2>/dev/null; zle-line-init 2>/dev/null
   }
   [[ $1 != '.' ]] && { OPT=(`_get_opts`) || true; } || OPT=(.  pied_piper $2)
   [[ -n $OPT ]] && { _parse_opts; _fzf_open ${OPT[@]}; } || zle reset-prompt 2>/dev/null

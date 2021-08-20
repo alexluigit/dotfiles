@@ -6,24 +6,25 @@ regbind () { zle -N $2; bindkey $1 $2; }
 bindkey -e
 bindkey -M menuselect 'n' vi-down-line-or-history
 bindkey -M menuselect 'p' vi-up-line-or-history
-regbind '^[[3~'  find-all-dir # <delete>
-regbind '^[[15~' z-goto # <ctrl-return> -> F5
-regbind '^f'     fcd
-regbind '^[e'    edit-command-line
-regbind '^[k'    kill-proc
-regbind '^[[17~' backward-char-or-fd-pwd # <ctrl-i> -> F6
-regbind '^[r'    history-cmds
-regbind '^o'     forward-char-or-fmenu
-regbind '^\\'    updir
-regbind '^y'     yank
-regbind '^z'     fg-bg
-regbind '^?'     backspace
-regbind '<'      open-angle
-regbind '('      open-brace
-regbind '['      open-brket
-regbind '{'      open-curly
-regbind "'"      single-quote
-regbind '"'      double-quote
+regbind '^[[3;5~'   find-all-dir # <ctrl-delete>
+regbind '^[[15~'    z-goto # <ctrl-return> -> F5
+regbind '^f'        fcd
+regbind '^[e'       edit-command-line
+regbind '^[k'       kill-proc
+regbind '^[[17~'    backward-char-or-fd-pwd # <ctrl-i> -> F6
+regbind '^[[105;5u' backward-char-or-fd-pwd # <ctrl-i> in vterm
+regbind '^[r'       history-cmds
+regbind '^o'        forward-char-or-fmenu
+regbind '^\\'       updir
+regbind '^y'        yank
+regbind '^z'        fg-bg
+regbind '^?'        backspace
+regbind '<'         open-angle
+regbind '('         open-brace
+regbind '['         open-brket
+regbind '{'         open-curly
+regbind "'"         single-quote
+regbind '"'         double-quote
 
 declare -gA AUTOPAIR_PAIRS=('`' '`' "'" "'" '"' '"' '{' '}' '[' ']' '(' ')' '<' '>' ' ' ' ')
 _autopairs() {

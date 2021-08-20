@@ -24,7 +24,7 @@ _precmd_timer() {
     [[ $t_sec -ge 1 ]] && [[ $t_min -eq 0 ]] && t_res="%B$t_sec%b $(__italic sec)" \
     || t_res="%B$t_ms%b $(__italic ms)"
     [[ $t_min -ge 1 ]] && t_res="%B$t_min%b $(__italic min) %B$t_min_tail%b $(__italic sec)"
-    timer="%F{152}  $t_res %f"
+    timer="%F{152}  $t_res%f"
   }
 }
 preexec_functions+=(_preexec_timer); precmd_functions+=(_precmd_timer)
@@ -36,21 +36,34 @@ _chpwd_prompt () {
   case $HPWD in
     "~" | "/home/$USER") cwd_head="%{$fg_bold[$pwd_cr]%}"; cwd_tail="";;
     "~/"*)
-      local head=$(sed "s|^~/| |" <<< ${HPWD%/*})
-      [[ $head == "~" ]] && cwd_head="%{$fg[$pwd_cr]%} " || cwd_head="%{$fg[$pwd_cr]$head/%}";;
+      local head=$(sed "s|^~/||" <<< ${HPWD%/*})
+      [[ $head == "~" ]] && head="" || head=$head/
+      cwd_head="%{$fg_bold[$pwd_cr] $reset_color%}%{$fg[$pwd_cr]$head%}";;
     *?/*)
-      local head=$(sed "s|^/| |" <<< $HPWD)
-      cwd_head="%{$fg[$pwd_cr]${head%/*}/%}";;
-    /) cwd_head="%{$fg[$pwd_cr]%} "; cwd_tail="";;
-    *) cwd_head="%{$fg[$pwd_cr]%} ";;
+      local head=$(sed "s|^/||" <<< $HPWD)
+      cwd_head="%{$fg_bold[$pwd_cr] $reset_color%}%{$fg[$pwd_cr]${head%/*}/%}";;
+    /) cwd_head="%{$fg_bold[$pwd_cr]%}"; cwd_tail="";;
+    *) cwd_head="%{$fg_bold[$pwd_cr]%} ";;
   esac
 }
-chpwd_functions+=(_chpwd_prompt); cd .
+chpwd_functions+=(_chpwd_prompt)
+
+# Vterm
+_vterm_index() {
+  [[ -n $INSIDE_EMACS ]] && {
+    local str="•"
+    local index=$(emacsclient -e "(ale/vterm--get-index (window-buffer (selected-window)))")
+    [[ "$index" -ge "1" ]] && { for i in $(seq 1 $index); do str+="•"; done; }
+    echo "%{$fg_bold[blue] $str%}%{$reset_color%}"
+  }
+}
+_vterm_end() { echo "%{$(vterm_printf "51;A$(whoami)@$HOST:$(pwd)")%}"; }
 
 # Setup prompt
 local pwd_cr="white"
 local bg_jobs="%(1j.%{$fg_bold[red]%} .)"
-local privileges="%(#.%{$fg_bold[red]%} .)"
+local privileges="%(#.%{$fg_bold[red]%} .)%{$reset_color%}"
 local line_break=$'\n'%{$reset_color%}
 local ret_status="%(?:%{$fg_bold[green]%} :%{$fg_bold[red]%} %s)"
-PROMPT='$bg_jobs$privileges$cwd_head$cwd_tail$(_git_prompt_info)$timer$line_break$ret_status'
+PROMPT='$bg_jobs$privileges$cwd_head$cwd_tail$(_git_prompt_info)$timer$(_vterm_index)$line_break$ret_status$(_vterm_end)'
+cd .

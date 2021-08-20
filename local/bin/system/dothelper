@@ -24,12 +24,13 @@ _link_config() {
   __link $CONFIG_DIR/mimeapps.list $CONFIG_TARGET/mimeapps.list
   __link $CONFIG_TARGET/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
   __link $CONFIG_DIR/rime $DATA_TARGET/fcitx5
-  __link $CONFIG_DIR/fd/root /.fdignore doas
-  doas rm /etc/pacman.conf; doas rm -rf /etc/pacman.d/hooks
-  __link $CONFIG_DIR/paru/pacman.conf /etc/pacman.conf doas
-  __link $CONFIG_DIR/paru/hooks /etc/pacman.d doas
-  doas rm /etc/zsh/zshenv
-  __link $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv doas
+  __link $CONFIG_DIR/fd/root /.fdignore sudo
+  sudo rm /etc/pacman.conf; sudo rm -rf /etc/pacman.d/hooks
+  __link $CONFIG_DIR/paru/pacman.conf /etc/pacman.conf sudo
+  __link $CONFIG_DIR/paru/hooks /etc/pacman.d sudo
+  sudo rm /etc/zsh/zshenv
+  __link $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv sudo
+  echo "prefix \"$FNM_MULTISHELL_PATH/bin\"" > $CONFIG_TARGET/yarnrc
 }
 
 _link_bin() {
@@ -46,9 +47,9 @@ _mpv() {
   cd ~; git clone https://github.com/mochaaP/mpv_thumbnail_script
   cd mpv_thumbnail_script
   python3 concat_files.py cat_osc.json; python3 concat_files.py cat_server.json
-  doas cp mpv_thumbnail_script_{client_osc,server}.lua /usr/share/mpv/scripts
+  sudo cp mpv_thumbnail_script_{client_osc,server}.lua /usr/share/mpv/scripts
   cd ..; git clone https://github.com/jonniek/mpv-playlistmanager
-  doas cp mpv-playlistmanager/playlistmanager.lua /usr/share/mpv/scripts
+  sudo cp mpv-playlistmanager/playlistmanager.lua /usr/share/mpv/scripts
   ln -sf /usr/share/mpv/scripts/mpv_thumbnail_script_{client_osc,server}.lua ~/.config/mpv/scripts
   ln -sf /usr/share/mpv/scripts/playlistmanager.lua ~/.config/mpv/scripts
   ln -sf /usr/share/mpv/scripts/autoload.lua ~/.config/mpv/scripts

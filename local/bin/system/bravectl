@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-START_FLAGS=(--proxy-server=http://127.0.0.1:1088 --force-device-scale-factor=2)
+EXE="brave-nightly"
+START_FLAGS=(--proxy-server=http://127.0.0.1:1088)
 MUSIC_INSTANCE=crx_cinhimbnkkaeohfgghhklpknlkffjgod
 MUSIC_FLAG=(--app-id=cinhimbnkkaeohfgghhklpknlkffjgod)
-FLOAT_FLAGS=(-g 2460x2050+1350+15 -c Brave-browser:brave-browser)
+FLOAT_FLAGS=(-g 2460x2050+1360+15 -c Brave-browser-nightly:brave-browser-nightly)
 
 _full_screen () {
   local win=$(xdo id -m -n $MUSIC_INSTANCE)
@@ -14,9 +15,9 @@ _rmpki() { sleep 5 && rm -rf ~/.pki; }
 
 music() {
   START_FLAGS+=("${MUSIC_FLAG[@]}")
-  _full_screen & brave ${START_FLAGS[@]}
+  _full_screen & $EXE ${START_FLAGS[@]}
 }
-web() { floatwin ${FLOAT_FLAGS[@]} brave ${START_FLAGS[@]}; }
+web() { floatwin ${FLOAT_FLAGS[@]} $EXE ${START_FLAGS[@]}; }
 
 _rmpki &
 

@@ -5,14 +5,13 @@ window:
   padding:
     x: 12
     y: 7
+  opacity: 0.9
   decorations: none
   dynamic_title: true
 
 scrolling:
   history: 10000
   multiplier: 3
-
-background_opacity: 0.90
 
 font:
   normal:

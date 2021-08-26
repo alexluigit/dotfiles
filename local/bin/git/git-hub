@@ -5,7 +5,7 @@ remote() {
   local reponame=$(basename $PWD)
   read -p "Input repo name (default to $reponame): " reponame;
   [[ -z $reponame ]] && reponame=$(basename $PWD)
-  git remote set-url origin https://$token@github.com/$username/$reponame
+  git remote add origin-push https://$token@github.com/$username/$reponame
   git remote -v
 }
 

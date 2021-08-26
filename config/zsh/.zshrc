@@ -26,8 +26,8 @@ _comp_options+=(globdots)		# Include hidden files.
 declare -A USER_DIRS=(
   # [{order}_{name}]="{path} {symbol} {program} {description}"
   [01-conf]="/home/alex/Code/alex.files/     System    em open"
-  [02-code]="/media/HDD/Dev/                 Dev       mpv"
-  [03-book]="/media/HDD/Book/                Book      zathura"
+  [02-code]="/mnt/HDD/Dev/                   Dev       mpv"
+  [03-book]="/mnt/HDD/Book/                  Book      zathura"
   [04-note]="/home/alex/Documents/notes/     Notes     em open"
   [05-pics]="/home/alex/Pictures/            Pictures  sxiv"
   [06-vids]="/home/alex/Video/               Video     mpv"
@@ -35,7 +35,7 @@ declare -A USER_DIRS=(
 )
 declare -A SYS_DIRS=(
   # [{priority}_{name}]="{path} {symbol} {color}"
-  [00_DATA]="/media/HDD/    220"
+  [00_DATA]="/mnt/HDD/    220"
   [00_HOME]="/home/alex/    152"
   [01_ROOT]="/              167"
 )

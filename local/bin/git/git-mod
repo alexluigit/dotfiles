@@ -15,7 +15,9 @@ remove() {
   local mPath=$(git submodule | grep "$1" | awk '{print $2}')
   [[ $(echo "$mPath" | wc -l) -gt 1 ]] && echo "More than 1 match" && echo $mPath && exit 1
   local mName=$(sed 's|.*/||' <<< "$mPath")
-  git submodule deinit -f "$mPath" && git rm -f "$mPath" && rm -rf ".git/modules/$mName"
+  git submodule deinit -f "$mPath"
+  git rm -f "$mPath"
+  rm -rfv ".git/modules/$mName"
 }
 
 update() {

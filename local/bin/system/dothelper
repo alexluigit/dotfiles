@@ -41,6 +41,7 @@ _link_bin() {
 
 _link_assets() {
   for i in $(du -d 1 "$DATA_DIR" | cut -f2); do __link $i $DATA_TARGET; done
+  rm $DATA_TARGET/share; echo
 }
 
 _mpv() {

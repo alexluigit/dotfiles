@@ -12,7 +12,7 @@ export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export _Z_DATA=$XDG_DATA_HOME/z/zdata
 export PASSWORD_STORE_DIR=$XDG_DATA_HOME/pass
 
-export EDITOR="nvim"
+export EDITOR="emacs -nw"
 export MANPAGER='nvim +set\ filetype=man -'
 
 export FNM_MULTISHELL_PATH="/tmp/fnm_multishells"
@@ -36,8 +36,8 @@ _startx() { exec ssh-agent startx ~/.config/x11/xinitrc -- ~/.config/x11/xserver
 
 _running privoxy  || privoxy --no-daemon ~/.config/privoxy/config &
 _running ss-local || ss-local -c ~/.config/shadowsocks/config.json &
-_running emacs    || emacs --daemon &
 _running udevmon  || sudo nice -n -20 udevmon -c ~/.config/interception/udevmon.yaml &
 _running aria2c   || aria2c -i ~/.cache/aria2/aria2.session >/dev/null &
+_running crond    || sudo crond -n &
 _running X        && return
 [[ $(tty) = '/dev/tty1' ]] && _startx || exec zsh

@@ -1,5 +1,4 @@
 alias d="gio trash"
-alias m="man"
 alias n="nvim"
 alias dh="~/Code/alex.files/local/bin/system/dothelper"
 alias yd="youtube-dl --proxy 127.0.0.1:1088 --write-sub --write-auto-sub -o '~/Downloads/%(title)s-%(id)s.%(ext)s'"
@@ -12,7 +11,6 @@ alias lt='exa -aT --color=always --git-ignore -I=.git --group-directories-first'
 alias tcl="sudo rm -rf {$XDG_DATA_HOME/Trash,/media/HDD/.Trash}/{files,info}/{*,.*}"
 alias px="export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088"
 alias nope='node --experimental-repl-await ~/.config/node/repl.js'
-# alias y="yarn"
 alias y='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarnrc"'
 alias rs="rsync"
 alias rsa="rsync -avz"

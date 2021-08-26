@@ -10,7 +10,5 @@
 /usr/include/*
 /var/cache/*
 /var/log/*
-/media/HDD/Backup/*
-/media/Cloud/*
-/home/alex/Video/*
-/home/alex/Music/*
+/mnt/HDD/Backup/*
+/mnt/Cloud/*

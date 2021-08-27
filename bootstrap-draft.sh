@@ -68,6 +68,7 @@ PACMAN=(
   xwallpaper
   yarn
   you-get
+  youtube-dl
   z
   zip
   zsh-autosuggestions

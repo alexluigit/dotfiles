@@ -1,15 +1,15 @@
 alias d="gio trash"
 alias n="nvim"
 alias dh="~/Code/alex.files/local/bin/system/dothelper"
-alias yd="youtube-dl --proxy 127.0.0.1:1088 --write-sub --write-auto-sub -o '~/Downloads/%(title)s-%(id)s.%(ext)s'"
-alias ydl="youtube-dl --proxy 127.0.0.1:1088 --yes-playlist --write-sub --write-auto-sub -o '~/Downloads/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
+alias yd="youtube-dl --write-sub --write-auto-sub -o '~/Downloads/%(title)s-%(id)s.%(ext)s'"
+alias ydl="youtube-dl --yes-playlist --write-sub --write-auto-sub -o '~/Downloads/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
 alias ka="killall"
 alias ls='exa -a --color=always --group-directories-first' # all files and dirs
 alias la='exa -al --color=always --group-directories-first' # my preferred listing
 alias ll='exa -lu --color=always --group-directories-first --no-user --no-permissions -@'  # long format
 alias lt='exa -aT --color=always --git-ignore -I=.git --group-directories-first' # tree listing
 alias tcl="sudo rm -rf {$XDG_DATA_HOME/Trash,/media/HDD/.Trash}/{files,info}/{*,.*}"
-alias px="export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088"
+alias np="unset {HTTP_PROXY,HTTPS_PROXY}"
 alias nope='node --experimental-repl-await ~/.config/node/repl.js'
 alias y='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarnrc"'
 alias rs="rsync"

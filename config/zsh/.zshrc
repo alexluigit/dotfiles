@@ -23,6 +23,8 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' list-colors '' # Colorize completions using default `ls` colors.
 _comp_options+=(globdots)		# Include hidden files.
 
+export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088
+
 declare -A USER_DIRS=(
   # [{order}_{name}]="{path} {symbol} {program} {description}"
   [01-conf]="/home/alex/Code/alex.files/     System    em open"

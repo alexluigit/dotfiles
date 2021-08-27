@@ -10,7 +10,6 @@ alias ll='exa -lu --color=always --group-directories-first --no-user --no-permis
 alias lt='exa -aT --color=always --git-ignore -I=.git --group-directories-first' # tree listing
 alias tcl="sudo rm -rf {$XDG_DATA_HOME/Trash,/media/HDD/.Trash}/{files,info}/{*,.*}"
 alias np="unset {HTTP_PROXY,HTTPS_PROXY}"
-alias nope='node --experimental-repl-await ~/.config/node/repl.js'
 alias y='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarnrc"'
 alias rs="rsync"
 alias rsa="rsync -avz"

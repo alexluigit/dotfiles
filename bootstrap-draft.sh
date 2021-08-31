@@ -6,12 +6,10 @@ PACMAN=(
   base-devel
   bat
   betterlockscreen
+  bluez
   bluez-utils
-  bpython
-  bridge-utils
   cmake
   cronie
-  deno
   exa
   fastjar
   fcitx5-gtk-git
@@ -29,42 +27,33 @@ PACMAN=(
   github-cli
   go
   htop
-  httpie
   interception-dual-function-keys
   jq
-  kdenlive
   nautilus
   neofetch
   nerd-fonts-victor-mono
-  nvidia
-  obs-studio
   openssh
   paru
   pass
   playerctl
   posix
   privoxy
-  pulsemixer
-  python-pyxdg
-  python-qrcode
-  python-qtconsole
+  pulseaudio
+  python-pip
   qliveplayer-git
-  redis
   ripgrep
   rofi
   rustup
-  screenkey
   shadowsocks-libev
   shadowsocks-v2ray-plugin
   smbnetfs
-  socat
   sxiv
-  ttf-fira-code
   ttf-sarasa-gothic
   unrar
   unzip
-  wmctrl
   xdo
+  xdotool
+  xorg-xwininfo
   xwallpaper
   yarn
   you-get
@@ -84,9 +73,7 @@ AUR=(
   fnm-bin
   picom-jonaburg-git
   pup
-  python-ytmusicapi
   redshift-minimal
-  wudao-dict-git
   xidlehook
   xvkbd
 )
@@ -98,6 +85,8 @@ AUR=(
 localectl --no-convert set-x11-keymap us pc105 colemak terminate:ctrl_alt_bksp
 
 timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
+
+systemctl enable bluetooth.service
 
 cd ~/Code/alex.files
 git submodule init; git pull --recurse-submodules

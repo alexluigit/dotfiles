@@ -23,7 +23,7 @@ alias -g S="| sort -n -r"
 alias -g W="| wc -l"
 
 _inside_git_repo() { git rev-parse --is-inside-work-tree >/dev/null 2>&1; }
-_fugitive() { nvim -c "Gstatus | bd# | nmap <buffer>q <c-w>q"; }
+_magit() { emacsclient -e '(magit-status-here)'; }
 _fzf_paru_Rns() {
   local res=($(pacman -Qeq | fzf -m --preview="paru -Qi {}"))
   [[ -n $res ]] && paru -Rns $res
@@ -39,7 +39,7 @@ _fzf_paru_S() {
   } || { [[ -n "$res" ]] && paru $@ $res; }
 }
 
-g() { [[ -z $@ ]] && _inside_git_repo && _fugitive || git $@; }
+g() { [[ -z $@ ]] && _inside_git_repo && _magit || git $@; }
 mc() { mkdir -p $@ && cd ${@:$#}; } # make a dir and cd into it
 pai() { _fzf_paru_S $@; }
 pau() { _fzf_paru_Rns; }

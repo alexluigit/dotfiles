@@ -1,11 +1,8 @@
 configuration {
-    font:                           "VictorMono SemiBold 24";
     show-icons:                     false;
     threads:                        0;
     scroll-method:                  0;
     disable-history:                false;
-    fullscreen:                     false;
-    hide-scrollbar:                 true;
     sidebar-mode:                   false;
 }
 
@@ -13,17 +10,11 @@ configuration {
     background:                     #ffffffbb;
     transparent:                    #00000000;
     foreground:                     #808080ff;
-    foreground-alt:                 #222222ff;
-    border:                         #5895DCff;
+    info:                           #5895DCff;
     selected:                       #EC7875ff;
-    urgent:                         #EC407Aff;
-    logo:                           #EC407Aff;
-    on:                             #61C766ff;
-    off:                            #5895DCff;
 }
 
 window {
-    transparency:                   "real";
     background-color:               @background;
     text-color:                     @foreground;
     border-radius:                  8px;
@@ -56,7 +47,7 @@ prompt {
 textbox-prompt-colon {
     expand:                         false;
     str:                            "SYSINFO";
-    background-color:               @off;
+    background-color:               @info;
     text-color:                     @background;
     padding:                        20px;
 }
@@ -78,22 +69,13 @@ element {
 }
 
 element-text {
-    font:                           "VictorMono SemiBold 40";
-    expand:                         true;
+    font:                           "VictorMono SemiBold 45";
     horizontal-align:               1;
-    padding:                        20px 54px 40px 40px;
+    padding:                        25px 52px;
     position:                       center;
 }
 
-element normal,
-element alternate {
-    background-color:               @foreground;
-    text-color:                     @background;
-}
-
-element selected {
+element-text.selected.normal,
+element-text.selected.active {
     background-color:               @selected;
-    text-color:                     @background;
-    border:                         0px;
-    border-color:                   @border;
 }

@@ -7,12 +7,10 @@ configuration {
   threads: 0;
   scroll-method: 0;
   disable-history: false;
-  fullscreen: false;
   window-format: "{t}";
   window-match-fields: "title,name,desktop";
   combi-modi: "window,drun";
 	drun-match-fields: "name";
-  hide-scrollbar: true;
   sidebar-mode: false;
   terminal: "alacritty";
   display-window: " ﬚ ";
@@ -28,8 +26,8 @@ configuration {
   kb-remove-word-back: "Control+w";
   kb-remove-char-back: "BackSpace,Shift+BackSpace";
   kb-mode-next: "Alt+Return";
-  kb-primary-paste: "Control+v";
-  kb-secondary-paste: "Control+V";
+  kb-primary-paste: "Control+y";
+  kb-secondary-paste: "Control+Y";
   kb-cancel: "Escape,Insert,XF86Tools,Delete";
   theme: "launcher";
 }

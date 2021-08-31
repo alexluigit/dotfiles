@@ -1,8 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Terminal=false
-Type=Application
-Name=YouTube Music
-Exec=bravectl music
-Icon=brave-cinhimbnkkaeohfgghhklpknlkffjgod-Default
-StartupWMClass=crx_cinhimbnkkaeohfgghhklpknlkffjgod

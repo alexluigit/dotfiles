@@ -18,6 +18,15 @@ _init() {
   || echo "Please install cronie for cronjob."
 }
 
+_link_etc() {
+  sudo rm /etc/pacman.conf; sudo rm -rf /etc/pacman.d/hooks
+  __link $CONFIG_DIR/paru/pacman.conf /etc/pacman.conf sudo
+  __link $CONFIG_DIR/paru/hooks /etc/pacman.d sudo
+  sudo rm /etc/zsh/zshenv
+  __link $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv sudo
+  __link $CONFIG_DIR/hid-apple-patched/hid_apple.conf /etc/modprobe.d/hid_apple.conf sudo
+}
+
 _link_config() {
   for i in $(du -d 1 "$CONFIG_DIR" | cut -f2); do __link $i $CONFIG_TARGET; done
   rm $CONFIG_TARGET/config; echo
@@ -25,10 +34,6 @@ _link_config() {
   __link $CONFIG_TARGET/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
   __link $CONFIG_DIR/rime $DATA_TARGET/fcitx5
   __link $CONFIG_DIR/fd/root /.fdignore sudo
-  sudo rm /etc/pacman.conf; sudo rm -rf /etc/pacman.d/hooks
-  __link $CONFIG_DIR/paru/pacman.conf /etc/pacman.conf sudo
-  __link $CONFIG_DIR/paru/hooks /etc/pacman.d sudo
-  sudo rm /etc/zsh/zshenv
   __link $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv sudo
   echo "prefix \"$FNM_MULTISHELL_PATH/bin\"" > $CONFIG_TARGET/yarnrc
 }
@@ -83,6 +88,7 @@ _cron() {
 }
 
 install() {
+  _link_etc; echo
   _link_bin; echo
   _link_config; echo
   _link_assets; echo

@@ -1,11 +1,22 @@
 #!/usr/bin/env bash
-remote() {
-  local username=$(git config --get github.username)
-  local token=$(pass github-token)
-  local reponame=$(basename $PWD)
-  read -p "Input repo name (default to $reponame): " reponame;
-  [[ -z $reponame ]] && reponame=$(basename $PWD)
-  git remote set-url origin https://$token@github.com/$username/$reponame
+USERNAME=$(git config --get github.username)
+
+_get_pass() {
+  TOKEN=$(pass github-token)
+  read -p "Input repo name (default to $REPONAME): " REPONAME;
+  [[ -z $REPONAME ]] && REPONAME=$(basename $PWD)
+}
+
+set() {
+  _get_pass
+  git remote set-url origin https://$TOKEN@github.com/$USERNAME/$REPONAME
+  git remote -v
+}
+
+add() {
+  _get_pass
+  read -p "Input remote name (default to origin-push): " REMOTE;
+  git remote add ${REMOTE:-origin-push} https://$TOKEN@github.com/$USERNAME/$REPONAME
   git remote -v
 }
 

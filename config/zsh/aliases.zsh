@@ -10,6 +10,7 @@ alias ll='exa -lu --color=always --group-directories-first --no-user --no-permis
 alias lt='exa -aT --color=always --git-ignore -I=.git --group-directories-first' # tree listing
 alias tcl="sudo rm -rf {$XDG_DATA_HOME/Trash,/media/HDD/.Trash}/{files,info}/{*,.*}"
 alias np="unset {HTTP_PROXY,HTTPS_PROXY}"
+alias sn="sudoedit"
 alias y='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarnrc"'
 alias rs="rsync"
 alias rsa="rsync -avz"
@@ -23,12 +24,6 @@ alias -g W="| wc -l"
 
 _inside_git_repo() { git rev-parse --is-inside-work-tree >/dev/null 2>&1; }
 _fugitive() { nvim -c "Gstatus | bd# | nmap <buffer>q <c-w>q"; }
-_sudo_edit() {
-  tmp_file=`mktemp --dry-run`
-  cp "$1" "$tmp_file"
-  nvim $tmp_file
-  sudo mv "$tmp_file" "$1"
-}
 _fzf_paru_Rns() {
   local res=($(pacman -Qeq | fzf -m --preview="paru -Qi {}"))
   [[ -n $res ]] && paru -Rns $res
@@ -46,6 +41,5 @@ _fzf_paru_S() {
 
 g() { [[ -z $@ ]] && _inside_git_repo && _fugitive || git $@; }
 mc() { mkdir -p $@ && cd ${@:$#}; } # make a dir and cd into it
-sn() { _sudo_edit "$1"; }
 pai() { _fzf_paru_S $@; }
 pau() { _fzf_paru_Rns; }

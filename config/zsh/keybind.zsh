@@ -6,7 +6,7 @@ regbind () { zle -N $2; bindkey $1 $2; }
 bindkey -e
 bindkey -M menuselect 'n' vi-down-line-or-history
 bindkey -M menuselect 'p' vi-up-line-or-history
-regbind '^[[3;5~'   find-all-dir # <ctrl-delete>
+regbind '^[/'       find-all-dir
 regbind '^[[15~'    z-goto # <ctrl-return> -> F5
 regbind '^f'        fcd
 regbind '^[e'       edit-command-line

@@ -28,6 +28,6 @@ configuration {
   kb-mode-next: "Alt+Return";
   kb-primary-paste: "Control+y";
   kb-secondary-paste: "Control+Y";
-  kb-cancel: "Escape,Insert,XF86Tools,Delete";
+  kb-cancel: "Escape,Insert,XF86Tools,XF86Eject";
   theme: "launcher";
 }

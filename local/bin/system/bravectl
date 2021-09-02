@@ -3,7 +3,7 @@ EXE="brave-nightly"
 START_FLAGS=(--proxy-server=http://127.0.0.1:1088)
 MUSIC_INSTANCE=crx_cinhimbnkkaeohfgghhklpknlkffjgod
 MUSIC_FLAG=(--app-id=cinhimbnkkaeohfgghhklpknlkffjgod)
-FLOAT_FLAGS=(-g 2460x2050+1360+15 -c Brave-browser-nightly:brave-browser-nightly)
+FLOAT_FLAGS=(-c Brave-browser-nightly:brave-browser-nightly)
 
 _full_screen () {
   local win=$(xdo id -m -n $MUSIC_INSTANCE)

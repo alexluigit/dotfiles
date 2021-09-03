@@ -3,7 +3,6 @@ EXE="brave-nightly"
 START_FLAGS=(--proxy-server=http://127.0.0.1:1088)
 MUSIC_INSTANCE=crx_cinhimbnkkaeohfgghhklpknlkffjgod
 MUSIC_FLAG=(--app-id=cinhimbnkkaeohfgghhklpknlkffjgod)
-FLOAT_FLAGS=(-c Brave-browser-nightly:brave-browser-nightly)
 
 _full_screen () {
   local win=$(xdo id -m -n $MUSIC_INSTANCE)
@@ -17,7 +16,7 @@ music() {
   START_FLAGS+=("${MUSIC_FLAG[@]}")
   _full_screen & $EXE ${START_FLAGS[@]}
 }
-web() { floatwin ${FLOAT_FLAGS[@]} $EXE ${START_FLAGS[@]}; }
+web() { floatwin $EXE ${START_FLAGS[@]}; }
 
 _rmpki &
 

@@ -42,6 +42,7 @@ _link_bin() {
   for i in $(find $REPODIR/local/bin/{programs,system,git} -type f -executable); do
     __link $i ~/.local/bin
   done
+  __link $REPODIR/local/bin/programs/floatwin/floatwin.conf $CONFIG_TARGET
 }
 
 _link_assets() {

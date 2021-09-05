@@ -95,7 +95,7 @@ AUR=(
 # This approach is much persistent than execute setxkbmap in ~/.xinitrc
 # Settings below will not lost during bluetooth reconnection or plug/unplug keyboard
 # See: https://wiki.archlinux.org/index.php/Xorg/Keyboard_configuration
-localectl --no-convert set-x11-keymap us pc105 colemak terminate:ctrl_alt_bksp
+[[ $COLEMAK == 1 ]] && { localectl --no-convert set-x11-keymap us pc105 colemak terminate:ctrl_alt_bksp; }
 
 timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
 
@@ -110,8 +110,7 @@ sudo reflector --protocol https --age 2 --sort rate --country China --latest 5 -
 sudo pacman -S --noconfirm archlinuxcn-keyring
 sudo pacman -Syu
 
-cd ~/Code/alex.files/config/hid-apple-patched
-./install.sh
+[[ $HID_APPLE_PATCH == 1 ]] && { cd ~/Code/alex.files/etc/hid-apple-patched; ./install.sh; }
 
 sudo pacman -S --noconfirm ${PACMAN[@]}
 

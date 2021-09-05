@@ -1,6 +1,7 @@
 #!/bin/sh
 REPODIR="$HOME/Code/alex.files"
 CONFIG_DIR="$REPODIR/config"
+ETC_DIR="$REPODIR/etc"
 DATA_DIR="$REPODIR/local/share"
 CONFIG_TARGET="$HOME/.config"
 DATA_TARGET="$HOME/.local/share"
@@ -11,6 +12,8 @@ __link() {
   [[ $? == 0 ]] && echo "Symlinked $1 => $2"
 }
 
+__backup() { [[ -f $1 ]] && sudo rm $1; sudo mv $1 $1.old; }
+
 _init() {
   echo "Repository Directory: $REPODIR"
   [[ ! -d $CONFIG_TARGET ]] && mkdir $CONFIG_TARGET || echo "Using '$HOME/.config'"
@@ -19,12 +22,13 @@ _init() {
 }
 
 _link_etc() {
-  sudo rm /etc/pacman.conf; sudo rm -rf /etc/pacman.d/hooks
+  sudo rm -rf /etc/pacman.d/hooks
+  __backup /etc/zsh/zshenv
+  __backup /etc/pacman.conf
   __link $CONFIG_DIR/paru/pacman.conf /etc/pacman.conf sudo
   __link $CONFIG_DIR/paru/hooks /etc/pacman.d sudo
-  sudo rm /etc/zsh/zshenv
   __link $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv sudo
-  __link $CONFIG_DIR/hid-apple-patched/hid_apple.conf /etc/modprobe.d/hid_apple.conf sudo
+  __link $ETC_DIR/bluetooth/main.conf /etc/bluetooth/main.conf sudo
 }
 
 _link_config() {

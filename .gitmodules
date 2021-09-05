@@ -13,9 +13,9 @@
 [submodule "emacs-grandview"]
 	path = config/emacs
 	url = https://www.github.com/alexluigit/emacs-grandview
-[submodule "hid-apple-patched"]
-	path = config/hid-apple-patched
-	url = https://www.github.com/alexluigit/hid-apple-patched
 [submodule "rime"]
 	path = local/share/fcitx5/rime
 	url = https://www.github.com/alexluigit/rime
+[submodule "hid-apple-patched"]
+	path = etc/hid-apple-patched
+	url = https://www.github.com/alexluigit/hid-apple-patched

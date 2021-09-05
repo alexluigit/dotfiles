@@ -114,9 +114,16 @@ sudo pacman -Syu
 
 sudo pacman -S --noconfirm ${PACMAN[@]}
 
-[[ -n $(pidof privoxy) ]] || privoxy --no-daemon ~/.config/privoxy/config &
-[[ -n $(pidof ss-local) ]] || ss-local -c ~/.config/shadowsocks/config.json &
-export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088
+read -p "Setup proxy now? (y/n)" reply
+[[ $reply == "y" ]] && {
+  cp ~/.config/shadowsocks/config.example.json ~/.config/shadowsocks/config.json
+  read -p "Input your host name (eg. xxx.com): " HOST
+  read -p "Input your password: " PASS
+  sed -i "s/YOURHOST/$HOST/;s/YOURPASS/$PASS/" ~/.config/shadowsocks/config.json
+  [[ -n $(pidof privoxy) ]] || privoxy --no-daemon ~/.config/privoxy/config &
+  [[ -n $(pidof ss-local) ]] || ss-local -c ~/.config/shadowsocks/config.json &
+  export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088
+}
 
 paru -S --noconfirm ${AUR[@]}
 

@@ -68,10 +68,6 @@
 	username = alexluigit
 [grep]
 	lineNumber = true
-[http]
-	proxy = http://127.0.0.1:1088
-[https]
-	proxy = https://127.0.0.1:1088
 [log]
 	decorate = short
 [mergetool "fugitive"]

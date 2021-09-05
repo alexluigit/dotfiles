@@ -1,21 +1,22 @@
 [Added Associations]
 x-scheme-handler/magnet=torrent.desktop;
 application/x.bittorrent=torrent.desktop;
-image/svg+xml=gimp.desktop;brave-browser.desktop;inkscape.desktop;
+image/svg+xml=gimp.desktop;brave-browser-nightly.desktop;inkscape.desktop;
 
 [Default Applications]
-text/plain=editor.desktop
-text/markdown=typora.desktop
-text/x-markdown=typora.desktop
-text/x-c++=typora.desktop
+text/plain=emacsclient.desktop;
+text/markdown=emacsclient.desktop;
+text/x-markdown=emacsclient.desktop;
+text/x-c++=emacsclient.desktop;
+text/x-lisp=emacsclient.desktop;
 video/x-matroska=mpv.desktop;
 video/mp4=mpv.desktop;
 image/png=sxiv.desktop;
 image/jpeg=sxiv.desktop;
-text/html=brave-browser.desktop;
-text/xml=brave-browser.desktop;
-x-scheme-handler/http=brave-browser.desktop;
-x-scheme-handler/https=brave-browser.desktop;
-x-scheme-handler/ftp=brave-browser.desktop;
-application/json=editor.desktop;
-application/pdf=org.pwmt.zathura.desktop;
+text/html=brave-browser-nightly.desktop;
+text/xml=brave-browser-nightly.desktop;
+x-scheme-handler/http=brave-browser-nightly.desktop;
+x-scheme-handler/https=brave-browser-nightly.desktop;
+x-scheme-handler/ftp=brave-browser-nightly.desktop;
+application/json=emacsclient.desktop;
+application/pdf=emacsclient.desktop;

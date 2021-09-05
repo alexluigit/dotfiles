@@ -27,17 +27,16 @@ export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088
 
 declare -A USER_DIRS=(
   # [{order}_{name}]="{path} {symbol} {program} {description}"
-  [01-conf]="/home/alex/Code/alex.files/     System    em open"
+  [01-conf]="/home/alex/Code/alex.files/     System    emacsclient -n"
   [02-code]="/mnt/HDD/Dev/                   Dev       mpv"
-  [03-book]="/mnt/HDD/Book/                  Book      zathura"
-  [04-note]="/home/alex/Documents/notes/     Notes     em open"
-  [05-pics]="/home/alex/Pictures/            Pictures  sxiv"
-  [06-vids]="/home/alex/Video/               Video     mpv"
+  [03-book]="/mnt/HDD/Book/                  Book      emacsclient -n"
+  [04-note]="/home/alex/Documents/notes/     Notes     emacsclient -n"
+  [06-vids]="/mnt/HDD/Video/                 Video     mpv"
   [07-down]="/home/alex/Downloads/           Downloads mpv"
 )
 declare -A SYS_DIRS=(
   # [{priority}_{name}]="{path} {symbol} {color}"
-  [00_DATA]="/mnt/HDD/    220"
+  [00_DATA]="/mnt/HDD/      220"
   [00_HOME]="/home/alex/    152"
   [01_ROOT]="/              167"
 )

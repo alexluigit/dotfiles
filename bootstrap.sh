@@ -1,9 +1,21 @@
 #!/bin/sh
+[[ $(whoami) == "root" ]] && {
+  pacman -S base-devel zsh
+  useradd -m -G wheel -s /bin/zsh alex
+  mkdir /home/alex/Code
+  mv ./alex.files /home/alex/Code/alex.files
+  chown -R alex /home/alex/Code
+  echo "Set password for user alex..."
+  passwd alex
+  read -p "Login as alex and run this script again. Logout now? (y/n)" reply
+  [[ $reply == "y" ]] && logout
+  exit 0
+}
+
 PACMAN=(
   alacritty-git
   aria2
   awesome-git
-  base-devel
   bat
   betterlockscreen
   bluez
@@ -47,12 +59,13 @@ PACMAN=(
   shadowsocks-libev
   shadowsocks-v2ray-plugin
   smbnetfs
-  sxiv
   ttf-sarasa-gothic
   unrar
   unzip
   xdo
   xdotool
+  xorg-server
+  xorg-xinit
   xorg-xwininfo
   xwallpaper
   yarn
@@ -107,3 +120,6 @@ sudo pacman -S --noconfirm ${PACMAN[@]}
 export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088
 
 paru -S --noconfirm ${AUR[@]}
+
+read -p "Installation completed. Reboot now? (y/n)" reply
+[[ $reply == "y" ]] && reboot

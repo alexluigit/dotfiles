@@ -28,12 +28,12 @@ export GTK_IM_MODULE=fcitx5 QT_IM_MODULE=fcitx5 XMODIFIERS=@im=fcitx5
 export FZF_DEFAULT_OPTS="--height 50% --reverse --border --bind=ctrl-s:toggle-sort,down:preview-down,up:preview-up"
 
 _running() { pgrep $1 >/dev/null 2>&1; }
-_startx() { exec ssh-agent startx ~/.config/x11/xinitrc -- ~/.config/x11/xserverrc vt1; }
 
-_running privoxy  || privoxy --no-daemon ~/.config/privoxy/config &
+_running privoxy  || privoxy --no-daemon /etc/privoxy/config &
 _running ss-local || ss-local -c ~/.config/shadowsocks/config.json &
-_running udevmon  || sudo nice -n -20 udevmon -c ~/.config/interception/udevmon.yaml &
+_running udevmon  || sudo nice -n -20 udevmon &
+_running emacs    || emacs --daemon &
 _running aria2c   || aria2c -i ~/.cache/aria2/aria2.session >/dev/null &
 _running crond    || sudo crond -n &
 _running X        && return
-[[ $(tty) = '/dev/tty1' ]] && _startx || exec zsh
+[[ $(tty) = '/dev/tty1' ]] && exec ssh-agent startx || exec zsh

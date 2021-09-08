@@ -1,5 +1,5 @@
 #!/bin/sh
-xrdb -merge ~/.config/x11/xresources &
+xrdb -merge /etc/X11/xinit/xresources &
 easystroke --config-dir ~/.config/easystroke &
 fcitx5 &
 flameshot &

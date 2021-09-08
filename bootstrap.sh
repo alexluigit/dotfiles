@@ -1,131 +1,97 @@
 #!/bin/sh
+. /etc/vconsole
+
+create_user() {
+  read -p "Creating new user, input your username: " NEW_USER
+  useradd -m -G wheel -s /bin/zsh $NEW_USER
+  chown -R $NEW_USER /home/$NEW_USER/Code
+  echo "Set password for user $NEW_USER..."
+  passwd $NEW_USER
+}
+
+enable_services() {
+  echo "Enabling essential services..."
+  timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
+  pacman -S bluez bluez-utils
+  mv /etc/bluetooth/main.conf /etc/bluetooth/main.conf.old
+  cp ./dotfiles/etc/bluetooth/main.conf /etc/bluetooth/main.conf
+  systemctl enable bluetooth.service
+}
+
+setup_xkb() {
+  echo "Setting up X keyboard..."
+  localectl --no-convert set-x11-keymap us pc105 ${KEYMAP:-""} terminate:ctrl_alt_bksp
+  mv /usr/share/X11/xkb/symbols/pc /usr/share/X11/xkb/symbols/pc.old
+  cp ./local/share/X11/xkb/symbols/pc /usr/share/X11/xkb/symbols/pc
+  cp ./local/share/X11/xkb/symbols/pc /usr/share/X11/xkb/symbols/pc-custom
+}
+
+mirrorlist() {
+  echo "Refreshing mirrorlist..."
+  pacman -S --noconfirm reflector
+  reflector --protocol https --age 2 --sort rate --country China --latest 5 --save /etc/pacman.d/mirrorlist
+  pacman -S --noconfirm archlinuxcn-keyring
+  pacman -Syu
+}
+
+copy_repo() {
+  echo "Creating dotfiles folder..."
+  mkdir /home/$NEW_USER/Code
+  mv ./dotfiles /home/$NEW_USER/Code/$NEW_USER.files
+  echo "'/home/$NEW_USER/Code/$NEW_USER.files' created."
+  echo "The folder '/home/$NEW_USER/Code/$NEW_USER.files' contains all the dotfiles, DO NOT delete it."
+}
+
+fetch_submodules() {
+  cd ~/Code/$USER.files
+  git submodule init; git pull --recurse-submodules
+  ~/Code/$USER.files/local/bin/system/dothelper
+  [[ $HID_APPLE_PATCH == 1 ]] && { cd ~/Code/$USER.files/etc/hid-apple-patched; ./install.sh; }
+}
+
+install_packages() {
+  local packages_file=/home/$USER/Code/$USER.files/packages.csv
+  sed '/^#/d' $packages_file > /tmp/pkgs.csv
+  local pacman_pkgs=()
+  local aur_pkgs=()
+  while IFS=, read -r tag program comment; do
+    case "$tag" in
+      "A") aur_pkgs+=($program);;
+      *) pacman_pkgs+=($program);;
+    esac
+  done < /tmp/pkgs.csv
+  sudo pacman -S --noconfirm ${pacman_pkgs[@]}
+  setup_proxy
+  paru -S --noconfirm ${aur_pkgs[@]}
+}
+
+setup_proxy() {
+  read -p "Setup proxy now? (y/n) " reply
+  [[ $reply == "y" ]] && {
+    cp ~/.config/shadowsocks/config.example.json ~/.config/shadowsocks/config.json
+    read -p "Input your host name (eg. xxx.com): " HOST
+    read -p "Input your password: " PASS
+    sed -i "s/YOURHOST/$HOST/;s/YOURPASS/$PASS/" ~/.config/shadowsocks/config.json
+    [[ -n $(pidof privoxy) ]] || privoxy --no-daemon /etc/privoxy/config &
+    [[ -n $(pidof ss-local) ]] || ss-local -c ~/.config/shadowsocks/config.json &
+    export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088
+  }
+}
+
 [[ $(whoami) == "root" ]] && {
-  pacman -S base-devel zsh
-  useradd -m -G wheel -s /bin/zsh alex
-  mkdir /home/alex/Code
-  mv ./alex.files /home/alex/Code/alex.files
-  chown -R alex /home/alex/Code
-  echo "Set password for user alex..."
-  passwd alex
-  read -p "Login as alex and run this script again. Logout now? (y/n)" reply
+  NEW_USER=
+  pacman -S base-devel zsh xorg-server xorg-xinit
+  create_user
+  enable_services
+  setup_xkb
+  mirrorlist
+  copy_repo
+  read -p "Please login as $NEW_USER and run this script again. Logout now? (y/n) " reply
   [[ $reply == "y" ]] && logout
   exit 0
+} || {
+  install_packages
 }
 
-PACMAN=(
-  alacritty-git
-  aria2
-  awesome-git
-  bat
-  betterlockscreen
-  bluez
-  bluez-utils
-  cmake
-  cronie
-  exa
-  fastjar
-  fcitx5-gtk-git
-  fcitx5-pinyin-moegirl-rime
-  fcitx5-pinyin-zhwiki-rime
-  fcitx5-qt6-git
-  fcitx5-rime-git
-  fd
-  ffmpegthumbnailer
-  flameshot-git
-  font-victor-mono
-  fzf
-  gcolor2
-  git-delta
-  github-cli
-  go
-  htop
-  interception-dual-function-keys
-  jq
-  nautilus
-  neofetch
-  nerd-fonts-victor-mono
-  openssh
-  paru
-  pass
-  playerctl
-  posix
-  privoxy
-  pulseaudio
-  python-pip
-  qliveplayer-git
-  ripgrep
-  rofi
-  rustup
-  shadowsocks-libev
-  shadowsocks-v2ray-plugin
-  smbnetfs
-  ttf-sarasa-gothic
-  unrar
-  unzip
-  xdo
-  xdotool
-  xorg-server
-  xorg-xinit
-  xorg-xwininfo
-  xwallpaper
-  yarn
-  you-get
-  youtube-dl
-  z
-  zip
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-)
-
-AUR=(
-  brave-nightly-bin
-  danmaku2ass-git
-  easystroke-git
-  epub-thumbnailer-git
-  fcitx5-skin-materia-exp
-  fnm-bin
-  picom-jonaburg-git
-  pup
-  redshift-minimal
-  xidlehook
-  xvkbd
-)
-
-# Using localectl to map ctrl_alt_bksp -> kill X session
-# This approach is much persistent than execute setxkbmap in ~/.xinitrc
-# Settings below will not lost during bluetooth reconnection or plug/unplug keyboard
-# See: https://wiki.archlinux.org/index.php/Xorg/Keyboard_configuration
-[[ $COLEMAK == 1 ]] && { localectl --no-convert set-x11-keymap us pc105 colemak terminate:ctrl_alt_bksp; }
-
-timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
-
-systemctl enable bluetooth.service
-
-cd ~/Code/alex.files
-git submodule init; git pull --recurse-submodules
-~/Code/alex.files/local/bin/system/dothelper
-
-sudo pacman -S --noconfirm reflector
-sudo reflector --protocol https --age 2 --sort rate --country China --latest 5 --save /etc/pacman.d/mirrorlist
-sudo pacman -S --noconfirm archlinuxcn-keyring
-sudo pacman -Syu
-
-[[ $HID_APPLE_PATCH == 1 ]] && { cd ~/Code/alex.files/etc/hid-apple-patched; ./install.sh; }
-
-sudo pacman -S --noconfirm ${PACMAN[@]}
-
-read -p "Setup proxy now? (y/n)" reply
-[[ $reply == "y" ]] && {
-  cp ~/.config/shadowsocks/config.example.json ~/.config/shadowsocks/config.json
-  read -p "Input your host name (eg. xxx.com): " HOST
-  read -p "Input your password: " PASS
-  sed -i "s/YOURHOST/$HOST/;s/YOURPASS/$PASS/" ~/.config/shadowsocks/config.json
-  [[ -n $(pidof privoxy) ]] || privoxy --no-daemon ~/.config/privoxy/config &
-  [[ -n $(pidof ss-local) ]] || ss-local -c ~/.config/shadowsocks/config.json &
-  export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088
-}
-
-paru -S --noconfirm ${AUR[@]}
-
-read -p "Installation completed. Reboot now? (y/n)" reply
+read -p "Installation completed. Reboot now? (y/n) " reply
 [[ $reply == "y" ]] && reboot

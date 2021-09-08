@@ -6,7 +6,7 @@ mkdir -p ~/.config/aria2; rm /tmp/tracker
 echo "\
 bt-tracker=$TRACKERLIST
 dir=/home/$USER/Downloads
-save-session=/home/alex/.cache/aria2/aria2.session
+save-session=/home/$USER/.cache/aria2/aria2.session
 enable-rpc=true
 rpc-allow-origin-all=true
 rpc-listen-all=true

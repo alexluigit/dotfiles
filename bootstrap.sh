@@ -1,10 +1,16 @@
 #!/bin/sh
-. /etc/vconsole
+. /etc/vconsole.conf
+DOTPATH=${DOTPATH:-"/opt/dotfiles"}
+[[ -d $(dirname $DOTPATH) ]] || mkdir -p $DOTPATH
 
 create_user() {
   read -p "Creating new user, input your username: " NEW_USER
   useradd -m -G wheel -s /bin/zsh $NEW_USER
-  chown -R $NEW_USER /home/$NEW_USER/Code
+  echo "Creating dotfiles folder..."
+  mv /root/dotfiles $DOTPATH
+  chown -R $NEW_USER $DOTPATH
+  echo "'$DOTPATH' created."
+  echo "The folder $DOTPATH contains all the dotfiles, DO NOT delete it."
   echo "Set password for user $NEW_USER..."
   passwd $NEW_USER
 }
@@ -14,7 +20,7 @@ enable_services() {
   timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
   pacman -S bluez bluez-utils
   mv /etc/bluetooth/main.conf /etc/bluetooth/main.conf.old
-  cp ./dotfiles/etc/bluetooth/main.conf /etc/bluetooth/main.conf
+  cp $DOTPATH/etc/bluetooth/main.conf /etc/bluetooth/main.conf
   systemctl enable bluetooth.service
 }
 
@@ -23,7 +29,12 @@ setup_xkb() {
   localectl --no-convert set-x11-keymap us pc105 ${KEYMAP:-""} terminate:ctrl_alt_bksp
   mv /usr/share/X11/xkb/symbols/pc /usr/share/X11/xkb/symbols/pc.old
   cp ./local/share/X11/xkb/symbols/pc /usr/share/X11/xkb/symbols/pc
-  cp ./local/share/X11/xkb/symbols/pc /usr/share/X11/xkb/symbols/pc-custom
+}
+
+setup_zsh() {
+  echo "Setting up zsh..."
+  cp $DOTPATH/etc/zsh/.zshenv /etc/zsh/zshenv
+  sudo sed -i "s|\\(export DOTPATH=\\).*|\1$DOTPATH|" /etc/zsh/zshenv
 }
 
 mirrorlist() {
@@ -34,23 +45,15 @@ mirrorlist() {
   pacman -Syu
 }
 
-copy_repo() {
-  echo "Creating dotfiles folder..."
-  mkdir /home/$NEW_USER/Code
-  mv ./dotfiles /home/$NEW_USER/Code/$NEW_USER.files
-  echo "'/home/$NEW_USER/Code/$NEW_USER.files' created."
-  echo "The folder '/home/$NEW_USER/Code/$NEW_USER.files' contains all the dotfiles, DO NOT delete it."
-}
-
 fetch_submodules() {
-  cd ~/Code/$USER.files
+  cd $DOTPATH
   git submodule init; git pull --recurse-submodules
-  ~/Code/$USER.files/local/bin/system/dothelper
-  [[ $HID_APPLE_PATCH == 1 ]] && { cd ~/Code/$USER.files/etc/hid-apple-patched; ./install.sh; }
+  DOTPATH=$DOTPATH $DOTPATH/local/bin/system/dothelper
+  [[ $HID_APPLE_PATCH == 1 ]] && { cd $DOTPATH/etc/hid-apple-patched; ./install.sh; }
 }
 
 install_packages() {
-  local packages_file=/home/$USER/Code/$USER.files/packages.csv
+  local packages_file=$DOTPATH/packages.csv
   sed '/^#/d' $packages_file > /tmp/pkgs.csv
   local pacman_pkgs=()
   local aur_pkgs=()
@@ -85,11 +88,12 @@ setup_proxy() {
   enable_services
   setup_xkb
   mirrorlist
-  copy_repo
+  setup_zsh
   read -p "Please login as $NEW_USER and run this script again. Logout now? (y/n) " reply
   [[ $reply == "y" ]] && logout
   exit 0
 } || {
+  fetch_submodules
   install_packages
 }
 

@@ -1,8 +1,8 @@
 #!/bin/sh
-REPODIR="$HOME/Code/$USER.files"
-CONFIG_DIR="$REPODIR/config"
-ETC_DIR="$REPODIR/etc"
-DATA_DIR="$REPODIR/local/share"
+[[ -d $DOTPATH ]] || { echo "$DOTPATH is not a directory."; exit 1; }
+CONFIG_DIR="$DOTPATH/config"
+ETC_DIR="$DOTPATH/etc"
+DATA_DIR="$DOTPATH/local/share"
 CONFIG_TARGET="$HOME/.config"
 DATA_TARGET="$HOME/.local/share"
 
@@ -13,7 +13,7 @@ __link() {
 }
 
 _init() {
-  echo "Repository Directory: $REPODIR"
+  echo "Repository Directory: $DOTPATH"
   [[ ! -d $CONFIG_TARGET ]] && mkdir $CONFIG_TARGET || echo "Using '$HOME/.config'"
   [[ -n $(command -v crond) ]] && echo "Please check if cronie systemd service enabled" \
   || echo "Please install cronie for cronjob."
@@ -24,11 +24,13 @@ _link_etc() {
   sudo rm -rf /etc/interception
   sudo rm -rf /etc/privoxy
   sudo rm -rf /etc/X11/xinit
-  sudo rm /etc/zsh/zshenv
   suoo rm /etc/pacman.conf
+  suoo rm /etc/bluetooth/main.conf
+  sudo cp $ETC_DIR/bluetooth/main.conf /etc/bluetooth/main.conf
+  sudo cp $ETC_DIR/zsh/.zshenv /etc/zsh/zshenv
+  sudo sed -i "s|\\(export DOTPATH=\\).*|\1$DOTPATH|" /etc/zsh/zshenv
   __link $CONFIG_DIR/paru/pacman.conf /etc/pacman.conf sudo
   __link $CONFIG_DIR/paru/hooks /etc/pacman.d sudo
-  __link $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv sudo
   __link $ETC_DIR/interception /etc sudo
   __link $ETC_DIR/privoxy /etc sudo
   __link $ETC_DIR/X11/xinit /etc/X11 sudo
@@ -36,20 +38,19 @@ _link_etc() {
 
 _link_config() {
   for i in $(du -d 1 "$CONFIG_DIR" | cut -f2); do __link $i $CONFIG_TARGET; done
-  rm $CONFIG_TARGET/config; echo
+  rm $CONFIG_TARGET/config
   __link $CONFIG_DIR/mimeapps.list $CONFIG_TARGET/mimeapps.list
   __link $CONFIG_TARGET/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
   __link $CONFIG_DIR/rime $DATA_TARGET/fcitx5
   __link $CONFIG_DIR/fd/root /.fdignore sudo
-  __link $CONFIG_DIR/zsh/.zshenv /etc/zsh/zshenv sudo
   echo "prefix \"$FNM_MULTISHELL_PATH/bin\"" > $CONFIG_TARGET/yarnrc
 }
 
 _link_bin() {
-  for i in $(find $REPODIR/local/bin/{programs,system,git} -type f -executable); do
+  for i in $(find $DOTPATH/local/bin/{programs,system,git} -type f -executable); do
     __link $i ~/.local/bin
   done
-  __link $REPODIR/local/bin/programs/floatwin/floatwin.conf $CONFIG_TARGET
+  __link $DOTPATH/local/bin/programs/floatwin/floatwin.conf $CONFIG_TARGET
 }
 
 _link_assets() {
@@ -71,7 +72,7 @@ _mpv() {
 }
 
 _get_submodule() {
-  cd $REPODIR
+  cd $DOTPATH
   git submodule init && git submodule update --recursive --remote
   echo "All submodule updated."; cd -
 }
@@ -79,7 +80,7 @@ _get_submodule() {
 _cron() {
   rm /tmp/cron 2>/dev/null
   local daily_index=00 weekly_index=00 monthly_index=00
-  for i in $(find "$REPODIR/local/bin/cron" -type f -executable); do
+  for i in $(find "$DOTPATH/local/bin/cron" -type f -executable); do
     daily_index=$(printf "%02d" $daily_index)
     weekly_index=$(printf "%02d" $weekly_index)
     monthly_index=$(printf "%02d" $monthly_index)

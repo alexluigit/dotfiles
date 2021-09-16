@@ -8,4 +8,4 @@ Target = usr/share/X11/xkb/symbols/*
 [Action]
 Description = Revert xkbModel(pc105)...
 When = PostTransaction
-Exec = /usr/bin/cp /etc/X11/xkb/symbols/pc-custom /usr/share/X11/xkb/symbols/pc
+Exec = /bin/zsh -c "cp $DOTPATH/local/share/X11/xkb/symbols/pc /usr/share/X11/xkb/symbols/pc"

@@ -1,6 +1,6 @@
 alias d="gio trash"
 alias n="nvim"
-alias dh="~/Code/$USER.files/local/bin/system/dothelper"
+alias dh="$DOTPATH/local/bin/system/dothelper"
 alias yd="youtube-dl --write-sub --write-auto-sub -o '~/Downloads/%(title)s-%(id)s.%(ext)s'"
 alias ydl="youtube-dl --yes-playlist --write-sub --write-auto-sub -o '~/Downloads/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
 alias ka="killall"

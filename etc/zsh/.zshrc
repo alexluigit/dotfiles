@@ -22,12 +22,16 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors '' # Colorize completions using default `ls` colors.
 _comp_options+=(globdots)		# Include hidden files.
+zle-line-init() { echo -ne "\e[5 q"; } # '|' cursor
+zle -N zle-line-init
+preexec_functions+=(zle-line-init) # Init beam shape cursor before every cmd
 
+export NO_AT_BRIDGE=1 # Disable a11y
 export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088
 
 declare -A USER_DIRS=(
   # [{order}_{name}]="{path} {symbol} {program} {description}"
-  [01-conf]="/home/$USER/Code/$USER.files/     System    emacsclient -n"
+  [01-conf]="/dotfiles/                        System    emacsclient -n"
   [02-code]="/mnt/HDD/Dev/                     Dev       mpv"
   [03-book]="/mnt/HDD/Book/                    Book      emacsclient -n"
   [04-note]="/home/$USER/Documents/notes/      Notes     emacsclient -n"
@@ -37,7 +41,7 @@ declare -A USER_DIRS=(
 declare -A SYS_DIRS=(
   # [{priority}_{name}]="{path} {symbol} {color}"
   [00_DATA]="/mnt/HDD/      220"
-  [00_HOME]="/home/$USER/    152"
+  [00_HOME]="/home/$USER/   152"
   [01_ROOT]="/              167"
 )
 declare -A ZSH_HIGHLIGHT_STYLES=(

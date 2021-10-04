@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-EXE="brave-nightly"
+EXE="brave"
 START_FLAGS=(--proxy-server=http://127.0.0.1:1088)
 MUSIC_INSTANCE=crx_cinhimbnkkaeohfgghhklpknlkffjgod
 MUSIC_FLAG=(--app-id=cinhimbnkkaeohfgghhklpknlkffjgod)

@@ -1,6 +1,7 @@
 config/ssh/*
 !config/ssh/config
 config/fcitx5/conf/cached_layouts
+config/fcitx5/*.log
 config/gtk-3.0/bookmarks
 config/shadowsocks/config.json
 config/aria2/aria2.conf
@@ -9,3 +10,4 @@ config/murl/list
 config/mpv/scripts/*
 local/share/fonts/*
 !local/share/fonts/Feather.ttf
+mimeinfo.cache

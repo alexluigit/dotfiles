@@ -41,5 +41,6 @@ _fzf_paru_S() {
 
 g() { [[ -z $@ ]] && _inside_git_repo && _magit || git $@; }
 mc() { mkdir -p $@ && cd ${@:$#}; } # make a dir and cd into it
+man() { emacsclient -n -e "(man \"$1\")"; }
 pai() { _fzf_paru_S $@; }
 pau() { _fzf_paru_Rns; }

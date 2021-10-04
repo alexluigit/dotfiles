@@ -9,9 +9,7 @@ export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export _Z_DATA=$XDG_DATA_HOME/z/zdata
 export PASSWORD_STORE_DIR=$XDG_DATA_HOME/pass
-
 export EDITOR="emacs -nw"
-export MANPAGER='nvim +set\ filetype=man -'
 
 export FNM_MULTISHELL_PATH="/tmp/fnm_multishells"
 export FNM_DIR="$XDG_DATA_HOME/fnm"; fnm use default

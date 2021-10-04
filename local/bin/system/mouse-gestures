@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+while true; do
+  xinput query-state "${1:-"BT5.1 Mouse"}" 2>/dev/null
+  [[ $? == 0 ]] && {
+    easystroke --config-dir ~/.config/easystroke &
+    exit
+  }
+  sleep 2
+done

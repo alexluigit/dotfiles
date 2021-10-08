@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-PKGLIST=~/.local/share/paru/pkglist
-AURURL=https://aur.archlinux.org/packages.gz
-curl $AURURL -o /tmp/aurlist.gz
-gunzip /tmp/aurlist.gz
-{ cat /tmp/aurlist; (pacman -Ssq); } | sort -u > $PKGLIST
-rm /tmp/aurlist

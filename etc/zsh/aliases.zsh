@@ -3,7 +3,6 @@ alias n="nvim"
 alias dh="$DOTPATH/local/bin/system/dothelper"
 alias yd="youtube-dl --write-sub --write-auto-sub -o '~/Downloads/%(title)s-%(id)s.%(ext)s'"
 alias ydl="youtube-dl --yes-playlist --write-sub --write-auto-sub -o '~/Downloads/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
-alias ka="killall"
 alias ls='exa -a --color=always --group-directories-first' # all files and dirs
 alias la='exa -al --color=always --group-directories-first' # my preferred listing
 alias ll='exa -lu --color=always --group-directories-first --no-user --no-permissions -@'  # long format
@@ -26,17 +25,14 @@ _inside_git_repo() { git rev-parse --is-inside-work-tree >/dev/null 2>&1; }
 _magit() { emacsclient -e '(magit-status-here)'; }
 _fzf_paru_Rns() {
   local res=($(pacman -Qeq | fzf -m --preview="paru -Qi {}"))
-  [[ -n $res ]] && paru -Rns $res
+  [[ -n $res ]] && for i in $res; do paru -Rns $i; done
 }
 _fzf_paru_S() {
-  local pkgs=~/.local/share/paru/pkglist
   local bind="f5:preview(paru -Gp {} | bat -fpl sh)"
-  local res=(`fzf -m --height=100% --bind="$bind" --preview="paru -Si {}" < $pkgs`)
-  local emacs_paru="~/.cache/paru/clone/emacs-git"
-  [[ $res == "emacs-git" ]] && {
-    paru $@ $res
-    eval "git clone -s $emacs_paru/emacs-git $emacs_paru/src/emacs-git"
-  } || { [[ -n "$res" ]] && paru $@ $res; }
+  local pkglist="{ cat ~/.cache/paru/packages.aur; pacman -Ssq; } | sort -u"
+  local fzf_cmd="fzf -m --height=100% --bind=\"$bind\" --preview=\"paru -Si {}\""
+  res=(`eval $pkglist | eval $fzf_cmd`)
+  [[ -n "$res" ]] && for i in $res; do paru $@ $i; done
 }
 
 g() { [[ -z $@ ]] && _inside_git_repo && _magit || git $@; }

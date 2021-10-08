@@ -9,5 +9,7 @@ config/sxhkd/mappings
 config/murl/list
 config/mpv/scripts/*
 local/share/fonts/*
-!local/share/fonts/Feather.ttf
+!local/share/fonts/Smartisan_Compact_CNS-Regular.otf
+!local/share/fonts/qingniao-kai.ttf
+!local/share/fonts/qingniao-song.ttf
 mimeinfo.cache

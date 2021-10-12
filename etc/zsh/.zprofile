@@ -30,7 +30,7 @@ _running() { pgrep $1 >/dev/null 2>&1; }
 _running privoxy  || privoxy --no-daemon /etc/privoxy/config &
 _running ss-local || ss-local -c ~/.config/shadowsocks/config.json &
 _running udevmon  || sudo nice -n -20 udevmon &
-_running emacs    || emacs --daemon &
+_running emacs    || GTK_IM_MODULE=emacs XMODIFIERS=@im=emacs emacs --daemon &
 _running aria2c   || aria2c -i ~/.cache/aria2/aria2.session >/dev/null &
 _running crond    || sudo crond -n &
 _running X        && return

@@ -31,7 +31,7 @@ export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088
 
 declare -A USER_DIRS=(
   # [{order}_{name}]="{path} {symbol} {program} {description}"
-  [01-conf]="/dotfiles/                        System    emacsclient -n"
+  [01-conf]="/opt/dotfiles/                    System    emacsclient -n"
   [02-code]="/mnt/HDD/Dev/                     Dev       mpv"
   [03-book]="/mnt/HDD/Book/                    Book      emacsclient -n"
   [04-note]="/home/$USER/Documents/notes/      Notes     emacsclient -n"

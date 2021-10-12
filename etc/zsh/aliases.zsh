@@ -10,7 +10,8 @@ alias lt='exa -aT --color=always --git-ignore -I=.git --group-directories-first'
 alias tcl="sudo rm -rf {$XDG_DATA_HOME/Trash,/media/HDD/.Trash}/{files,info}/{*,.*}"
 alias np="unset {HTTP_PROXY,HTTPS_PROXY}"
 alias sn="sudoedit"
-alias y='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarnrc"'
+alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarnrc"'
+alias y='yarn'
 alias rs="rsync"
 alias rsa="rsync -avz"
 alias -g B="| bat"
@@ -21,22 +22,21 @@ alias -g NUL=">/dev/null 2>&1"
 alias -g S="| sort -n -r"
 alias -g W="| wc -l"
 
-_inside_git_repo() { git rev-parse --is-inside-work-tree >/dev/null 2>&1; }
-_magit() { emacsclient -e '(magit-status-here)'; }
-_fzf_paru_Rns() {
+g() {
+  if [[ -z $@ ]]; then
+    git rev-parse --is-inside-work-tree NUL && emacsclient -e '(magit-status-here)'
+  else git $@; fi
+}
+mc() { mkdir -p $@ && cd ${@:$#}; } # make a dir and cd into it
+man() { emacsclient -n -e "(man \"$1\")"; }
+pau() {
   local res=($(pacman -Qeq | fzf -m --preview="paru -Qi {}"))
   [[ -n $res ]] && for i in $res; do paru -Rns $i; done
 }
-_fzf_paru_S() {
+pai() {
   local bind="f5:preview(paru -Gp {} | bat -fpl sh)"
   local pkglist="{ cat ~/.cache/paru/packages.aur; pacman -Ssq; } | sort -u"
   local fzf_cmd="fzf -m --height=100% --bind=\"$bind\" --preview=\"paru -Si {}\""
   res=(`eval $pkglist | eval $fzf_cmd`)
   [[ -n "$res" ]] && for i in $res; do paru $@ $i; done
 }
-
-g() { [[ -z $@ ]] && _inside_git_repo && _magit || git $@; }
-mc() { mkdir -p $@ && cd ${@:$#}; } # make a dir and cd into it
-man() { emacsclient -n -e "(man \"$1\")"; }
-pai() { _fzf_paru_S $@; }
-pau() { _fzf_paru_Rns; }

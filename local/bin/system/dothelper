@@ -54,13 +54,17 @@ _link_bin() {
 }
 
 _link_assets() {
-  for i in $(du -d 1 "$DATA_DIR" | cut -f2); do __link $i $DATA_TARGET; done
+  __link $DATA_DIR/applications $DATA_TARGET
+  __link $DATA_DIR/fonts $DATA_TARGET
   rm $DATA_TARGET/share; echo
-  local rime_dir=$DATA_TARGET/glime
-  mkdir -p {~/.cache/emacs,$DATA_TARGET/fcitx5}/rime
-  [[ -d $rime_dir/cache ]] || $rime_dir/MAKE -c -m 1200
-  for i in $(fd --exact-depth 1 -I '.yaml|.txt|lua' $rime_dir); do
-    __link $i $DATA_TARGET/fcitx5/rime; __link $i ~/.cache/emacs/rime
+  local rime_dir=$DATA_DIR/glim
+  mkdir -p {~/.cache/emacs,$DATA_TARGET/fcitx5,$CONFIG_TARGET/ibus}/rime
+  __link $DATA_DIR/fcitx5/themes $DATA_TARGET/fcitx5/
+  [[ -d $rime_dir/cache ]] || $rime_dir/MAKE -c
+  for i in $(fd --exact-depth 1 -I '.yaml|.txt|.gram|lua|dicts' $rime_dir); do
+    __link $i $DATA_TARGET/fcitx5/rime
+    __link $i $CONFIG_TARGET/ibus/rime
+    __link $i ~/.cache/emacs/rime
   done
 }
 

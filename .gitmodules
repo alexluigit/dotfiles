@@ -16,6 +16,6 @@
 [submodule "hid-apple-patched"]
 	path = etc/hid-apple-patched
 	url = https://www.github.com/alexluigit/hid-apple-patched
-[submodule "glime"]
-	path = local/share/glime
-	url = https://www.github.com/alexluigit/glime
+[submodule "glim"]
+	path = local/share/glim
+	url = https://www.github.com/alexluigit/glim

@@ -30,11 +30,13 @@ _link_etc() {
   sudo cp $ETC_DIR/bluetooth/main.conf /etc/bluetooth/main.conf
   sudo cp $ETC_DIR/zsh/.zshenv /etc/zsh/zshenv
   sudo sed -i "s|\\(export DOTPATH=\\).*|\1$DOTPATH|" /etc/zsh/zshenv
+  sudo mkdir -p /usr/etc
   __link $CONFIG_DIR/paru/pacman.conf /etc/pacman.conf sudo
   __link $CONFIG_DIR/paru/makepkg.conf /etc/makepkg.conf sudo
   __link $CONFIG_DIR/paru/hooks /etc/pacman.d sudo
   __link $ETC_DIR/interception /etc sudo
   __link $ETC_DIR/privoxy /etc sudo
+  __link $ETC_DIR/npmrc /usr/etc sudo
   __link $ETC_DIR/X11/xinit /etc/X11 sudo
 }
 

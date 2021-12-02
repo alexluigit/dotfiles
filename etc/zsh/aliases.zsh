@@ -10,8 +10,6 @@ alias lt='exa -aT --color=always --git-ignore -I=.git --group-directories-first'
 alias tcl="sudo rm -rf {$XDG_DATA_HOME/Trash,/media/HDD/.Trash}/{files,info}/{*,.*}"
 alias np="unset {HTTP_PROXY,HTTPS_PROXY}"
 alias sn="sudoedit"
-alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarnrc"'
-alias y='yarn'
 alias rs="rsync"
 alias rsa="rsync -avz"
 alias -g B="| bat"

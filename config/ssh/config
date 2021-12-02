@@ -8,7 +8,7 @@ AddressFamily inet
 Host *
 
 Host alex
-  HostName alexlu.space
+  HostName alexlu.xyz
   User root
   Port 26798
   IdentityFile ~/.config/ssh/id_rsa

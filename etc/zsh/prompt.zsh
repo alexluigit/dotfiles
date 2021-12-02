@@ -3,16 +3,16 @@ __italic() { echo -ne "\e[3m$@\e[23m"; }
 # Git
 _git_prompt_info() {
   local ref git_status staged unstaged untracked
-  ref=$(git symbolic-ref HEAD 2>/dev/null) || \
-  ref=$(git rev-parse --short HEAD 2>/dev/null) || return 0
+  ref=$(git symbolic-ref HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
+  [[ -n $ref ]] || return 0
   git_status=$(git status --porcelain | colrm 3 | uniq | paste -d: -s -)
   [[ $git_status == *[ADMR]\ * ]] && staged="%{$fg_bold[green]%}";
   [[ $git_status == *\ [ADMR]* ]] && unstaged="%{$fg_bold[red]%}";
   [[ $git_status == *\?* ]] && untracked="%{$fg_bold[blue]%}";
-  echo "$staged$unstaged$untracked %{$reset_color%}%F{222}${${ref:u}#REFS/HEADS/}%f"
+  echo "$staged$unstaged$untracked %{$reset_color%}%F{222}${${ref:u}#REFS/HEADS/} %f"
 }
 
-# Hooks for timer
+# Timer
 _preexec_timer() { cmd_start=$(($(print -P %D{%s%6.})/1000)); }
 _precmd_timer() {
   [ $cmd_start ] && {
@@ -24,27 +24,16 @@ _precmd_timer() {
     [[ $t_sec -ge 1 ]] && [[ $t_min -eq 0 ]] && t_res="%B$t_sec%b $(__italic sec)" \
     || t_res="%B$t_ms%b $(__italic ms)"
     [[ $t_min -ge 1 ]] && t_res="%B$t_min%b $(__italic min) %B$t_min_tail%b $(__italic sec)"
-    timer="%F{152}  $t_res%f"
+    $TIMER_PROMPT && timer="%F{152}| $t_res | %f" || timer=""
   }
 }
 preexec_functions+=(_preexec_timer); precmd_functions+=(_precmd_timer)
 
-# Seperate path with head and tail
+# PWD
 _chpwd_prompt () {
-  cwd_tail="%{$fg_bold[$pwd_cr]%}$(basename $PWD) "
-  local HPWD=${(%)${:-%~}} # $PWD with ~ abbreviations
-  case $HPWD in
-    "~" | "/home/$USER") cwd_head="%{$fg_bold[$pwd_cr]%}"; cwd_tail="";;
-    "~/"*)
-      local head=$(sed "s|^~/||" <<< ${HPWD%/*})
-      [[ $head == "~" ]] && head="" || head=$head/
-      cwd_head="%{$fg_bold[$pwd_cr] $reset_color%}%{$fg[$pwd_cr]$head%}";;
-    *?/*)
-      local head=$(sed "s|^/||" <<< $HPWD)
-      cwd_head="%{$fg_bold[$pwd_cr] $reset_color%}%{$fg[$pwd_cr]${head%/*}/%}";;
-    /) cwd_head="%{$fg_bold[$pwd_cr]%}"; cwd_tail="";;
-    *) cwd_head="%{$fg_bold[$pwd_cr]%} ";;
-  esac
+  local head=$(echo $PWD | eval "$NAVI_B") tail=""
+  [[ ${head: -1} != " " ]] && { head=${head/$(basename $PWD)/}; tail="$(basename $PWD) "; }
+  pwd_str="$head%{$fg_bold[white]%}$tail$reset_color"
 }
 chpwd_functions+=(_chpwd_prompt)
 
@@ -52,18 +41,24 @@ chpwd_functions+=(_chpwd_prompt)
 _vterm_index() {
   [[ -n $INSIDE_EMACS ]] && {
     local str="•"
-    local index=$(emacsclient -e "(ale/vterm--get-index (window-buffer (selected-window)))")
+    local index=$(emacsclient -e "(ale-vterm--get-index (window-buffer (selected-window)))")
     [[ "$index" -ge "1" ]] && { for i in $(seq 1 $index); do str+="•"; done; }
-    echo "%{$fg_bold[blue] $str%}%{$reset_color%}"
+    echo "%{$fg_bold[blue]$str %}%{$reset_color%}"
   }
 }
 _vterm_end() { echo "%{$(vterm_printf "51;A$(whoami)@$HOST:$(pwd)")%}"; }
 
+# Anaconda
+_conda_env() {
+  ! $CONDA_PROMPT || [[ -z $CONDA_DEFAULT_ENV ]] || [[ $CONDA_DEFAULT_ENV == "base" ]] && return
+  echo "%{$fg_bold[cyan][] %}%{$reset_color%}"
+}
+
 # Setup prompt
-local pwd_cr="white"
 local bg_jobs="%(1j.%{$fg_bold[red]%} .)"
 local privileges="%(#.%{$fg_bold[red]%} .)%{$reset_color%}"
 local line_break=$'\n'%{$reset_color%}
 local ret_status="%(?:%{$fg_bold[green]%} :%{$fg_bold[red]%} %s)"
-PROMPT='$bg_jobs$privileges$cwd_head$cwd_tail$(_git_prompt_info)$timer$(_vterm_index)$line_break$ret_status$(_vterm_end)'
+PROMPT='$bg_jobs$privileges$pwd_str$(_git_prompt_info)$(_conda_env)$(_vterm_index)$timer\
+        $line_break$ret_status$(_vterm_end)'
 cd .

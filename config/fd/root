@@ -7,7 +7,6 @@
 /run/*
 /sys/*
 /tmp/*
-/usr/include/*
 /var/cache/*
 /var/log/*
 /mnt/HDD/Backup/*

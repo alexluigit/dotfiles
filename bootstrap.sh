@@ -2,6 +2,8 @@
 . /etc/vconsole.conf
 DOTPATH=${DOTPATH:-"/opt/dotfiles"}
 [[ -d $(dirname $DOTPATH) ]] || mkdir -p $DOTPATH
+CURR_USER=$(whoami)
+NEW_USER=
 
 create_user() {
   read -p "Creating new user, input your username: " NEW_USER
@@ -18,7 +20,7 @@ create_user() {
 enable_services() {
   echo "Enabling essential services..."
   timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
-  pacman -S bluez bluez-utils
+  pacman -S --asdeps --noconfirm bluez bluez-utils
   mv /etc/bluetooth/main.conf /etc/bluetooth/main.conf.old
   cp $DOTPATH/etc/bluetooth/main.conf /etc/bluetooth/main.conf
   systemctl enable bluetooth.service
@@ -39,9 +41,9 @@ setup_zsh() {
 
 mirrorlist() {
   echo "Refreshing mirrorlist..."
-  pacman -S --noconfirm reflector
+  pacman -S --asdeps --noconfirm reflector
   reflector --protocol https --age 2 --sort rate --country China --latest 5 --save /etc/pacman.d/mirrorlist
-  pacman -S --noconfirm archlinuxcn-keyring
+  pacman -S --asdeps --noconfirm archlinuxcn-keyring
   pacman -Syu
 }
 
@@ -54,18 +56,32 @@ fetch_submodules() {
 
 install_packages() {
   local packages_file=$DOTPATH/packages.csv
+  local local_pkg_dir="$DOTPATH"/local/share/paru/pkgs
   sed '/^#/d' $packages_file > /tmp/pkgs.csv
-  local pacman_pkgs=()
-  local aur_pkgs=()
+  local pacman_pkgs=(gcc rust paru miniconda)
+  local aur_pkgs=() conda_pkgs=() cargo_pkgs=() local_pkgs=()
   while IFS=, read -r tag program comment; do
     case "$tag" in
-      "A") aur_pkgs+=($program);;
-      *) pacman_pkgs+=($program);;
+      "AUR") aur_pkgs+=($program);;
+      "CON") conda_pkgs+=($program);;
+      "CAR") cargo_pkgs+=($program);;
+      "LOC") local_pkgs+=($program);;
+      "") pacman_pkgs+=($program);;
     esac
   done < /tmp/pkgs.csv
   sudo pacman -S --noconfirm ${pacman_pkgs[@]}
   setup_proxy
+  setup_conda_base "${conda_pkgs[@]}"
+  for pkg in ${cargo_pkgs[@]}; do
+    cargo install ${pkg//_SPC_/ }
+  done
   paru -S --noconfirm ${aur_pkgs[@]}
+  for pkg in ${local_pkgs[@]}; do
+    cp $local_pkg_dir/$pkg ~/.cache/paru/
+    cd ~/.cache/paru/clone/$pkg
+    makepkg -si --noconfirm
+  done
+  cd $DOTPATH
 }
 
 setup_proxy() {
@@ -81,9 +97,16 @@ setup_proxy() {
   }
 }
 
-[[ $(whoami) == "root" ]] && {
-  NEW_USER=
-  pacman -S base-devel zsh xorg-server xorg-xinit
+setup_conda_base() {
+  sudo chown -R $CURR_USER /opt/miniconda
+  source "/opt/miniconda/etc/profile.d/conda.sh"
+  conda install -y -q -c conda-forge -n base ${@}
+  conda list -n base
+}
+
+init_root() {
+  pacman -S --asdeps --noconfirm zsh xorg-server xorg-xinit posix
+  pacman -D --asdeps base linux linux-firmware linux-headers efibootmgr
   create_user
   enable_services
   setup_xkb
@@ -92,10 +115,16 @@ setup_proxy() {
   read -p "Please login as $NEW_USER and run this script again. Logout now? (y/n) " reply
   [[ $reply == "y" ]] && logout
   exit 0
-} || {
+}
+
+init_user() {
   fetch_submodules
   install_packages
+  read -p "Setup conda base environment? (y/n) " reply
+  [[ $reply == "y" ]] && setup_dev
 }
+
+[[ $CURR_USER == "root" ]] && init_root || init_user
 
 read -p "Installation completed. Reboot now? (y/n) " reply
 [[ $reply == "y" ]] && reboot

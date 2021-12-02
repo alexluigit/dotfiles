@@ -1,0 +1,41 @@
+# Maintainer: Alex Lu <alexluigit@gmail.com>
+
+pkgname=librime
+pkgver=1.7.3
+pkgrel=5
+epoch=1
+pkgdesc="Rime input method engine"
+arch=('x86_64')
+url="https://github.com/rime/librime"
+license=('GPL3')
+depends=('boost-libs' 'capnproto' 'opencc' 'yaml-cpp' 'leveldb' 'librime-data' 'lua' 'google-glog' 'marisa')
+makedepends=('cmake' 'boost' 'gtest' 'ninja')
+source=("librime::git+https://github.com/rime/librime.git"
+        "librime-octagram::git+https://github.com/lotem/librime-octagram.git"
+        "librime-lua::git+https://github.com/hchunhui/librime-lua.git"
+        "librime-charcode::git+https://github.com/rime/librime-charcode.git")
+sha512sums=(SKIP SKIP SKIP SKIP)
+
+prepare() {
+  cd $pkgname/plugins
+  ln -sf "$srcdir"/librime-octagram librime-octagram
+  ln -sf "$srcdir"/librime-lua librime-lua
+  ln -sf "$srcdir"/librime-charcode librime-charcode
+}
+
+build() {
+  cd $pkgname
+  export CXXFLAGS="$CXXFLAGS -DNDEBUG"
+  cmake . -GNinja -Bbuild -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_MERGED_PLUGINS=Off -DENABLE_EXTERNAL_PLUGINS=On
+  cmake --build build
+}
+
+check() {
+  cd $pkgname/build
+  ninja test
+}
+
+package() {
+  cd $pkgname/build
+  DESTDIR="$pkgdir" ninja install
+}

@@ -15,19 +15,16 @@ setopt NONOMATCH # Enable url paste without quote
 setopt PROMPT_SUBST # Enable prompt parameter expansion, command substitution and arithmetic expansion
 setopt IGNORE_EOF # C-d will not exit shell
 autoload -U colors && colors # Enable colors
-autoload -Uz compinit
-compinit -d $XDG_DATA_HOME/zsh/zcompdump-$ZSH_VERSION
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors '' # Colorize completions using default `ls` colors.
 _comp_options+=(globdots)		# Include hidden files.
-zle-line-init() { echo -ne "\e[5 q"; } # '|' cursor
-zle -N zle-line-init
-preexec_functions+=(zle-line-init) # Init beam shape cursor before every cmd
-
+ZSH_DATA_DIR=$XDG_DATA_HOME/zsh
+_Z_DATA=$XDG_DATA_HOME/z/zdata
 export NO_AT_BRIDGE=1 # Disable a11y
 export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088
+export FZF_DEFAULT_OPTS="--height 50% --reverse --border --bind=ctrl-s:toggle-sort,alt-n:preview-down,alt-p:preview-up"
 
 declare -A USER_DIRS=(
   # [{order}_{name}]="{path} {symbol} {program} {description}"
@@ -40,22 +37,42 @@ declare -A USER_DIRS=(
 )
 declare -A SYS_DIRS=(
   # [{priority}_{name}]="{path} {symbol} {color}"
-  [00_DATA]="/mnt/HDD/      220"
-  [00_HOME]="/home/$USER/   152"
-  [01_ROOT]="/              167"
+  [01_DATA]="/mnt/HDD/        220"
+  [02_HOME]="/home/$USER/     152"
+  [03_HOME]="$HOME            152"
+  [04_CONF]="/opt/dotfiles/   152"
+  [05_ROOT]="/                167"
 )
+
+PLUGINS=(rupa/z
+         zsh-users/zsh-autosuggestions
+         zsh-users/zsh-syntax-highlighting)
+
+# Load necessary functions for bootstraping
+. $ZDOTDIR/boot.zsh
+
+# Load config
+CONDA_PROMPT=true
+CONDA_AUTOSWITCH=true
+TIMER_PROMPT=false
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-word)
 declare -A ZSH_HIGHLIGHT_STYLES=(
   [alias]=fg=yellow,bold
   [builtin]=fg=blue,bold
   [function]=fg=yellow,bold
   [command]=fg=blue,bold
 )
-ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-word)
+. $ZDOTDIR/fmenu.zsh
+. $ZDOTDIR/prompt.zsh
+zsh-defer . $ZDOTDIR/aliases.zsh
+zsh-defer . $ZDOTDIR/keybind.zsh
+zsh-defer . $ZDOTDIR/conda.zsh
 
-vterm_printf(){ printf "\e]%s\e\\" "$1"; } # vterm (emacs) helper
+# Load plugins
+zsh-defer . /usr/share/fzf/completion.zsh
+zsh-defer . $ZSH_DATA_DIR/plugins/z/z.sh
+zsh-defer . $ZSH_DATA_DIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+zsh-defer . $ZSH_DATA_DIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-for file in $(/bin/ls $ZDOTDIR); do . $ZDOTDIR/$file; done
-. /usr/share/z/z.sh
-. /usr/share/fzf/completion.zsh
-. /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+autoload -Uz compinit
+compinit -d $ZSH_DATA_DIR/zcompdump-$ZSH_VERSION

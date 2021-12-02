@@ -7,10 +7,10 @@ for i in $sys_index; do
   local dir_info=(`echo ${SYS_DIRS[$i]}`)
   local path_d=${dir_info[1]} sym_d=${dir_info[2]} color_d=${dir_info[3]}
   local sym_c=$(__colorize_sym "$color_d" "$sym_d")
-  NAVI_B+=("s|^$path_d|$sym_c${SYM_OFFSET:- }|g;")
-  NAVI_A+=("s|^$sym_d${SYM_OFFSET:- }|$path_d|g;")
+  NAVI_B+=("s|^$path_d|$sym_c |g;")
+  NAVI_A+=("s|^$sym_d |$path_d|g;")
 done
-NAVI_B+=('"'); NAVI_A+=('"');
+NAVI_B+=('"'); NAVI_A+=('"')
 
 _fzf_navi() {
   [[ $1 == 'z' ]] && { local CMD=(z -l '|' awk \'{print \$2}\') REV='--tac'; } \
@@ -22,7 +22,7 @@ _fzf_navi() {
 _fzf_menu() {
   _entries() { for i in ${dir_index[@]}; do echo ${USER_DIRS[$i]}; done; }
   _get_opts() { _entries | fzf --height=100% --prompt="Open: " --with-nth 2,3; }
-  _parse_opts() { OPT[2]+="${SYM_OFFSET:- }"; }
+  _parse_opts() { OPT[2]+=" "; }
   _fzf_open() {
     local dir="$1" app="$4" app_arg="${@:5}"
     local fd_cmd=(fd -tf -H -L -c always)

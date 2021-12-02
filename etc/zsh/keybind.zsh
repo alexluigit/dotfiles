@@ -8,7 +8,6 @@ bindkey -M menuselect 'n' vi-down-line-or-history
 bindkey -M menuselect 'p' vi-up-line-or-history
 regbind '^[/'       find-all-dir
 regbind '^[[15~'    z-goto # <ctrl-return> -> F5
-regbind '^f'        fcd
 regbind '^[e'       edit-command-line
 regbind '^[k'       kill-proc
 regbind '^[[17~'    backward-char-or-fd-pwd # <ctrl-i> -> F6
@@ -16,7 +15,8 @@ regbind '^[[105;5u' backward-char-or-fd-pwd # <ctrl-i> in vterm
 regbind '^[r'       history-cmds
 regbind '^o'        forward-char-or-fmenu
 regbind '^\\'       updir
-regbind '^y'        yank
+regbind '^y'        yank-clipboard
+regbind '^[w'       write-to-clipboard
 regbind '^z'        fg-bg
 regbind '^?'        backspace
 regbind '<'         open-angle
@@ -53,7 +53,8 @@ backward-char-or-fd-pwd()  { [[ -n $BUFFER ]] && zle forward-char || _fzf_menu .
 forward-char-or-fmenu()  { [[ -n $BUFFER ]] && zle backward-char || _fzf_menu; }
 z-goto()  { _fzf_navi z; }
 updir() { cd ..; zle reset-prompt; }
-yank() { oldRBUF=$RBUFFER; RBUFFER=$(xclip -o -selection clipboard); zle end-of-line; RBUFFER=$oldRBUF; }
+yank-clipboard() { oldRBUF=$RBUFFER; RBUFFER=$(xclip -o -selection clipboard); zle end-of-line; RBUFFER=$oldRBUF; }
+write-to-clipboard() { zle copy-region-as-kill; print -rn $CUTBUFFER | xclip -i -selection clipboard; }
 fg-bg()  { [[ -n $BUFFER ]] && zle push-input || { fg; zle reset-prompt; zle-line-init; } }
 fcd() { local sel=$(fd -c always -td . | fzf --ansi); [[ -n $sel ]] && cd $sel; zle reset-prompt; }
 open-angle()   { _autopairs a; }

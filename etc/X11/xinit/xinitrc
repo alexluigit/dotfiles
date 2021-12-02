@@ -6,7 +6,7 @@ GTK_IM_MODULE=emacs XMODIFIERS=@im=emacs emacs --daemon &
 flameshot &
 autolock -b /usb/devices/1-2 -d DP-0 &
 redshift -b 1.0:0.7 -l 30.59:114.27 &
-picom --experimental-backends &
+picom &
 xsetroot -cursor_name left_ptr &
 
 exec awesome

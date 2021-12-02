@@ -28,18 +28,33 @@ regbind '"'         double-quote
 
 declare -gA AUTOPAIR_PAIRS=('`' '`' "'" "'" '"' '"' '{' '}' '[' ']' '(' ')' '<' '>' ' ' ' ')
 _autopairs() {
-  local pair
-  [ $1 == 'a' ] && pair='<'
-  [ $1 == 'b' ] && pair='('
-  [ $1 == 'r' ] && pair='['
-  [ $1 == 'c' ] && pair='{'
-  [ $1 == 'q' ] && pair="'"
-  [ $1 == 'Q' ] && pair='"'
-  RBUFFER=$pair$AUTOPAIR_PAIRS[$pair]$RBUFFER
+  case $1 in
+    "a") pair_l='<';;
+    "b") pair_l='(';;
+    "r") pair_l='[';;
+    "c") pair_l='{';;
+    "q") pair_l="'";;
+    "Q") pair_l='"';;
+  esac
+  local pair_r=$AUTOPAIR_PAIRS[$pair_l]
+  local last_l_ch=${LBUFFER: -1}
+  local first_r_ch=${RBUFFER:0:1}
+  should_not_insert_pair() {
+    [[ -n $BUFFER ]] && { [[ "qQ" =~ $1 ]] && [[ $last_l_ch != ' ' ]] }\
+      || { [[ -n $RBUFFER ]] && [[ $first_r_ch != $pair_r ]] }
+  }
+  $(should_not_insert_pair) && BUFFER=$LBUFFER$pair_l$RBUFFER || RBUFFER=$pair_l$pair_r$RBUFFER
   zle forward-char
 }
 
-backspace() { zle backward-delete-char; }
+backspace() {
+  local last_l_ch=${LBUFFER: -1}
+  local first_r_ch=${RBUFFER:0:1}
+  local maybe_pair_r=$AUTOPAIR_PAIRS[$last_l_ch]
+  cursor_between_pair() { [[ -n $1 ]] && [[ $1 == $2 ]]; }
+  $(cursor_between_pair $maybe_pair_r $first_r_ch) && zle delete-char
+  zle backward-delete-char
+}
 history-cmds() {
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases
   local sel num

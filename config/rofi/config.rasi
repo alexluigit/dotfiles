@@ -29,5 +29,5 @@ configuration {
   kb-primary-paste: "Control+y";
   kb-secondary-paste: "Control+Y";
   kb-cancel: "Escape,Insert,XF86Tools,XF86Eject";
-  theme: "launcher";
 }
+@theme "launcher"

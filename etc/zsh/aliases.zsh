@@ -39,4 +39,8 @@ pai() {
   res=(`eval $pkglist | eval $fzf_cmd`)
   [[ -n "$res" ]] && for i in $res; do paru $@ $i; done
 }
+paru() {
+  updates=$(pacman -Qu)
+  /usr/bin/paru $@ && echo $updates > ~/.cache/paru/last_update.txt # for rollback
+}
 showtime() { $TIMER_PROMPT && TIMER_PROMPT=false || TIMER_PROMPT=true }

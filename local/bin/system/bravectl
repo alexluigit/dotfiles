@@ -3,6 +3,8 @@ EXE="brave"
 START_FLAGS=(--proxy-server=http://127.0.0.1:1088)
 MUSIC_INSTANCE=crx_cinhimbnkkaeohfgghhklpknlkffjgod
 MUSIC_FLAG=(--app-id=cinhimbnkkaeohfgghhklpknlkffjgod)
+FLOATW_INCO_FLAG=(-i 1 -g 1360x2060+10+10 -a "New Tab - Brave" -c Inco:)
+BRAVE_INCO_FLAG=(--user-data-dir=$XDG_CONFIG_HOME/BraveSoftware/Inco --class=Inco --incognito)
 
 _full_screen () {
   local win=$(xdo id -m -n $MUSIC_INSTANCE)
@@ -17,6 +19,10 @@ music() {
   _full_screen & $EXE ${START_FLAGS[@]}
 }
 web() { floatwin $EXE ${START_FLAGS[@]}; }
+incognito() {
+  START_FLAGS+=("${BRAVE_INCO_FLAG[@]}")
+  floatwin "${FLOATW_INCO_FLAG[@]}" $EXE ${START_FLAGS[@]}
+}
 
 _rmpki &
 

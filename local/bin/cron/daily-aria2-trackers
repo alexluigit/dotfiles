@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
-curl -o /tmp/tracker -x 127.0.0.1:1088 ngosang.github.io/trackerslist/trackers_best.txt
+curl -o /tmp/tracker ngosang.github.io/trackerslist/trackers_best.txt
 TRACKERLIST=$(sed '/^$/d' /tmp/tracker | tr '\n' ',' | sed 's/,$//')
 FILE="/home/$USER/.config/aria2/aria2.conf"
 mkdir -p ~/.config/aria2; rm /tmp/tracker
 echo "\
 bt-tracker=$TRACKERLIST
-dir=/home/$USER/Downloads
+dir=/mnt/HDD/Share
 save-session=/home/$USER/.cache/aria2/aria2.session
 enable-rpc=true
 rpc-allow-origin-all=true

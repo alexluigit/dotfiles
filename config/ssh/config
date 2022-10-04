@@ -5,10 +5,8 @@ TCPKeepAlive yes
 AddKeysToAgent yes
 AddressFamily inet
 
-Host *
-
-Host alex
-  HostName alexlu.xyz
+Host buzz
+  HostName alexlu.buzz
   User root
   Port 26798
   IdentityFile ~/.config/ssh/id_rsa

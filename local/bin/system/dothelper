@@ -22,7 +22,6 @@ _init() {
 _link_etc() {
   sudo rm -rf /etc/pacman.d/hooks
   sudo rm -rf /etc/interception
-  sudo rm -rf /etc/privoxy
   sudo rm -rf /etc/X11/xinit
   suoo rm /etc/pacman.conf
   suoo rm /etc/makepkg.conf
@@ -35,7 +34,6 @@ _link_etc() {
   __link $CONFIG_DIR/paru/makepkg.conf /etc/makepkg.conf sudo
   __link $CONFIG_DIR/paru/hooks /etc/pacman.d sudo
   __link $ETC_DIR/interception /etc sudo
-  __link $ETC_DIR/privoxy /etc sudo
   __link $ETC_DIR/npmrc /usr/etc sudo
   __link $ETC_DIR/X11/xinit /etc/X11 sudo
 }

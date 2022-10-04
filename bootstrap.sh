@@ -87,13 +87,11 @@ install_packages() {
 setup_proxy() {
   read -p "Setup proxy now? (y/n) " reply
   [[ $reply == "y" ]] && {
-    cp ~/.config/shadowsocks/config.example.json ~/.config/shadowsocks/config.json
-    read -p "Input your host name (eg. xxx.com): " HOST
-    read -p "Input your password: " PASS
-    sed -i "s/YOURHOST/$HOST/;s/YOURPASS/$PASS/" ~/.config/shadowsocks/config.json
-    [[ -n $(pidof privoxy) ]] || privoxy --no-daemon /etc/privoxy/config &
-    [[ -n $(pidof ss-local) ]] || ss-local -c ~/.config/shadowsocks/config.json &
-    export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:1088
+    cp ~/.config/xray/.config.example ~/.config/xray/config.json
+    read -p "Input your host name (eg. www.google.com): " HOST
+    read -p "Input your uuid: " PASS
+    sed -i "s/YOURHOST/$HOST/;s/YOURPASS/$PASS/" ~/.config/xray/config.json
+    export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:10801
   }
 }
 

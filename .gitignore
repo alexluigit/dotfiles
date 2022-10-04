@@ -3,7 +3,7 @@ config/ssh/*
 config/fcitx5/conf/cached_layouts
 config/fcitx5/*.log
 config/gtk-3.0/bookmarks
-config/shadowsocks/config.json
+config/xray/config.json
 config/aria2/aria2.conf
 config/sxhkd/mappings
 config/murl/list

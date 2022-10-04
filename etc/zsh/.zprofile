@@ -15,18 +15,19 @@ export IPYTHONDIR=$XDG_CONFIG_HOME/jupyter
 export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
 export GOPATH=$XDG_DATA_HOME/go
 export CARGO_HOME=$XDG_DATA_HOME/cargo
+export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export PATH=/usr/bin:$XDG_DATA_HOME/miniconda/bin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin
+export EMACSNATIVELOADPATH=$XDG_CACHE_HOME/emacs/eln-cache/
+export GRANDVIEW_HOME=$XDG_CONFIG_HOME/emacs/
 
 export GDK_SCALE=2 GDK_DPI_SCALE=0.6
 export QT_SCREEN_SCALE_FACTORS=1 QT_AUTO_SCREEN_SCALE_FACTOR=true
 export GTK_IM_MODULE=fcitx5 QT_IM_MODULE=fcitx5 XMODIFIERS=@im=fcitx5
 
 _running() { pgrep $1 >/dev/null 2>&1; }
-
-_running privoxy  || privoxy --no-daemon /etc/privoxy/config &
-_running ss-local || ss-local -c ~/.config/shadowsocks/config.json &
+_running xray     || xray run -confdir $XDG_CONFIG_HOME/xray/ &
 _running udevmon  || sudo nice -n -20 udevmon &
 _running aria2c   || aria2c -i ~/.cache/aria2/aria2.session >/dev/null &
 _running crond    || sudo crond -n &
-_running X        && return
-[[ $(tty) = '/dev/tty1' ]] && exec ssh-agent startx || exec zsh
+_running X        && retunr
+[[ $(tty) = '/dev/tty1' ]] && exec startx || exec zsh

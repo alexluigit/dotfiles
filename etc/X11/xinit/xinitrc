@@ -1,12 +1,8 @@
 #!/bin/sh
-xrdb -merge /etc/X11/xinit/xresources &
-mouse-gestures "BT5.1 Mouse" &
+xrdb -merge /opt/dotfiles/etc/X11/xinit/Xresources &
 fcitx5 &
-GTK_IM_MODULE=emacs XMODIFIERS=@im=emacs emacs --daemon &
+GTK_IM_MODULE=emacs XMODIFIERS=@im=emacs emacs --daemon --init-directory ~/.config/emacs &
 flameshot &
-autolock -b /usb/devices/1-2 -d DP-0 &
-redshift -b 1.0:0.7 -l 30.59:114.27 &
-picom &
-xsetroot -cursor_name left_ptr &
+picom --experimental-backends &
 
-exec awesome
+exec awesome > ~/.cache/awesome/stdout 2> ~/.cache/awesome/stderr

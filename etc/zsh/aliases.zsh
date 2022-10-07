@@ -9,6 +9,7 @@ alias ls='exa -a --color=always --group-directories-first' # all files and dirs
 alias la='exa -al --color=always --group-directories-first' # my preferred listing
 alias ll='exa -lu --color=always --group-directories-first --no-user --no-permissions -@'  # long format
 alias tcl="sudo rm -rf {$XDG_DATA_HOME/Trash,/media/HDD/.Trash}/{files,info}/{*,.*}"
+alias ka="killall"
 alias np="unset {HTTP_PROXY,HTTPS_PROXY}"
 alias sn="sudoedit"
 alias rs="rsync"

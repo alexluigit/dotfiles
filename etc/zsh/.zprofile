@@ -29,5 +29,5 @@ _running xray     || xray run -confdir $XDG_CONFIG_HOME/xray/ &
 _running udevmon  || sudo nice -n -20 udevmon &
 _running aria2c   || aria2c -i ~/.cache/aria2/aria2.session >/dev/null &
 _running crond    || sudo crond -n &
-_running X        && retunr
+_running X        && return
 [[ $(tty) = '/dev/tty1' ]] && exec startx || exec zsh

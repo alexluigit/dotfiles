@@ -41,7 +41,7 @@ chpwd_functions+=(_chpwd_prompt)
 _vterm_index() {
   [[ -n $INSIDE_EMACS ]] && {
     local str="•"
-    local index=$(emacsclient -e "(ale-vterm--get-index (window-buffer (selected-window)))")
+    local index=$(emacsclient -e "(+vterm--get-index (window-buffer (selected-window)))")
     [[ "$index" -ge "1" ]] && { for i in $(seq 1 $index); do str+="•"; done; }
     echo "%{$fg_bold[blue]$str %}%{$reset_color%}"
   }

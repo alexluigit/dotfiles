@@ -1,5 +1,5 @@
 #!/bin/sh
-rofi_command="rofi -theme $HOME/.config/rofi/themes/powermenu.rasi"
+rofi_command="rofi -theme $XDG_CONFIG_HOME/rofi/themes/powermenu.rasi"
 uptime=$(uptime -p | sed -e 's/up //g;s/ day, \| days, /d-/g;s/ hour, \| hours, /h-/g;s/ minute\| minutes/m/g')
 mem=$(free -h | grep Mem | awk '{print $3}')
 cpu=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}')

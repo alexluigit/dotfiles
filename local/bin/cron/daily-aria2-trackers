@@ -5,7 +5,7 @@ FILE="/home/$USER/.config/aria2/aria2.conf"
 mkdir -p ~/.config/aria2; rm /tmp/tracker
 echo "\
 bt-tracker=$TRACKERLIST
-dir=/mnt/HDD/Share
+dir=/home/$USER/Downloads
 save-session=/home/$USER/.cache/aria2/aria2.session
 enable-rpc=true
 rpc-allow-origin-all=true

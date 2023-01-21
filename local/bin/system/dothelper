@@ -53,6 +53,7 @@ _link_bin() {
     __link $i ~/.local/bin
   done
   __link /opt/miniconda $DATA_TARGET
+  sudo chown -R $USER:$USER /opt/miniconda
   __link $DOTPATH/local/bin/programs/floatwin/floatwin.conf $CONFIG_TARGET
 }
 

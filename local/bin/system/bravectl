@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 EXE="brave"
 START_FLAGS=(--proxy-server=http://127.0.0.1:10801)
+# ## Fallback proxy: paru geph4-client; geph4-client (config: /etc/default/geph4-client)
+# START_FLAGS=(--proxy-server=http://127.0.0.1:9910)
 MUSIC_INSTANCE=crx_cinhimbnkkaeohfgghhklpknlkffjgod
 MUSIC_FLAG=(--app-id=cinhimbnkkaeohfgghhklpknlkffjgod)
 FLOATW_WEB_FLAG=(-c Brave-browser:brave-browser)

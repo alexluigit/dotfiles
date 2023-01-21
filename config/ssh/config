@@ -1,6 +1,4 @@
-# vim:ft=sshconfig
 UserKnownHostsFile ~/.config/ssh/known_hosts
-IdentityFile ~/.config/ssh/id_rsa
 TCPKeepAlive yes
 AddKeysToAgent yes
 AddressFamily inet
@@ -9,4 +7,3 @@ Host buzz
   HostName alexlu.buzz
   User root
   Port 26798
-  IdentityFile ~/.config/ssh/id_rsa

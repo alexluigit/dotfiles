@@ -23,7 +23,7 @@ _comp_options+=(globdots)		# Include hidden files.
 ZSH_DATA_DIR=$XDG_DATA_HOME/zsh
 _Z_DATA=$XDG_DATA_HOME/z/zdata
 export NO_AT_BRIDGE=1 # Disable a11y
-export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:10801
+[[ $(pidof xray) ]] && export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:10801
 export FZF_DEFAULT_OPTS="--height 50% --reverse --border --bind=ctrl-s:toggle-sort,alt-n:preview-down,alt-p:preview-up"
 
 declare -A USER_DIRS=(

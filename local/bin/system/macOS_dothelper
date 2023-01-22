@@ -1,0 +1,114 @@
+#!/bin/sh
+[[ -d $DOTPATH ]] || { echo "$DOTPATH is not a directory."; exit 1; }
+CONFIG_DIR="$DOTPATH/config"
+ETC_DIR="$DOTPATH/etc"
+DATA_DIR="$DOTPATH/local/share"
+CONFIG_TARGET="$HOME/.config"
+DATA_TARGET="$HOME/.local/share"
+
+__link() {
+  local admin="$3"
+  [[ -f $1 ]] || [[ -d $1 ]] && eval "$admin ln -sf $1 $2";
+  [[ $? == 0 ]] && echo "Symlinked $1 => $2"
+}
+
+_init() {
+  echo "Repository Directory: $DOTPATH"
+  [[ ! -d $CONFIG_TARGET ]] && mkdir $CONFIG_TARGET || echo "Using '$HOME/.config'"
+  # [[ -n $(command -v crond) ]] && echo "Please check if cronie systemd service enabled" \
+  # || echo "Please install cronie for cronjob."
+}
+
+_link_etc() {
+  sudo cp $ETC_DIR/zsh/.zshenv /etc/zsh/zshenv
+  sudo sed -i "s|\\(export DOTPATH=\\).*|\1$DOTPATH|" /etc/zsh/zshenv
+  # sudo mkdir -p /usr/etc
+  # __link $ETC_DIR/npmrc /usr/etc sudo
+}
+
+_link_config() {
+  for i in $(du -d 1 "$CONFIG_DIR" | cut -f2); do __link $i $CONFIG_TARGET; done
+  rm $CONFIG_TARGET/config
+  __link $CONFIG_TARGET/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
+  __link $CONFIG_DIR/fd/root /.fdignore sudo
+  # __link $CONFIG_DIR/rime $DATA_TARGET/fcitx5
+  # echo "prefix \"$FNM_MULTISHELL_PATH/bin\"" > $CONFIG_TARGET/yarnrc
+}
+
+_link_bin() {
+  [[ ! -d ~/.local/bin ]] && mkdir ~/.local/bin
+  for i in $(find $DOTPATH/local/bin/{programs,system,git} -type f -executable); do
+    __link $i ~/.local/bin
+  done
+  # __link /opt/miniconda $DATA_TARGET
+  # sudo chown -R $USER:$USER /opt/miniconda
+}
+
+_link_assets() {
+  # __link $DATA_DIR/applications $DATA_TARGET
+  # __link $DATA_DIR/fonts $DATA_TARGET
+  # __link $DATA_DIR/themes $DATA_TARGET
+  rm $DATA_TARGET/share; echo
+  # local rime_dir=$DATA_DIR/glim
+  # mkdir -p {~/.cache/emacs,$DATA_TARGET/fcitx5,$CONFIG_TARGET/ibus}/rime
+  # __link $DATA_DIR/fcitx5/themes $DATA_TARGET/fcitx5/
+  # [[ -d $rime_dir/cache ]] || $rime_dir/MAKE -c
+  # for i in $(fd --exact-depth 1 -I '.yaml|.txt|.gram|lua|dicts' $rime_dir); do
+  #   __link $i $DATA_TARGET/fcitx5/rime
+  #   __link $i $CONFIG_TARGET/ibus/rime
+  #   __link $i ~/.cache/emacs/rime
+  # done
+}
+
+_mpv() {
+  cd ~; git clone https://github.com/mochaaP/mpv_thumbnail_script
+  cd mpv_thumbnail_script
+  python3 concat_files.py cat_osc.json; python3 concat_files.py cat_server.json
+  sudo cp mpv_thumbnail_script_{client_osc,server}.lua /usr/share/mpv/scripts
+  cd ..; git clone https://github.com/jonniek/mpv-playlistmanager
+  sudo cp mpv-playlistmanager/playlistmanager.lua /usr/share/mpv/scripts
+  ln -sf /usr/share/mpv/scripts/mpv_thumbnail_script_{client_osc,server}.lua ~/.config/mpv/scripts
+  ln -sf /usr/share/mpv/scripts/playlistmanager.lua ~/.config/mpv/scripts
+  ln -sf /usr/share/mpv/scripts/autoload.lua ~/.config/mpv/scripts
+  rm -rf ~/mpv{-playlistmanager,_thumbnail_script}
+}
+
+_get_submodule() {
+  cd $DOTPATH
+  git submodule init && git submodule update --recursive --remote
+  echo "All submodule updated."; cd -
+}
+
+_cron() {
+  # rm /tmp/cron 2>/dev/null
+  # local daily_index=00 weekly_index=00 monthly_index=00
+  # for i in $(find "$DOTPATH/local/bin/cron" -type f -executable); do
+  #   daily_index=$(printf "%02d" $daily_index)
+  #   weekly_index=$(printf "%02d" $weekly_index)
+  #   monthly_index=$(printf "%02d" $monthly_index)
+  #   periodic=$(awk -F- '{print $1}' <<< $(basename $i))
+  #   case $periodic in
+  #     daily) echo "$daily_index 21 * * * $i" >> /tmp/cron; daily_index=$((daily_index + 1));;
+  #     weekly) echo "$weekly_index 22 * * 0 $i" >> /tmp/cron; weekly_index=$((weekly_index + 1));;
+  #     monthly) echo "$monthly_index 23 1 * * $i" >> /tmp/cron; monthly_index=$((monthly_index + 1));;
+  #   esac
+  # done
+  # echo "Generated crontab: "; cat /tmp/cron
+  # crontab /tmp/cron; rm /tmp/cron
+  # echo "Cronjobs started. Run 'crontab -l' to check them out"
+}
+
+install() {
+  _link_etc; echo
+  _link_bin; echo
+  _link_config; echo
+  _link_assets; echo
+  _cron; echo
+  # [[ -L ~/.config/mpv/scripts/autoload.lua ]] && \
+  # echo "mpv script seems installed, to reinstall it anyway, run 'dh update'." || _mpv
+}
+
+update() { _get_submodule; echo; _mpv; }
+
+_init
+[[ -z "$@" ]] && install || "$@"

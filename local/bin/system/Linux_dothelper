@@ -49,6 +49,7 @@ _link_config() {
 }
 
 _link_bin() {
+  [[ ! -d ~/.local/bin ]] && mkdir ~/.local/bin
   for i in $(find $DOTPATH/local/bin/{programs,system,git} -type f -executable); do
     __link $i ~/.local/bin
   done
@@ -118,7 +119,7 @@ install() {
   _link_assets; echo
   _cron; echo
   [[ -L ~/.config/mpv/scripts/autoload.lua ]] && \
-  echo "mpv script seems installed, to reinstall it anyway, run 'dothelper update'." || _mpv
+  echo "mpv script seems installed, to reinstall it anyway, run 'dh update'." || _mpv
 }
 
 update() { _get_submodule; echo; _mpv; }

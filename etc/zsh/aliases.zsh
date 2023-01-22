@@ -2,7 +2,7 @@ alias cc="conda activate"
 alias cl="conda_activate_local"
 alias d="gio trash"
 alias n="nvim"
-alias dh="$DOTPATH/local/bin/system/dothelper"
+alias dh="[[ $(uname) == 'Linux' ]] && $DOTPATH/local/bin/system/Linux_dothelper || $DOTPATH/local/bin/system/macOS_dothelper"
 alias yd="yt-dlp --write-sub --write-auto-sub -o '~/Downloads/%(title)s-%(id)s.%(ext)s'"
 alias ydl="yt-dlp --yes-playlist --write-sub --write-auto-sub -o '~/Downloads/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
 alias ls='exa -a --color=always --group-directories-first' # all files and dirs

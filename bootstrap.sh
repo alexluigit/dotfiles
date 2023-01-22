@@ -50,7 +50,7 @@ mirrorlist() {
 fetch_submodules() {
   cd $DOTPATH
   git submodule init; git pull --recurse-submodules
-  DOTPATH=$DOTPATH $DOTPATH/local/bin/system/dothelper
+  DOTPATH=$DOTPATH $DOTPATH/local/bin/system/Linux_dothelper
   [[ $HID_APPLE_PATCH == 1 ]] && { cd $DOTPATH/etc/hid-apple-patched; ./install.sh; }
 }
 

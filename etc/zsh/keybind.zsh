@@ -6,14 +6,13 @@ regbind () { zle -N $2; bindkey $1 $2; }
 bindkey -e
 bindkey -M menuselect 'n' vi-down-line-or-history
 bindkey -M menuselect 'p' vi-up-line-or-history
-bindkey '^[OS'      kill-whole-line # <ctrl-;> -> F4
-bindkey '^[[59;5u'  kill-whole-line # <ctrl-;> in vterm
+bindkey '^[OS'      backward-kill-word # <ctrl>Back -> F4
+bindkey '^[[15~'    kill-whole-line # <alt>Back -> F5
+regbind '^[[17~'    backward-char-or-fd-pwd # <ctrl>i -> F6
+regbind '^[[23~'    z-goto # <ctrl>Return -> F10
 regbind '^[/'       find-all-dir
-regbind '^[[15~'    z-goto # <ctrl-return> -> F5
 regbind '^[e'       edit-command-line
 regbind '^[k'       kill-proc
-regbind '^[[17~'    backward-char-or-fd-pwd # <ctrl-i> -> F6
-regbind '^[[105;5u' backward-char-or-fd-pwd # <ctrl-i> in vterm
 regbind '^[r'       history-cmds
 regbind '^o'        forward-char-or-fmenu
 regbind '^\\'       updir

@@ -64,11 +64,9 @@
   /*
    * Some non-Emacs keybindings people are attached to
    */
-  bind "<ctrl>u" { "move-cursor" (paragraph-ends, -1, 0)
-                   "delete-from-cursor" (paragraph-ends, 1) };
-
-  bind "<ctrl>h" { "delete-from-cursor" (chars, -1) };
-  bind "<ctrl>w" { "delete-from-cursor" (word-ends, -1) };
+  bind "<alt>BackSpace" { "move-cursor" (paragraph-ends, -1, 0)
+                          "delete-from-cursor" (paragraph-ends, 1) };
+  bind "<ctrl>BackSpace" { "delete-from-cursor" (word-ends, -1) };
 }
 
 /*

@@ -43,13 +43,15 @@ mouse_bindings:
 
 key_bindings:
   # Fix broken terminal
-  # Ctrl-;      => F4
-  # Ctrl-Return => F5
+  # Ctrl-Back   => F4
+  # Cmd-Back    => F5
+  # Alt-Back    => F5
   # Ctrl-i      => F6
-  # Ctrl-,      => F10
+  # Ctrl-Return => F10
   # Ctrl-.      => F11
-  - { key: Semicolon,  mods: Control,        chars: "\x1bOS" }
-  - { key: Return,     mods: Control,        chars: "\x1b[15~" }
+  - { key: Back,       mods: Control,        chars: "\x1bOS" }
+  - { key: Back,       mods: Command,        chars: "\x1b[15~" }
+  - { key: Back,       mods: Alt,            chars: "\x1b[15~" }
   - { key: I,          mods: Control,        chars: "\x1b[17~" }
-  - { key: Comma,      mods: Control,        chars: "\x1b[21~" }
+  - { key: Return,     mods: Control,        chars: "\x1b[21~" }
   - { key: Period,     mods: Control,        chars: "\x1b[23~" }

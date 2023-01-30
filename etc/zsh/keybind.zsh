@@ -41,7 +41,7 @@ _autopairs() {
   local last_l_ch=${LBUFFER: -1}
   local first_r_ch=${RBUFFER:0:1}
   should_not_insert_pair() {
-    [[ -n $BUFFER ]] && { [[ "qQ" =~ $1 ]] && [[ $last_l_ch != ' ' ]] }\
+    [[ -n $BUFFER ]] && { [[ $1 =~ 'Qq' ]] && [[ $last_l_ch != ' ' ]] }\
       || { [[ -n $RBUFFER ]] && [[ $first_r_ch != $pair_r ]] }
   }
   $(should_not_insert_pair) && BUFFER=$LBUFFER$pair_l$RBUFFER || RBUFFER=$pair_l$pair_r$RBUFFER

@@ -87,4 +87,4 @@
 	name = Alex
 	email = hellosimon1103@hotmail.com
 [credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential

@@ -21,6 +21,7 @@ alias -g S="| sort -n -r"
 alias -g W="| wc -l"
 alias -g NE="2>/dev/null"
 alias -g NUL=">/dev/null 2>&1"
+[[ $(uname) == "Darwin" ]] && alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
 
 g () {
   if [[ -z $@ ]]; then

@@ -20,10 +20,15 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors '' # Colorize completions using default `ls` colors.
 _comp_options+=(globdots)		# Include hidden files.
-ZSH_DATA_DIR=$XDG_DATA_HOME/zsh
 _Z_DATA=$XDG_DATA_HOME/z/zdata
+
+export ZSH_DATA_DIR=$XDG_DATA_HOME/zsh
+export HISTFILE=$XDG_DATA_HOME/zsh/history
+export HISTSIZE=100000
+export SAVEHIST=100000
+
 export NO_AT_BRIDGE=1 # Disable a11y
-[[ $(pidof xray) ]] && export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:10801
+[[ $(pgrep xray) ]] && export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:10801
 export FZF_DEFAULT_OPTS="--height 50% --reverse --border --bind=ctrl-s:toggle-sort,alt-n:preview-down,alt-p:preview-up"
 
 declare -A USER_DIRS=(

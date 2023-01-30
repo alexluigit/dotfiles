@@ -56,7 +56,6 @@ emacs() {
   ./configure --with-mailutils
   make -j8 && make install
   cp -f -r ./nextstep/Emacs.app /Applications
-  ln -sf /Applications/Emacs.app/Contents/MacOS/Emacs ~/.local/bin/emacs
   ln -sf /Applications/Emacs.app/Contents/MacOS/bin/emacsclient ~/.local/bin
 }
 

@@ -1,3 +1,4 @@
+.DS_Store
 config/ssh/*
 !config/ssh/config
 config/fcitx5/conf/cached_layouts
@@ -5,9 +6,10 @@ config/fcitx5/*.log
 config/gtk-3.0/bookmarks
 config/xray/config.json
 config/aria2/aria2.conf
-config/sxhkd/mappings
 config/murl/list
 config/mpv/scripts/*
+config/karabiner/*
+!config/karabiner/assets
 local/share/fonts/*
 !local/share/fonts/Smartisan_Compact_CNS-Regular.otf
 !local/share/fonts/qingniao-kai.ttf

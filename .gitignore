@@ -8,6 +8,7 @@ config/xray/config.json
 config/aria2/aria2.conf
 config/murl/list
 config/mpv/scripts/*
+!config/mpv/scripts/osc_control.lua
 config/karabiner/*
 !config/karabiner/assets
 local/share/fonts/*

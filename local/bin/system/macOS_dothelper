@@ -2,9 +2,9 @@
 [[ -d $DOTPATH ]] || { echo "$DOTPATH is not a directory."; exit 1; }
 CONFIG_DIR="$DOTPATH/config"
 ETC_DIR="$DOTPATH/etc"
-DATA_DIR="$DOTPATH/local/share"
+DATA_DIR="$DOTPATH/Library"
 CONFIG_TARGET="$HOME/.config"
-DATA_TARGET="$HOME/.local/share"
+DATA_TARGET="$HOME/Library"
 
 __link() {
   local admin="$3"
@@ -21,8 +21,8 @@ _init() {
 }
 
 _default() {
-  for i in $(du -d 1 "$CONFIG_DIR" | cut -f2); do __link $i $CONFIG_TARGET; done
-  rm $CONFIG_TARGET/config
+  for i in $(fd -td -d1 "" "$CONFIG_DIR"); do __link $i $CONFIG_TARGET; done
+  for i in $(fd -td -d1 "" "$DATA_DIR"); do __link $i $DATA_TARGET; done
   __link $CONFIG_TARGET/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
   __link $CONFIG_DIR/fd/root /.fdignore sudo
 }

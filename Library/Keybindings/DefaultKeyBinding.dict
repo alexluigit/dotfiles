@@ -1,0 +1,11 @@
+/*
+  File: ~/Library/KeyBindings/DefaultKeyBinding.dict
+  Desc: Global keybindings on macOS
+  Docs:     https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/TextDefaultsBindings/TextDefaultsBindings.html
+  Examples: https://github.com/ttscoff/KeyBindings/blob/master/DefaultKeyBinding.dict
+  Blog:     https://zachwaugh.com/posts/customizing-global-keyboard-shortcuts-on-macos
+*/
+
+{
+  "^\177" = (deleteWordBackward:);
+}

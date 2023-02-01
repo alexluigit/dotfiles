@@ -1,0 +1,100 @@
+{
+  "title": "Shortcuts for opening applications",
+  "rules": [
+    {
+      "description": "Opt + e -> Emacs",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "k", // "e" in colemak
+            "modifiers": {
+              "mandatory": ["option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -a 'Emacs.app'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Opt + w -> Web Browser",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": ["option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/dotfiles/local/bin/system/bravectl web"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Opt + m -> Youtube Music",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": ["option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/dotfiles/local/bin/system/bravectl music"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Opt + a -> Incognito browser",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "mandatory": ["option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/dotfiles/local/bin/system/bravectl incognito"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Opt + t -> Terminal",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f", // "t" in colemak
+            "modifiers": {
+              "mandatory": ["option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -a 'Alacritty.app'"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -23,6 +23,7 @@ _init() {
 _default() {
   for i in $(fd -td -d1 "" "$CONFIG_DIR"); do __link $i $CONFIG_TARGET; done
   for i in $(fd -td -d1 "" "$DATA_DIR"); do __link $i $DATA_TARGET; done
+  __link $DOTPATH/local/share/glim $DATA_TARGET/Rime
   __link $CONFIG_TARGET/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
   __link $CONFIG_DIR/fd/root /.fdignore sudo
 }

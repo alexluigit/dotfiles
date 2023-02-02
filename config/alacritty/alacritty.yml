@@ -15,16 +15,16 @@ scrolling:
 
 font:
   normal:
-    family: Victor Mono
+    family: Iosevka Nerd Font Mono
     style: Medium
   bold:
-    family: Victor Mono
+    family: Iosevka Nerd Font Mono
     style: Bold
   italic:
-    family: Victor Mono
+    family: Iosevka Nerd Font Mono
     style: Medium Italic
   bold_italic:
-    family: Victor Mono
+    family: Iosevka Nerd Font Mono
     style: Bold Italic
   glyph_offset:
     x: 0

@@ -58,12 +58,11 @@ install_packages() {
   local packages_file=$DOTPATH/packages.csv
   local local_pkg_dir="$DOTPATH"/local/share/paru/pkgs
   sed '/^#/d' $packages_file > /tmp/pkgs.csv
-  local pacman_pkgs=(gcc rust paru miniconda)
-  local aur_pkgs=() conda_pkgs=() cargo_pkgs=() local_pkgs=()
+  local pacman_pkgs=(gcc rust paru)
+  local aur_pkgs=() cargo_pkgs=() local_pkgs=()
   while IFS=, read -r tag program comment; do
     case "$tag" in
       "AUR") aur_pkgs+=($program);;
-      "CON") conda_pkgs+=($program);;
       "CAR") cargo_pkgs+=($program);;
       "LOC") local_pkgs+=($program);;
       "") pacman_pkgs+=($program);;
@@ -71,7 +70,6 @@ install_packages() {
   done < /tmp/pkgs.csv
   sudo pacman -S --noconfirm ${pacman_pkgs[@]}
   setup_proxy
-  setup_conda_base "${conda_pkgs[@]}"
   for pkg in ${cargo_pkgs[@]}; do
     cargo install ${pkg//_SPC_/ }
   done
@@ -95,13 +93,6 @@ setup_proxy() {
   }
 }
 
-setup_conda_base() {
-  sudo chown -R $CURR_USER /opt/miniconda
-  source "/opt/miniconda/etc/profile.d/conda.sh"
-  conda install -y -q -c conda-forge -n base ${@}
-  conda list -n base
-}
-
 init_root() {
   pacman -S --asdeps --noconfirm zsh xorg-server xorg-xinit posix
   pacman -D --asdeps base linux linux-firmware linux-headers efibootmgr
@@ -118,8 +109,6 @@ init_root() {
 init_user() {
   fetch_submodules
   install_packages
-  read -p "Setup conda base environment? (y/n) " reply
-  [[ $reply == "y" ]] && setup_dev
 }
 
 [[ $CURR_USER == "root" ]] && init_root || init_user

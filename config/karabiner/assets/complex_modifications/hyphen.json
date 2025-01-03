@@ -98,6 +98,26 @@
           "type": "basic"
         }
       ]
+    },
+    {
+      "description": "Escape -> Command+Control+Opt+/",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "escape",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to_if_alone": [
+            {
+              "key_code": "slash",
+              "modifiers": ["command", "control", "option"]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

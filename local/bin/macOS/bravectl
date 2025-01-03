@@ -7,8 +7,9 @@ USE_FLOATW=true
   EXE="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
   USE_FLOATW=false
 }
-START_FLAGS=""
-[[ $(pgrep xray) ]] && START_FLAGS=(--proxy-server=http://127.0.0.1:10801)
+# –-test-type would disable any warning messages. Not the best solution, but it works.
+START_FLAGS=(--extensions-on-chrome-urls --test-type)
+[[ $(pgrep xray) ]] && START_FLAGS+=(--proxy-server=http://127.0.0.1:10801)
 # ## Fallback proxy: paru geph4-client; geph4-client (config: /etc/default/geph4-client)
 # START_FLAGS=(--proxy-server=http://127.0.0.1:9910)
 MUSIC_FLAG=(--user-data-dir="$MUSIC_DATA_DIR" --start-fullscreen music.youtube.com)
@@ -16,29 +17,25 @@ FLOATW_WEB_FLAG=(-c Brave-browser:brave-browser)
 FLOATW_INCO_FLAG=(-i 1 -g 2050x2050+5+5 -n "New Private Tab - Brave" -c Inco:)
 BRAVE_INCO_FLAG=(--user-data-dir="$INCO_DATA_DIR" --class=Inco --incognito)
 
-_activate_by_pid() {
-  osascript -e "
-    tell application \"System Events\"
-      set frontmost of the first process whose unix id is ${1} to true
-    end tell"
-}
+_osc_activate() {
+  local pid=$(ps aux | grep "$1" | awk '{print $2}')
+  [[ -z "$pid" ]] && { "$EXE" ${START_FLAGS[@]} 2>&1; } || {
+    local hasWindow=$(osascript -e "
+tell application \"System Events\"
+  set frontmost of the first process whose unix id is $pid to true
+  delay 0.3 -- wait for the frontmost lifting command above
+  tell (the first process whose unix id is $pid)
+    return (exists windows)
+  end tell
+end tell")
+    $hasWindow || { kill $pid; "$EXE" ${START_FLAGS[@]} 2>&1;};};}
 _rmpki() { sleep 5 && rm -rf ~/.pki; }
+_web_mac() { START_FLAGS+=(--arbitary-fake-args); _osc_activate '[a]rbitary-fake-args';}
+_music_mac() { _osc_activate '[s]tart-fullscreen music.youtube.com'; }
+_inco_mac() { _osc_activate '[c]lass=Inco --incognito'; }
 _web_linux() { floatwin "${FLOATW_WEB_FLAG[@]}" "$EXE" ${START_FLAGS[@]}; exit; }
-_web_mac() {
-  START_FLAGS+=(--arbitary-fake-args)
-  local mpid=$(ps aux | grep '[a]rbitary-fake-args' | awk '{print $2}')
-  [[ -n "$mpid" ]] && _activate_by_pid $mpid || "$EXE" ${START_FLAGS[@]};
-}
 _music_linux() { "$EXE" ${START_FLAGS[@]}; exit; }
-_music_mac() {
-  local mpid=$(ps aux | grep '[s]tart-fullscreen music.youtube.com' | awk '{print $2}')
-  [[ -n "$mpid" ]] && _activate_by_pid $mpid || "$EXE" ${START_FLAGS[@]};
-}
 _inco_linux() { floatwin "${FLOATW_INCO_FLAG[@]}" "$EXE" ${START_FLAGS[@]}; exit; }
-_inco_mac() {
-  local mpid=$(ps aux | grep '[c]lass=Inco --incognito' | awk '{print $2}')
-  [[ -n "$mpid" ]] && _activate_by_pid $mpid || "$EXE" ${START_FLAGS[@]};
-}
 
 music() {
   START_FLAGS+=("${MUSIC_FLAG[@]}")

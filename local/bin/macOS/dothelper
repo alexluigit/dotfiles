@@ -17,7 +17,7 @@ _init() {
   echo "Repository Directory: $DOTPATH"
   [[ ! -d $CONFIG_TARGET ]] && mkdir $CONFIG_TARGET || echo "Using '$HOME/.config'"
   echo "Checking zshenv..."
-  sudo ln -s $ETC_DIR/zsh/.zshenv /etc/zshenv
+  [[ -f /etc/zshenv ]] || sudo ln -s $ETC_DIR/zsh/.zshenv /etc/zshenv
 }
 
 _default() {
@@ -26,17 +26,19 @@ _default() {
   __link $DOTPATH/local/share/glim $DATA_TARGET/Rime
   __link $CONFIG_TARGET/ssh ~/.ssh && rm ~/.ssh/ssh 2>/dev/null
   __link $CONFIG_DIR/fd/root /.fdignore sudo
+  for i in $(fd -tx . $DOTPATH/local/bin/git); do __link $i ~/.local/bin; done
 }
 
 mpv() {
-  cd ~;
-  git clone --depth 1 https://github.com/mpv-player/mpv mpv-repo;
-  cd mpv-repo;
-  meson setup build
-  meson compile -C build
-  ./build/mpv --version
-  ./TOOLS/osxbundle.py --skip-deps build/mpv
-  cp -r ./build/mpv.app /Applications
+  brew install --cask mpv;
+  # cd ~;
+  # git clone --depth 1 https://github.com/mpv-player/mpv mpv-repo;
+  # cd mpv-repo;
+  # meson setup build
+  # meson compile -C build
+  # ./build/mpv --version
+  # ./TOOLS/osxbundle.py --skip-deps build/mpv
+  # cp -r ./build/mpv.app /Applications
   cd ~;
   git clone --depth 1 https://github.com/jonniek/mpv-playlistmanager
   git clone --depth 1 https://github.com/mochaaP/mpv_thumbnail_script
@@ -45,7 +47,7 @@ mpv() {
   fd "" --type l | xargs "rm"
   cp ~/mpv_thumbnail_script/mpv_thumbnail_script_{client_osc,server}.lua ~/.config/mpv/scripts
   cp ~/mpv-playlistmanager/playlistmanager.lua ~/.config/mpv/scripts
-  cp ~/mpv-repo/TOOLS/lua/autoload.lua ~/.config/mpv/scripts
+  # cp ~/mpv-repo/TOOLS/lua/autoload.lua ~/.config/mpv/scripts
   ln -sf /Applications/mpv.app/Contents/MacOS/mpv ~/.local/bin
   rm -rf ~/mpv{-repo,-playlistmanager,_thumbnail_script}
 }
@@ -58,6 +60,30 @@ emacs() {
   make -j8 && make install
   cp -f -r ./nextstep/Emacs.app /Applications
   ln -sf /Applications/Emacs.app/Contents/MacOS/bin/emacsclient ~/.local/bin
+  cd ~/Code;
+}
+
+rime() {
+  git clone --depth 1 --recursive https://github.com/rime/librime ~/Code/librime
+  cd ~/Code/librime;
+  ./install-plugins.sh hchunhui/librime-lua
+  ./install-plugins.sh lotem/librime-octagram
+  ./install-plugins.sh lotem/librime-charcode
+  git clone --depth 1 -b thirdparty https://github.com/hchunhui/librime-lua ~/Code/librime/plugins/lua/thirdparty
+  make ARCHS='arm64' xcode/deps/boost
+  export BOOST_ROOT="$(pwd)/deps/boost_1_78_0"
+  # export LIBRARY_PATH=${LIBRARY_PATH}:/opt/homebrew/opt/icu4c/lib:/usr/local/opt/icu4c/lib
+  make ARCHS='arm64' xcode/deps
+  # export LDFLAGS="-L/opt/homebrew/opt/icu4c/lib"
+  # export CPPFLAGS="-I/opt/homebrew/opt/icu4c/include"
+  make ARCHS='arm64' xcode/dist
+  cp -r dist ~/.cache/emacs/librime
+  local rime_dir=$DATA_TARGET/Rime
+  mkdir -p ~/.cache/emacs/rime
+  [[ -d $rime_dir/cache ]] || $rime_dir/MAKE -c
+  for i in $(fd --exact-depth 1 -I '.yaml|.txt|.gram|lua|dicts' $rime_dir); do
+    __link $i ~/.cache/emacs/rime
+  done
 }
 
 update() {

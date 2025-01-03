@@ -7,5 +7,8 @@
 */
 
 {
-  "^\177" = (deleteWordBackward:);
+  "^\177" = (deleteWordBackward:); /* Control-BackSpace */
+  "$\177" = (deleteToBeginningOfParagraph:); /* Shift-BackSpace */
+  "^o" = (moveBackward:); /* Control-o */
+  "^i" = (moveForward:); /* Control-i */
 }

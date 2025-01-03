@@ -52,8 +52,6 @@ _link_bin() {
   for i in $(find $DOTPATH/local/bin/{programs,system,git} -type f -executable); do
     __link $i ~/.local/bin
   done
-  __link /opt/miniconda $DATA_TARGET
-  sudo chown -R $USER:$USER /opt/miniconda
   __link $DOTPATH/local/bin/programs/floatwin/floatwin.conf $CONFIG_TARGET
 }
 

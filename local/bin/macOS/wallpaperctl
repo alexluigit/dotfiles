@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+_draw() { xwallpaper --output DP-0 --zoom $1; }
+_shuf() { fd -tf . ~/Pictures/wallpaper | shuf -n 1; }
+
+random() { _draw $(_shuf); }
+change() { [[ -n $1 ]] && _draw $1 || random; }
+
+"$@"

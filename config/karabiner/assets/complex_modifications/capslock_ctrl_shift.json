@@ -100,30 +100,6 @@
           "type": "basic"
         }
       ]
-    },
-    {
-      "description": "Post Escape when left Shift is pressed alone.",
-      "manipulators": [
-        {
-          "from": {
-            "key_code": "left_shift",
-            "modifiers": {
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "left_shift"
-            }
-          ],
-          "to_if_alone": [
-            {
-              "key_code": "escape"
-            }
-          ],
-          "type": "basic"
-        }
-      ]
     }
   ]
 }

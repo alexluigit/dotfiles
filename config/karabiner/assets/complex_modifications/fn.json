@@ -1,0 +1,204 @@
+{
+  // QWERTYUIOP[]\
+  //  ASDFGHJKL;'
+  //   ZXCVBNM,./
+  "title": "Fn + right hand letters for opening applications",
+  "rules": [
+    {
+      "description": "Fn + l -> Open L app",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "u", // "l" in colemak
+            "modifiers": {
+              "mandatory": ["fn"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/dotfiles/local/bin/macOS/app-runner L"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Fn + u -> Open U app",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "i", // "u" in colemak
+            "modifiers": {
+              "mandatory": ["fn"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/dotfiles/local/bin/macOS/app-runner U"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Fn + y -> Open Y app",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "o", // "u" in colemak
+            "modifiers": {
+              "mandatory": ["fn"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/dotfiles/local/bin/macOS/app-runner Y"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Fn + n -> Open N app",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "j", // "n" in colemak
+            "modifiers": {
+              "mandatory": ["fn"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/dotfiles/local/bin/macOS/app-runner N"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Fn + e -> Open E app",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "k", // "e" in colemak
+            "modifiers": {
+              "mandatory": ["fn"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/dotfiles/local/bin/macOS/app-runner E"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Fn + i -> Open I app",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "l", // "i" in colemak
+            "modifiers": {
+              "mandatory": ["fn"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/dotfiles/local/bin/macOS/app-runner I"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Fn + o -> Open O app",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "semicolon", // "o" in colemak
+            "modifiers": {
+              "mandatory": ["fn"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/dotfiles/local/bin/macOS/app-runner O"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Fn + m -> Open M app",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "m", // "m" in colemak
+            "modifiers": {
+              "mandatory": ["fn"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/dotfiles/local/bin/macOS/app-runner M"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Fn + Space -> toggle fullscreen",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["fn"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/dotfiles/local/bin/macOS/window-manager -F"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Fn (alone) -> Cmd + Tab",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "apple_vendor_top_case_key_code": "keyboard_fn",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to_if_alone": [
+            {
+              "key_code": "tab",
+              "modifiers": ["right_command"]
+            }
+          ],
+          "to": [
+            {
+              "apple_vendor_top_case_key_code": "keyboard_fn"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

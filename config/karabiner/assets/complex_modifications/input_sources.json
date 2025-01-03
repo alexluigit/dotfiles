@@ -1,0 +1,31 @@
+{
+  "title": "Switch input sources",
+  "rules": [
+    {
+      "description": "Shift-SPC -> Cmd+Ctrl+Opt+backspace except in Emacs",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "backslash",
+              "modifiers": ["command", "control", "option"]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": ["^org\\.gnu\\.Emacs$"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

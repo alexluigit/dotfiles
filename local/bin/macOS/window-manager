@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+
+_get_focused_bundle_id() {
+  osascript -e "
+tell application \"System Events\"
+  set frontApp to first application process whose frontmost is true
+  set bundleID to bundle identifier of frontApp
+  return bundleID
+end tell"
+}
+
+_activate_by_pid() {
+  osascript -e "
+    tell application \"System Events\"
+      set frontmost of the first process whose unix id is ${1} to true
+    end tell"
+}
+
+run_if_match() {
+  if [[ "$(_get_focused_bundle_id)" == "$BUNDLE_IDENTIFIER" ]]; then
+    eval "$IF_MATCH"
+  else
+    eval "${REST[@]}";
+  fi
+}
+
+IF_MATCH=false
+BUNDLE_IDENTIFIER=""
+GET_FOCUSED=false
+TOGGLE_FS=false
+LAST_APP=false
+
+toggle_fullscreen() {
+  osascript -e "
+tell application \"System Events\"
+  -- Get the focused application's process name (most reliable)
+  set frontmostAppProcess to first process whose frontmost is true
+  set focusedAppName to name of frontmostAppProcess
+  tell process focusedAppName
+    set frontWindow to first window whose subrole is \"AXStandardWindow\"
+    if frontWindow is not missing value then
+      set isFullScreen to value of attribute \"AXFullScreen\" of frontWindow as boolean
+      set value of attribute \"AXFullScreen\" of frontWindow to not isFullScreen
+    else
+      display dialog \"No standard window found for \" & focusedAppName & \".\" buttons {\"OK\"} default button 1 with icon stop
+    end if
+  end tell
+end tell"
+}
+
+switch_to_last_app() {
+  osascript -e "
+tell application \"System Events\"
+    key code 48 using {command down}
+end tell"
+}
+
+send_notification() {
+  eval "osascript -e 'display notification \""$MSG"\" with title \"Alex Window Manager\"'"
+}
+
+
+while getopts "b:m:n:fFl" opt; do
+  case $opt in
+    b) BUNDLE_IDENTIFIER=$OPTARG;;
+    m) IF_MATCH=$OPTARG;;
+    n) MSG=$OPTARG;;
+    f) GET_FOCUSED=true;;
+    F) TOGGLE_FS=true;;
+    l) LAST_APP=true;;
+  esac
+done
+shift $((OPTIND -1))
+
+REST="${@}"
+
+[[ -n $MSG ]] && send_notification $MSG;
+"$TOGGLE_FS" && { toggle_fullscreen; exit 0; }
+"$GET_FOCUSED" && { _get_focused_bundle_id; exit 0; }
+"$LAST_APP" && { switch_to_last_app; exit 0; }
+
+[[ -n "$IF_MATCH" ]] && run_if_match $BUNDLE_IDENTIFIER || exit 1;

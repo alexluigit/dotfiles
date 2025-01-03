@@ -1,0 +1,106 @@
+{
+  "title": "Left Shift",
+  "rules": [
+    {
+      "description": "Post Escape when left Shift is pressed alone.",
+      "manipulators": [
+        {
+          "type": "basic",
+          // "conditions": [
+          //   {
+          //     "type": "frontmost_application_unless",
+          //     "bundle_identifiers": ["^com\\.jetbrains\\.rider$"]
+          //   }
+          // ],
+          "from": {
+            "key_code": "left_shift",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_shift"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "escape"
+            }
+          ]
+        }
+      ]
+    }
+    // {
+    //   "description": "LeftShift: double tap -> left-shift, single tap -> escape",
+    //   "manipulators": [
+    //     {
+    //       "type": "basic",
+    //       "from": {
+    //         "key_code": "left_shift",
+    //         "modifiers": {
+    //           "optional": [
+    //             "any"
+    //           ]
+    //         }
+    //       },
+    //       "to": [
+    //         {
+    //           "key_code": "right_shift"
+    //         }
+    //       ],
+    //       "to_after_key_up": [
+    //         {
+    //           "set_variable": {
+    //             "name": "left_shift_pressed",
+    //             "value": 0
+    //           }
+    //         }
+    //       ],
+    //       "conditions": [
+    //         {
+    //           "type": "variable_if",
+    //           "name": "left_shift_pressed",
+    //           "value": 1
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "type": "basic",
+    //       "parameters": {
+    //         "basic.to_delayed_action_delay_milliseconds": 250
+    //       },
+    //       "from": {
+    //         "key_code": "left_shift",
+    //         "modifiers": {
+    //           "optional": [
+    //             "any"
+    //           ]
+    //         }
+    //       },
+    //       "to": [
+    //         {
+    //           "set_variable": {
+    //             "name": "left_shift_pressed",
+    //             "value": 1
+    //           }
+    //         }
+    //       ],
+    //       "to_delayed_action": {
+    //         "to_if_invoked": [
+    //           {
+    //             "set_variable": {
+    //               "name": "left_shift_pressed",
+    //               "value": 0
+    //             }
+    //           },
+    //           {
+    //             "key_code": "escape"
+    //           }
+    //         ]
+    //       }
+    //     }
+    //   ]
+    // }
+  ]
+}

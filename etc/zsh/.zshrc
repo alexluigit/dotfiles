@@ -19,65 +19,56 @@ zmodload zsh/complist
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors '' # Colorize completions using default `ls` colors.
-_comp_options+=(globdots)		# Include hidden files.
-_Z_DATA=$XDG_DATA_HOME/z/zdata
+_comp_options+=(globdots) # Include hidden files when completing.
 
-export ZSH_DATA_DIR=$XDG_DATA_HOME/zsh
-export HISTFILE=$XDG_DATA_HOME/zsh/history
+export LANG=en_US.UTF-8
+export ZSH_DATA_DIR=${XDG_DATA_HOME:-~/.local/share}/zsh
+export HISTFILE=$ZSH_DATA_DIR/history
 export HISTSIZE=100000
 export SAVEHIST=100000
 
+export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:10801
 export NO_AT_BRIDGE=1 # Disable a11y
-[[ $(pgrep xray) ]] && export {HTTP_PROXY,HTTPS_PROXY}=http://127.0.0.1:10801
 export FZF_DEFAULT_OPTS="--height 50% --reverse --border --bind=ctrl-s:toggle-sort,alt-n:preview-down,alt-p:preview-up"
+
+declare -A PROMPT_ICONS=(
+  # [{name}]="{icon}"
+  [play_button]=""
+  [git_status]=""
+  [fingerprint]="󰈷"
+  [exclamation]=""
+  [package]=""
+)
 
 declare -A USER_DIRS=(
   # [{order}_{name}]="{path} {symbol} {program} {description}"
-  [01-conf]="/opt/dotfiles/                    System    emacsclient -n"
-  [02-code]="/mnt/HDD/Dev/                     Dev       mpv"
-  [03-book]="/mnt/HDD/Book/                    Book      emacsclient -n"
-  [04-note]="/home/$USER/Documents/notes/      Notes     emacsclient -n"
-  [06-vids]="/mnt/HDD/Video/                   Video     mpv"
-  [07-down]="/home/$USER/Downloads/            Downloads mpv"
+  [01-conf]="$DOTPATH                  System    emacsclient -n"
+  [02-code]="/mnt/HDD/Dev              Dev       mpv"
+  [03-book]="/mnt/HDD/Book          󰂺   Book      emacsclient -n"
+  [04-note]="$HOME/Documents/notes     Notes     emacsclient -n"
+  [06-vids]="/mnt/HDD/Video         󰟞   Video     mpv"
+  [07-down]="$HOME/Downloads           Downloads mpv"
 )
+
 declare -A SYS_DIRS=(
   # [{priority}_{name}]="{path} {symbol} {color}"
-  [01_DATA]="/mnt/HDD/        220"
-  [02_HOME]="/home/$USER/     152"
-  [03_HOME]="$HOME            152"
-  [04_CONF]="/opt/dotfiles/   152"
-  [05_ROOT]="/                167"
+  [01_DATA]="/mnt/HDD/  󱛟  220"
+  [02_HOME]="$HOME/       152"
+  [03_HOME]="$HOME        152"
+  [05_CONF]="$DOTPATH/    152"
+  [06_ROOT]="/          󰈷  167"
 )
 
-PLUGINS=(rupa/z
-         zsh-users/zsh-autosuggestions
-         zsh-users/zsh-syntax-highlighting)
-
-# Load necessary functions for bootstraping
-. $ZDOTDIR/boot.zsh
-
-# Load config
-CONDA_PROMPT=true
-CONDA_AUTOSWITCH=false
-TIMER_PROMPT=false
-ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-word)
-declare -A ZSH_HIGHLIGHT_STYLES=(
-  [alias]=fg=yellow,bold
-  [builtin]=fg=blue,bold
-  [function]=fg=yellow,bold
-  [command]=fg=blue,bold
-)
+. $ZDOTDIR/plugin.zsh
 . $ZDOTDIR/fmenu.zsh
 . $ZDOTDIR/prompt.zsh
-zsh-defer . $ZDOTDIR/aliases.zsh
-zsh-defer . $ZDOTDIR/keybind.zsh
-zsh-defer . $ZDOTDIR/conda.zsh
-
-# Load plugins
-zsh-defer . /usr/share/fzf/completion.zsh
-zsh-defer . $ZSH_DATA_DIR/plugins/z/z.sh
-zsh-defer . $ZSH_DATA_DIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-zsh-defer . $ZSH_DATA_DIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. $ZDOTDIR/venv.zsh
+. $ZDOTDIR/aliases.zsh
+. $ZDOTDIR/keybind.zsh
+case $(uname) in
+  Darwin) . $ZDOTDIR/macOS.zsh;;
+  Linux) . $ZDOTDIR/linux.zsh;;
+esac
 
 autoload -Uz compinit
 compinit -d $ZSH_DATA_DIR/zcompdump-$ZSH_VERSION

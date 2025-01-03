@@ -1,31 +1,9 @@
-# See keylist at https://github.com/prompt-toolkit/python-prompt-toolkit/blob/master/prompt_toolkit/input/ansi_escape_sequences.py
+# See keylist at https://github.com/prompt-toolkit/python-prompt-toolkit/blob/master/src/prompt_toolkit/input/ansi_escape_sequences.py
 # You can use 'cat' or 'read' to capture a key sequence. See: https://superuser.com/questions/997593/why-does-zsh-insert-a-when-i-press-the-delete-key
+# For example: '^[' represents ESC(Escape)
 stty -ixon # Disable XON/XOFF flow control
-autoload -Uz edit-command-line; zle -N edit-command-line
 regbind () { zle -N $2; bindkey $1 $2; }
-bindkey -e
-bindkey -M menuselect 'n' vi-down-line-or-history
-bindkey -M menuselect 'p' vi-up-line-or-history
-bindkey '^[OS'      backward-kill-word # <ctrl>Back -> F4
-bindkey '^[[15~'    kill-whole-line # <alt>Back -> F5
-regbind '^[[17~'    backward-char-or-fd-pwd # <ctrl>i -> F6
-regbind '^[[23~'    z-goto # <ctrl>Return -> F10
-regbind '^[/'       find-all-dir
-regbind '^[e'       edit-command-line
-regbind '^[k'       kill-proc
-regbind '^[r'       history-cmds
-regbind '^o'        forward-char-or-fmenu
-regbind '^\\'       updir
-regbind '^y'        yank-clipboard
-regbind '^[w'       write-to-clipboard
-regbind '^z'        fg-bg
-regbind '^?'        backspace
-regbind '<'         open-angle
-regbind '('         open-brace
-regbind '['         open-brket
-regbind '{'         open-curly
-regbind "'"         single-quote
-regbind '"'         double-quote
+autoload -Uz edit-command-line; zle -N edit-command-line;
 
 declare -gA AUTOPAIR_PAIRS=('`' '`' "'" "'" '"' '"' '{' '}' '[' ']' '(' ')' '<' '>' ' ' ' ')
 _autopairs() {
@@ -47,7 +25,6 @@ _autopairs() {
   $(should_not_insert_pair) && BUFFER=$LBUFFER$pair_l$RBUFFER || RBUFFER=$pair_l$pair_r$RBUFFER
   zle forward-char
 }
-
 backspace() {
   local last_l_ch=${LBUFFER: -1}
   local first_r_ch=${RBUFFER:0:1}
@@ -63,15 +40,24 @@ history-cmds() {
   [[ -n "$sel" ]] && { num=$sel[1]; [[ -n "$num" ]] && zle vi-fetch-history -n $num; }
   zle reset-prompt
 }
+yank-clipboard() {
+  oldRBUF=$RBUFFER
+  [[ "$(uname)" == "Darwin" ]] && RBUFFER=$(pbpaste) \
+      || RBUFFER=$(xclip -o -selection clipboard);
+  zle end-of-line
+  RBUFFER=$oldRBUF
+}
+write-to-clipboard() {
+  zle copy-region-as-kill;
+  [[ "$(uname)" == "Darwin" ]] && print -rn $CUTBUFFER | pbcopy ||\
+      print -rn $CUTBUFFER | xclip -i -selection clipboard;
+}
 find-all-dir()  { _fzf_navi; }
-kill-proc() { BUFFER="kill -9 "; zle end-of-line; fzf-completion; }
-backward-char-or-fd-pwd()  { [[ -n $BUFFER ]] && zle forward-char || _fzf_menu . xdg-open; }
-forward-char-or-fmenu()  { [[ -n $BUFFER ]] && zle backward-char || _fzf_menu; }
+kill-line-or-proc()  { [[ -n $BUFFER ]] && zle kill-whole-line ||\
+                           { BUFFER="kill -9 **"; zle end-of-line; fzf-completion; } }
+fd-pwd()  { [[ "$(uname)" == "Darwin" ]] && _fzf_menu . open || _fzf_menu . xdg-open; }
 z-goto()  { _fzf_navi z; }
 updir() { cd ..; zle reset-prompt; }
-yank-clipboard() { oldRBUF=$RBUFFER; RBUFFER=$(xclip -o -selection clipboard); zle end-of-line; RBUFFER=$oldRBUF; }
-write-to-clipboard() { zle copy-region-as-kill; print -rn $CUTBUFFER | xclip -i -selection clipboard; }
-fg-bg()  { [[ -n $BUFFER ]] && zle push-input || { fg; zle reset-prompt; zle-line-init; } }
 fcd() { local sel=$(fd -c always -td . | fzf --ansi); [[ -n $sel ]] && cd $sel; zle reset-prompt; }
 open-angle()   { _autopairs a; }
 open-brace()   { _autopairs b; }
@@ -79,3 +65,27 @@ open-brket()   { _autopairs r; }
 open-curly()   { _autopairs c; }
 single-quote() { _autopairs q; }
 double-quote() { _autopairs Q; }
+
+bindkey -e
+bindkey -M menuselect 'n' vi-down-line-or-history
+bindkey -M menuselect 'p' vi-up-line-or-history
+bindkey '^o'      backward-char
+bindkey '^[OR'    forward-char             # F3  <ctrl> i
+bindkey '^[OS'    backward-kill-word       # F4  <ctrl> Back
+regbind '^[[15~'  kill-line-or-proc        # F5  <shift>Back
+regbind '^[[17~'  fd-pwd                   # F6  <ctrl> /
+regbind '^[[21~'  edit-command-line        # F10 <ctrl> ,
+regbind '^[[23~'  _fzf_menu                # F11 <ctrl> .
+regbind '^[[25~'  updir                    # F12 <ctrl> ;
+regbind '^r'      history-cmds
+regbind '^\\'     find-all-dir
+regbind '^w'      write-to-clipboard
+regbind '^y'      yank-clipboard
+regbind '^z'      z-goto
+regbind '^?'      backspace
+regbind '<'       open-angle
+regbind '('       open-brace
+regbind '['       open-brket
+regbind '{'       open-curly
+regbind "'"       single-quote
+regbind '"'       double-quote

@@ -24,9 +24,9 @@ _fzf_menu() {
   _get_opts() { _entries | fzf --height=100% --prompt="Open: " --with-nth 2,3; }
   _parse_opts() { OPT[2]+=" "; }
   _fzf_open() {
-    local dir="$1" app="$4" app_arg="${@:5}"
+    local dir="$1" app="$4" app_arg="${@:5}" pv_cmd="$DOTPATH/local/bin/programs/preview"
     local fd_cmd=(fd -tf -H -L -c always)
-    local fzf_cmd=(fzf --height=100% -m --ansi --preview=\"preview {}\" --prompt=\"$2\")
+    local fzf_cmd=(fzf --height=100% -m --ansi --preview=\"$pv_cmd {}\" --prompt=\"$2\")
     cd $dir
     local res=`eval ${fd_cmd[@]} | eval ${fzf_cmd[@]}`
     local res_array; while read -r line; do res_array+=("$line"); done <<< "$res"

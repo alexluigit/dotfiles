@@ -28,6 +28,7 @@
 	# similar to whatchanged, but gives a dir-level overview:
 	# usage: git wd [diff-against=HEAD] [max-depth=4]
 	wd	 =  "!f() { git --paginate diff --dirstat=cumulative,files,0 ${1:-HEAD} | awk '{print $2}' | cut -d / -f1-${2:-4} | sort | uniq; }; f"
+        magit    = "!f() { git rev-parse --is-inside-work-tree 2>/dev/null 2>&1 && emacsclient -e '(magit-status-here)'; }; f"
 [branch]
 	autosetuprebase = local
 [color]
@@ -84,7 +85,10 @@
 [status]
 	submodulesummary = true
 [user]
-	name = Alex
+	name = Alex Lu
 	email = hellosimon1103@hotmail.com
 [credential "https://github.com"]
 	helper = !gh auth git-credential
+[diff "lockb"]
+	textconv = bun
+	binary = true

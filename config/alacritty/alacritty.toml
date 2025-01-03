@@ -1,0 +1,57 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[cursor]
+blink_interval = 500
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 16.0
+normal = { family = "Iosevka Nerd Font Mono", style = "Medium" }
+bold = { family = "Iosevka Nerd Font Mono", style = "Bold" }
+bold_italic = { family = "Iosevka Nerd Font Mono", style = "Bold Italic" }
+italic = { family = "Iosevka Nerd Font Mono", style = "Medium Italic" }
+glyph_offset = { x = 0, y = 2 }
+
+# Fix broken terminal
+# Ctrl-i      => F3
+# Ctrl-Back   => F4
+# Shift-Back  => F5
+# Ctrl-/      => F6
+# Ctrl-,      => F10
+# Ctrl-.      => F11
+# Ctrl-;      => F12
+[keyboard]
+bindings = [
+{ chars = "\u001BOR", key = "I", mods = "Control" },
+{ chars = "\u001BOS", key = "Back", mods = "Control" },
+{ chars = "\u001B[15~", key = "Back", mods = "Shift" },
+{ chars = "\u001B[17~", key = "Slash", mods = "Control" },
+{ chars = "\u001B[21~", key = "Comma", mods = "Control" },
+{ chars = "\u001B[23~", key = "Period", mods = "Control" },
+{ chars = "\u001B[25~", key = "Semicolon", mods = "Control" }
+]
+
+[mouse]
+bindings = [
+{ action = "PasteSelection", mouse = "Middle" },
+{ action = "Copy", mouse = "Right" }
+]
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[window]
+decorations = "None"
+dynamic_title = true
+opacity = 0.9
+dimensions = { columns = 133, lines = 45 }
+position = { x = 750, y = 75 }
+padding = { x = 12, y = 7 }
+option_as_alt = "Both"
+
+[general]
+live_config_reload = true
